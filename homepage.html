@@ -66,7 +66,6 @@
             cursor: pointer;
             padding: 10px 20px;
         }
-        
         @media screen and (max-width: 600px) {
             .dropdown-container {
                 display: none;
@@ -104,8 +103,8 @@
             width: 200px;
             transition: transform 0.2s;
             cursor: pointer;
-            text-decoration: none; /* Remove underline from links */
-            color: black; /* Text color */
+            text-decoration: none;
+            color: black;
         }
         .lesson:hover {
             transform: scale(1.05);
@@ -118,10 +117,58 @@
             font-size: 14px;
             color: #555;
         }
+        .hero {
+            background-color: #007BFF;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin: 0 0 20px;
+        }
+        .hero p {
+            font-size: 20px;
+            margin: 0 0 40px;
+        }
+        .hero button {
+            background-color: white;
+            color: #007BFF;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .hero button:hover {
+            background-color: #f1f1f1;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        .feature {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+        }
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .feature p {
+            font-size: 16px;
+            color: #555;
+        }
     </style>
 </head>
 <body>
-
 <nav>
     <div class="hamburger" onclick="toggleMenu()">☰</div>
     <div class="dropdown-container" id="menu">
@@ -145,17 +192,36 @@
             <button class="dropbtn">About</button>
             <div class="dropdown-content">
                 <a href="#course-info">Course Information</a>
-                <a href="#instructors">Instructors</a>
+                <a href="aboutme.html#about-me">About Me</a>
                 <a href="#contact">Contact Us</a>
             </div>
         </div>
     </div>
 </nav>
-
+<!-- Hero Section -->
+<div class="hero">
+    <h1>Master Your Financial Future</h1>
+    <p>Begin your journey to financial literacy and independence today.</p>
+    <button onclick="window.location.href='lessonhome.html';">Get Started</button>
+</div>
 <div class="content">
-    <h2>Welcome to Finance 101</h2>
-    <p>This course is designed to introduce you to the fundamental concepts of finance. Whether you're a beginner or looking to refresh your knowledge, our lessons will guide you through the essentials of personal finance, investing, and more.</p>
-    
+    <!-- Features Section -->
+    <h2 style="text-align: center; margin-top: 40px;">What You'll Learn</h2>
+    <div class="features">
+        <div class="feature">
+            <h3>Personal Finance</h3>
+            <p>Learn how to manage your money effectively and build a secure financial future.</p>
+        </div>
+        <div class="feature">
+            <h3>Investing Strategies</h3>
+            <p>Understand the basics of investing and how to grow your wealth over time.</p>
+        </div>
+        <div class="feature">
+            <h3>Risk Management</h3>
+            <p>Discover how to identify and mitigate financial risks in your life.</p>
+        </div>
+    </div>
+    <!-- Original Lessons Section -->
     <h3>Course Lessons</h3>
     <div class="lesson-container">
         <a class="lesson" href="lesson1.html">
@@ -168,7 +234,7 @@
         </a>
         <a class="lesson" href="lesson3.html">
             <h2>Lesson 3</h2>
-            <p>Intro to personal finance</p>
+            <p>Intro to Personal Finance</p>
         </a>
         <a class="lesson" href="lesson4.html">
             <h2>Lesson 4</h2>
@@ -180,20 +246,19 @@
         </a>
         <a class="lesson" href="lesson6.html">
             <h2>Lesson 6</h2>
-            <p>Building a personal budget</p>
+            <p>Building a Personal Budget</p>
         </a>
         <a class="lesson" href="lesson7.html">
             <h2>Lesson 7</h2>
             <p>Course Review and Final Exam</p>
         </a>
+    </div>
 </div>
-
 <script>
     function toggleMenu() {
         var menu = document.getElementById("menu");
         menu.classList.toggle("show");
     }
 </script>
-
 </body>
 </html>

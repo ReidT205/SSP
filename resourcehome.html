@@ -88,134 +88,123 @@
                 display: block;
             }
         }
-        .lesson-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 20px 0;
+        .resource-banner {
+            background-color: #0056b3;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
         }
-        .lesson {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            padding: 20px;
-            width: 200px;
-            transition: transform 0.2s;
-            cursor: pointer;
-            text-decoration: none; /* Remove underline from links */
-            color: black; /* Text color */
+        .resource-banner h1 {
+            font-size: 42px;
+            margin: 0 0 20px;
         }
-        .lesson:hover {
-            transform: scale(1.05);
-        }
-        .lesson h2 {
-            margin: 0;
+        .resource-banner p {
             font-size: 18px;
-        }
-        .lesson p {
-            font-size: 14px;
-            color: #555;
-        }
-        .content {
-            padding: 20px;
+            margin: 0;
         }
         .resource-section {
-            margin-bottom: 30px;
+            margin: 40px 0;
         }
         .resource-item {
             background: white;
             border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .resource-item h3 {
+            margin-top: 0;
+        }
+        .resource-item a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .resource-item a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-
-<nav>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <div class="dropdown-container" id="menu">
-        <div class="dropdown">
-            <button class="dropbtn" onclick="window.location.href='lessonhome.html';">Learn</button>
-            <div class="dropdown-content">
-                <a href="lessons.html">Lessons</a>
-                <a href="#quizzes">Quizzes</a>
-                <a href="#exercises">Exercises</a>
+    <nav>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div class="dropdown-container" id="menu">
+            <div class="dropdown">
+                <button class="dropbtn" onclick="window.location.href='lessonhome.html';">Learn</button>
+                <div class="dropdown-content">
+                    <a href="lessonhome.html">Lessons</a>
+                    <a href="#quizzes">Quizzes</a>
+                    <a href="#exercises">Exercises</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn" onclick="window.location.href='resourcehome.html';">Resources</button>
+                <div class="dropdown-content">
+                    <a href="resources.html#articles">Articles</a>
+                    <a href="resources.html#videos">Videos</a>
+                    <a href="resources.html#tools">Financial Tools</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">About</button>
+                <div class="dropdown-content">
+                    <a href="#course-info">Course Information</a>
+                    <a href="aboutme.html">About Me</a>
+                    <a href="#contact">Contact Us</a>
+                </div>
             </div>
         </div>
-        <div class="dropdown">
-            <button class="dropbtn" onclick="window.location.href='resourcehome.html';">Resources</button>
-            <div class="dropdown-content">
-                <a href="resources.html#articles">Articles</a>
-                <a href="resources.html#videos">Videos</a>
-                <a href="resources.html#tools">Financial Tools</a>
+    </nav>
+
+    <!-- Resource Banner Section -->
+    <div class="resource-banner">
+        <h1>Explore Our Resources</h1>
+        <p>Enhance your financial literacy with articles, videos, and tools.</p>
+    </div>
+
+    <div class="content">
+        <div id="articles" class="resource-section">
+            <h2>Articles</h2>
+            <div class="resource-item">
+                <h3><a href="#">Introduction to Personal Finance</a></h3>
+                <p>A comprehensive guide to managing your personal finances effectively.</p>
+            </div>
+            <div class="resource-item">
+                <h3><a href="#">Understanding the Stock Market</a></h3>
+                <p>Learn the basics of how the stock market works and how to start investing.</p>
             </div>
         </div>
-        <div class="dropdown">
-            <button class="dropbtn">About</button>
-            <div class="dropdown-content">
-                <a href="#course-info">Course Information</a>
-                <a href="#instructors">Instructors</a>
-                <a href="#contact">Contact Us</a>
+
+        <div id="videos" class="resource-section">
+            <h2>Videos</h2>
+            <div class="resource-item">
+                <h3><a href="#">Budgeting 101</a></h3>
+                <p>A video tutorial on creating and sticking to a budget.</p>
+            </div>
+            <div class="resource-item">
+                <h3><a href="#">Investing for Beginners</a></h3>
+                <p>An introductory video series on investment strategies for newcomers.</p>
+            </div>
+        </div>
+
+        <div id="tools" class="resource-section">
+            <h2>Financial Tools</h2>
+            <div class="resource-item">
+                <h3><a href="#">Compound Interest Calculator</a></h3>
+                <p>Calculate the growth of your investments over time with this tool.</p>
+            </div>
+            <div class="resource-item">
+                <h3><a href="#">Budget Planner</a></h3>
+                <p>Create a personalized budget to manage your finances effectively.</p>
             </div>
         </div>
     </div>
-</nav>
 
-<div class="content">
-    <h1>Finance Course Resources</h1>
-    
-    <div id="articles" class="resource-section">
-        <h2>Articles</h2>
-        <div class="resource-item">
-            <h3>Introduction to Personal Finance</h3>
-            <p>A comprehensive guide to managing your personal finances effectively.</p>
-            <a href="#">Read More</a>
-        </div>
-        <div class="resource-item">
-            <h3>Understanding the Stock Market</h3>
-            <p>Learn the basics of how the stock market works and how to start investing.</p>
-            <a href="#">Read More</a>
-        </div>
-    </div>
-    
-    <div id="videos" class="resource-section">
-        <h2>Videos</h2>
-        <div class="resource-item">
-            <h3>Budgeting 101</h3>
-            <p>A video tutorial on creating and sticking to a budget.</p>
-            <a href="#">Watch Video</a>
-        </div>
-        <div class="resource-item">
-            <h3>Investing for Beginners</h3>
-            <p>An introductory video series on investment strategies for newcomers.</p>
-            <a href="#">Watch Series</a>
-        </div>
-    </div>
-    
-    <div id="tools" class="resource-section">
-        <h2>Financial Tools</h2>
-        <div class="resource-item">
-            <h3>Compound Interest Calculator</h3>
-            <p>Calculate the growth of your investments over time with this easy-to-use tool.</p>
-            <a href="#">Use Calculator</a>
-        </div>
-        <div class="resource-item">
-            <h3>Example resource #2</h3>
-            <p>Short description of the resource.</p>
-            <a href="#">Link to resource</a>
-        </div>
-    </div>
-</div>
-
-<script>
-    function toggleMenu() {
-        var menu = document.getElementById("menu");
-        menu.classList.toggle("show");
-    }
-</script>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.classList.toggle("show");
+        }
+    </script>
 
 </body>
 </html>

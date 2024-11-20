@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance Course</title>
+    <title>Lessons - Finance Course</title>
     <style>
+        /* Existing styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -66,7 +67,6 @@
             cursor: pointer;
             padding: 10px 20px;
         }
-        
         @media screen and (max-width: 600px) {
             .dropdown-container {
                 display: none;
@@ -104,8 +104,8 @@
             width: 200px;
             transition: transform 0.2s;
             cursor: pointer;
-            text-decoration: none; /* Remove underline from links */
-            color: black; /* Text color */
+            text-decoration: none;
+            color: black;
         }
         .lesson:hover {
             transform: scale(1.05);
@@ -117,6 +117,21 @@
         .lesson p {
             font-size: 14px;
             color: #555;
+        }
+        /* New styles */
+        .banner {
+            background-color: #0056b3;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .banner h1 {
+            font-size: 42px;
+            margin: 0 0 20px;
+        }
+        .banner p {
+            font-size: 18px;
+            margin: 0;
         }
     </style>
 </head>
@@ -145,46 +160,51 @@
             <button class="dropbtn">About</button>
             <div class="dropdown-content">
                 <a href="#course-info">Course Information</a>
-                <a href="#instructors">Instructors</a>
+                <a href="aboutme.html">About Me</a>
                 <a href="#contact">Contact Us</a>
             </div>
         </div>
     </div>
 </nav>
-    
-<header>
-    <h1>Finance 101: Introduction to Finance</h1>
-</header>
 
-<div class="lesson-container">
-    <a class="lesson" href="lesson1.html">
-        <h2>Lesson 1</h2>
-        <p>Investing Basics</p>
-    </a>
-    <a class="lesson" href="lesson2.html">
-        <h2>Lesson 2</h2>
-        <p>Risk Management</p>
-    </a>
-    <a class="lesson" href="lesson3.html">
-        <h2>Lesson 3</h2>
-        <p>Intro to personal finance</p>
-    </a>
-    <a class="lesson" href="lesson4.html">
-        <h2>Lesson 4</h2>
-        <p>The Power of Compound Interest</p>
-    </a>
-    <a class="lesson" href="lesson5.html">
-        <h2>Lesson 5</h2>
-        <p>Understanding the Stock Market</p>
-    </a>
-    <a class="lesson" href="lesson6.html">
-        <h2>Lesson 6</h2>
-        <p>Building a personal budget</p>
-    </a>
-    <a class="lesson" href="lesson7.html">
-        <h2>Lesson 7</h2>
-        <p>Course Review and Final Exam</p>
-    </a>
+<!-- New Banner Section -->
+<div class="banner">
+    <h1>Explore Our Lessons</h1>
+    <p>Start building your financial knowledge with our curated lessons.</p>
+</div>
+
+<div class="content">
+    <h2 style="text-align: center; margin-top: 40px;">Course Lessons</h2>
+    <div class="lesson-container">
+        <a class="lesson" href="lesson1.html">
+            <h2>Lesson 1</h2>
+            <p>Investing Basics</p>
+        </a>
+        <a class="lesson" href="lesson2.html">
+            <h2>Lesson 2</h2>
+            <p>Risk Management</p>
+        </a>
+        <a class="lesson" href="lesson3.html">
+            <h2>Lesson 3</h2>
+            <p>Intro to Personal Finance</p>
+        </a>
+        <a class="lesson" href="lesson4.html">
+            <h2>Lesson 4</h2>
+            <p>The Power of Compound Interest</p>
+        </a>
+        <a class="lesson" href="lesson5.html">
+            <h2>Lesson 5</h2>
+            <p>Understanding the Stock Market</p>
+        </a>
+        <a class="lesson" href="lesson6.html">
+            <h2>Lesson 6</h2>
+            <p>Building a Personal Budget</p>
+        </a>
+        <a class="lesson" href="lesson7.html">
+            <h2>Lesson 7</h2>
+            <p>Course Review and Final Exam</p>
+        </a>
+    </div>
 </div>
 
 <script>

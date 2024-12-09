@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learn - Finance Course</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #007BFF;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(45deg, #007BFF, #00C6FF);
+            color: #fff;
+            padding: 100px 20px;
+        }
+        .hero-content {
+            flex: 1;
+        }
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Featured Section */
+        .featured {
+            padding: 60px 20px;
+            background-color: #f1f1f1;
+        }
+        .featured h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+        }
+        .featured-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .featured-item {
+            background-color: #fff;
+            border-radius: 10px;
+            width: 250px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .featured-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .featured-item .category {
+            font-size: 14px;
+            color: #007BFF;
+            margin-top: 10px;
+        }
+        .featured-item h3 {
+            margin: 10px 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .featured-item p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .featured-item a {
+            color: #007BFF;
+            text-decoration: underline;
+            font-size: 16px;
+        }
+        /* Lessons Section */
+        .lessons {
+            padding: 60px 20px;
+            background-color: #fff;
+        }
+        .lessons h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 36px;
+        }
+        .lessons p.description {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #555;
+        }
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .category-section {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .category-section h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+        .category-section h3::after {
+            content: '\25BC';
+            position: absolute;
+            right: 0;
+            font-size: 18px;
+        }
+        .lessons-list {
+            display: none;
+            margin-top: 10px;
+        }
+        .lesson-item {
+            padding: 8px;
+            border-bottom: 1px solid #eaeaea;
+            font-size: 16px;
+            color: #555;
+        }
+        .lesson-item:last-child {
+            border-bottom: none;
+        }
+        .category-section.active .lessons-list {
+            display: block;
+        }
+        .category-section.active h3::after {
+            content: '\25B2';
+        }
+        /* Resources Section */
+        .resources {
+            padding: 60px 20px;
+            background-color: #f9f9f9;
+        }
+        .resources h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 36px;
+        }
+        .resources p.description {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #555;
+        }
+        .resources-categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .resources-category-section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .resources-category-section h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            position: relative;
+            color: #007BFF;
+        }
+        .resources-category-section h3::after {
+            content: '\25BC';
+            position: absolute;
+            right: 0;
+            font-size: 18px;
+        }
+        .resources-list {
+            display: none;
+            margin-top: 10px;
+        }
+        .resource-item {
+            padding: 8px;
+            border-bottom: 1px solid #eaeaea;
+            font-size: 16px;
+            color: #555;
+        }
+        .resource-item:last-child {
+            border-bottom: none;
+        }
+        .resources-category-section.active .resources-list {
+            display: block;
+        }
+        .resources-category-section.active h3::after {
+            content: '\25B2';
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .categories, .resources-categories {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 992px) {
+            .categories, .resources-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .categories, .resources-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Learn</h1>
+            <p>Start building your financial knowledge with our curated lessons and resources.</p>
+        </div>
+        <div class="hero-image">
+            <!-- Placeholder for image -->
+            <img src="rocket1.jpg" alt="Learning Image">
+        </div>
+    </section>
+
+    <!-- Featured Section -->
+    <section class="featured">
+        <h2>Featured</h2>
+        <div class="featured-items">
+            <div class="featured-item">
+                <img src="rocket1.jpg" alt="Resource 1">
+                <div class="category">Article</div>
+                <h3>Understanding Credit Scores</h3>
+                <p>Learn how credit scores work and how to improve yours.</p>
+                <a href="#">Read More</a>
+            </div>
+            <div class="featured-item">
+                <img src="rocket1.jpg" alt="Resource 2">
+                <div class="category">Video</div>
+                <h3>Investing 101</h3>
+                <p>An introductory video on the basics of investing.</p>
+                <a href="#">Watch Now</a>
+            </div>
+            <div class="featured-item">
+                <img src="rocket1.jpg" alt="Resource 3">
+                <div class="category">Tool</div>
+                <h3>Budget Planner</h3>
+                <p>Use our budgeting tool to plan your finances.</p>
+                <a href="#">Try It</a>
+            </div>
+            <div class="featured-item">
+                <img src="rocket1.jpg" alt="Resource 4">
+                <div class="category">Podcast</div>
+                <h3>Financial Freedom</h3>
+                <p>Listen to experts discuss pathways to financial freedom.</p>
+                <a href="#">Listen Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lessons Section -->
+    <section class="lessons">
+        <h2>Lessons</h2>
+        <p class="description">Dive into our comprehensive lessons designed to enhance your financial understanding across various domains.</p>
+        <div class="categories">
+            <!-- Category 1 -->
+            <div class="category-section">
+                <h3>Investing Basics</h3>
+                <div class="lessons-list">
+                    <div class="lesson-item">Lesson 1: Introduction to Investing</div>
+                    <div class="lesson-item">Lesson 2: Types of Investments</div>
+                    <div class="lesson-item">Lesson 3: Risk vs. Reward</div>
+                    <div class="lesson-item">Lesson 4: Building a Portfolio</div>
+                    <div class="lesson-item">Lesson 5: Investment Strategies</div>
+                </div>
+            </div>
+            <!-- Category 2 -->
+            <div class="category-section">
+                <h3>Personal Finance</h3>
+                <div class="lessons-list">
+                    <div class="lesson-item">Lesson 1: Budgeting 101</div>
+                    <div class="lesson-item">Lesson 2: Saving Techniques</div>
+                    <div class="lesson-item">Lesson 3: Managing Debt</div>
+                    <div class="lesson-item">Lesson 4: Building Credit</div>
+                    <div class="lesson-item">Lesson 5: Financial Goal Setting</div>
+                </div>
+            </div>
+            <!-- Category 3 -->
+            <div class="category-section">
+                <h3>Budgeting</h3>
+                <div class="lessons-list">
+                    <div class="lesson-item">Lesson 1: Creating a Budget</div>
+                    <div class="lesson-item">Lesson 2: Tracking Expenses</div>
+                    <div class="lesson-item">Lesson 3: Adjusting Your Budget</div>
+                    <div class="lesson-item">Lesson 4: Saving on Everyday Expenses</div>
+                    <div class="lesson-item">Lesson 5: Emergency Funds</div>
+                </div>
+            </div>
+            <!-- Category 4 -->
+            <div class="category-section">
+                <h3>Retirement Planning</h3>
+                <div class="lessons-list">
+                    <div class="lesson-item">Lesson 1: Importance of Retirement Planning</div>
+                    <div class="lesson-item">Lesson 2: Retirement Accounts Overview</div>
+                    <div class="lesson-item">Lesson 3: Calculating Retirement Needs</div>
+                    <div class="lesson-item">Lesson 4: Investment Strategies for Retirement</div>
+                    <div class="lesson-item">Lesson 5: Managing Retirement Withdrawals</div>
+                </div>
+            </div>
+            <!-- Category 5 -->
+            <div class="category-section">
+                <h3>Tax Strategies</h3>
+                <div class="lessons-list">
+                    <div class="lesson-item">Lesson 1: Understanding Taxes</div>
+                    <div class="lesson-item">Lesson 2: Tax-Advantaged Accounts</div>
+                    <div class="lesson-item">Lesson 3: Deductions and Credits</div>
+                    <div class="lesson-item">Lesson 4: Tax Planning for Investments</div>
+                    <div class="lesson-item">Lesson 5: Filing Your Taxes</div>
+                </div>
+            </div>
+            <!-- Category 6 -->
+            <div class="category-section">
+                <h3>Risk Management</h3>
+                <div class="lessons-list">
+                    <div class="lesson-item">Lesson 1: Identifying Financial Risks</div>
+                    <div class="lesson-item">Lesson 2: Insurance Basics</div>
+                    <div class="lesson-item">Lesson 3: Diversification Strategies</div>
+                    <div class="lesson-item">Lesson 4: Hedging Investments</div>
+                    <div class="lesson-item">Lesson 5: Building Resilience</div>
+                </div>
+            </div>
+            <!-- Category 7 -->
+            <div class="category-section">
+                <h3>Real Estate</h3>
+                <div class="lessons-list">
+                    <div class="lesson-item">Lesson 1: Introduction to Real Estate</div>
+                    <div class="lesson-item">Lesson 2: Buying vs. Renting</div>
+                    <div class="lesson-item">Lesson 3: Real Estate Investment</div>
+                    <div class="lesson-item">Lesson 4: Property Management</div>
+                    <div class="lesson-item">Lesson 5: Real Estate Market Analysis</div>
+                </div>
+            </div>
+            <!-- Category 8 -->
+            <div class="category-section">
+                <h3>Stock Market</h3>
+                <div class="lessons-list">
+                    <div class="lesson-item">Lesson 1: Stock Market Basics</div>
+                    <div class="lesson-item">Lesson 2: How Stocks are Traded</div>
+                    <div class="lesson-item">Lesson 3: Analyzing Stocks</div>
+                    <div class="lesson-item">Lesson 4: Long-term vs. Short-term Investing</div>
+                    <div class="lesson-item">Lesson 5: Building a Stock Portfolio</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources">
+        <h2>Resources</h2>
+        <p class="description">Explore our extensive collection of resources tailored to enhance your financial knowledge and skills.</p>
+        <div class="resources-categories">
+            <!-- Category 1 -->
+            <div class="resources-category-section">
+                <h3>eBooks</h3>
+                <div class="resources-list">
+                    <div class="resource-item">eBook 1: Smart Investing</div>
+                    <div class="resource-item">eBook 2: Personal Finance Mastery</div>
+                    <div class="resource-item">eBook 3: The Basics of Budgeting</div>
+                    <div class="resource-item">eBook 4: Retirement Planning Guide</div>
+                    <div class="resource-item">eBook 5: Tax Strategies Explained</div>
+                </div>
+            </div>
+            <!-- Category 2 -->
+            <div class="resources-category-section">
+                <h3>Webinars</h3>
+                <div class="resources-list">
+                    <div class="resource-item">Webinar 1: Investment Opportunities</div>
+                    <div class="resource-item">Webinar 2: Managing Debt Effectively</div>
+                    <div class="resource-item">Webinar 3: Building Credit Scores</div>
+                    <div class="resource-item">Webinar 4: Financial Goal Setting</div>
+                    <div class="resource-item">Webinar 5: Advanced Tax Planning</div>
+                </div>
+            </div>
+            <!-- Category 3 -->
+            <div class="resources-category-section">
+                <h3>Templates</h3>
+                <div class="resources-list">
+                    <div class="resource-item">Template 1: Monthly Budget</div>
+                    <div class="resource-item">Template 2: Investment Tracker</div>
+                    <div class="resource-item">Template 3: Debt Reduction Plan</div>
+                    <div class="resource-item">Template 4: Financial Goal Worksheet</div>
+                    <div class="resource-item">Template 5: Tax Planning Calendar</div>
+                </div>
+            </div>
+            <!-- Category 4 -->
+            <div class="resources-category-section">
+                <h3>Infographics</h3>
+                <div class="resources-list">
+                    <div class="resource-item">Infographic 1: Understanding Interest Rates</div>
+                    <div class="resource-item">Infographic 2: Steps to Financial Freedom</div>
+                    <div class="resource-item">Infographic 3: Investment Portfolio Allocation</div>
+                    <div class="resource-item">Infographic 4: Tax Benefits Explained</div>
+                    <div class="resource-item">Infographic 5: Risk Management Strategies</div>
+                </div>
+            </div>
+            <!-- Category 5 -->
+            <div class="resources-category-section">
+                <h3>Articles</h3>
+                <div class="resources-list">
+                    <div class="resource-item">Article 1: The Importance of Saving Early</div>
+                    <div class="resource-item">Article 2: Diversification in Investments</div>
+                    <div class="resource-item">Article 3: How to Choose the Right Retirement Plan</div>
+                    <div class="resource-item">Article 4: Tax Deductions You Might Be Missing</div>
+                    <div class="resource-item">Article 5: Building an Emergency Fund</div>
+                </div>
+            </div>
+            <!-- Category 6 -->
+            <div class="resources-category-section">
+                <h3>Tools</h3>
+                <div class="resources-list">
+                    <div class="resource-item">Tool 1: Investment Calculator</div>
+                    <div class="resource-item">Tool 2: Budgeting App</div>
+                    <div class="resource-item">Tool 3: Debt Repayment Scheduler</div>
+                    <div class="resource-item">Tool 4: Tax Filing Assistant</div>
+                    <div class="resource-item">Tool 5: Retirement Savings Estimator</div>
+                </div>
+            </div>
+            <!-- Category 7 -->
+            <div class="resources-category-section">
+                <h3>Podcasts</h3>
+                <div class="resources-list">
+                    <div class="resource-item">Podcast 1: Financial Freedom Talks</div>
+                    <div class="resource-item">Podcast 2: Investing Insights</div>
+                    <div class="resource-item">Podcast 3: Personal Finance Daily</div>
+                    <div class="resource-item">Podcast 4: Tax Tips and Tricks</div>
+                    <div class="resource-item">Podcast 5: Retirement Ready</div>
+                </div>
+            </div>
+            <!-- Category 8 -->
+            <div class="resources-category-section">
+                <h3>Videos</h3>
+                <div class="resources-list">
+                    <div class="resource-item">Video 1: Basics of Stock Market</div>
+                    <div class="resource-item">Video 2: Effective Budgeting Techniques</div>
+                    <div class="resource-item">Video 3: Retirement Planning Essentials</div>
+                    <div class="resource-item">Video 4: Understanding Tax Brackets</div>
+                    <div class="resource-item">Video 5: Risk Management in Investments</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <!-- New Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>About Us</h3>
+            <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="learn.html">Learn</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p>Email: rthompson25@bayschoolsf.org</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2024 FinanceCourse. All rights reserved.
+    </div>
+</footer>
+
+    <!-- JavaScript for Menu Toggle and Accordion -->
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Accordion functionality for Lessons
+        const lessonsCategories = document.querySelectorAll('.lessons .category-section h3');
+        lessonsCategories.forEach((category) => {
+            category.addEventListener('click', () => {
+                category.parentElement.classList.toggle('active');
+            });
+        });
+
+        // Accordion functionality for Resources
+        const resourcesCategories = document.querySelectorAll('.resources .resources-category-section h3');
+        resourcesCategories.forEach((category) => {
+            category.addEventListener('click', () => {
+                category.parentElement.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

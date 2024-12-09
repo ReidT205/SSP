@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Me - Finance Course</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #007BFF;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Profile Section */
+        .profile-section {
+            background: linear-gradient(45deg, #007BFF, #00C6FF);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            margin-bottom: 20px;
+        }
+        .profile-section h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .profile-section p {
+            font-size: 18px;
+        }
+        /* Details Section */
+        .details-section {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            background-color: #fff;
+            padding: 40px 20px;
+            gap: 40px;
+        }
+        .detail-item {
+            display: flex;
+            align-items: center;
+            width: 350px; /* Increased width */
+        }
+        .detail-item i {
+            font-size: 36px;
+            color: #007BFF;
+            margin-right: 20px;
+        }
+        .detail-item h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .detail-item p {
+            font-size: 16px;
+            color: #555;
+            white-space: nowrap; /* Prevent wrapping */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .detail-item {
+                width: 100%;
+                justify-content: center;
+            }
+            .footer-section ul {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+</head>
+<body>
+    <!-- Header -->
+    <!-- New Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <img src="rocket1.jpg" alt="Profile" class="profile-image">
+        <h1>Reid Thompson</h1>
+        <p>The Bay School of San Francisco | Future Innovator</p>
+    </section>
+
+    <!-- Details Section -->
+    <section class="details-section">
+        <div class="detail-item">
+            <i class="fas fa-user"></i>
+            <div>
+                <h3>Personal Details</h3>
+                <p>Age: 17</p>
+            </div>
+        </div>
+        <div class="detail-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+                <h3>Location</h3>
+                <p>San Francisco, California</p>
+            </div>
+        </div>
+        <div class="detail-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+                <h3>Contact</h3>
+                <p>Email: rthompson25@bayschoolsf.org</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <section class="content-section">
+        <h2>About Me</h2>
+        <p>
+            Hello! I'm a passionate high school student interested in technology, finance, business, and science. My goal with this website is to teach my broader community the basic financial skills they need to succeed in life financially. I hope you enjoy the resources I've created and find them helpful in your financial journey.
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2>Background and Motivation</h2>
+        <p>
+            With a passion for finance and teaching, I was inspired to create this platform to address the lack of accessible financial education. Understanding personal finance is crucial for everyone, and I'm committed to providing the tools and knowledge you need to take control of your financial future.
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2>What This Website Offers</h2>
+        <p>
+            On this website, you'll find beginner-friendly lessons, comprehensive resources, and practical guidance on various financial topics. My goal is to make learning about finance engaging and straightforward. I'm constantly working to expand the content and provide even more valuable resources in the future.
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2>Personal Note</h2>
+        <p>
+            Thank you for visiting my platform. I encourage you to continue your financial education journey and take advantage of the resources available here. If you have any questions or feedback, please don't hesitate to reach out via the contact form. Together, we can achieve financial literacy and empowerment.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <!-- New Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="learn.html">Learn</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: rthompson25@bayschoolsf.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 FinanceCourse. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JavaScript for Menu Toggle -->
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

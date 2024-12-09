@@ -2,263 +2,440 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance Course</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        /* Global Styles */
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
+            color: #333;
         }
-        nav {
-            background-color: #007BFF;
-            padding: 10px 0;
-            text-align: right;
-        }
-        .dropdown-container {
-            display: inline-block;
-            margin-right: 20px;
-        }
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            margin-left: 20px;
-        }
-        .dropbtn {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            right: 0;
-        }
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
+        a {
             text-decoration: none;
-            display: block;
-            text-align: left;
+            color: inherit;
         }
-        .dropdown-content a:hover {background-color: #f1f1f1}
-        .dropdown:hover .dropdown-content {
-            display: block;
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .dropdown:hover .dropbtn {
-            background-color: #0056b3;
-        }
-        .content {
-            padding: 20px;
-        }
-        .hamburger {
-            display: none;
-            font-size: 30px;
-            color: white;
-            cursor: pointer;
-            padding: 10px 20px;
-        }
-        @media screen and (max-width: 600px) {
-            .dropdown-container {
-                display: none;
-                width: 100%;
-                text-align: left;
-            }
-            .dropdown {
-                display: block;
-                margin: 10px 0;
-            }
-            .dropdown-content {
-                position: static;
-                display: none;
-                width: 100%;
-            }
-            .hamburger {
-                display: block;
-            }
-            .show {
-                display: block;
-            }
-        }
-        .lesson-container {
+        .navbar {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        .lesson {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin: 10px;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
             padding: 20px;
-            width: 200px;
-            transition: transform 0.2s;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #007BFF;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
             cursor: pointer;
-            text-decoration: none;
-            color: black;
         }
-        .lesson:hover {
-            transform: scale(1.05);
-        }
-        .lesson h2 {
-            margin: 0;
-            font-size: 18px;
-        }
-        .lesson p {
-            font-size: 14px;
-            color: #555;
-        }
+        /* Hero Section */
         .hero {
-            background-color: #007BFF;
-            color: white;
-            padding: 60px 20px;
+            background: linear-gradient(45deg, #007BFF, #00C6FF);
+            color: #fff;
             text-align: center;
+            padding: 100px 20px;
         }
         .hero h1 {
             font-size: 48px;
-            margin: 0 0 20px;
+            margin-bottom: 20px;
         }
         .hero p {
             font-size: 20px;
-            margin: 0 0 40px;
+            margin-bottom: 40px;
         }
-        .hero button {
-            background-color: white;
-            color: #007BFF;
+        .hero .cta-button {
+            background-color: #fff;
+            color: #4169E1;
             padding: 15px 30px;
             font-size: 18px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
-        .hero button:hover {
+        .hero .cta-button:hover {
             background-color: #f1f1f1;
         }
-        .features {
+        /* Why Us Section */
+        .why-us {
+            padding: 60px 20px;
+            background-color: #fff;
+        }
+        .why-us h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+        }
+        .why-us-content {
             display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
-            margin: 40px 0;
         }
-        .feature {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin: 10px;
+        .why-us-item {
+            background-color: #fff;
+            border-radius: 10px;
+            flex: 1 1 300px;
             padding: 30px;
-            width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
             text-align: center;
         }
-        .feature h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
+        .why-us-item:hover {
+            transform: translateY(-5px);
         }
-        .feature p {
+        .why-us-item h3 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        .why-us-item p {
             font-size: 16px;
             color: #555;
+        }
+        /* Features Section */
+        .features {
+            background-color: #f1f1f1;
+            padding: 60px 20px;
+        }
+        .features h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+        }
+        .feature-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .feature-card {
+            background-color: #fff;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        .feature-card p {
+            font-size: 16px;
+            color: #555;
+        }
+        /* Feedback Section */
+        .feedback {
+            padding: 60px 20px;
+            background-color: #fff;
+            position: relative;
+        }
+        .feedback h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+        }
+        .feedback-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .feedback-slide {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .feedback-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            text-align: center;
+        }
+        .feedback-item p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .feedback-item h4 {
+            font-size: 20px;
+            color: #333;
+        }
+        /* Navigation Buttons */
+        .feedback-nav {
+            position: absolute;
+            top: 50%;
+            left: 15%;
+            width: 70%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        .feedback-nav button {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #007BFF;
+            transition: background-color 0.3s;
+            pointer-events: all;
+        }
+        .feedback-nav button:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .features h2, .why-us h2, .feedback h2, footer h3 {
+                font-size: 28px;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero p {
+                font-size: 18px;
+            }
+            .why-us-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feedback-item p {
+                font-size: 16px;
+            }
+            .feedback-nav button {
+                font-size: 24px;
+            }
+        }
+        @media (max-width: 600px) {
+            .feature-card, .why-us-item, .footer-section {
+                min-width: 80%;
+                margin: 0 auto 20px;
+            }
         }
     </style>
 </head>
 <body>
-<nav>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <div class="dropdown-container" id="menu">
-        <div class="dropdown">
-            <button class="dropbtn" onclick="window.location.href='lessonhome.html';">Learn</button>
-            <div class="dropdown-content">
-                <a href="lessonhome.html">Lessons</a>
-                <a href="#quizzes">Quizzes</a>
-                <a href="#exercises">Exercises</a>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+            <div class="nav-links" id="nav-links">
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Master Your Financial Future</h1>
+        <p>Begin your journey to financial literacy and independence today.</p>
+        <button class="cta-button" onclick="location.href='learn.html'">Get Started</button>
+    </section>
+
+    <!-- Why Us Section -->
+    <section class="why-us">
+        <h2>Why Choose Us</h2>
+        <div class="why-us-content">
+            <div class="why-us-item">
+                <h3>Comprehensive Curriculum</h3>
+                <p>Our courses cover all aspects of financial literacy, ensuring you get a well-rounded education.</p>
+            </div>
+            <div class="why-us-item">
+                <h3>Expert Instructors</h3>
+                <p>Learn from industry professionals with years of experience in finance and education.</p>
+            </div>
+            <div class="why-us-item">
+                <h3>Flexible Learning</h3>
+                <p>Access our materials anytime, anywhere, and learn at your own pace.</p>
             </div>
         </div>
-        <div class="dropdown">
-            <button class="dropbtn" onclick="window.location.href='resourcehome.html';">Resources</button>
-            <div class="dropdown-content">
-                <a href="resources.html#articles">Articles</a>
-                <a href="resources.html#videos">Videos</a>
-                <a href="resources.html#tools">Financial Tools</a>
-            </div>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn">About</button>
-            <div class="dropdown-content">
-                <a href="#course-info">Course Information</a>
-                <a href="aboutme.html#about-me">About Me</a>
-                <a href="#contact">Contact Us</a>
-            </div>
-        </div>
-    </div>
-</nav>
-<!-- Hero Section -->
-<div class="hero">
-    <h1>Master Your Financial Future</h1>
-    <p>Begin your journey to financial literacy and independence today.</p>
-    <button onclick="window.location.href='lessonhome.html';">Get Started</button>
-</div>
-<div class="content">
+    </section>
+
     <!-- Features Section -->
-    <h2 style="text-align: center; margin-top: 40px;">What You'll Learn</h2>
-    <div class="features">
-        <div class="feature">
-            <h3>Personal Finance</h3>
-            <p>Learn how to manage your money effectively and build a secure financial future.</p>
+    <section class="features">
+        <h2>What You'll Learn</h2>
+        <div class="feature-cards">
+            <div class="feature-card">
+                <h3>Personal Finance</h3>
+                <p>Learn how to manage your money effectively and build a secure financial future.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Investing Strategies</h3>
+                <p>Understand the basics of investing and how to grow your wealth over time.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Risk Management</h3>
+                <p>Discover how to identify and mitigate financial risks in your life.</p>
+            </div>
         </div>
-        <div class="feature">
-            <h3>Investing Strategies</h3>
-            <p>Understand the basics of investing and how to grow your wealth over time.</p>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="feedback">
+        <h2>What Our Students Say</h2>
+        <div class="feedback-slider" id="feedback-slider">
+            <div class="feedback-slide">
+                <div class="feedback-item">
+                    <p>"Finally found financial advice that doesn't make me feel like I'm reading ancient Greek. Clear, simple, and no judgment about my impulse shopping habit."</p>
+                    <h4>- Mike T.</h4>
+                </div>
+                <div class="feedback-item">
+                    <p>"The budgeting tools changed my life! Finally figured out where my paycheck was going - turns out buying artisanal coffee 3x a day adds up. Who knew?"</p>
+                    <h4>- Maria T.</h4>
+                </div>
+                <div class="feedback-item">
+                    <p>"This platform taught me more about money management than four years of college. And it was definitely cheaper!"</p>
+                    <h4>- John D.</h4>
+                </div>
+                <div class="feedback-item">
+                    <p>"I used to make financial decisions by consulting my cat. Thanks to this platform, I've upgraded to actual market analysis. Though sometimes I still run things by Mr. Whiskers, just in case."</p>
+                    <h4>- Rachel M.</h4>
+                </div>
+                <div class="feedback-item">
+                    <p>"Used to think 'diversification' meant having two different checking accounts. Thanks to the educational resources here, I now have a proper investment strategy!"</p>
+                    <h4>- Greg T.</h4>
+                </div>
+                <div class="feedback-item">
+                    <p>"After using the budget tracker for a month, I realized I was spending $400 on rubber ducks. RUBBER DUCKS! Now I'm investing that money instead. My bathtub is emptier but my wallet is fuller."</p>
+                    <h4>- Zachary L.</h4>
+                </div>
+            </div>
         </div>
-        <div class="feature">
-            <h3>Risk Management</h3>
-            <p>Discover how to identify and mitigate financial risks in your life.</p>
+        <div class="feedback-nav">
+            <button id="prevBtn">&#10094;</button>
+            <button id="nextBtn">&#10095;</button>
         </div>
-    </div>
-    <!-- Original Lessons Section -->
-    <h3>Course Lessons</h3>
-    <div class="lesson-container">
-        <a class="lesson" href="lesson1.html">
-            <h2>Lesson 1</h2>
-            <p>Investing Basics</p>
-        </a>
-        <a class="lesson" href="lesson2.html">
-            <h2>Lesson 2</h2>
-            <p>Risk Management</p>
-        </a>
-        <a class="lesson" href="lesson3.html">
-            <h2>Lesson 3</h2>
-            <p>Intro to Personal Finance</p>
-        </a>
-        <a class="lesson" href="lesson4.html">
-            <h2>Lesson 4</h2>
-            <p>The Power of Compound Interest</p>
-        </a>
-        <a class="lesson" href="lesson5.html">
-            <h2>Lesson 5</h2>
-            <p>Understanding the Stock Market</p>
-        </a>
-        <a class="lesson" href="lesson6.html">
-            <h2>Lesson 6</h2>
-            <p>Building a Personal Budget</p>
-        </a>
-        <a class="lesson" href="lesson7.html">
-            <h2>Lesson 7</h2>
-            <p>Course Review and Final Exam</p>
-        </a>
-    </div>
-</div>
-<script>
-    function toggleMenu() {
-        var menu = document.getElementById("menu");
-        menu.classList.toggle("show");
-    }
-</script>
+    </section>
+
+    <!-- Footer Section -->
+    <!-- New Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="learn.html">Learn</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: rthompson25@bayschoolsf.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 FinanceCourse. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JavaScript for Menu Toggle -->
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // JavaScript for Feedback Slider
+        const slider = document.getElementById('feedback-slider');
+        const slide = slider.querySelector('.feedback-slide');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        let currentIndex = 0;
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slide.children.length;
+            updateSlidePosition();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slide.children.length) % slide.children.length;
+            updateSlidePosition();
+        });
+
+        function updateSlidePosition() {
+            slide.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
+        }
+    </script>
 </body>
 </html>

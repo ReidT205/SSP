@@ -186,11 +186,19 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
     <script>
+        
         function toggleMenu() {
             const navLinks = document.getElementById('nav-links');
             navLinks.classList.toggle('active');
         }
         
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 108;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
         function calculateGrowth() {
             const P = parseFloat(document.getElementById('initial-amount').value);
             const r = parseFloat(document.getElementById('annual-return').value) / 100;
@@ -226,11 +234,11 @@
     <section class="hero">
         <h1>Investing Basics: Lesson 1 – Introduction to Investing</h1>
         <p>Learn why investing is crucial for building wealth and achieving your financial goals.</p>
-        <a href="#section1" class="cta-button">Let's Begin!</a>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Let's Begin!</a>
     </section>
 
     <!-- Content Sections -->
-    <div class="content-section" id="lesson-content">
+    <div class="content-section" id="lessons">
         <!-- Section 1: Welcome and Overview -->
         <section id="section1">
             <h2>Welcome and Overview</h2>

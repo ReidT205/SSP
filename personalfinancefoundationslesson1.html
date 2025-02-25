@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 1: Introduction to Investing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #007BFF;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #007BFF, #00C6FF);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #007BFF;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 108;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function calculateGrowth() {
+            const P = parseFloat(document.getElementById('initial-amount').value);
+            const r = parseFloat(document.getElementById('annual-return').value) / 100;
+            const t = parseFloat(document.getElementById('years').value);
+            const A = P * Math.pow(1 + r, t);
+            document.getElementById('result').innerText = 'Your investment could grow to $' + A.toFixed(2);
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'C') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'A') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'C') score++;
+            document.getElementById('quiz-result').innerText = 'You scored ' + score + ' out of 4.';
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Personal Finance Foundations: Lesson 1 – Money Mindset & Basics</h1>
+    <p>Get a clear picture of how money works in your life, build a confident mindset, and see why mastering this stuff is worth it.</p>
+    <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Let's Get Started!</a>
+</section>
+
+<!-- Content Sections -->
+<div class="content-section" id="lessons">
+    <!-- Section 1: Welcome and Overview -->
+    <section id="section1">
+        <h2>Welcome and Overview</h2>
+        <p>
+            Hey, you! Welcome to the start of something big—your journey to financial smarts! This lesson is your launchpad. We’re diving into the nuts and bolts of money: where it comes from, where it goes, and why understanding it can flip your world for the better. Whether you’re juggling bills, dreaming of a big purchase, or just curious, this is for you. By the end, you’ll feel pumped to take control of your cash—and your future.
+        </p>
+        <p><strong>When you hear “money,” what pops into your head? Write your first thoughts below—no judgment, just honesty!</strong></p>
+        <textarea id="reflection1" placeholder="Type your thoughts here—like 'stress' or 'freedom'..." rows="4" style="width:100%;"></textarea>
+        <p>Why we’re here: Money touches everything—your home, your food, your fun. But most people stumble through it blind. Not you—not after this. Let’s unpack the basics and set you up to win.</p>
+    </section>
+
+    <!-- Section 2: What’s This Money Thing All About? -->
+    <section>
+        <h2>What’s This Money Thing All About?</h2>
+        <p>
+            Money’s not magic; it’s a tool. You earn it, spend it, save it, or share it. To use it like a pro, you need to know its two main players: <strong>income</strong> and <strong>expenses</strong>. Let’s break them down big-time.
+        </p>
+        <h3>Income</h3>
+        <p>
+            This is the cash flowing <em>into</em> your hands. It’s your paycheck from a 9-to-5, cash from babysitting, tips from waiting tables, or even $20 Grandma slipped you at Thanksgiving. It’s anything that adds to your pile.
+        </p>
+        <ul>
+            <li><strong>Full-time job:</strong> $2,000/month paycheck.</li>
+            <li><strong>Side gig:</strong> $50 from selling old clothes online.</li>
+            <li><strong>One-off:</strong> $100 birthday gift.</li>
+        </ul>
+        <h3>Expenses</h3>
+        <p>
+            This is the cash flowing <em>out</em>. It’s what you pay for to live, enjoy, or survive—rent, gas, that new hoodie, Netflix, you name it. Expenses come in two flavors:
+        </p>
+        <ul>
+            <li><strong>Fixed:</strong> Stuff that stays the same, like rent ($500/month) or a phone bill ($40/month).</li>
+            <li><strong>Variable:</strong> Stuff that changes, like groceries ($80 one week, $120 the next) or a movie ticket ($15).</li>
+        </ul>
+        <h3>Real-Life Example</h3>
+        <p>
+            Picture Jamie, a college student. Jamie’s income is $300/month from a campus job and $50 from tutoring. Total: $350. Expenses? $150 for dorm fees (fixed), $100 for food (variable), $30 for fun (variable). That’s $280 spent, leaving $70. What Jamie does with that $70 is where the magic happens—spend it, save it, or something else?
+        </p>
+        <p><strong>Activity: List your own!</strong> Write down <em>three</em> income sources you’ve had (or could have) and <em>three</em> expenses you’ve faced lately. Be specific!</p>
+        <textarea id="activity1" placeholder="Income: e.g., $10 chores, Expenses: e.g., $5 snacks..." rows="6" style="width:100%;"></textarea>
+        <p><strong>Extra Step:</strong> Circle one expense you could cut back on—why that one?</p>
+    </section>
+
+    <!-- Section 3: Why Does Financial Literacy Matter? -->
+    <section>
+        <h2>Why Does Financial Literacy Matter?</h2>
+        <p>
+            Financial literacy is knowing how to make money work <em>for</em> you, not against you. It’s not about having tons of cash—it’s about using what you’ve got wisely. Here’s the full scoop:
+        </p>
+        <ol>
+            <li><strong>Take the Wheel:</strong> You decide where your money goes—not impulses or sneaky bills.</li>
+            <li><strong>Build Your Future:</strong> Dreams like a car or a trip start with smart money moves.</li>
+            <li><strong>Dodge Disaster:</strong> Avoid late fees, overdrafts, and debt traps.</li>
+            <li><strong>Feel the Power:</strong> Less stress, better sleep, bigger life.</li>
+        </ol>
+        <h3>Real-Life Examples</h3>
+        <p>
+            Take Leo, a 25-year-old barista. Leo blew $600 paychecks on eating out and gadgets—no plan. A $400 car repair wiped him out. After learning the basics, Leo saved $100/month. Six months later, a tire blew—no panic, just paid it. Now Leo’s eyeing a vacation.
+        </p>
+        <p>
+            Or Mia, a high schooler. Mia’s $30/week allowance went to apps and candy. Her fave band’s $50 concert tickets? Too late, cash gone. With literacy, Mia could’ve saved $10/week and rocked that show.
+        </p>
+        <p><strong>Your Turn:</strong> What’s <em>your</em> money dream? Write one thing you’d love if money wasn’t a worry.</p>
+        <textarea id="reflection2" placeholder="e.g., 'A new bike' or 'A chill savings account'..." rows="4" style="width:100%;"></textarea>
+        <p><strong>Bonus Question:</strong> How could financial literacy help you get there? Add a quick thought!</p>
+        <textarea id="bonus1" placeholder="e.g., 'I’d save $5 a week'..." rows="2" style="width:100%;"></textarea>
+    </section>
+
+    <!-- Section 4: The Money Flow: Income vs. Expenses -->
+    <section>
+        <h2>The Money Flow: Income vs. Expenses</h2>
+        <p>
+            Let’s zoom in on how money moves—it’s like a dance between what you earn and spend. Get this down, and you’re halfway to bossing your finances.
+        </p>
+        <h3>The Flow</h3>
+        <ul>
+            <li><strong>Income > Expenses = Surplus:</strong> Extra cash to play with—save it, spend it, grow it.</li>
+            <li><strong>Income < Expenses = Deficit:</strong> You’re short, borrowing or stressing.</li>
+            <li><strong>Income = Expenses = Break-even:</strong> Bills paid, but no wiggle room.</li>
+        </ul>
+        <h3>Detailed Example</h3>
+        <p>
+            You earn $1,200/month (job + side hustle). Expenses: Fixed—$600 rent, $50 phone, $30 internet = $680. Variable—$200 food, $70 fun, $50 gas = $320. Total: $1,000. Flow: $1,200 - $1,000 = $200 surplus. Sweet!
+        </p>
+        <p><strong>What’s a Surplus Good For?</strong> That $200 could hit savings, buy new shoes, or start investing (more later). Deficit? Cut back or earn more—tough but fixable.</p>
+        <h3>Big Activity</h3>
+        <p>Use these numbers or your own:</p>
+        <ul>
+            <li>Income: $800 (part-time job).</li>
+            <li>Expenses: $300 rent, $150 food, $80 phone, $50 fun = $580.</li>
+        </ul>
+        <p>Subtract expenses from income. What’s your result?</p>
+        <input type="number" id="money-flow" placeholder="Enter your result here..." style="width:50%;"><br>
+        <p><strong>Next Level:</strong> Surplus? What’s one thing you’d do with it? Deficit? What’s one expense to trim?</p>
+        <textarea id="activity2" placeholder="e.g., 'Surplus: $50 to savings' or 'Deficit: Cut $20 snacks'..." rows="4" style="width:100%;"></textarea>
+        <h3>Story Boost</h3>
+        <p>
+            Kai earns $15/hour, about $600/month. Expenses were $650—deficit city. Kai ditched $30 takeout, swapped to cooking. Boom, $20 surplus. What’s your small change?
+        </p>
+    </section>
+
+    <!-- Section 5: Starting with a Money Mindset -->
+    <section>
+        <h2>Starting with a Money Mindset</h2>
+        <p>
+            Here’s where it gets personal: your <em>mindset</em> drives what you do with money. A good mindset isn’t “I’m rich!”—it’s “I can learn this, and it’ll grow with me.”
+        </p>
+        <h3>Old vs. New Mindset</h3>
+        <ul>
+            <li><strong>Old:</strong> “Money’s too confusing—I’ll never get it.”</li>
+            <li><strong>New:</strong> “I’ll start small and build up—it’s not rocket science.”</li>
+            <li><strong>Old:</strong> “I’ll spend it all now; future me will figure it out.”</li>
+            <li><strong>New:</strong> “I can enjoy today <em>and</em> set up tomorrow.”</li>
+        </ul>
+        <h3>Story Time</h3>
+        <p>
+            Priya, a 30-year-old teacher, thought saving was for “boring” people—$200/month on clothes. Laptop died, $500 gone, scrambling. Mindset switch: saved $50/month, still grabbed a $20 shirt sometimes. Now $300 tucked away <em>and</em> in control.
+        </p>
+        <p><strong>Mindset Shift Activity:</strong> Pick one old money thought you’ve had. Flip it to a new one.</p>
+        <textarea id="activity3" placeholder="Old: 'I’ll buy every game' → New: 'I’ll buy one and save'..." rows="4" style="width:100%;"></textarea>
+        <p><strong>Extra Push:</strong> One tiny habit to start this week—like skipping a $3 coffee?</p>
+        <textarea id="activity4" placeholder="e.g., 'Save $2 from lunch'..." rows="2" style="width:100%;"></textarea>
+    </section>
+
+    <!-- Section 6: Reflection and Quiz -->
+    <section>
+        <h2>Reflection and Quiz</h2>
+        <h3>Reflection Prompt</h3>
+        <p>Why could financial literacy rock <em>your</em> world? Write one reason and one way you’ll use today’s lesson.</p>
+        <textarea id="reflection3" placeholder="Reason: e.g., 'Less worry.' Action: e.g., 'Track spending'..." rows="4" style="width:100%;"></textarea>
+        <h3>Quiz Time</h3>
+        <div class="quiz">
+            <p><strong>Question 1:</strong> What’s income?</p>
+            <input type="radio" name="q1" value="A"> A) Cash you spend on rent<br>
+            <input type="radio" name="q1" value="B"> B) Cash you borrow from a friend<br>
+            <input type="radio" name="q1" value="C"> C) Cash you earn from work or gifts<br>
+
+            <p><strong>Question 2:</strong> If expenses beat income, you’ve got:</p>
+            <input type="radio" name="q2" value="A"> A) A surplus—extra money<br>
+            <input type="radio" name="q2" value="B"> B) A deficit—you’re short<br>
+            <input type="radio" name="q2" value="C"> C) A break-even—no gain, no loss<br>
+
+            <p><strong>Question 3:</strong> Financial literacy helps you:</p>
+            <input type="radio" name="q3" value="A"> A) Control money and hit goals<br>
+            <input type="radio" name="q3" value="B"> B) Win the lottery<br>
+            <input type="radio" name="q3" value="C"> C) Spend without thinking<br>
+
+            <p><strong>Question 4:</strong> What’s a good money mindset?</p>
+            <input type="radio" name="q4" value="A"> A) “Money’s only for fun.”<br>
+            <input type="radio" name="q4" value="B"> B) “I’ll never understand this.”<br>
+            <input type="radio" name="q4" value="C"> C) “I can learn and make it work.”<br>
+
+            <button onclick="checkQuiz()">Submit Quiz</button>
+            <p id="quiz-result"></p>
+        </div>
+    </section>
+
+    <!-- Section 7: Call to Action -->
+    <section>
+        <h2>Great Job Completing Lesson 1!</h2>
+        <p>
+            Wow, you’ve nailed the foundation of financial literacy! You’ve got the lowdown on income, expenses, money flow, and a killer mindset to boot. This isn’t just info—it’s power. You’re ready to roll into the next step with confidence.
+        </p>
+        <a href="personalfinancelesson1-summary.pdf" class="cta-button">Download Lesson Summary</a>
+        <a href="personalfinancelesson2.html" class="cta-button">Next Lesson: Budgeting 101</a>
+        <p>
+            You’re not just learning about money—you’re learning to <em>own</em> it. The future’s yours, and it’s looking bright. Let’s keep the momentum going!
+        </p>
+    </section>
+</div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="learn.html">Learn</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: rthompson25@bayschoolsf.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 FinanceCourse. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

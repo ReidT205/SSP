@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 2: Budgeting 101</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #007BFF;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #007BFF, #00C6FF);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #007BFF;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Budget Form Styles */
+        .budget-form {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .budget-form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        .budget-form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .budget-form button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .budget-form button:hover {
+            background-color: #0069d9;
+        }
+        .expense-category {
+            margin-bottom: 20px;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #007BFF;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .sorting-activity {
+            margin: 20px 0;
+        }
+        .sorting-activity .item {
+            padding: 8px;
+            margin: 5px 0;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 108;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function calculateBudget() {
+            const income = parseFloat(document.getElementById('income').value) || 0;
+            
+            // Get fixed expenses
+            const fixedExpense1 = parseFloat(document.getElementById('fixed-expense-1').value) || 0;
+            const fixedExpense2 = parseFloat(document.getElementById('fixed-expense-2').value) || 0;
+            const fixedExpense3 = parseFloat(document.getElementById('fixed-expense-3').value) || 0;
+            const totalFixed = fixedExpense1 + fixedExpense2 + fixedExpense3;
+            document.getElementById('total-fixed').textContent = totalFixed.toFixed(2);
+            
+            // Get variable expenses
+            const varExpense1 = parseFloat(document.getElementById('var-expense-1').value) || 0;
+            const varExpense2 = parseFloat(document.getElementById('var-expense-2').value) || 0;
+            const varExpense3 = parseFloat(document.getElementById('var-expense-3').value) || 0;
+            const totalVar = varExpense1 + varExpense2 + varExpense3;
+            document.getElementById('total-var').textContent = totalVar.toFixed(2);
+            
+            // Calculate total expenses and surplus/deficit
+            const totalExpenses = totalFixed + totalVar;
+            const result = income - totalExpenses;
+            
+            document.getElementById('total-expenses').textContent = totalExpenses.toFixed(2);
+            document.getElementById('result').textContent = result.toFixed(2);
+            
+            // Display message based on result
+            const resultMessage = document.getElementById('result-message');
+            if (result > 0) {
+                resultMessage.textContent = "You have a surplus! Consider saving or investing this amount.";
+                resultMessage.style.color = "green";
+            } else if (result < 0) {
+                resultMessage.textContent = "You have a deficit. Consider reducing expenses or increasing income.";
+                resultMessage.style.color = "red";
+            } else {
+                resultMessage.textContent = "You're breaking even. Your income equals your expenses.";
+                resultMessage.style.color = "blue";
+            }
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'A') score++;
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 5. ${score >= 4 ? 'Great job!' : score >= 3 ? 'Good effort!' : 'Keep studying!'}`;
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Personal Finance Foundations: Lesson 2 – Budgeting 101</h1>
+        <p>Learn how to create and maintain a personal budget that works for your lifestyle and helps you achieve your financial goals.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Budgeting!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Section 1: Introduction to Budgeting -->
+        <section id="section1">
+            <h2>Introduction to Budgeting</h2>
+            <p>
+                Picture this: You've got $150 to get through the next two weeks. You need groceries, gas, and maybe a little fun with friends. How do you make it stretch without stressing? That's budgeting—a plan you make before you spend to ensure your money does what you want.
+            </p>
+            <h3>What's a Budget, Really?</h3>
+            <p>
+                A budget is your game plan for your money. It's deciding upfront how much goes to essentials (like rent or food), how much you'll save, and how much you can spend on stuff you enjoy. Think of it like plotting a road trip: you know your destination (your goals), your fuel (your income), and the stops along the way (your expenses). Without a map, you might run out of gas—or cash—halfway through.
+            </p>
+            <h3>Why Bother Budgeting?</h3>
+            <p>
+                Here's the detailed scoop on why it's worth your time:
+            </p>
+            <ul>
+                <li><strong>Stress Less:</strong> Knowing where every dollar goes means no more late-night "how am I broke?" panics.</li>
+                <li><strong>Hit Your Goals:</strong> Want a $200 jacket or a $500 vacation? Budgeting turns "someday" into "this year."</li>
+                <li><strong>Stay Out of Trouble:</strong> It keeps you from overspending or getting blindsided by bills.</li>
+                <li><strong>Take Control:</strong> You're the boss of your money—not your impulses or that random sale.</li>
+            </ul>
+            <h3>Stats to Prove It:</h3>
+            <p>
+                A 2021 survey by the National Foundation for Credit Counseling found that 60% of people who budget feel more in control of their finances.
+            </p>
+            <p>
+                Meanwhile, 34% of Americans don't have a budget—and they're twice as likely to stress about money. Coincidence? Nope!
+            </p>
+            <h3>Real-Life Example:</h3>
+            <p>
+                Meet Sarah, a 25-year-old barista earning $1,200 a month. Without a budget, she'd blow $400 on takeout, $300 on clothes, and $500 on rent—then scramble when her $100 electric bill hit. After budgeting, she set $600 for rent and bills, $300 for food, $200 for fun, and $100 for savings. Now, she's got cash left over and no bill panic. That's budgeting in action!
+            </p>
+            <h3>Historical Fun Fact:</h3>
+            <p>
+                Budgeting isn't new—ancient Romans used "tabulae" (tablets) to track income from taxes and expenses for aqueducts. Even back then, they knew planning beats winging it!
+            </p>
+            <h3>Your Turn to Reflect:</h3>
+            <p>
+                Why do you want to budget? Is it to stop living paycheck to paycheck? Save for something big? Write down one personal reason—it'll keep you motivated.
+            </p>
+            <p><em>Example: "I want to save $300 for a concert without stressing."</em></p>
+            <textarea id="reflection1" placeholder="Write your answer here..." rows="4" style="width:100%;"></textarea>
+            <p>
+                Got it? Awesome! Let's lay the groundwork with your income.
+            </p>
+        </section>
+
+        <!-- Section 2: Understanding Your Income -->
+        <section>
+            <h2>Understanding Your Income</h2>
+            <p>
+                You can't budget without knowing your starting pile of cash. Income is every dollar that flows into your hands, from any source, over a set time (usually a month). Let's break it down.
+            </p>
+            <h3>Types of Income:</h3>
+            <ul>
+                <li><strong>Regular Income:</strong> Steady cash, like $400/month from a part-time job or $50/week from an allowance. It's predictable, so it's budgeting gold.</li>
+                <li><strong>Irregular Income:</strong> One-offs or variable amounts, like $75 from a birthday gift, $20 from selling old games, or $100 from a random babysitting gig. It's trickier but still counts.</li>
+                <li><strong>Side Hustles:</strong> Extra cash from passion projects—think $30 from dog walking or $15 from tutoring.</li>
+            </ul>
+            <h3>How to Calculate It:</h3>
+            <ol>
+                <li><strong>List every source:</strong> Write down every way you get money in a typical month.</li>
+                <li><strong>Estimate totals:</strong> For regular income, use exact amounts. For irregular, guess low (better safe than sorry).</li>
+                <li><strong>Add it up:</strong> That's your monthly income—the fuel for your budget.</li>
+            </ol>
+            <h3>Example Breakdown:</h3>
+            <ul>
+                <li>Job: $300/month</li>
+                <li>Allowance: $20/month</li>
+                <li>Sold old headphones: $30 (one-time)</li>
+                <li>Total: $300 + $20 + $30 = $350</li>
+            </ul>
+            <h3>If It Varies:</h3>
+            <p>
+                Freelancers or gig workers might earn $200 one month, $400 the next. Use an average (add three months, divide by 3) or the lowest amount you expect—like $200—to stay safe.
+            </p>
+            <h3>Activity: Map Your Income</h3>
+            <p>
+                List your income sources—every penny counts! Then calculate your total.
+            </p>
+            <p><em>Example: "$150 from lawn mowing, $25 allowance, $10 from selling candy" = $185</em></p>
+            <textarea id="income-sources" placeholder="List your sources here..." rows="4" style="width:100%;"></textarea>
+            <label for="total-monthly-income">Your Total Monthly Income:</label>
+            <input type="number" id="total-monthly-income" placeholder="Enter your total monthly income here" style="width:50%;">
+            <h3>Conversion Tips:</h3>
+            <ul>
+                <li><strong>Paid weekly?</strong> Multiply by 4 (e.g., $50/week = $200/month).</li>
+                <li><strong>Paid bi-weekly?</strong> Multiply by 2 (e.g., $100/bi-weekly = $200/month).</li>
+                <li><strong>One-time cash?</strong> Include it this month, but don't count on it next time.</li>
+            </ul>
+            <h3>Detailed Example:</h3>
+            <p>
+                Let's say you babysit. Last month, you made $50 one night, $30 another, and $20 selling cookies. That's $100—but it's not steady. Budget with your reliable $50 allowance instead, and treat the rest as a bonus.
+            </p>
+            <p>
+                Got your number? Sweet! That's your budget's foundation. Next, we'll see where it's all going.
+            </p>
+        </section>
+
+        <!-- Section 3: Identifying Your Expenses -->
+        <section>
+            <h2>Identifying Your Expenses</h2>
+            <p>
+                Expenses are everything you spend money on. To budget, you need to know what's leaving your wallet—and why. They split into two big buckets: fixed and variable.
+            </p>
+            <h3>Fixed Expenses:</h3>
+            <p>
+                These don't budge month to month—they're your "gotta pay" costs.
+            </p>
+            <ul>
+                <li>Examples: $250 rent, $35 phone bill, $15 Netflix, $20 bus pass.</li>
+                <li>Why they matter: They're non-negotiable, so they get first dibs on your income.</li>
+            </ul>
+            <h3>Variable Expenses:</h3>
+            <p>
+                These shift based on your choices or needs—they're your "can tweak" costs.
+            </p>
+            <ul>
+                <li>Examples: $60 groceries (sometimes $80), $25 gas, $15 eating out, $10 random snacks.</li>
+                <li>Why they matter: They're flexible, so you can cut here if cash gets tight.</li>
+            </ul>
+            <h3>Hidden Expenses:</h3>
+            <p>
+                Don't skip the sneaky stuff—like $2 vending machine sodas or $5 in-app purchases. They're small but stack up fast.
+            </p>
+            <h3>Detailed Example:</h3>
+            <p>
+                Take groceries. You might budget $50, but one week you grab extra snacks ($10), then splurge on fancy cheese ($15). Suddenly, it's $75. Tracking these swings helps you plan better.
+            </p>
+            <h3>Activity: Sort Your Expenses</h3>
+            <p>
+                Sort these into fixed or variable:
+            </p>
+            <div class="sorting-activity">
+                <div class="item">
+                    <input type="radio" name="apartment" value="fixed"> Fixed
+                    <input type="radio" name="apartment" value="variable"> Variable
+                    <span>Apartment rent</span>
+                </div>
+                <div class="item">
+                    <input type="radio" name="movies" value="fixed"> Fixed
+                    <input type="radio" name="movies" value="variable"> Variable
+                    <span>Movie tickets</span>
+                </div>
+                <div class="item">
+                    <input type="radio" name="wifi" value="fixed"> Fixed
+                    <input type="radio" name="wifi" value="variable"> Variable
+                    <span>Wi-Fi bill</span>
+                </div>
+                <div class="item">
+                    <input type="radio" name="groceries" value="fixed"> Fixed
+                    <input type="radio" name="groceries" value="variable"> Variable
+                    <span>Groceries</span>
+                </div>
+                <div class="item">
+                    <input type="radio" name="gym" value="fixed"> Fixed
+                    <input type="radio" name="gym" value="variable"> Variable
+                    <span>Gym membership</span>
+                </div>
+                <div class="item">
+                    <input type="radio" name="coffee" value="fixed"> Fixed
+                    <input type="radio" name="coffee" value="variable"> Variable
+                    <span>Coffee shop runs</span>
+                </div>
+            </div>
+            <p><em>Answers: Fixed—Apartment rent, Wi-Fi bill, Gym membership; Variable—Movie tickets, Groceries, Coffee shop runs</em></p>
+            <h3>Your Turn:</h3>
+            <p>
+                List your expenses—three fixed, three variable. Be specific!
+            </p>
+            <p><em>Example: Fixed—$50 phone, $20 Spotify, $30 transit; Variable—$40 food, $15 games, $20 gifts</em></p>
+            <textarea id="expenses-list" placeholder="Write your list here..." rows="6" style="width:100%;"></textarea>
+            <h3>Pro Tip: The Coffee Trap</h3>
+            <p>
+                Spend $3 on coffee five times a week? That's $15/week, $60/month, $720/year. Could that fund a new laptop? Budgeting lets you decide—coffee or laptop?
+            </p>
+            <h3>Breakdown Example:</h3>
+            <ul>
+                <li>Fixed: $150 rent share, $40 phone, $15 streaming = $205</li>
+                <li>Variable: $70 groceries, $30 fun, $15 clothes = $115</li>
+                <li>Total: $205 + $115 = $320</li>
+            </ul>
+            <p>
+                Seeing the full picture yet? Let's use this to build your budget.
+            </p>
+        </section>
+
+        <!-- Section 4: Creating Your Simple Budget -->
+        <section>
+            <h2>Creating Your Simple Budget</h2>
+            <p>
+                Time to make your money work! A budget matches your income to your expenses. Here's the step-by-step:
+            </p>
+            <ol>
+                <li>Start with Income: Your total from Section 2.</li>
+                <li>List Fixed Expenses: Add them up.</li>
+                <li>List Variable Expenses: Add them up.</li>
+                <li>Total Expenses: Fixed + Variable.</li>
+                <li>Subtract: Income minus Total Expenses.</li>
+                <li>Surplus: Extra cash left (yay!).</li>
+                <li>Deficit: Spending too much (time to adjust).</li>
+            </ol>
+            <h3>Example Budget:</h3>
+            <ul>
+                <li>Income: $500</li>
+                <li>Fixed: $200 rent, $30 phone, $20 transit = $250</li>
+                <li>Variable: $100 groceries, $50 fun, $30 clothes = $180</li>
+                <li>Total Expenses: $250 + $180 = $430</li>
+                <li>Surplus: $500 - $430 = $70</li>
+            </ul>
+            <h3>What's That $70 For?</h3>
+            <ul>
+                <li>Save it (emergency fund!).</li>
+                <li>Spend it (treat yourself!).</li>
+                <li>Invest it (grow it!).</li>
+            </ul>
+            <h3>Your Budget Worksheet:</h3>
+            <p>Build yours here:</p>
+            <div class="budget-form">
+                <label for="income">Income:</label>
+                <input type="number" id="income" placeholder="Your total monthly income">
+                
+                <h4>Fixed Expenses:</h4>
+                <div class="expense-category">
+                    <input type="text" placeholder="Item name (e.g., Rent)"> 
+                    <input type="number" id="fixed-expense-1" placeholder="Amount">
+                    <br>
+                    <input type="text" placeholder="Item name"> 
+                    <input type="number" id="fixed-expense-2" placeholder="Amount">
+                    <br>
+                    <input type="text" placeholder="Item name"> 
+                    <input type="number" id="fixed-expense-3" placeholder="Amount">
+                    <p>Total Fixed: $<span id="total-fixed">0.00</span></p>
+                </div>
+                
+                <h4>Variable Expenses:</h4>
+                <div class="expense-category">
+                    <input type="text" placeholder="Item name (e.g., Groceries)"> 
+                    <input type="number" id="var-expense-1" placeholder="Amount">
+                    <br>
+                    <input type="text" placeholder="Item name"> 
+                    <input type="number" id="var-expense-2" placeholder="Amount">
+                    <br>
+                    <input type="text" placeholder="Item name"> 
+                    <input type="number" id="var-expense-3" placeholder="Amount">
+                    <p>Total Variable: $<span id="total-var">0.00</span></p>
+                </div>
+                
+                <button onclick="calculateBudget()">Calculate Budget</button>
+                
+                <div class="result-box">
+                    <p>Total Expenses: $<span id="total-expenses">0.00</span></p>
+                    <p>Surplus/Deficit: $<span id="result">0.00</span></p>
+                    <p id="result-message"></p>
+                </div>
+            </div>
+            
+            <h3>Reflection:</h3>
+            <p>
+                What's your result? Surplus? Deficit? Write one thought.
+            </p>
+            <p><em>Example: "I've got $20 left—cool, I can save it!"</em></p>
+            <textarea id="budget-reflection" placeholder="Write here..." rows="4" style="width:100%;"></textarea>
+            
+            <h3>Handling a Deficit:</h3>
+            <p>
+                If expenses beat income (e.g., $500 income, $550 expenses = $50 deficit):
+            </p>
+            <ul>
+                <li><strong>Cut Variable Costs:</strong> Drop fun from $50 to $20.</li>
+                <li><strong>Boost Income:</strong> Sell something for $30.</li>
+                <li><strong>Prioritize:</strong> Pay fixed costs first, adjust the rest.</li>
+            </ul>
+            
+            <h3>Detailed Scenario:</h3>
+            <p>
+                You've got $300 income, but $150 rent, $40 phone, $80 groceries, $50 fun = $320. Deficit of $20. Options:
+            </p>
+            <ul>
+                <li>Skip two $10 pizza nights.</li>
+                <li>Walk instead of taking the $10 bus.</li>
+                <li>Sell old books for $20.</li>
+            </ul>
+            <p>
+                Your budget's alive now! Next, we'll keep it on track.
+            </p>
+        </section>
+
+        <!-- Section 5: Tracking Your Budget -->
+        <section>
+            <h2>Tracking Your Budget</h2>
+            <p>
+                A budget's only as good as your follow-through. Tracking means watching your spending to match your plan—like checking your phone's GPS to stay on route.
+            </p>
+            <h3>Why Track?</h3>
+            <ul>
+                <li><strong>Spot Trouble:</strong> Catch overspending before it's too late.</li>
+                <li><strong>Learn Patterns:</strong> Notice you splurge on Fridays? Plan for it.</li>
+                <li><strong>Stay Pumped:</strong> Seeing progress feels good.</li>
+            </ul>
+            <h3>Tracking Methods:</h3>
+            <h4>Apps:</h4>
+            <ul>
+                <li><strong>Examples:</strong> Mint (free), YNAB ($14.99/month), PocketGuard (freemium).</li>
+                <li><strong>How:</strong> Links to your bank, auto-categorizes spending.</li>
+                <li><strong>Pros:</strong> Fast, visual, often free.</li>
+                <li><strong>Cons:</strong> Needs internet, privacy concerns.</li>
+            </ul>
+            <h4>Spreadsheets:</h4>
+            <ul>
+                <li><strong>Examples:</strong> Google Sheets, Excel (free templates online).</li>
+                <li><strong>How:</strong> Manually enter each expense.</li>
+                <li><strong>Pros:</strong> Fully customizable, no ads.</li>
+                <li><strong>Cons:</strong> Time-intensive, easy to forget.</li>
+            </ul>
+            <h4>Envelope System:</h4>
+            <ul>
+                <li><strong>How:</strong> Put cash in envelopes (e.g., $50 for groceries). When it's gone, it's gone.</li>
+                <li><strong>Pros:</strong> Tangible, forces discipline.</li>
+                <li><strong>Cons:</strong> Cash-only, not digital-friendly.</li>
+            </ul>
+            <h3>Activity: Pick and Explore</h3>
+            <p>
+                Choose one method. Try it (download an app, set up a sheet, or grab envelopes). Write one pro and one con.
+            </p>
+            <p><em>Example: "Spreadsheets—Pro: I control it; Con: Takes 10 minutes daily."</em></p>
+            <textarea id="tracking-reflection" placeholder="Write here..." rows="4" style="width:100%;"></textarea>
+            <h3>Detailed Example:</h3>
+            <p>
+                Budget $40 for fun. Spend $15 on a movie (log it), $10 on snacks (log it). Check your app/spreadsheet—$15 left. No guessing, no overspending.
+            </p>
+            <h3>Challenge:</h3>
+            <p>
+                Track one category (e.g., "food") for a week. Log every expense. Did you stay under? Over? Write what you learned.
+            </p>
+            <p><em>Example: "I budgeted $50 for food, spent $60—too many sodas!"</em></p>
+            <textarea id="tracking-challenge" placeholder="Write here..." rows="4" style="width:100%;"></textarea>
+            <p>
+                Tracking's your budget's heartbeat—keep it pumping!
+            </p>
+        </section>
+
+        <!-- Section 6: Adjusting Your Budget -->
+        <section>
+            <h2>Adjusting Your Budget</h2>
+            <p>
+                Life's not static, and neither is your budget. Jobs change, bills pop up, goals shift. Adjusting keeps you in control.
+            </p>
+            <h3>When to Adjust:</h3>
+            <ul>
+                <li><strong>Monthly Check-In:</strong> Review what worked or didn't.</li>
+                <li><strong>Big Changes:</strong> New income, unexpected costs, or hitting a goal.</li>
+                <li><strong>Surprises:</strong> Car repair, medical bill, or a bonus.</li>
+            </ul>
+            <h3>How to Adjust:</h3>
+            <ul>
+                <li><strong>Trim Variable Costs:</strong> Cut $20 from fun or $10 from snacks.</li>
+                <li><strong>Boost Income:</strong> Sell clothes for $30 or grab a $15 gig.</li>
+                <li><strong>Re-Prioritize:</strong> Fixed costs first, then essentials, then extras.</li>
+            </ul>
+            <h3>Scenario 1: Unexpected Expense</h3>
+            <p>
+                Your phone screen cracks—$150 to fix, unbudgeted.
+            </p>
+            <ul>
+                <li><strong>Option A:</strong> Dip into $150 savings.</li>
+                <li><strong>Option B:</strong> Skip $50 fun and $100 clothes this month.</li>
+                <li><strong>Option C:</strong> Earn $150 tutoring or selling stuff online.</li>
+            </ul>
+            <h3>Scenario 2: Income Drop</h3>
+            <p>
+                Your hours get cut—income falls from $400 to $300.
+            </p>
+            <ul>
+                <li><strong>Old Budget:</strong> $200 fixed, $150 variable = $350 (deficit $50).</li>
+                <li><strong>Adjusted:</strong> $200 fixed, $100 variable (cut $50 fun/food) = $300 (balanced).</li>
+            </ul>
+            <h3>Scenario 3: Income Boost</h3>
+            <p>
+                You get a $100 raise—now $500/month.
+            </p>
+            <ul>
+                <li><strong>Option A:</strong> Save it all for a $1,200 goal (12 months).</li>
+                <li><strong>Option B:</strong> Split it—$50 savings, $50 fun.</li>
+            </ul>
+            <h3>Activity:</h3>
+            <p>
+                Think of a real or possible budget hiccup. How would you adjust? Detail your plan.
+            </p>
+            <p><em>Example: "Car tire flat—$80. I'd cut $40 groceries (buy basics), $40 fun (no movies)."</em></p>
+            <textarea id="adjustment-plan" placeholder="Write here..." rows="4" style="width:100%;"></textarea>
+            <h3>Pro Tip: The Buffer</h3>
+            <p>
+                Add a $20-30 "miscellaneous" category monthly. It's your safety net for surprises—like a $15 gift or $25 repair.
+            </p>
+            <h3>Detailed Adjustment Example:</h3>
+            <p>
+                Budget: $400 income, $250 fixed, $120 variable = $370 (surplus $30). Then, a $50 vet bill hits. Adjust:
+            </p>
+            <ul>
+                <li>Cut groceries from $70 to $50 (meal prep).</li>
+                <li>Drop fun from $30 to $10 (free park hangout).</li>
+                <li>New total: $350, covers the $50 bill, still balanced.</li>
+            </ul>
+            <p>
+                Adjusting's not failing—it's winning at flexibility.
+            </p>
+        </section>
+
+        <!-- Section 7: Common Budgeting Mistakes (and Fixes) -->
+        <section>
+            <h2>Common Budgeting Mistakes (and Fixes)</h2>
+            <p>
+                Even pros slip up. Here's how to avoid the biggies:
+            </p>
+            <h3>Mistake: Skipping Small Stuff</h3>
+            <ul>
+                <li><strong>Problem:</strong> $2 snacks + $5 apps = $50/month you didn't plan for.</li>
+                <li><strong>Fix:</strong> Track every dime for 30 days—use an app or notebook.</li>
+            </ul>
+            <h3>Mistake: Too Rigid</h3>
+            <ul>
+                <li><strong>Problem:</strong> No fun money = burnout by week two.</li>
+                <li><strong>Fix:</strong> Budget $15-20 for joy—coffee, a game, whatever.</li>
+            </ul>
+            <h3>Mistake: Set-and-Forget</h3>
+            <ul>
+                <li><strong>Problem:</strong> Old budget doesn't fit new rent or goals.</li>
+                <li><strong>Fix:</strong> Review monthly—15 minutes saves headaches.</li>
+            </ul>
+            <h3>Mistake: Guessing Expenses</h3>
+            <ul>
+                <li><strong>Problem:</strong> "Groceries are $50," but they're $80.</li>
+                <li><strong>Fix:</strong> Check past spending (receipts, bank app) for real numbers.</li>
+            </ul>
+            <h3>Activity:</h3>
+            <p>
+                Which mistake sounds like you? Write it and one fix.
+            </p>
+            <p><em>Example: "I guess too much—I'll check my bank for grocery costs."</em></p>
+            <textarea id="mistake-reflection" placeholder="Write here..." rows="4" style="width:100%;"></textarea>
+            <h3>Detailed Example:</h3>
+            <p>
+                You skip tracking $5 daily smoothies. That's $25/week, $100/month—half your fun budget gone! Fix: Log it daily, cut to $10/week, save $60/month.
+            </p>
+        </section>
+
+        <!-- Section 8: Reflection and Quiz -->
+        <section>
+            <h2>Reflection and Quiz</h2>
+            <p>
+                You're crushing it! Let's reflect and test your skills.
+            </p>
+            <h3>Reflection:</h3>
+            <p>
+                What's one budgeting trick you'll try? How will it change your money game?
+            </p>
+            <p><em>Example: "I'll use envelopes for food—keeps me from overspending."</em></p>
+            <textarea id="final-reflection" placeholder="Write here..." rows="4" style="width:100%;"></textarea>
+            <h3>Quiz: Test Your Budget Brain</h3>
+            <div class="quiz">
+                <p><strong>Question 1:</strong> A budget is:</p>
+                <input type="radio" name="q1" value="A"> A) A debt tracker<br>
+                <input type="radio" name="q1" value="B"> B) A spending and saving plan<br>
+                <input type="radio" name="q1" value="C"> C) A bank statement<br>
+
+                <p><strong>Question 2:</strong> Which is a fixed expense?</p>
+                <input type="radio" name="q2" value="A"> A) Gas<br>
+                <input type="radio" name="q2" value="B"> B) Rent<br>
+                <input type="radio" name="q2" value="C"> C) Eating out<br>
+
+                <p><strong>Question 3:</strong> Income $300, expenses $270. You have:</p>
+                <input type="radio" name="q3" value="A"> A) Deficit<br>
+                <input type="radio" name="q3" value="B"> B) Surplus<br>
+                <input type="radio" name="q3" value="C"> C) Zero balance<br>
+
+                <p><strong>Question 4:</strong> Tracking helps you:</p>
+                <input type="radio" name="q4" value="A"> A) Spend freely<br>
+                <input type="radio" name="q4" value="B"> B) Stick to your budget<br>
+                <input type="radio" name="q4" value="C"> C) Avoid saving<br>
+
+                <p><strong>Question 5:</strong> Best fix for a $50 deficit?</p>
+                <input type="radio" name="q5" value="A"> A) Cut variable costs<br>
+                <input type="radio" name="q5" value="B"> B) Borrow $50<br>
+                <input type="radio" name="q5" value="C"> C) Ignore it<br>
+
+                <button onclick="checkQuiz()">Submit Quiz</button>
+                <p id="quiz-result"></p>
+            </div>
+            <h3>Practical Challenge:</h3>
+            <p>
+                Income: $400. Fixed: $180 rent, $40 phone. Variable: $90 groceries, $60 fun. Build it—surplus or deficit? Show your math!
+            </p>
+            <p><em>Sample: $400 - ($180 + $40 + $90 + $60) = $400 - $370 = $30 surplus</em></p>
+            <textarea id="budget-challenge" placeholder="Write your budget here..." rows="4" style="width:100%;"></textarea>
+        </section>
+
+        <!-- Section 9: Budgeting Tools and Resources -->
+        <section>
+            <h2>Budgeting Tools and Resources</h2>
+            <p>
+                Level up with these:
+            </p>
+            <h3>Tools:</h3>
+            <ul>
+                <li><strong>Apps:</strong> Mint (free, auto-tracks), YNAB ($14.99/month, goal-focused), PocketGuard (freemium, limits overspending).</li>
+                <li><strong>Spreadsheets:</strong> Google Sheets (free templates—search "monthly budget").</li>
+                <li><strong>Physical:</strong> Envelopes or a budget planner notebook ($5-10 at stores).</li>
+            </ul>
+            <h3>Resources:</h3>
+            <ul>
+                <li><strong>Books:</strong> The Total Money Makeover by Dave Ramsey (simple budgeting), You Need a Budget by Jesse Mecham (deep dive).</li>
+                <li><strong>Podcasts:</strong> "The Dave Ramsey Show" (practical tips), "ChooseFI" (beginner-friendly).</li>
+            </ul>
+            <h3>Activity:</h3>
+            <p>
+                Explore one tool/resource. Write one thing you like and one question you have.
+            </p>
+            <p><em>Example: "Mint—Love the graphs; Does it track cash?"</em></p>
+            <textarea id="resource-reflection" placeholder="Write here..." rows="4" style="width:100%;"></textarea>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2>Conclusion</h2>
+            <p>
+                Boom—you've mastered Budgeting 101! You've mapped your income, dissected expenses, built a budget, learned to track it, and tackled adjustments. This isn't just a lesson—it's your ticket to financial freedom. Practice makes it second nature, and you're already ahead.
+            </p>
+            <h3>Next Steps:</h3>
+            <a href="index.html" class="cta-button">Return to Course Overview</a>
+            <a href="section1lesson3.html" class="cta-button">Next Lesson: Saving Strategies</a>
+            <p>
+                Share your favorite tip with a friend—spread the wealth (knowledge)!
+            </p>
+            <p>
+                You're not just budgeting—you're building a future. Keep rocking it!
+            </p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="learn.html">Learn</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: rthompson25@bayschoolsf.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 FinanceCourse. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

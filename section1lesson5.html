@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 5: Credit Essentials</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #007BFF;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #007BFF, #00C6FF);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #007BFF;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #007BFF;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #007BFF;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #0069d9;
+        }
+        /* Credit-specific styles */
+        .credit-score-scale {
+            display: flex;
+            margin: 20px 0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .credit-score-range {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+        .range-bad {
+            background-color: #dc3545;
+        }
+        .range-poor {
+            background-color: #fd7e14;
+        }
+        .range-fair {
+            background-color: #ffc107;
+        }
+        .range-good {
+            background-color: #28a745;
+        }
+        .range-excellent {
+            background-color: #20c997;
+        }
+        .credit-factors {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .credit-factor {
+            width: 18%;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .credit-type {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007BFF;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .sample-report {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        @media (max-width: 768px) {
+            .credit-factor {
+                width: 48%;
+            }
+            .credit-score-scale {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 400;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'A') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'A') score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'A') score++;
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 5. ${score >= 4 ? 'Great job!' : score >= 3 ? 'Good effort!' : 'Keep studying!'}`;
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Personal Finance Foundations: Lesson 5 – Credit Essentials</h1>
+        <p>Learn how to understand, build, and maintain good credit to unlock financial opportunities and achieve your goals.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Learning!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview</h2>
+            <p>
+                Welcome to Credit Essentials, the grand finale of your Personal Finance Foundations journey! Credit is like your financial reputation—it's how the world judges your trustworthiness with borrowed money.
+            </p>
+            <p>
+                In this lesson, you'll uncover what credit is, how it functions, and how to wield it to your advantage. We'll connect it to what you've already mastered and prepare you for what's next. Whether you're new to credit or aiming to sharpen your skills, this lesson is your roadmap. Let's jump in!
+            </p>
+        </section>
+
+        <!-- Section 1: Introduction – What Is Credit? -->
+        <section id="section1">
+            <h2>Introduction – What Is Credit?</h2>
+            <p>
+                Imagine you're applying for a loan to snag your dream car, and the lender pulls up a mysterious number that seals your fate. That's your credit score, a quick peek at your financial trustworthiness. But what powers it?
+            </p>
+            
+            <h3>What Is Credit?</h3>
+            <p>
+                Credit is your borrowing track record. It reflects how responsibly you've managed borrowed money—like credit cards, loans, or even utility bills. Lenders, landlords, and sometimes employers use it to decide if you're a safe bet for their money or opportunities.
+            </p>
+            
+            <h3>Why Does Credit Matter?</h3>
+            <p>
+                Credit isn't just about loans—it weaves into many corners of your life:
+            </p>
+            <ul>
+                <li><strong>Loans:</strong> Strong credit unlocks mortgages or car loans with favorable terms.</li>
+                <li><strong>Interest Rates:</strong> A higher score means lower rates, saving you thousands over time.</li>
+                <li><strong>Renting:</strong> Landlords often check it before leasing to you.</li>
+                <li><strong>Jobs:</strong> Some employers review it to assess reliability.</li>
+                <li><strong>Insurance:</strong> Better credit can trim your premiums.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                Meet Alex, a 28-year-old teacher. With a credit score of 780, Alex secured a 3% interest rate on a $20,000 car loan, paying just $2,400 in interest over five years. His friend Taylor, with a 620 score, got hit with 7%, paying $5,600 for the same loan. That's $3,200 Alex can stash away or spend elsewhere!
+            </p>
+            
+            <h3>Your Turn to Reflect</h3>
+            <p>
+                What's one credit question buzzing in your mind? Jot it down—maybe "How do I build credit from scratch?" or "What's hurting my score?"
+            </p>
+            <p><em>Example: "Can paying rent boost my credit?"</em></p>
+            
+            <div class="activity-box">
+                <textarea id="credit-question" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+            
+            <p>
+                Curious? Let's peel back the layers of how credit works.
+            </p>
+        </section>
+
+        <!-- Section 2: How Credit Works – The Basics -->
+        <section>
+            <h2>How Credit Works – The Basics</h2>
+            <p>
+                Credit might feel like a puzzle, but it's really just two pieces: your credit score and credit report. Let's break them down.
+            </p>
+            
+            <h3>What's a Credit Score?</h3>
+            <p>
+                Your credit score is a three-digit number (300–850) that rates your borrowing risk. Think of it as a financial report card—higher scores mean you're acing it! Here's the range:
+            </p>
+            
+            <div class="credit-score-scale">
+                <div class="credit-score-range range-bad">
+                    <h4>Bad</h4>
+                    <p>Below 550</p>
+                </div>
+                <div class="credit-score-range range-poor">
+                    <h4>Poor</h4>
+                    <p>550-649</p>
+                </div>
+                <div class="credit-score-range range-fair">
+                    <h4>Fair</h4>
+                    <p>650-699</p>
+                </div>
+                <div class="credit-score-range range-good">
+                    <h4>Good</h4>
+                    <p>700-749</p>
+                </div>
+                <div class="credit-score-range range-excellent">
+                    <h4>Excellent</h4>
+                    <p>750-850</p>
+                </div>
+            </div>
+            
+            <h3>What's a Credit Report?</h3>
+            <p>
+                Your credit report is the detailed story behind that score. It includes:
+            </p>
+            <ul>
+                <li><strong>Personal Details:</strong> Name, address, etc.</li>
+                <li><strong>Accounts:</strong> Credit cards, loans, and payment history.</li>
+                <li><strong>Inquiries:</strong> Times you've sought credit.</li>
+                <li><strong>Public Records:</strong> Bankruptcies or legal hiccups.</li>
+            </ul>
+            
+            <h3>Who Tracks It?</h3>
+            <p>
+                Three major bureaus—Equifax, Experian, and TransUnion—keep tabs on your credit. You can grab your report free once a year at AnnualCreditReport.com.
+            </p>
+            
+            <h3>What Shapes Your Score?</h3>
+            <p>
+                Five factors build your credit score:
+            </p>
+            <div class="credit-factors">
+                <div class="credit-factor">
+                    <h4>35%</h4>
+                    <p>Payment History</p>
+                </div>
+                <div class="credit-factor">
+                    <h4>30%</h4>
+                    <p>Credit Utilization</p>
+                </div>
+                <div class="credit-factor">
+                    <h4>15%</h4>
+                    <p>Credit History Length</p>
+                </div>
+                <div class="credit-factor">
+                    <h4>10%</h4>
+                    <p>New Credit</p>
+                </div>
+                <div class="credit-factor">
+                    <h4>10%</h4>
+                    <p>Credit Mix</p>
+                </div>
+            </div>
+            
+            <h3>Activity: Guess the Impact</h3>
+            <p>
+                Suppose your score is 680. What's lifting it up or pulling it down? Pick one factor and explain.
+            </p>
+            <p><em>Example: "I pay on time, but my card's maxed out—utilization's probably high."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="credit-impact" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Pro Tip: Catch Errors Early</h3>
+            <p>
+                About 1 in 5 credit reports has mistakes—like a late payment you didn't miss. Review yours yearly to dispute inaccuracies and protect your score.
+            </p>
+            <p>
+                Ready to explore your credit options? Let's go!
+            </p>
+        </section>
+
+        <!-- Section 3: Types of Credit – Your Options -->
+        <section>
+            <h2>Types of Credit – Your Options</h2>
+            <p>
+                Credit comes in various forms, each with unique strengths and risks. Knowing them helps you choose wisely.
+            </p>
+            
+            <div class="credit-type">
+                <h3>Type 1: Credit Cards</h3>
+                <p><strong>What They Are:</strong> Borrow up to a limit, repay monthly.</p>
+                <p><strong>Pros:</strong> Builds credit, offers rewards, great for emergencies.</p>
+                <p><strong>Cons:</strong> High interest (15–25%) if unpaid, tempting to overspend.</p>
+            </div>
+            
+            <div class="credit-type">
+                <h3>Type 2: Personal Loans</h3>
+                <p><strong>What They Are:</strong> Lump sum for a specific need, repaid in installments.</p>
+                <p><strong>Pros:</strong> Predictable payments, often lower rates than cards.</p>
+                <p><strong>Cons:</strong> Harder to qualify with weak credit, late fees sting.</p>
+            </div>
+            
+            <div class="credit-type">
+                <h3>Type 3: Student Loans</h3>
+                <p><strong>What They Are:</strong> Funds for education, often with delayed repayment.</p>
+                <p><strong>Pros:</strong> Invests in your future, flexible terms.</p>
+                <p><strong>Cons:</strong> Long repayment, tough to discharge.</p>
+            </div>
+            
+            <div class="credit-type">
+                <h3>Type 4: Mortgages</h3>
+                <p><strong>What They Are:</strong> Loans for homes, repaid over decades.</p>
+                <p><strong>Pros:</strong> Builds equity, tax benefits.</p>
+                <p><strong>Cons:</strong> Huge commitment, foreclosure risk if unpaid.</p>
+            </div>
+            
+            <div class="credit-type">
+                <h3>Type 5: Lines of Credit</h3>
+                <p><strong>What They Are:</strong> Flexible borrowing (e.g., HELOC).</p>
+                <p><strong>Pros:</strong> Use only what you need, often lower rates.</p>
+                <p><strong>Cons:</strong> Variable rates, can grow out of control.</p>
+            </div>
+            
+            <h3>Activity: Pick the Credit</h3>
+            <p>
+                Match the need to the credit type:
+            </p>
+            <ul>
+                <li><strong>Need 1:</strong> $300 for a broken phone.</li>
+                <li><strong>Need 2:</strong> $250,000 for a house.</li>
+                <li><strong>Need 3:</strong> $15,000 for college.</li>
+            </ul>
+            <p><strong>Options:</strong> Credit card, Mortgage, Student loan</p>
+            
+            <div class="activity-box">
+                <textarea id="match-credit" placeholder="Write your answers here..." rows="4"></textarea>
+                <p><em>Answers: 1-Credit card, 2-Mortgage, 3-Student loan</em></p>
+            </div>
+            
+            <h3>Pro Tip: Make Credit Cards Your Friend</h3>
+            <p>
+                Pay your card in full monthly to build credit without debt. Treat it like a debit card with perks—like cashback or points.
+            </p>
+            <p>
+                Now, let's master building and maintaining stellar credit.
+            </p>
+        </section>
+
+        <!-- Section 4: Building and Maintaining Good Credit -->
+        <section>
+            <h2>Building and Maintaining Good Credit</h2>
+            <p>
+                Great credit doesn't happen overnight—it's a marathon, not a sprint. Here's your game plan.
+            </p>
+            
+            <h3>Tip 1: Pay on Time, Every Time</h3>
+            <ul>
+                <li><strong>Why:</strong> Payment history is 35% of your score. A single late payment can drop it 50–100 points.</li>
+                <li><strong>How:</strong> Set up auto-pay or reminders.</li>
+            </ul>
+            
+            <h3>Tip 2: Keep Balances Low</h3>
+            <ul>
+                <li><strong>Why:</strong> Utilization (30% of your score) thrives on low balances—under 30% of your limit.</li>
+                <li><strong>Example:</strong> $1,000 limit? Keep it below $300.</li>
+            </ul>
+            
+            <h3>Tip 3: Limit New Applications</h3>
+            <ul>
+                <li><strong>Why:</strong> Too many inquiries (10% of your score) raise red flags.</li>
+                <li><strong>How:</strong> Only apply when it's worth it.</li>
+            </ul>
+            
+            <h3>Tip 4: Hold Onto Old Accounts</h3>
+            <ul>
+                <li><strong>Why:</strong> Longer history (15% of your score) strengthens your profile.</li>
+                <li><strong>How:</strong> Use your oldest card occasionally to keep it active.</li>
+            </ul>
+            
+            <h3>Tip 5: Mix It Up (Smartly)</h3>
+            <ul>
+                <li><strong>Why:</strong> Variety (10% of your score) shows you can juggle different credit.</li>
+                <li><strong>How:</strong> Add a loan only if it aligns with your plans.</li>
+            </ul>
+            
+            <h3>Activity: Boost Your Score</h3>
+            <p>
+                Your score's 670. What's one move to nudge it higher?
+            </p>
+            <p><em>Example: "I'll pay down my $400 balance on a $1,000-limit card."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="boost-score" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Pro Tip: Start Small</h3>
+            <p>
+                New to credit? Try a secured card (backed by a deposit) or become an authorized user on a trusted family member's card.
+            </p>
+            
+            <h3>Success Story</h3>
+            <p>
+                Lila started with a 590 score. She paid bills on time, slashed her card balance from $800 to $200 (limit $1,000), and waited. A year later, her score hit 710—proof patience pays off!
+            </p>
+        </section>
+
+        <!-- Section 5: Understanding Credit Reports -->
+        <section>
+            <h2>Understanding Credit Reports</h2>
+            <p>
+                Your credit report is the foundation of your score. Let's decode it to spot issues and keep your credit shining.
+            </p>
+            
+            <h3>What's in a Credit Report?</h3>
+            <p>
+                Think of your credit report as your financial biography. It covers:
+            </p>
+            <ul>
+                <li><strong>Personal Information:</strong> Name, address, Social Security number, job history.</li>
+                <li><strong>Account History:</strong> All your credit accounts—cards, loans, mortgages—with payment records and balances.</li>
+                <li><strong>Inquiries:</strong> Times you've applied for credit. "Hard inquiries" (e.g., loan applications) can nudge your score down briefly.</li>
+                <li><strong>Public Records:</strong> Bankruptcies, foreclosures, or tax liens (fingers crossed, none!).</li>
+            </ul>
+            
+            <h3>Why It Matters</h3>
+            <p>
+                Lenders scrutinize your report. Errors—like a late payment you didn't miss—can tank your score. Regular checks help you fix mistakes and guard against fraud.
+            </p>
+            
+            <h3>How to Get Your Credit Report</h3>
+            <p>
+                Get one free report yearly from each bureau (Equifax, Experian, TransUnion) at AnnualCreditReport.com.
+            </p>
+            <p>
+                <strong>Extra Tip:</strong> Stagger them—pull one every four months for year-round oversight.
+            </p>
+            
+            <h3>Activity 1: Decode a Sample Credit Report</h3>
+            <div class="sample-report">
+                <p><strong>Account:</strong> XYZ Credit Card</p>
+                <p><strong>Balance:</strong> $500</p>
+                <p><strong>Limit:</strong> $1,000</p>
+                <p><strong>Payment History:</strong> On time for 12 months</p>
+                <p><strong>Inquiries:</strong> 2 hard inquiries in the last year</p>
+            </div>
+            <p>
+                What's your credit utilization? Good or bad?
+            </p>
+            <p><em>Calculation: $500 ÷ $1,000 = 50% (aim for under 30%—this is high!)</em></p>
+            
+            <div class="activity-box">
+                <textarea id="report-decode" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Activity 2: Find the Flaw</h3>
+            <div class="sample-report">
+                <p><strong>Account:</strong> ABC Loan</p>
+                <p><strong>Status:</strong> 60 days late (but you paid on time!)</p>
+            </div>
+            <p>
+                What's the error? How would you fix it?
+            </p>
+            <p><em>Sample: "The late payment's wrong—I'd dispute it with the bureau online."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="report-flaw" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Spotting Errors</h3>
+            <p>
+                Watch for:
+            </p>
+            <ul>
+                <li>Incorrect personal info.</li>
+                <li>Accounts you don't recognize (possible fraud!).</li>
+                <li>Late payments you know you made on time.</li>
+            </ul>
+            <p>
+                Dispute errors online or by mail with the bureau.
+            </p>
+            
+            <h3>Pro Tip: Monitor Regularly</h3>
+            <p>
+                Use free tools like Credit Karma or your bank's app to track your score and report. It's like a financial fitness tracker—catching issues early keeps you healthy.
+            </p>
+        </section>
+
+        <!-- Section 6: Credit and Your Financial Journey -->
+        <section>
+            <h2>Credit and Your Financial Journey</h2>
+            <p>
+                Credit ties into everything you've learned in Personal Finance Foundations. Let's connect the dots and look forward.
+            </p>
+            
+            <h3>Credit and Saving</h3>
+            <ul>
+                <li><strong>Link:</strong> Good credit cuts loan interest, boosting your savings (Lesson 3).</li>
+                <li><strong>Example:</strong> A 4% vs. 6% rate on a $10,000 loan saves $20/month—$240/year for your piggy bank!</li>
+            </ul>
+            
+            <h3>Credit and Debt</h3>
+            <ul>
+                <li><strong>Link:</strong> Smart credit use sidesteps bad debt and manages good debt (Lesson 4).</li>
+                <li><strong>Example:</strong> Refinance high-rate debt with a low-rate loan, thanks to your score.</li>
+            </ul>
+            
+            <h3>Credit and Goals</h3>
+            <ul>
+                <li><strong>Link:</strong> It fuels your dreams (Lesson 1), like owning a home or launching a business.</li>
+                <li><strong>Example:</strong> A stellar score gets you a 0% APR card for big purchases, interest-free.</li>
+            </ul>
+            
+            <h3>What's Next?</h3>
+            <p>
+                Credit plays a starring role in:
+            </p>
+            <ul>
+                <li><strong>Budgeting Mastery (Section 2):</strong> Fit credit payments into your plan.</li>
+                <li><strong>Spending Smartly (Section 3):</strong> Use credit strategically for big buys.</li>
+                <li><strong>Investing Basics (Section 5):</strong> Leverage credit for investment opportunities.</li>
+            </ul>
+            
+            <h3>Activity: Link It Up</h3>
+            <p>
+                How could good credit support a goal from Lesson 1? Write it down.
+            </p>
+            <p><em>Example: "It'd get me a low-rate loan to start my side hustle."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="credit-goal" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+            
+            <p>
+                Credit's your ally—wield it wisely!
+            </p>
+        </section>
+
+        <!-- Section 7: Reflection and Quiz -->
+        <section>
+            <h2>Reflection and Quiz</h2>
+            <p>
+                You're rocking this! Let's reflect and test your credit savvy.
+            </p>
+            
+            <h3>Reflection</h3>
+            <p>
+                What's one credit habit you'll start? How will it shape your future?
+            </p>
+            <p><em>Example: "I'll pay my card off monthly to build credit debt-free."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="credit-habit" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Quiz: Credit Know-How</h3>
+            <div class="quiz">
+                <div class="quiz-item">
+                    <p><strong>Question 1:</strong> What's a credit score?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q1" value="A" id="q1a">
+                        <label for="q1a">Your savings total</label><br>
+                        <input type="radio" name="q1" value="B" id="q1b">
+                        <label for="q1b">A borrowing trustworthiness rating</label><br>
+                        <input type="radio" name="q1" value="C" id="q1c">
+                        <label for="q1c">Your debt amount</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 2:</strong> What's the biggest score factor?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q2" value="A" id="q2a">
+                        <label for="q2a">Payment history</label><br>
+                        <input type="radio" name="q2" value="B" id="q2b">
+                        <label for="q2b">New credit</label><br>
+                        <input type="radio" name="q2" value="C" id="q2c">
+                        <label for="q2c">Credit mix</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 3:</strong> Ideal credit utilization?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q3" value="A" id="q3a">
+                        <label for="q3a">50%</label><br>
+                        <input type="radio" name="q3" value="B" id="q3b">
+                        <label for="q3b">Under 30%</label><br>
+                        <input type="radio" name="q3" value="C" id="q3c">
+                        <label for="q3c">75%</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 4:</strong> Free credit report frequency?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q4" value="A" id="q4a">
+                        <label for="q4a">Yearly</label><br>
+                        <input type="radio" name="q4" value="B" id="q4b">
+                        <label for="q4b">Monthly</label><br>
+                        <input type="radio" name="q4" value="C" id="q4c">
+                        <label for="q4c">Never</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 5:</strong> Why care about credit?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q5" value="A" id="q5a">
+                        <label for="q5a">It lowers interest and opens doors</label><br>
+                        <input type="radio" name="q5" value="B" id="q5b">
+                        <label for="q5b">It raises your income</label><br>
+                        <input type="radio" name="q5" value="C" id="q5c">
+                        <label for="q5c">It pays your bills</label>
+                    </div>
+                </div>
+                
+                <button onclick="checkQuiz()">Submit Quiz</button>
+                <p id="quiz-result"></p>
+            </div>
+            
+            <h3>Challenge: Cash or Credit?</h3>
+            <p>
+                You're eyeing an $800 TV. Cash or a 0% interest card for 6 months? Why?
+            </p>
+            <p><em>Sample: "Card—I'll pay $133/month and keep cash for emergencies."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="cash-credit" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+        </section>
+
+        <!-- Section 8: Conclusion -->
+        <section>
+            <h2>Conclusion – Onward and Upward!</h2>
+            <p>
+                You've triumphed over Personal Finance Foundations! From money mindsets to credit mastery, you've crafted a toolkit for financial freedom. Credit isn't just a number—it's your key to lower costs, bigger opportunities, and smarter decisions.
+            </p>
+            
+            <h3>What's Ahead?</h3>
+            <ul>
+                <li><strong>Budgeting Mastery (Section 2):</strong> Master your budget with tools like 50/30/20.</li>
+                <li><strong>Spending Smartly (Section 3):</strong> Make every dollar count.</li>
+                <li><strong>Financial Goals & Planning (Section 4):</strong> Chart your path to success.</li>
+                <li><strong>Investing Basics (Section 5):</strong> Grow your wealth.</li>
+            </ul>
+            
+            <h3>Next Steps</h3>
+            <ul>
+                <li>Check your score at Credit Karma or your bank.</li>
+                <li>Dive into Budgeting Mastery: Lesson 1 – Designing Your Budget next!</li>
+            </ul>
+            
+            <div class="activity-box">
+                <a href="index.html" class="cta-button">Return to Course Overview</a>
+                <a href="section2lesson1.html" class="cta-button">Next Section: Budgeting Mastery</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="learn.html">Learn</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: rthompson25@bayschoolsf.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 FinanceCourse. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

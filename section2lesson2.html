@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 2: Tracking Spending</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #007BFF;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #28a745;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #28a745;
+            border-bottom: 2px solid #28a745;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #218838;
+        }
+        /* Tracking-specific styles */
+        .tracking-method {
+            background-color: #f8f9fa;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .example-entry {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f2f2f2;
+        }
+        .category-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .category {
+            width: 30%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+        }
+        .needs {
+            background-color: #46e06a;
+        }
+        .wants {
+            background-color: #4bc8de;
+        }
+        .savings {
+            background-color: #8f65dc;
+        }
+        .tracking-example {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .status-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .status-table th, .status-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .status-table th {
+            background-color: #f2f2f2;
+        }
+        .status-under {
+            color: #28a745;
+        }
+        .status-over {
+            color: #dc3545;
+        }
+        .status-on {
+            color: #17a2b8;
+        }
+        .tool-card {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .tool-name {
+            font-weight: bold;
+            color: #28a745;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 660;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q6"]:checked')?.value === 'A') score++;
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 6. ${score >= 5 ? 'Great job!' : score >= 4 ? 'Good effort!' : 'Keep studying!'}`;
+            document.getElementById('quiz-result').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Budgeting Mastery: Lesson 2 – Tracking Spending</h1>
+        <p>Learn how to monitor your expenses in real-time, gain clarity on your spending habits, and stay on budget.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Learning!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview</h2>
+            <p>
+                Welcome back to Budgeting Mastery! In Lesson 1, you crafted your budget—a blueprint for where your money should go. Now, in Lesson 2, we're zooming in on tracking your spending, the skill that brings your budget to life. Tracking is like having a financial dashboard: it shows you where your money is actually going, moment by moment, so you can stay on course or adjust before it's too late.
+            </p>
+            <p>Here's what we'll tackle in this jam-packed lesson:</p>
+            <ul>
+                <li>Why tracking matters: The foundation of financial control and how it ties into your budget.</li>
+                <li>Tracking methods: Three detailed approaches—manual, spreadsheets, and apps—with pros, cons, and step-by-step setups.</li>
+                <li>Categorizing expenses: A thorough guide to organizing your spending, with subcategories and hands-on practice.</li>
+                <li>Setting limits: How to create and fine-tune spending caps that match your income and goals.</li>
+                <li>Tools and habits: Specific recommendations and strategies to make tracking seamless.</li>
+                <li>Analyzing patterns: A new section to uncover spending habits and optimize your budget.</li>
+                <li>Avoiding pitfalls: Expanded examples of mistakes and a troubleshooting toolkit.</li>
+                <li>Interactive fun: A beefed-up activity to test your skills, plus reflection prompts and a quiz.</li>
+            </ul>
+            <p>
+                By the end, you'll be a tracking pro, equipped to monitor every dollar with confidence. Let's get started!
+            </p>
+        </section>
+
+        <!-- Introduction – Why Tracking Spending Is Your Financial Superpower -->
+        <section id="section1">
+            <h2>Introduction – Why Tracking Spending Is Your Financial Superpower</h2>
+            <p>
+                Picture this: You've budgeted $150 for groceries this month. Halfway through, you've already spent $140—those extra trips for snacks and "just one more thing" piled up. Without tracking, you'd only realize at month's end, stuck with a blown budget. But with real-time tracking, you spot the issue now and switch to pantry meals to stay on track.
+            </p>
+            
+            <p>
+                What is tracking? It's the simple act of recording every expense—whether it's $3 or $300—as you spend it. It's the glue that holds your budget together, turning your plan into reality.
+            </p>
+            
+            <h3>Why does it matter so much?</h3>
+            <ul>
+                <li><strong>Clarity:</strong> Reveals where your money vanishes (goodbye, mystery spending!).</li>
+                <li><strong>Control:</strong> Lets you catch overspending early and adjust on the fly.</li>
+                <li><strong>Confidence:</strong> Builds awareness of your habits, empowering you to save more and hit your goals faster.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                Meet Priya, a 28-year-old graphic designer. She started tracking and found she was spending $80 a month on random vending machine snacks at work. By packing lunch instead, she redirected that cash to her travel fund—saving $960 a year!
+            </p>
+            
+            <h3>How It Connects</h3>
+            <p>
+                In Lesson 1, you set your budget's foundation. Tracking builds on that by showing if your plan works in the real world. It also preps you for Lesson 3, where we'll adjust your budget for life's twists and turns.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Pinpoint Your "Watch Target"</h3>
+                <p>
+                    Think about your spending habits. What's one area where you suspect your money might be slipping away unnoticed? Maybe it's coffee runs, online shopping, or sneaky subscriptions. Write it down—this is your "watch target" for the lesson.
+                </p>
+                <p><em>Example: "I think I'm overspending on takeout without realizing it."</em></p>
+                <textarea id="watch-target" placeholder="Write your watch target here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <p>
+                Imagine your budget as a bucket. Spending is water flowing out. Tracking is the meter that shows how much is left—don't let it run dry!
+            </p>
+            <table class="comparison-table">
+                <tr>
+                    <th>Method</th>
+                    <th>Effort</th>
+                    <th>Tech Level</th>
+                    <th>Best For</th>
+                </tr>
+                <tr>
+                    <td>Manual</td>
+                    <td>High</td>
+                    <td>Low</td>
+                    <td>Simplicity Lovers</td>
+                </tr>
+                <tr>
+                    <td>Spreadsheet</td>
+                    <td>Medium</td>
+                    <td>Medium</td>
+                    <td>Data Enthusiasts</td>
+                </tr>
+                <tr>
+                    <td>App</td>
+                    <td>Low</td>
+                    <td>High</td>
+                    <td>Busy Automators</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 1: Three Methods to Track Your Spending -->
+        <section>
+            <h2>Three Methods to Track Your Spending</h2>
+            <p>
+                Tracking is personal, so let's explore three detailed methods—manual, spreadsheets, and apps. I'll break each down with setup steps, pros and cons, examples, and tips to pick your perfect fit.
+            </p>
+            
+            <div class="tracking-method">
+                <h3>Method 1: Manual Tracking (The Hands-On Classic)</h3>
+                <p>
+                    This is the no-fuss, low-tech way: jot down every expense as it happens using a notebook, phone notes, or even an envelope.
+                </p>
+                
+                <h4>How to Set It Up:</h4>
+                <ol>
+                    <li>Grab a small notebook or open your phone's notes app.</li>
+                    <li>Create a simple format: "Date | Item | Amount | Category."</li>
+                    <li>Log every purchase right after you spend.</li>
+                </ol>
+                
+                <div class="example-entry">
+                    Example Entry: "10/15 | Coffee | $4 | Wants"
+                </div>
+                
+                <h4>Pros:</h4>
+                <ul>
+                    <li>Total control—no tech glitches or fees.</li>
+                    <li>Mindfulness boost: Writing makes you feel each dollar.</li>
+                    <li>Portable and private.</li>
+                </ul>
+                
+                <h4>Cons:</h4>
+                <ul>
+                    <li>Time-intensive—requires discipline to log consistently.</li>
+                    <li>No auto-totals; you'll need to tally manually.</li>
+                    <li>Easy to lose track if you skip a day.</li>
+                </ul>
+                
+                <h4>Real-Life Example</h4>
+                <p>
+                    Carlos, a barista, uses a pocket notebook. Each night, he logs his day's spending while sipping tea—his 10-minute "money ritual." Last month, he caught $60 in unplanned gas station snacks and cut back.
+                </p>
+                
+                <h4>Tips:</h4>
+                <ul>
+                    <li>Keep your tool handy (purse, pocket, phone).</li>
+                    <li>Use shorthand: "C $4 W" = Coffee, $4, Wants.</li>
+                </ul>
+                <p><em>Perfect for: Hands-on folks who love simplicity or don't trust tech.</em></p>
+            </div>
+            
+            <div class="tracking-method">
+                <h3>Method 2: Spreadsheets (The Customizable Powerhouse)</h3>
+                <p>
+                    Spreadsheets like Google Sheets or Excel let you log, organize, and visualize your spending with a DIY twist.
+                </p>
+                
+                <h4>How to Set It Up:</h4>
+                <ol>
+                    <li>Open a free tool (Google Sheets is great—accessible anywhere).</li>
+                    <li>Create columns: "Date | Description | Category | Amount | Notes."</li>
+                    <li>Enter expenses daily or weekly.</li>
+                    <li>Add a "Totals" row with a SUM formula (e.g., =SUM(D2:D100) for Amount).</li>
+                    <li>Bonus: Use conditional formatting to highlight overspending (e.g., red if over $50).</li>
+                </ol>
+                
+                <h4>Pros:</h4>
+                <ul>
+                    <li>Free and flexible—design it your way.</li>
+                    <li>Visuals galore: Add charts (pie, bar) to see trends.</li>
+                    <li>Great for math lovers who enjoy tweaking formulas.</li>
+                </ul>
+                
+                <h4>Cons:</h4>
+                <ul>
+                    <li>Setup takes time (though templates help).</li>
+                    <li>Manual entry can feel tedious.</li>
+                    <li>Not as portable as a notebook or app.</li>
+                </ul>
+                
+                <h4>Real-Life Example</h4>
+                <p>
+                    Liam, a student, built a Google Sheet with tabs for Needs, Wants, and Savings. He added a pie chart that updates automatically, showing he spent 40% of his budget on gaming—motivating him to scale back.
+                </p>
+                
+                <h4>Tips:</h4>
+                <ul>
+                    <li>Download a free template (search "budget spreadsheet") to skip setup.</li>
+                    <li>Sync it to your phone for on-the-go updates.</li>
+                </ul>
+                <p><em>Perfect for: Detail geeks who love data and customization.</em></p>
+            </div>
+            
+            <div class="tracking-method">
+                <h3>Method 3: Budgeting Apps (The Set-It-and-Forget-It Star)</h3>
+                <p>
+                    Apps like Mint, YNAB, or PocketGuard automate tracking by linking to your bank accounts.
+                </p>
+                
+                <h4>How to Set It Up:</h4>
+                <ol>
+                    <li>Download an app (Mint is free; YNAB is $14.99/month).</li>
+                    <li>Link your bank, credit card, or debit accounts securely.</li>
+                    <li>Set up categories and limits (many apps suggest defaults).</li>
+                    <li>Let it auto-import and categorize transactions.</li>
+                    <li>Check daily or tweak as needed (e.g., recategorize "Amazon" from Misc to Shopping).</li>
+                </ol>
+                
+                <h4>Pros:</h4>
+                <ul>
+                    <li>Effortless—tracks in real-time with minimal input.</li>
+                    <li>Features like alerts ("You're at 90% of groceries!") and goal tracking.</li>
+                    <li>Syncs across devices.</li>
+                </ul>
+                
+                <h4>Cons:</h4>
+                <ul>
+                    <li>Privacy trade-off (bank linking isn't for everyone).</li>
+                    <li>Some apps have fees or in-app purchases.</li>
+                    <li>Auto-categories can misfire (e.g., gas as "miscellaneous").</li>
+                </ul>
+                
+                <h4>Real-Life Example</h4>
+                <p>
+                    Tara, a single mom, uses PocketGuard. It flagged her $200 clothing splurge as "over budget," prompting her to return half the items and stay on track.
+                </p>
+                
+                <h4>Tips:</h4>
+                <ul>
+                    <li>Double-check categories weekly—automation isn't perfect.</li>
+                    <li>Use free trials to test before committing.</li>
+                </ul>
+                <p><em>Perfect for: Busy bees who want tracking on autopilot.</em></p>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Choose Your Method</h3>
+                <p>Which method clicks for you? Write down your pick and why.</p>
+                <p><em>Example: "I'll use a spreadsheet because I love charts and want to customize it."</em></p>
+                <p>Not sure? Try two for a week and compare!</p>
+                <textarea id="tracking-method" placeholder="Write your preferred method and reasoning here..." rows="4"></textarea>
+            </div>
+
+            <h3>Visual Aid</h3>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Method</th>
+                    <th>Effort</th>
+                    <th>Tech Level</th>
+                    <th>Best For</th>
+                </tr>
+                <tr>
+                    <td>Manual</td>
+                    <td>High</td>
+                    <td>Low</td>
+                    <td>Simplicity Lovers</td>
+                </tr>
+                <tr>
+                    <td>Spreadsheet</td>
+                    <td>Medium</td>
+                    <td>Medium</td>
+                    <td>Data Enthusiasts</td>
+                </tr>
+                <tr>
+                    <td>App</td>
+                    <td>Low</td>
+                    <td>High</td>
+                    <td>Busy Automators</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 2: Categorizing Your Spending for Laser-Sharp Insights -->
+        <section>
+            <h2>Categorizing Your Spending for Laser-Sharp Insights</h2>
+            <p>
+                Tracking raw numbers is step one. Step two? Sorting them into categories to see the big picture. Think of categories as buckets—each holds a type of spending, making it easy to spot leaks or wins.
+            </p>
+            
+            <h3>Core Categories to Start</h3>
+            <div class="category-box">
+                <div class="category needs">
+                    <h4>Needs</h4>
+                    <p>Must-haves for survival</p>
+                </div>
+                <div class="category wants">
+                    <h4>Wants</h4>
+                    <p>Fun stuff that spices up life</p>
+                </div>
+                <div class="category savings">
+                    <h4>Savings/Debt</h4>
+                    <p>Future-focused cash</p>
+                </div>
+            </div>
+            
+            <ul>
+                <li><strong>Needs:</strong> Must-haves for survival—rent/mortgage, groceries, utilities, transportation, insurance, minimum debt payments.</li>
+                <li><strong>Wants:</strong> Fun stuff that spices up life—dining out, entertainment, shopping, hobbies, subscriptions.</li>
+                <li><strong>Savings/Debt:</strong> Future-focused cash—emergency fund, retirement, investments, extra debt payments.</li>
+            </ul>
+            
+            <h3>Drill Down: Subcategories</h3>
+            <p>For deeper clarity, split big categories into smaller ones:</p>
+            
+            <h4>Needs:</h4>
+            <ul>
+                <li>Groceries → "Food," "Household Supplies," "Pet Needs"</li>
+                <li>Transportation → "Gas," "Public Transit," "Car Maintenance"</li>
+            </ul>
+            
+            <h4>Wants:</h4>
+            <ul>
+                <li>Entertainment → "Movies," "Streaming," "Games"</li>
+                <li>Shopping → "Clothes," "Gadgets," "Gifts"</li>
+            </ul>
+            
+            <h4>Savings/Debt:</h4>
+            <ul>
+                <li>Savings → "Emergency Fund," "Vacation"</li>
+                <li>Debt → "Credit Card," "Student Loan"</li>
+            </ul>
+            
+            <h3>Why It Matters</h3>
+            <p>
+                Subcategories pinpoint exactly where money goes. Spending $100 on "groceries" sounds fine—until you see $40 was impulse snacks, not essentials.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Categorize Like a Pro</h3>
+                <p>Sort these expenses into Needs, Wants, or Savings/Debt, then add a subcategory:</p>
+                <ul>
+                    <li>$75 on rent</li>
+                    <li>$15 on a Netflix subscription</li>
+                    <li>$25 on gas</li>
+                    <li>$40 on a concert ticket</li>
+                    <li>$50 toward a car loan</li>
+                </ul>
+                <textarea id="categorize-expenses" placeholder="Write your categorizations here..." rows="6"></textarea>
+                <div class="result-box">
+                    <p><strong>Answers:</strong></p>
+                    <ul>
+                        <li>$75 on rent: Needs | Housing</li>
+                        <li>$15 on a Netflix subscription: Wants | Entertainment - Streaming</li>
+                        <li>$25 on gas: Needs | Transportation - Gas</li>
+                        <li>$40 on a concert ticket: Wants | Entertainment - Events</li>
+                        <li>$50 toward a car loan: Savings/Debt | Debt - Car Loan</li>
+                    </ul>
+                </div>
+                <p>Your Turn: List five of your recent expenses (check receipts or memory). Categorize and subcategorize them.</p>
+                <p><em>Example: "$5 coffee | Wants | Dining Out"</em></p>
+                <textarea id="your-expenses" placeholder="List and categorize your own expenses..." rows="6"></textarea>
+            </div>
+            
+            <p><strong>Pro Tip:</strong> Stuck? Ask, "Could I skip this for 30 days and still function?" Yes = Wants; No = Needs.</p>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th>Expense</th>
+                    <th>Category</th>
+                    <th>Subcategory</th>
+                </tr>
+                <tr>
+                    <td>$30 groceries</td>
+                    <td>Needs</td>
+                    <td>Food</td>
+                </tr>
+                <tr>
+                    <td>$10 movie</td>
+                    <td>Wants</td>
+                    <td>Entertainment</td>
+                </tr>
+                <tr>
+                    <td>$20 savings</td>
+                    <td>Savings/Debt</td>
+                    <td>Emergency Fund</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 3: Setting Spending Limits to Keep Your Budget Tight -->
+        <section>
+            <h2>Setting Spending Limits to Keep Your Budget Tight</h2>
+            <p>
+                Categories shine brightest when paired with spending limits—caps that keep your spending aligned with your income and goals. Let's set them up step-by-step.
+            </p>
+            
+            <h3>Step 1: Base Limits on Your Budget Style</h3>
+            <h4>50/30/20 Rule:</h4>
+            <ul>
+                <li>Needs: 50% of after-tax income</li>
+                <li>Wants: 30%</li>
+                <li>Savings/Debt: 20%</li>
+            </ul>
+            <p><em>Example: $4,000 income → $2,000 Needs, $1,200 Wants, $800 Savings/Debt</em></p>
+            
+            <h4>Zero-Based Budget:</h4>
+            <ul>
+                <li>Assign every dollar a job until you hit $0.</li>
+            </ul>
+            <p><em>Example: $1,000 rent, $400 groceries, $200 dining, etc.</em></p>
+            
+            <h3>Step 2: Break Down by Category</h3>
+            <ul>
+                <li><strong>Needs:</strong> List essentials and estimate costs. Adjust if over 50% (e.g., cheaper rent).</li>
+                <p><em>Example: Rent ($800), Groceries ($300), Utilities ($150) = $1,250</em></p>
+                
+                <li><strong>Wants:</strong> Set realistic caps based on habits—trim gradually if needed.</li>
+                <p><em>Example: Dining ($150), Entertainment ($100) = $250</em></p>
+                
+                <li><strong>Savings/Debt:</strong> Prioritize this! Even $50 beats $0.</li>
+                <p><em>Example: Savings ($100), Debt ($150) = $250</em></p>
+            </ul>
+            
+            <h3>Step 3: Fine-Tune as You Go</h3>
+            <ul>
+                <li><strong>Too Tight?</strong> If groceries always exceed $200, raise it to $250 and cut elsewhere (like dining).</li>
+                <li><strong>Too Loose?</strong> Underspending on wants? Shift extra to savings.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Activity: Set Your Limits</h3>
+                <p>Assume a $3,000 monthly income. Calculate:</p>
+                <ul>
+                    <li>Needs (50%): <textarea id="needs-calculation" placeholder="Your answer..." rows="1"></textarea></li>
+                    <li>Wants (30%): <textarea id="wants-calculation" placeholder="Your answer..." rows="1"></textarea></li>
+                    <li>Savings/Debt (20%): <textarea id="savings-calculation" placeholder="Your answer..." rows="1"></textarea></li>
+                </ul>
+                <div class="result-box">
+                    <p><strong>Answers:</strong> $1,500 | $900 | $600</p>
+                </div>
+                <p>Now, use your income. List three subcategories per main category and set limits.</p>
+                <p><em>Example:</em></p>
+                <ul>
+                    <li>Needs: Rent ($700), Groceries ($250), Gas ($100) = $1,050</li>
+                    <li>Wants: Dining ($150), Shopping ($100), Hobbies ($50) = $300</li>
+                    <li>Savings/Debt: Emergency ($100), Credit Card ($150) = $250</li>
+                </ul>
+                <textarea id="your-limits" placeholder="Set your own category limits here..." rows="8"></textarea>
+            </div>
+            
+            <table class="status-table">
+                <tr>
+                    <th>Category</th>
+                    <th>Limit</th>
+                    <th>Actual Spent</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Groceries</td>
+                    <td>$250</td>
+                    <td>$230</td>
+                    <td class="status-under">Under</td>
+                </tr>
+                <tr>
+                    <td>Dining Out</td>
+                    <td>$150</td>
+                    <td>$170</td>
+                    <td class="status-over">Over</td>
+                </tr>
+                <tr>
+                    <td>Savings</td>
+                    <td>$100</td>
+                    <td>$100</td>
+                    <td class="status-on">On Track</td>
+                </tr>
+            </table>
+            
+            <p><strong>Adjusting Tip:</strong> Overspent on gas? Skip a movie night to balance it out.</p>
+        </section>
+
+        <!-- Section 4: Tools and Tips to Master Tracking -->
+        <section>
+            <h2>Tools and Tips to Master Tracking</h2>
+            <p>
+                Tracking shouldn't feel like a job. Here's a toolkit of specific resources and habits to make it smooth and sustainable.
+            </p>
+            
+            <h3>Recommended Tools</h3>
+            
+            <h4>Apps:</h4>
+            <div class="tool-card">
+                <p class="tool-name">Mint (Free)</p>
+                <p>Auto-tracks, categorizes, and sends alerts.</p>
+            </div>
+            
+            <div class="tool-card">
+                <p class="tool-name">YNAB ($14.99/month)</p>
+                <p>Zero-based focus with tutorials for newbies.</p>
+            </div>
+            
+            <div class="tool-card">
+                <p class="tool-name">PocketGuard (Free + Upgrades)</p>
+                <p>Shows "safe-to-spend" cash after bills.</p>
+            </div>
+            
+            <h4>Spreadsheets:</h4>
+            <div class="tool-card">
+                <p class="tool-name">Google Sheets (Free)</p>
+                <p>Use "Budget Template" (search online).</p>
+            </div>
+            
+            <div class="tool-card">
+                <p class="tool-name">Excel (Paid)</p>
+                <p>Built-in templates under "New > Budget."</p>
+            </div>
+            
+            <h4>Manual:</h4>
+            <div class="tool-card">
+                <p class="tool-name">Pocket notebook ($2-$5) or phone notes app (free)</p>
+                <p>Optional: Colored pens for categories (e.g., green for Needs).</p>
+            </div>
+            
+            <h3>Habits to Lock It In</h3>
+            <ul>
+                <li><strong>Daily Logging:</strong> Spend 3-5 minutes each night recording expenses. Pair it with a routine (e.g., post-dinner).</li>
+                <li><strong>Alerts:</strong> Set app notifications (e.g., "80% of groceries spent").</li>
+                <li><strong>Weekly Check-In:</strong> Sunday, tally totals and compare to limits. Adjust for the next week.</li>
+                <li><strong>Cash Trick:</strong> For cash spends, snap a photo of receipts or log instantly.</li>
+                <li><strong>Simplify:</strong> Round up amounts (e.g., $4.89 coffee = $5) for quick math.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                Kai uses Mint but keeps a notepad for cash tips from his server job. His weekly review showed $90 in untracked cash spends—he now logs them nightly.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Craft Your Tracking Plan</h3>
+                <p>How will you make tracking stick? Write your strategy.</p>
+                <p><em>Example: "I'll use Mint for auto-tracking and log cash in my phone notes every night at 8 PM."</em></p>
+                <textarea id="tracking-plan" placeholder="Write your tracking strategy here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Sample Weekly Tracker</h3>
+            <div class="tracking-example">
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Item</th>
+                        <th>Amount</th>
+                        <th>Category</th>
+                    </tr>
+                    <tr>
+                        <td>10/1</td>
+                        <td>Coffee</td>
+                        <td>$5</td>
+                        <td>Wants</td>
+                    </tr>
+                    <tr>
+                        <td>10/1</td>
+                        <td>Rent</td>
+                        <td>$800</td>
+                        <td>Needs</td>
+                    </tr>
+                    <tr>
+                        <td>10/2</td>
+                        <td>Savings</td>
+                        <td>$50</td>
+                        <td>Savings/Debt</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 5: Analyzing Your Spending Patterns -->
+        <section>
+            <h2>Analyzing Your Spending Patterns</h2>
+            <p>
+                Tracking isn't just about recording—it's about understanding. After a week or two, analyze your data to spot trends and tweak your budget.
+            </p>
+            
+            <h3>How to Analyze</h3>
+            <ul>
+                <li><strong>Sum by Category:</strong> Total Needs, Wants, Savings/Debt.</li>
+                <li><strong>Compare to Limits:</strong> Over or under? By how much?</li>
+                <li><strong>Spot Surprises:</strong> High dining out? Tiny savings?</li>
+                <li><strong>Find Leaks:</strong> Small, frequent buys (e.g., $4 daily coffee = $120/month).</li>
+            </ul>
+            
+            <h3>Questions to Ask</h3>
+            <ul>
+                <li>"Which category eats the most cash?"</li>
+                <li>"Are my limits realistic?"</li>
+                <li>"Where can I redirect money to hit my goals?"</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                After two weeks, Sam saw he spent $200 on "miscellaneous" app purchases. He capped it at $50 and moved the rest to his car fund.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Analyze a Sample Week</h3>
+                <p>Here's Priya's week:</p>
+                <ul>
+                    <li>Groceries: $90</li>
+                    <li>Dining Out: $70</li>
+                    <li>Gas: $45</li>
+                    <li>Movies: $25</li>
+                    <li>Savings: $80</li>
+                </ul>
+                <ol>
+                    <li>Total each category: Needs, Wants, Savings/Debt.</li>
+                    <li>If her Wants limit is $100, is she over?</li>
+                    <li>Suggest one adjustment.</li>
+                </ol>
+                <textarea id="analyze-week" placeholder="Write your analysis here..." rows="6"></textarea>
+                <div class="result-box">
+                    <p><strong>Answers:</strong></p>
+                    <ol>
+                        <li>Needs: $135 (Groceries + Gas), Wants: $95 (Dining + Movies), Savings/Debt: $80</li>
+                        <li>No, $95 < $100</li>
+                        <li>Boost savings by cutting dining to $50</li>
+                    </ol>
+                </div>
+                <p>Your Turn: Track for a few days, then analyze. What's one trend you see?</p>
+                <p><em>Example: "I spent $75 on snacks—way over my $30 Wants limit!"</em></p>
+                <textarea id="your-analysis" placeholder="Write about a spending trend you've noticed..." rows="4"></textarea>
+            </div>
+        </section>
+
+        <!-- Section 6: Common Pitfalls (and Fixes) -->
+        <section>
+            <h2>Common Pitfalls (and Fixes)</h2>
+            <p>
+                Mistakes happen—here's how to dodge them or recover fast.
+            </p>
+            
+            <h3>Pitfall 1: Missing Cash</h3>
+            <p>Cash slips through the cracks without digital traces.</p>
+            <p><strong>Fix:</strong> Log instantly or save receipts in a designated pocket.</p>
+            
+            <h3>Pitfall 2: Category Confusion</h3>
+            <p>Labeling takeout as "groceries" skews your budget.</p>
+            <p><strong>Fix:</strong> Review weekly and use a "Miscellaneous" catch-all, then sort later.</p>
+            
+            <h3>Pitfall 3: Giving Up After Overspending</h3>
+            <p>A $200 splurge doesn't mean game over.</p>
+            <p><strong>Fix:</strong> Reflect ("Why did this happen?") and adjust—cut next week's Wants.</p>
+            
+            <h3>Pitfall 4: Ignoring Tiny Spends</h3>
+            <p>$2 here, $3 there—suddenly it's $50.</p>
+            <p><strong>Fix:</strong> Track everything. Use a "Small Spends" subcategory if needed.</p>
+            
+            <div class="activity-box">
+                <h3>Activity: Fix the Flub</h3>
+                <p>Log:</p>
+                <ul>
+                    <li>$30 "Needs" (actually a pizza)</li>
+                    <li>$15 "Wants" (movie, correct)</li>
+                    <li>$20 "Needs" (gas, correct)</li>
+                </ul>
+                <p>What's off? Fix it.</p>
+                <textarea id="fix-flub" placeholder="Identify and fix the error..." rows="4"></textarea>
+                <div class="result-box">
+                    <p><strong>Answer:</strong> $30 should be Wants (Dining Out). Recategorize it.</p>
+                </div>
+            </div>
+            
+            <h3>Troubleshooting Toolkit:</h3>
+            <ul>
+                <li><strong>Lost a day?</strong> Check bank statements or receipts.</li>
+                <li><strong>Over budget?</strong> Shift funds or tighten next month.</li>
+                <li><strong>Burned out?</strong> Switch to an easier method (e.g., app).</li>
+            </ul>
+        </section>
+
+        <!-- Section 7: Interactive Activity – Track a Full Day -->
+        <section>
+            <h2>Interactive Activity – Track a Full Day</h2>
+            <p>
+                Let's flex your tracking muscles with a detailed scenario.
+            </p>
+            
+            <h3>Sample Day for Tara</h3>
+            <ul>
+                <li>Coffee: $4.50</li>
+                <li>Bus: $3</li>
+                <li>Lunch: $12</li>
+                <li>Groceries: $45</li>
+                <li>Netflix: $15</li>
+                <li>Debt Payment: $60</li>
+                <li>Candy: $2</li>
+                <li>Gas: $25</li>
+                <li>Book: $18</li>
+            </ul>
+            
+            <h3>Tasks:</h3>
+            <ol>
+                <li>Categorize and subcategorize each expense.</li>
+                <li>Total Needs, Wants, Savings/Debt.</li>
+                <li>If Wants limit is $50, is she over? Suggest a fix.</li>
+            </ol>
+            
+            <div class="activity-box">
+                <textarea id="track-day" placeholder="Complete the tasks here..." rows="12"></textarea>
+                <div class="result-box">
+                    <p><strong>Answers:</strong></p>
+                    <ol>
+                        <li>
+                            <ul>
+                                <li>Coffee: Wants | Dining Out</li>
+                                <li>Bus: Needs | Transportation</li>
+                                <li>Lunch: Wants | Dining Out</li>
+                                <li>Groceries: Needs | Food</li>
+                                <li>Netflix: Wants | Entertainment - Streaming</li>
+                                <li>Debt: Savings/Debt | Debt</li>
+                                <li>Candy: Wants | Snacks</li>
+                                <li>Gas: Needs | Transportation</li>
+                                <li>Book: Wants | Shopping</li>
+                            </ul>
+                        </li>
+                        <li>Needs: $73 (Bus + Groceries + Gas)</li>
+                        <li>Wants: $51.50 (Coffee + Lunch + Netflix + Candy + Book)</li>
+                        <li>Savings/Debt: $60</li>
+                        <li>Yes, $51.50 > $50. Fix: Skip the candy next time ($2).</li>
+                    </ol>
+                </div>
+                <p>Your Challenge: Track your last full day (at least 7 expenses). Categorize, total, and compare to a Wants limit you set (e.g., $30). Write it out!</p>
+                <textarea id="your-day-tracking" placeholder="Track your own day here..." rows="12"></textarea>
+            </div>
+        </section>
+
+        <!-- Section 8: Reflection – Tracking Meets Your Goals -->
+        <section>
+            <h2>Reflection – Tracking Meets Your Goals</h2>
+            <p>
+                Tracking isn't just numbers—it's a tool for your dreams.
+            </p>
+            
+            <h3>How It Fuels Success</h3>
+            <ul>
+                <li><strong>Stops Leaks:</strong> Catch overspending early.</li>
+                <li><strong>Frees Cash:</strong> Find extra for savings or debt.</li>
+                <li><strong>Speeds Goals:</strong> See progress toward a trip, debt payoff, or new gadget.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Prompts:</h3>
+                <ol>
+                    <li>What's one goal tracking will help you reach?</li>
+                    <p><em>Example: "Pay off $1,000 in credit card debt."</em></p>
+                    <textarea id="tracking-goal" placeholder="Write your goal here..." rows="2"></textarea>
+                    
+                    <li>Set a tracking target: Pick a category and limit for this week.</li>
+                    <p><em>Example: "Keep shopping under $75."</em></p>
+                    <textarea id="tracking-target" placeholder="Write your tracking target here..." rows="2"></textarea>
+                </ol>
+                <p>Write your answers and check back in a week—did tracking help?</p>
+            </div>
+        </section>
+
+        <!-- Section 9: Quiz – Prove Your Tracking Prowess -->
+        <section>
+            <h2>Quiz – Prove Your Tracking Prowess</h2>
+            <p>
+                Test your skills with these questions:
+            </p>
+            
+            <div class="quiz">
+                <div class="quiz-item">
+                    <p><strong>Question 1:</strong> Why track in real-time?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q1" value="A" id="q1a">
+                        <label for="q1a">To complicate life</label><br>
+                        <input type="radio" name="q1" value="B" id="q1b">
+                        <label for="q1b">To adjust spending instantly</label><br>
+                        <input type="radio" name="q1" value="C" id="q1c">
+                        <label for="q1c">To avoid budgeting</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 2:</strong> Which method auto-imports transactions?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q2" value="A" id="q2a">
+                        <label for="q2a">Notebook</label><br>
+                        <input type="radio" name="q2" value="B" id="q2b">
+                        <label for="q2b">App</label><br>
+                        <input type="radio" name="q2" value="C" id="q2c">
+                        <label for="q2c">Spreadsheet</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 3:</strong> What's a sneaky pitfall?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q3" value="A" id="q3a">
+                        <label for="q3a">Logging cash</label><br>
+                        <input type="radio" name="q3" value="B" id="q3b">
+                        <label for="q3b">Skipping small spends</label><br>
+                        <input type="radio" name="q3" value="C" id="q3c">
+                        <label for="q3c">Setting limits</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 4:</strong> Overspent on groceries? You should:</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q4" value="A" id="q4a">
+                        <label for="q4a">Quit tracking</label><br>
+                        <input type="radio" name="q4" value="B" id="q4b">
+                        <label for="q4b">Cut dining out</label><br>
+                        <input type="radio" name="q4" value="C" id="q4c">
+                        <label for="q4c">Ignore it</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 5:</strong> Best habit for success?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q5" value="A" id="q5a">
+                        <label for="q5a">Track monthly</label><br>
+                        <input type="radio" name="q5" value="B" id="q5b">
+                        <label for="q5b">Log daily, review weekly</label><br>
+                        <input type="radio" name="q5" value="C" id="q5c">
+                        <label for="q5c">Guess totals</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 6:</strong> Wants limit: $200. Spent: $175. Left?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q6" value="A" id="q6a">
+                        <label for="q6a">$25</label><br>
+                        <input type="radio" name="q6" value="B" id="q6b">
+                        <label for="q6b">$50</label><br>
+                        <input type="radio" name="q6" value="C" id="q6c">
+                        <label for="q6c">$0</label>
+                    </div>
+                </div>
+                
+                <button onclick="checkQuiz()">Submit Quiz</button>
+                <div id="quiz-result" class="result-box"></div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2>Conclusion – You're a Tracking Rockstar!</h2>
+            <p>
+                You've leveled up! With detailed methods, categories, limits, and analysis, you're ready to track your spending like a financial ninja. Start today—pick your tool, log your first expense, and watch your money mastery grow.
+            </p>
+            
+            <h3>Next Up:</h3>
+            <ul>
+                <li>Lesson 3: Adjusting for Life Changes – Flex your budget when life shifts.</li>
+                <li>Lesson 4: Cutting Costs Smartly – Save big without sacrifice.</li>
+            </ul>
+            
+            <h3>Action Steps:</h3>
+            <ul>
+                <li>Start tracking now (even one expense!).</li>
+                <li>Set a Sunday reminder for your first weekly review.</li>
+            </ul>
+            <p>You've got this—keep those dollars in line and your dreams in sight!</p>
+            
+            <div class="activity-box">
+                <a href="index.html" class="cta-button">Return to Course Overview</a>
+                <a href="section2lesson3.html" class="cta-button">Next Lesson: Adjusting for Life Changes</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="learn.html">Learn</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: rthompson25@bayschoolsf.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 FinanceCourse. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 4: Debt Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #007BFF;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #007BFF, #00C6FF);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #007BFF;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #007BFF;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #007BFF;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #0069d9;
+        }
+        /* Debt-specific styles */
+        .debt-comparison {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .debt-column {
+            width: 48%;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .good-debt {
+            background-color: #e9ffee;
+            border-left: 4px solid #28a745;
+        }
+        .bad-debt {
+            background-color: #ffeded;
+            border-left: 4px solid #dc3545;
+        }
+        .debt-calculator {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .payment-strategy {
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            border-left: 4px solid #6c757d;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 400;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'A') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'B') score++;
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 5. ${score >= 4 ? 'Great job!' : score >= 3 ? 'Good effort!' : 'Keep studying!'}`;
+        }
+
+        function calculateInterest() {
+            const principal = parseFloat(document.getElementById('principal').value) || 0;
+            const rate = parseFloat(document.getElementById('interest-rate').value) || 0;
+            const time = parseFloat(document.getElementById('time').value) || 0;
+            
+            const interest = principal * (rate / 100) * time;
+            document.getElementById('interest-result').textContent = interest.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Personal Finance Foundations: Lesson 4 – Debt Management</h1>
+        <p>Learn how to understand, manage, and pay off debt while using credit wisely to achieve your financial goals.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Learning!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview</h2>
+            <p>
+                Hey there! Welcome to Debt Management, where we'll tackle one of the trickiest parts of personal finance—debt. Debt can feel like a heavy backpack you're lugging around, but with the right tools, you can lighten the load and even use it to your advantage.
+            </p>
+            <p>
+                In this lesson, you'll learn what debt is, how it works, and smart strategies to manage it. Whether you're already dealing with debt or just want to avoid it, this guide will help you feel confident and in control. Let's get started!
+            </p>
+        </section>
+
+        <!-- Section 1: Introduction – What Is Debt? -->
+        <section id="section1">
+            <h2>Introduction – What Is Debt?</h2>
+            <p>
+                Imagine you want to buy a $1,000 laptop, but you only have $300. You could borrow $700 from a friend or use a credit card, promising to pay it back later. That $700? That's debt—money you owe to someone else. Debt isn't always bad, but it can become a problem if you don't manage it wisely.
+            </p>
+            
+            <h3>What Is Debt, Really?</h3>
+            <p>
+                Debt is money you've borrowed and need to repay, often with extra costs called interest. It can come from:
+            </p>
+            <ul>
+                <li><strong>Credit cards:</strong> For everyday purchases.</li>
+                <li><strong>Loans:</strong> Like student loans, car loans, or mortgages.</li>
+                <li><strong>Personal borrowing:</strong> Money from friends or family.</li>
+            </ul>
+            
+            <h3>Why Debt Matters</h3>
+            <p>
+                Debt can be a tool or a trap:
+            </p>
+            <ul>
+                <li><strong>Good Debt:</strong> Borrowing for things that grow in value or improve your life, like a student loan for education or a mortgage for a home.</li>
+                <li><strong>Bad Debt:</strong> Borrowing for things that lose value or aren't essential, like credit card debt for impulse buys or payday loans with sky-high interest.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                Meet Taylor, a 24-year-old graphic designer. Taylor took out a $10,000 student loan (good debt) to pay for design school, which helped land a $50,000 job. But Taylor also racked up $2,000 in credit card debt (bad debt) on clothes and dining out. The student loan is an investment; the credit card debt is a burden.
+            </p>
+            
+            <h3>Your Turn to Reflect</h3>
+            <p>
+                Do you have any debt right now (even small, like owing a friend)? If not, what's one thing you might borrow for in the future? Write it down.
+            </p>
+            <p><em>Example: "I owe my roommate $50 for pizza."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="debt-reflection" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+            
+            <p>
+                Got it? Let's dig deeper into how debt works.
+            </p>
+        </section>
+
+        <!-- Section 2: Understanding How Debt Works -->
+        <section>
+            <h2>Understanding How Debt Works</h2>
+            <p>
+                Debt isn't just the amount you borrow—it grows over time thanks to interest. Interest is the cost of borrowing, and it can make debt feel like quicksand if you're not careful.
+            </p>
+            
+            <h3>Types of Interest</h3>
+            <ul>
+                <li><strong>Simple Interest:</strong> Calculated only on the original amount borrowed (the principal). For example, a $1,000 loan at 5% simple interest costs $50/year.</li>
+                <li><strong>Compound Interest:</strong> Calculated on the principal and any interest already added. Credit cards often use this, making debt grow faster.</li>
+            </ul>
+            
+            <h3>Example: Credit Card Debt</h3>
+            <p>
+                You charge $500 on a credit card with 18% compound interest. If you don't pay it off, that $500 could balloon to $590 in a year—and it keeps growing. Yikes!
+            </p>
+            
+            <h3>Key Debt Terms</h3>
+            <ul>
+                <li><strong>Principal:</strong> The original amount borrowed.</li>
+                <li><strong>Interest Rate:</strong> The percentage you pay on the principal.</li>
+                <li><strong>Minimum Payment:</strong> The smallest amount you must pay each month (often just covers interest, not the principal).</li>
+                <li><strong>Credit Score:</strong> A number that shows how reliable you are with debt—higher scores mean better loan terms.</li>
+            </ul>
+            
+            <h3>Activity: Calculate Simple Interest</h3>
+            <p>
+                Calculate the interest on your own loan scenario:
+            </p>
+            <div class="activity-box">
+                <p>Formula: Interest = Principal × Rate × Time</p>
+                <label for="principal">Principal ($):</label>
+                <input type="number" id="principal" placeholder="200">
+                
+                <label for="interest-rate">Interest Rate (% per year):</label>
+                <input type="number" id="interest-rate" placeholder="10">
+                
+                <label for="time">Time (years):</label>
+                <input type="number" id="time" placeholder="2">
+                
+                <button onclick="calculateInterest()">Calculate</button>
+                
+                <div class="result-box">
+                    <p>Interest Amount: $<span id="interest-result">0.00</span></p>
+                </div>
+                
+                <p><em>Example calculation: $200 × 0.10 × 2 = $40</em></p>
+                <textarea id="interest-calculation" placeholder="Write your answer here..." rows="2"></textarea>
+            </div>
+            
+            <h3>Pro Tip: Minimum Payments Are a Trap</h3>
+            <p>
+                Paying only the minimum on a credit card keeps you in debt longer. For a $1,000 balance at 18% interest, paying $25/month takes over 5 years to clear—and costs $500 extra in interest!
+            </p>
+            <p>
+                Understanding these basics helps you see why managing debt is so important.
+            </p>
+        </section>
+
+        <!-- Section 3: Good Debt vs. Bad Debt -->
+        <section>
+            <h2>Good Debt vs. Bad Debt</h2>
+            <p>
+                Not all debt is created equal. Let's break down the difference between good debt and bad debt—and how to use debt wisely.
+            </p>
+            
+            <div class="debt-comparison">
+                <div class="debt-column good-debt">
+                    <h3>Good Debt</h3>
+                    <p><strong>Definition:</strong> Debt that can improve your future or build wealth.</p>
+                    <p><strong>Examples:</strong></p>
+                    <ul>
+                        <li>Student Loans: Help you earn more with a degree.</li>
+                        <li>Mortgages: Let you buy a home that may appreciate.</li>
+                        <li>Business Loans: Fund a venture that could grow.</li>
+                    </ul>
+                    <p><strong>Why It's Good:</strong> It's an investment in yourself or an asset.</p>
+                </div>
+                
+                <div class="debt-column bad-debt">
+                    <h3>Bad Debt</h3>
+                    <p><strong>Definition:</strong> Debt for things that lose value or aren't essential.</p>
+                    <p><strong>Examples:</strong></p>
+                    <ul>
+                        <li>Credit Card Debt: For vacations, clothes, or dining.</li>
+                        <li>Payday Loans: Short-term loans with crazy high interest (sometimes 400%+).</li>
+                        <li>Car Loans for Luxury Cars: If the car loses value fast.</li>
+                    </ul>
+                    <p><strong>Why It's Bad:</strong> It costs you more without improving your life.</p>
+                </div>
+            </div>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                Alex took out a $5,000 loan for a coding bootcamp (good debt), which helped land a $70,000 job. Meanwhile, Sam used a $5,000 credit card for a fancy vacation (bad debt), which left him paying interest for years.
+            </p>
+            
+            <h3>Activity: Classify Your Debt</h3>
+            <p>
+                Think of one debt you have (or might take on). Is it good or bad? Why?
+            </p>
+            <p><em>Example: "My $200 bike loan is good debt—it helps me commute to work."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="debt-classification" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Pro Tip: The Debt Test</h3>
+            <p>
+                Ask yourself: "Will this debt help me earn more, save money, or improve my life long-term?" If not, it's probably bad debt.
+            </p>
+            <p>
+                Knowing the difference helps you borrow smart.
+            </p>
+        </section>
+
+        <!-- Section 4: Strategies to Manage and Pay Off Debt -->
+        <section>
+            <h2>Strategies to Manage and Pay Off Debt</h2>
+            <p>
+                If you've got debt, don't panic—you can tackle it with the right plan. Here are two popular strategies to pay off debt faster and save on interest.
+            </p>
+            
+            <div class="payment-strategy">
+                <h3>Strategy 1: The Debt Snowball Method</h3>
+                <p><strong>How It Works:</strong> List your debts from smallest to largest. Pay minimums on all, but throw extra cash at the smallest debt. Once it's gone, roll that payment into the next smallest.</p>
+                <p><strong>Why It Works:</strong> Small wins keep you motivated.</p>
+                <p><strong>Best For:</strong> People who need quick wins to stay on track.</p>
+            </div>
+            
+            <div class="payment-strategy">
+                <h3>Strategy 2: The Debt Avalanche Method</h3>
+                <p><strong>How It Works:</strong> List your debts from highest interest rate to lowest. Pay minimums on all, but focus extra payments on the highest-interest debt first.</p>
+                <p><strong>Why It Works:</strong> Saves you the most money on interest.</p>
+                <p><strong>Best For:</strong> People who are motivated by numbers and long-term savings.</p>
+            </div>
+            
+            <h3>Example: Debt Snowball in Action</h3>
+            <p>
+                You have three debts:
+            </p>
+            <ul>
+                <li>Credit Card A: $500 at 18%</li>
+                <li>Credit Card B: $1,000 at 15%</li>
+                <li>Student Loan: $2,000 at 5%</li>
+            </ul>
+            <p>
+                With the snowball method, you'd pay off Credit Card A first, then B, then the student loan—celebrating each win!
+            </p>
+            
+            <h3>Activity: Choose Your Strategy</h3>
+            <p>
+                Which method sounds like you—snowball or avalanche? Why?
+            </p>
+            <p><em>Example: "Snowball—I need those quick wins to stay pumped!"</em></p>
+            
+            <div class="activity-box">
+                <textarea id="strategy-choice" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Pro Tip: Automate Payments</h3>
+            <p>
+                Set up automatic payments for at least the minimums to avoid late fees and protect your credit score.
+            </p>
+            
+            <h3>Detailed Example</h3>
+            <p>
+                Let's say you have $200 extra each month to pay off debt:
+            </p>
+            <ul>
+                <li><strong>Snowball:</strong> Pay off $500 credit card in 3 months, then tackle the $1,000 card.</li>
+                <li><strong>Avalanche:</strong> Focus on the 18% card first, even if it's not the smallest.</li>
+            </ul>
+            <p>
+                Both work—pick what fits your style.
+            </p>
+        </section>
+
+        <!-- Section 5: Avoiding Debt in the First Place -->
+        <section>
+            <h2>Avoiding Debt in the First Place</h2>
+            <p>
+                The best way to manage debt? Avoid it when you can! Here's how to live within your means and steer clear of unnecessary borrowing.
+            </p>
+            
+            <h3>Tip 1: Budget Like a Pro</h3>
+            <ul>
+                <li>Use your budget (from Lesson 2) to track income and expenses.</li>
+                <li>Stick to the 50/30/20 rule: 50% needs, 30% wants, 20% savings/debt repayment.</li>
+            </ul>
+            
+            <h3>Tip 2: Build an Emergency Fund</h3>
+            <ul>
+                <li>Aim for $500-$1,000 saved for surprises—like car repairs or medical bills.</li>
+                <li>This keeps you from swiping a credit card when life happens.</li>
+            </ul>
+            
+            <h3>Tip 3: Use Credit Cards Wisely</h3>
+            <ul>
+                <li>Only charge what you can pay off each month.</li>
+                <li>Think of credit cards as tools, not free money.</li>
+            </ul>
+            
+            <h3>Tip 4: Save for Big Purchases</h3>
+            <ul>
+                <li>Want a $1,000 laptop? Save $100/month for 10 months instead of financing it.</li>
+            </ul>
+            
+            <h3>Activity: Plan for a Big Purchase</h3>
+            <p>
+                Think of something you want that costs over $200. How could you save for it instead of borrowing?
+            </p>
+            <p><em>Example: "I want a $300 jacket. I'll save $50/month for 6 months."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="purchase-plan" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Detailed Example</h3>
+            <p>
+                Meet Mia, a 20-year-old student. Instead of taking a $2,000 loan for a spring break trip, she saved $200/month for 10 months. No debt, no stress—and the trip felt even sweeter!
+            </p>
+            
+            <h3>Pro Tip: The 24-Hour Rule</h3>
+            <p>
+                Before making a big purchase, wait 24 hours. If you still want it, check your budget. If not, you've saved yourself from impulse debt.
+            </p>
+            <p>
+                Avoiding debt is like dodging raindrops—stay prepared, and you'll stay dry.
+            </p>
+        </section>
+
+        <!-- Section 6: What to Do If You're Already in Debt -->
+        <section>
+            <h2>What to Do If You're Already in Debt</h2>
+            <p>
+                If you're already in deep, don't worry—there are ways out. Here's how to handle debt when it feels overwhelming.
+            </p>
+            
+            <h3>Step 1: Face It Head-On</h3>
+            <ul>
+                <li>List all your debts: amounts, interest rates, minimum payments.</li>
+                <li>Knowledge is power—don't avoid it.</li>
+            </ul>
+            
+            <h3>Step 2: Prioritize Payments</h3>
+            <ul>
+                <li>Use the snowball or avalanche method (from Section 4).</li>
+                <li>Focus on one debt at a time while paying minimums on others.</li>
+            </ul>
+            
+            <h3>Step 3: Consider Consolidation</h3>
+            <ul>
+                <li><strong>Debt Consolidation Loan:</strong> Combines multiple debts into one loan with a lower interest rate.</li>
+                <li><strong>Balance Transfer:</strong> Moves credit card debt to a card with 0% interest (watch out for fees).</li>
+            </ul>
+            
+            <h3>Step 4: Negotiate with Creditors</h3>
+            <ul>
+                <li>Call and ask for lower interest rates or payment plans.</li>
+                <li>Many creditors will work with you if you're proactive.</li>
+            </ul>
+            
+            <h3>Step 5: Seek Help If Needed</h3>
+            <ul>
+                <li><strong>Credit Counseling:</strong> Non-profits like the NFCC offer free advice.</li>
+                <li><strong>Bankruptcy:</strong> A last resort—wipes out some debts but tanks your credit.</li>
+            </ul>
+            
+            <h3>Activity: List Your Debts</h3>
+            <p>
+                If you have debt, list it below with amounts and interest rates. If not, write one debt you want to avoid.
+            </p>
+            <p><em>Example: "$500 credit card at 18%, $2,000 student loan at 5%."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="debt-list" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Pro Tip: Celebrate Wins</h3>
+            <p>
+                Paid off a debt? Treat yourself (within reason)—it keeps you motivated.
+            </p>
+            
+            <h3>Detailed Example</h3>
+            <p>
+                Meet Jake, who had $3,000 in credit card debt at 20% interest. He used the avalanche method, focusing on the highest-interest card first. He also called his creditor and got the rate lowered to 15%. In 18 months, he was debt-free!
+            </p>
+            <p>
+                You've got options—don't be afraid to use them.
+            </p>
+        </section>
+
+        <!-- Section 7: Reflection and Quiz -->
+        <section>
+            <h2>Reflection and Quiz</h2>
+            <p>
+                You're almost there! Let's reflect on what you've learned and test your debt management skills.
+            </p>
+            
+            <h3>Reflection</h3>
+            <p>
+                What's one debt strategy or tip you'll use (or avoid)? How will it help you stay in control?
+            </p>
+            <p><em>Example: "I'll use the snowball method—it'll keep me motivated to pay off my $200 medical bill first."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="final-reflection" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Quiz: Test Your Debt Smarts</h3>
+            <div class="quiz">
+                <div class="quiz-item">
+                    <p><strong>Question 1:</strong> What's the difference between good and bad debt?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q1" value="A" id="q1a">
+                        <label for="q1a">Good debt is for fun; bad debt is for needs.</label><br>
+                        <input type="radio" name="q1" value="B" id="q1b">
+                        <label for="q1b">Good debt improves your future; bad debt doesn't.</label><br>
+                        <input type="radio" name="q1" value="C" id="q1c">
+                        <label for="q1c">Good debt has low interest; bad debt has high interest.</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 2:</strong> Which method saves the most on interest?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q2" value="A" id="q2a">
+                        <label for="q2a">Debt snowball</label><br>
+                        <input type="radio" name="q2" value="B" id="q2b">
+                        <label for="q2b">Debt avalanche</label><br>
+                        <input type="radio" name="q2" value="C" id="q2c">
+                        <label for="q2c">Paying minimums only</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 3:</strong> What's a minimum payment?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q3" value="A" id="q3a">
+                        <label for="q3a">The smallest amount you must pay each month</label><br>
+                        <input type="radio" name="q3" value="B" id="q3b">
+                        <label for="q3b">The total debt divided by 12</label><br>
+                        <input type="radio" name="q3" value="C" id="q3c">
+                        <label for="q3c">The interest-only payment</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 4:</strong> How can you avoid debt?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q4" value="A" id="q4a">
+                        <label for="q4a">Never use credit cards</label><br>
+                        <input type="radio" name="q4" value="B" id="q4b">
+                        <label for="q4b">Save for big purchases and build an emergency fund</label><br>
+                        <input type="radio" name="q4" value="C" id="q4c">
+                        <label for="q4c">Borrow only from friends</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 5:</strong> If you're overwhelmed by debt, what's a good first step?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q5" value="A" id="q5a">
+                        <label for="q5a">Ignore it</label><br>
+                        <input type="radio" name="q5" value="B" id="q5b">
+                        <label for="q5b">List all your debts and make a plan</label><br>
+                        <input type="radio" name="q5" value="C" id="q5c">
+                        <label for="q5c">Take out another loan</label>
+                    </div>
+                </div>
+                
+                <button onclick="checkQuiz()">Submit Quiz</button>
+                <p id="quiz-result"></p>
+            </div>
+            
+            <h3>Practical Challenge: Debt Repayment Plan</h3>
+            <p>
+                Imagine you have two debts: $300 at 10% interest and $500 at 15%. Using the avalanche method, which do you pay first? Why?
+            </p>
+            
+            <div class="activity-box">
+                <textarea id="challenge-answer" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+        </section>
+
+        <!-- Section 8: Conclusion -->
+        <section>
+            <h2>Conclusion – Debt Doesn't Have to Be Scary</h2>
+            <p>
+                You did it—you've tackled the debt dragon! You've learned what debt is, how it works, and smart strategies to manage or avoid it. Remember, debt isn't inherently bad—it's how you handle it that counts. With the tools from this lesson, you're ready to take control, make informed decisions, and keep your financial future bright.
+            </p>
+            
+            <h3>Next Steps</h3>
+            <ul>
+                <li>Challenge yourself: Pick one debt (or potential debt) and make a mini-plan to tackle or avoid it.</li>
+                <li>Ready for more? Move on to Lesson 5: Credit Essentials to keep building your financial know-how.</li>
+            </ul>
+            
+            <p>
+                You're not just managing debt—you're mastering it. Keep going, you've got this!
+            </p>
+            
+            <div class="activity-box">
+                <a href="index.html" class="cta-button">Return to Course Overview</a>
+                <a href="section1lesson5.html" class="cta-button">Next Lesson: Credit Essentials</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="learn.html">Learn</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: rthompson25@bayschoolsf.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 FinanceCourse. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

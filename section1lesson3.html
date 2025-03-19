@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 3: Saving Strategies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #007BFF;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #007BFF, #00C6FF);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #007BFF;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #007BFF;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #007BFF;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #0069d9;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 405;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'A') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'C') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'B') score++;
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 5. ${score >= 4 ? 'Great job!' : score >= 3 ? 'Good effort!' : 'Keep studying!'}`;
+        }
+
+        function calculateSavings() {
+            const monthlySavings = parseFloat(document.getElementById('monthly-savings').value) || 0;
+            const interestRate = parseFloat(document.getElementById('interest-rate').value) || 0;
+            const months = parseFloat(document.getElementById('months').value) || 0;
+            
+            const principal = monthlySavings * months;
+            // Simple interest calculation for demonstration
+            const interest = principal * (interestRate / 100);
+            const total = principal + interest;
+            
+            document.getElementById('total-saved').textContent = principal.toFixed(2);
+            document.getElementById('total-interest').textContent = interest.toFixed(2);
+            document.getElementById('total-amount').textContent = total.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Personal Finance Foundations: Lesson 3 – Saving Strategies</h1>
+        <p>Learn how to make your money work harder for you by building a safety net, reaching your dreams, and feeling financially secure.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Saving!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview</h2>
+            <p>
+                Hey, saver-in-the-making! Welcome to Saving Strategies, where you'll learn how to make your money work harder for you. Saving isn't just about stashing cash in a piggy bank—it's about building a safety net, reaching your dreams, and feeling unstoppable. 
+            </p>
+            <p>
+                In this lesson, you'll discover why saving is your financial superpower, how to set goals that excite you, and smart ways to grow your savings without feeling deprived. Whether you're saving for a rainy day, a big purchase, or just to feel secure, this is your guide to making it happen. Let's dive in!
+            </p>
+        </section>
+
+        <!-- Section 1: Introduction – Why Save? -->
+        <section id="section1">
+            <h2>Introduction – Why Save?</h2>
+            <p>
+                Imagine this: Your car breaks down, and the repair costs $300. Without savings, you're stuck—scrambling for cash, stressing out, or even borrowing money. But with a solid savings cushion, you pay the bill, breathe easy, and move on. That's the magic of saving—it's your safety net, your dream fuel, and your ticket to financial peace.
+            </p>
+            
+            <h3>What's Saving, Really?</h3>
+            <p>
+                Saving is setting aside money for future use, whether that's for emergencies, goals, or just to grow over time. It's not about hoarding every penny—it's about being smart with what you have so you can live better later.
+            </p>
+            
+            <h3>Why Saving is Your Superpower</h3>
+            <p>
+                Here's why saving matters:
+            </p>
+            <ul>
+                <li><strong>Financial Security:</strong> A savings cushion (like an emergency fund) keeps you safe from life's curveballs—job loss, medical bills, or that surprise car repair.</li>
+                <li><strong>Freedom to Dream:</strong> Want a $500 vacation, a $1,000 laptop, or a down payment on a house? Saving turns "one day" into a plan.</li>
+                <li><strong>Less Stress:</strong> Knowing you've got money tucked away means fewer sleepless nights worrying about bills.</li>
+                <li><strong>Compound Interest Magic:</strong> Money saved can grow over time, especially if you put it in the right places (more on that later).</li>
+            </ul>
+            
+            <h3>Stats to Prove It</h3>
+            <p>
+                A 2022 Federal Reserve report found that 37% of Americans couldn't cover a $400 emergency with cash. Yikes!
+            </p>
+            <p>
+                On the flip side, people with even a small emergency fund are 70% less likely to stress about money, per a FINRA study.
+            </p>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                Meet Alex, a 22-year-old student. Alex saved $50 a month from his part-time job. After a year, he had $600—enough to cover a sudden textbook expense without panicking. Now, he's eyeing a $1,200 trip to Europe. Saving made it possible!
+            </p>
+            
+            <h3>Historical Fun Fact</h3>
+            <p>
+                In the 18th century, Benjamin Franklin said, "A penny saved is a penny earned." He knew saving wasn't just about having money—it was about building wealth over time. Smart guy!
+            </p>
+            
+            <h3>Your Turn to Reflect</h3>
+            <p>
+                Why do you want to save? Is it for a specific goal, like a new phone, or just to feel more secure? Write down one reason—it'll keep you motivated.
+            </p>
+            <p><em>Example: "I want to save $200 for a concert without using my credit card."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="saving-why" placeholder="Write your answer here..." rows="4"></textarea>
+            </div>
+            
+            <p>
+                Awesome! With your "why" in mind, let's set some goals.
+            </p>
+        </section>
+
+        <!-- Section 2: Setting Your Saving Goals -->
+        <section>
+            <h2>Setting Your Saving Goals</h2>
+            <p>
+                Saving without a goal is like driving without a destination—it's hard to stay motivated. That's where saving goals come in. They give your savings purpose and make the process exciting.
+            </p>
+            
+            <h3>What's a Saving Goal?</h3>
+            <p>
+                A saving goal is a specific target you're aiming for, like "$500 for a new bike" or "$1,000 for an emergency fund." Goals can be short-term (a few months), medium-term (a year or two), or long-term (five years or more).
+            </p>
+            
+            <h3>How to Set SMART Saving Goals</h3>
+            <p>
+                Use the SMART framework to make your goals clear and achievable:
+            </p>
+            <ul>
+                <li><strong>Specific:</strong> What exactly are you saving for? (e.g., "a $300 gaming console")</li>
+                <li><strong>Measurable:</strong> How much do you need? (e.g., "$300")</li>
+                <li><strong>Achievable:</strong> Is it realistic with your income? (e.g., saving $50/month)</li>
+                <li><strong>Relevant:</strong> Does it matter to you? (e.g., "I love gaming!")</li>
+                <li><strong>Time-bound:</strong> When do you want it? (e.g., "in 6 months")</li>
+            </ul>
+            
+            <h3>Examples of Saving Goals</h3>
+            <ul>
+                <li><strong>Short-Term:</strong> $200 for a weekend trip in 4 months.</li>
+                <li><strong>Medium-Term:</strong> $1,500 for a new laptop in 12 months.</li>
+                <li><strong>Long-Term:</strong> $10,000 for a car down payment in 5 years.</li>
+            </ul>
+            
+            <h3>Activity: Set Your Own Saving Goal</h3>
+            <p>
+                Think of something you'd love to save for. Make it SMART!
+            </p>
+            <p><em>Example: "I want to save $400 for a new phone in 8 months by setting aside $50 each month."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="smart-goal" placeholder="Write your SMART goal here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Pro Tip: Start Small</h3>
+            <p>
+                If $50 a month feels tough, start with $10 or even $5. The habit matters more than the amount—you can always increase it later.
+            </p>
+            
+            <h3>Detailed Example</h3>
+            <p>
+                Let's say you want a $600 vacation in a year. Break it down:
+            </p>
+            <ul>
+                <li>Total needed: $600</li>
+                <li>Time: 12 months</li>
+                <li>Monthly savings: $600 ÷ 12 = $50/month</li>
+                <li>Weekly savings: $50 ÷ 4 = $12.50/week</li>
+            </ul>
+            <p>
+                See? Totally doable!
+            </p>
+            <p>
+                Got your goal? Sweet! Now, let's explore how to make it happen.
+            </p>
+        </section>
+
+        <!-- Section 3: Smart Saving Strategies -->
+        <section>
+            <h2>Smart Saving Strategies</h2>
+            <p>
+                There's no one-size-fits-all way to save, but these tried-and-true strategies can help you find what works best for you. Let's break them down.
+            </p>
+            
+            <h3>Strategy 1: Automate Your Savings</h3>
+            <p>
+                Set it and forget it! Automation means your bank moves money from your checking to your savings account automatically—daily, weekly, or monthly.
+            </p>
+            <ul>
+                <li><strong>How to Set It Up:</strong> Most banks let you schedule transfers online. Choose an amount (e.g., $20) and a frequency (e.g., every payday).</li>
+                <li><strong>Pros:</strong> Effortless, consistent, and you won't "forget."</li>
+                <li><strong>Cons:</strong> If your income varies, you might overdraft—set a low amount to start.</li>
+            </ul>
+            
+            <h3>Strategy 2: The 50/30/20 Rule</h3>
+            <p>
+                This popular budgeting method splits your income into three buckets:
+            </p>
+            <ul>
+                <li><strong>50% Needs:</strong> Essentials like rent, food, bills.</li>
+                <li><strong>30% Wants:</strong> Fun stuff like dining out or hobbies.</li>
+                <li><strong>20% Savings:</strong> Straight to your goals or emergency fund.</li>
+            </ul>
+            <p>
+                Example: With $500 income, save $100 (20%), spend $250 on needs, and $150 on wants.
+            </p>
+            <ul>
+                <li><strong>Pros:</strong> Simple and balanced.</li>
+                <li><strong>Cons:</strong> If your needs are over 50%, you might need to adjust.</li>
+            </ul>
+            
+            <h3>Strategy 3: The Envelope Method</h3>
+            <p>
+                Old-school but effective! Label envelopes (or jars) for each goal or category, and put cash in them.
+            </p>
+            <ul>
+                <li><strong>How It Works:</strong> For example, put $50 in a "Vacation" envelope each month. When it's full, you're ready!</li>
+                <li><strong>Pros:</strong> Tangible and visual—you see your progress.</li>
+                <li><strong>Cons:</strong> Cash can be lost or tempting to "borrow" from.</li>
+            </ul>
+            
+            <h3>Strategy 4: Cut Expenses (Without Feeling Deprived)</h3>
+            <p>
+                Trimming costs doesn't mean living on ramen. Here's how:
+            </p>
+            <ul>
+                <li><strong>Swap, Don't Stop:</strong> Love coffee? Brew at home instead of $5 lattes.</li>
+                <li><strong>Use Discounts:</strong> Apps like Rakuten or Honey find deals automatically.</li>
+                <li><strong>Challenge Yourself:</strong> Try a "no-spend" week on non-essentials.</li>
+            </ul>
+            
+            <h3>Strategy 5: Boost Your Income</h3>
+            <p>
+                Sometimes, earning more is easier than cutting back. Try:
+            </p>
+            <ul>
+                <li><strong>Side Gigs:</strong> Babysit, tutor, or sell crafts online.</li>
+                <li><strong>Sell Stuff:</strong> Declutter and make cash on eBay or Facebook Marketplace.</li>
+                <li><strong>Ask for a Raise:</strong> If you're working, negotiate a small bump.</li>
+            </ul>
+            
+            <h3>Activity: Pick Your Strategy</h3>
+            <p>
+                Which strategy sounds like you? Write down one you'll try and why.
+            </p>
+            <p><em>Example: "Automation—I'm busy, so this keeps me consistent."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="strategy-choice" placeholder="Write here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Detailed Example</h3>
+            <p>
+                Meet Jamie, a 28-year-old teacher earning $2,000/month. Jamie uses the 50/30/20 rule:
+            </p>
+            <ul>
+                <li>Needs: $1,000 (rent, bills, food)</li>
+                <li>Wants: $600 (gym, dining, hobbies)</li>
+                <li>Savings: $400 (emergency fund + vacation goal)</li>
+            </ul>
+            <p>
+                After six months, Jamie has $2,400 saved—enough for a dream trip to Bali!
+            </p>
+            
+            <h3>Pro Tip: Pay Yourself First</h3>
+            <p>
+                Treat savings like a bill. Before spending on anything else, move your savings amount to a separate account. It's a game-changer!
+            </p>
+            <p>
+                Which strategy speaks to you? Try one—or mix and match!
+            </p>
+        </section>
+
+        <!-- Section 4: Tools to Boost Your Savings -->
+        <section>
+            <h2>Tools to Boost Your Savings</h2>
+            <p>
+                Saving gets easier with the right tools. Here's a breakdown of what's out there—and how to use them.
+            </p>
+            
+            <h3>Tool 1: High-Yield Savings Accounts (HYSAs)</h3>
+            <p>
+                These are like regular savings accounts but with better interest rates (think 1-2% vs. 0.01%).
+            </p>
+            <ul>
+                <li><strong>Why They Rock:</strong> Your money grows faster—$1,000 at 2% earns $20/year, not $0.10.</li>
+                <li><strong>Where to Find Them:</strong> Online banks like Ally or Marcus by Goldman Sachs.</li>
+                <li><strong>Pros:</strong> Safe, easy, and automatic growth.</li>
+                <li><strong>Cons:</strong> Interest rates can change, and some have minimum balances.</li>
+            </ul>
+            
+            <h3>Tool 2: Savings Apps</h3>
+            <p>
+                Apps like Acorns or Digit make saving automatic and fun.
+            </p>
+            <ul>
+                <li><strong>Acorns:</strong> Rounds up purchases (e.g., $4.50 coffee becomes $5, saves $0.50).</li>
+                <li><strong>Digit:</strong> Analyzes your spending and saves small amounts you won't miss.</li>
+                <li><strong>Pros:</strong> Effortless and beginner-friendly.</li>
+                <li><strong>Cons:</strong> Small fees (e.g., $1-3/month), so watch the cost.</li>
+            </ul>
+            
+            <h3>Tool 3: Budgeting Apps with Saving Features</h3>
+            <p>
+                Apps like Mint or YNAB (You Need a Budget) help you track spending and set saving goals.
+            </p>
+            <ul>
+                <li><strong>Mint:</strong> Free, links to your accounts, and shows your saving progress.</li>
+                <li><strong>YNAB:</strong> $14.99/month, but teaches you to "give every dollar a job."</li>
+                <li><strong>Pros:</strong> All-in-one money management.</li>
+                <li><strong>Cons:</strong> Mint has ads, YNAB costs money.</li>
+            </ul>
+            
+            <h3>Activity: Explore a Tool</h3>
+            <p>
+                Pick one tool above. Research it online (or download the app) and write one thing you like and one question you have.
+            </p>
+            <p><em>Example: "Acorns—Love the round-ups; Does it work with my bank?"</em></p>
+            
+            <div class="activity-box">
+                <textarea id="tool-exploration" placeholder="Write here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Savings Calculator</h3>
+            <p>
+                See how your savings could grow over time:
+            </p>
+            <div class="activity-box">
+                <label for="monthly-savings">Monthly Savings Amount ($):</label>
+                <input type="number" id="monthly-savings" placeholder="50">
+                
+                <label for="interest-rate">Interest Rate (% per year):</label>
+                <input type="number" id="interest-rate" placeholder="2">
+                
+                <label for="months">Saving Period (months):</label>
+                <input type="number" id="months" placeholder="12">
+                
+                <button onclick="calculateSavings()">Calculate</button>
+                
+                <div class="result-box">
+                    <p>Principal Amount: $<span id="total-saved">0.00</span></p>
+                    <p>Interest Earned: $<span id="total-interest">0.00</span></p>
+                    <p>Total Savings: $<span id="total-amount">0.00</span></p>
+                </div>
+            </div>
+            
+            <h3>Detailed Example</h3>
+            <p>
+                Let's say you open an HYSA with $500 at 2% interest. After one year, you've got $510—free money! If you add $50/month, you'd have $1,110 after a year. That's $600 saved + $10 interest. Small wins add up!
+            </p>
+            
+            <h3>Pro Tip: Separate Accounts</h3>
+            <p>
+                Use different accounts for different goals—like one for emergencies and one for travel. It keeps you organized and less tempted to dip into the wrong pot.
+            </p>
+            <p>
+                Tools are your saving sidekicks—pick one and let it do the heavy lifting!
+            </p>
+        </section>
+
+        <!-- Section 5: Overcoming Saving Hurdles -->
+        <section>
+            <h2>Overcoming Saving Hurdles</h2>
+            <p>
+                Saving isn't always smooth sailing. Here's how to tackle common challenges like a pro.
+            </p>
+            
+            <h3>Hurdle 1: "I Don't Earn Enough to Save"</h3>
+            <p>
+                Truth: Saving is possible on any income—it's about habits, not amounts.
+            </p>
+            <p>
+                Fix: Start tiny—$5/week is $260/year. Cut one $3 snack a week, and you're there.
+            </p>
+            
+            <h3>Hurdle 2: "I Keep Dipping Into My Savings"</h3>
+            <p>
+                Truth: It's tempting to "borrow" from yourself.
+            </p>
+            <p>
+                Fix: Set up a separate account (bonus if it's harder to access, like an online bank). Or, use the envelope method and hide the envelope!
+            </p>
+            
+            <h3>Hurdle 3: "Saving Feels Boring or Restrictive"</h3>
+            <p>
+                Truth: It can feel like a drag if you're all work, no play.
+            </p>
+            <p>
+                Fix: Budget for fun! Save 80%, spend 20% on something you love. Balance is key.
+            </p>
+            
+            <h3>Hurdle 4: "I Have Irregular Income"</h3>
+            <p>
+                Truth: Freelancers or gig workers can still save—it just takes extra planning.
+            </p>
+            <p>
+                Fix: Save a percentage (e.g., 10%) of each paycheck, not a fixed amount. Or, save more on good months to cover lean ones.
+            </p>
+            
+            <h3>Activity: Tackle Your Hurdle</h3>
+            <p>
+                Which hurdle sounds like you? Write it down and one fix you'll try.
+            </p>
+            <p><em>Example: "I dip into savings—I'll open a separate account with no card."</em></p>
+            
+            <div class="activity-box">
+                <textarea id="hurdle-solution" placeholder="Write here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Detailed Example</h3>
+            <p>
+                Meet Zoe, a freelancer with income swings. She saves 15% of every gig payment—$30 from a $200 job, $60 from a $400 job. On slow months, she saves less but stays consistent. After a year, she has $1,500 saved!
+            </p>
+            
+            <h3>Mindset Shift</h3>
+            <p>
+                Saving isn't punishment—it's paying your future self. Think of it as a gift to tomorrow's you.
+            </p>
+            <p>
+                Hurdles are normal—now you've got the tools to jump them!
+            </p>
+        </section>
+
+        <!-- Section 6: Reflection and Quiz -->
+        <section>
+            <h2>Reflection and Quiz</h2>
+            <p>
+                You're almost there! Let's reflect on what you've learned and test your saving smarts.
+            </p>
+            
+            <h3>Reflection</h3>
+            <p>
+                What's one saving strategy or tool you're excited to try? How do you think it'll help you reach your goal?
+            </p>
+            <p><em>Example: "I'll automate $20 a month—it's easy, and I'll save $240 this year without thinking!"</em></p>
+            
+            <div class="activity-box">
+                <textarea id="final-reflection" placeholder="Write here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Quiz: Test Your Saving Skills</h3>
+            <div class="quiz">
+                <div class="quiz-item">
+                    <p><strong>Question 1:</strong> Why is saving important?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q1" value="A" id="q1a">
+                        <label for="q1a">To buy more stuff now</label><br>
+                        <input type="radio" name="q1" value="B" id="q1b">
+                        <label for="q1b">To build security and reach goals</label><br>
+                        <input type="radio" name="q1" value="C" id="q1c">
+                        <label for="q1c">To impress friends</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 2:</strong> What's a SMART goal?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q2" value="A" id="q2a">
+                        <label for="q2a">Specific, Measurable, Achievable, Relevant, Time-bound</label><br>
+                        <input type="radio" name="q2" value="B" id="q2b">
+                        <label for="q2b">Simple, Money, Action, Reward, Time</label><br>
+                        <input type="radio" name="q2" value="C" id="q2c">
+                        <label for="q2c">Save, Make, Spend, Repeat, Track</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 3:</strong> Which strategy helps you "set it and forget it"?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q3" value="A" id="q3a">
+                        <label for="q3a">Envelope method</label><br>
+                        <input type="radio" name="q3" value="B" id="q3b">
+                        <label for="q3b">50/30/20 rule</label><br>
+                        <input type="radio" name="q3" value="C" id="q3c">
+                        <label for="q3c">Automating savings</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 4:</strong> What's a high-yield savings account?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q4" value="A" id="q4a">
+                        <label for="q4a">A checking account</label><br>
+                        <input type="radio" name="q4" value="B" id="q4b">
+                        <label for="q4b">A savings account with higher interest</label><br>
+                        <input type="radio" name="q4" value="C" id="q4c">
+                        <label for="q4c">A type of investment</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 5:</strong> Best fix for dipping into savings?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q5" value="A" id="q5a">
+                        <label for="q5a">Hide your debit card</label><br>
+                        <input type="radio" name="q5" value="B" id="q5b">
+                        <label for="q5b">Use a separate account</label><br>
+                        <input type="radio" name="q5" value="C" id="q5c">
+                        <label for="q5c">Spend it all at once</label>
+                    </div>
+                </div>
+                
+                <button onclick="checkQuiz()">Submit Quiz</button>
+                <p id="quiz-result"></p>
+            </div>
+            
+            <h3>Practical Challenge: Calculate Your Savings Growth</h3>
+            <p>
+                Imagine you save $50 a month in a high-yield savings account with 2% interest. After one year, how much will you have? (Hint: $50 x 12 = $600, plus interest.)
+            </p>
+            <p><em>Rough calculation: $600 + ($600 x 0.02) = $600 + $12 = $612</em></p>
+            
+            <div class="activity-box">
+                <textarea id="calculation-challenge" placeholder="Write here..." rows="4"></textarea>
+            </div>
+        </section>
+
+        <!-- Section 7: Conclusion -->
+        <section>
+            <h2>Conclusion – Start Small, Dream Big</h2>
+            <p>
+                You did it—you've unlocked the secrets of saving! You've learned why saving is your financial superpower, how to set goals that light you up, and smart strategies to grow your money without the stress. Remember, saving isn't about perfection—it's about progress. Start small, stay consistent, and watch your future self thank you.
+            </p>
+            
+            <h3>Next Steps</h3>
+            <ul>
+                <li>Challenge yourself: Save $5 this week—yes, just $5. You've got this!</li>
+                <li>Ready for more? Move on to Lesson 4: Debt Management to keep building your financial skills.</li>
+            </ul>
+            
+            <p>
+                You're not just saving money—you're building a life you love. Keep going, superstar!
+            </p>
+            
+            <div class="activity-box">
+                <a href="index.html" class="cta-button">Return to Course Overview</a>
+                <a href="section1lesson4.html" class="cta-button">Next Lesson: Understanding Debt</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="learn.html">Learn</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: rthompson25@bayschoolsf.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 FinanceCourse. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

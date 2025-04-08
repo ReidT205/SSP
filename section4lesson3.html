@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 3: Diversification in Practice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #5b3fd8;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #2196f3, #3f51b5);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #3f51b5;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #3f51b5;
+            border-bottom: 2px solid #3f51b5;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3f51b5;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #3f51b5;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #303f9f;
+        }
+        /* Lesson-specific styles */
+        .example-box {
+            background-color: #f0f4ff;
+            border: 1px solid #d0d9ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #3f51b5;
+            color: white;
+        }
+        .visual-aid {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .visual-aid img {
+            max-width: 100%;
+            height: auto;
+        }
+        .warning-sign {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+        }
+        .warning-icon {
+            font-size: 24px;
+            color: #ff9800;
+            margin-right: 15px;
+        }
+        .timeline {
+            position: relative;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: #3f51b5;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            position: relative;
+            padding: 20px 0;
+        }
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #3f51b5;
+            transform: translateX(-50%);
+        }
+        .risk-stats {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f44336;
+            display: block;
+            text-align: center;
+            margin: 15px 0;
+        }
+        .asset-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .asset-table th, .asset-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .asset-table th {
+            background-color: #f2f2f2;
+        }
+        .asset-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .story-box {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid #f44336;
+        }
+        .story-box h4 {
+            color: #f44336;
+            margin-top: 0;
+        }
+        .flow-step {
+            background-color: #e8f5e9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            position: relative;
+        }
+        .flow-step:after {
+            content: "↓";
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            color: #388e3c;
+        }
+        .flow-step:last-child:after {
+            content: "✓";
+            bottom: -30px;
+            color: #388e3c;
+        }
+        .investment-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 15px;
+            width: calc(50% - 30px);
+            display: inline-block;
+            vertical-align: top;
+        }
+        @media (max-width: 768px) {
+            .investment-card {
+                width: calc(100% - 30px);
+            }
+        }
+        .investment-card h3 {
+            color: #3f51b5;
+            margin-top: 0;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .investment-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #3f51b5;
+        }
+        .return-tag {
+            background-color: #e8f5e9;
+            color: #388e3c;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .risk-tag {
+            background-color: #ffebee;
+            color: #d32f2f;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            height: 250px;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .bar {
+            width: 80px;
+            background-color: #3f51b5;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .bar-label {
+            position: absolute;
+            top: -30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .bar-value {
+            position: absolute;
+            bottom: -30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .pie-chart {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin: 0 auto 40px auto;
+        }
+        .pie-segment {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            clip: rect(0px, 250px, 250px, 125px);
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 15px;
+        }
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            margin-right: 8px;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 660;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q6"]:checked')?.value === 'B') score++;
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 6. ${score >= 5 ? 'Excellent! You\'re a diversification pro!' : score >= 4 ? 'Good job! Keep strengthening your diversification knowledge.' : 'Keep learning about diversification to better protect your finances!'}`;
+            document.getElementById('quiz-result').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Financial Security & Risk Management: Lesson 3 – Diversification in Practice: Building Your Financial Lifeboat</h1>
+        <p>Master the art of spreading your investments across multiple assets to protect your wealth from market storms while maximizing growth potential.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Learning!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview: Your Roadmap to a Storm-Proof Portfolio</h2>
+            <p>
+                Welcome back to Financial Security & Risk Management! After mastering risk identification and insurance in Lessons 1 and 2, Lesson 3 plunges you into diversification—the cornerstone of a resilient financial strategy. Diversification is about spreading your money across assets and accounts to protect it from market chaos while fueling steady growth. This isn't just a lesson; it's an immersive journey to craft a portfolio that thrives through uncertainty. Here's your treasure map:
+            </p>
+            <ul>
+                <li><strong>Core Concepts Unveiled:</strong> Why diversification trumps betting everything on one investment, backed by data and logic.</li>
+                <li><strong>Hands-On Playbook:</strong> Detailed steps to blend stocks, bonds, real estate, and cash—customized to your life stage and risk appetite.</li>
+                <li><strong>Step-by-Step for Any Budget:</strong> Start diversifying with as little as $100, scaling up with confidence.</li>
+                <li><strong>Real-World Narratives:</strong> Inspiring wins and sobering flops that bring diversification's stakes to life.</li>
+                <li><strong>Interactive Toolkit:</strong> Activities, calculators, audits, reflection prompts, and a quiz to make this yours.</li>
+                <li><strong>Advanced Strategies:</strong> New sections on rebalancing, tax optimization, behavioral pitfalls, and low-cost investing.</li>
+                <li><strong>Troubleshooting Guide:</strong> Solutions to common diversification hurdles, ensuring you stay on course.</li>
+            </ul>
+            <p>
+                By the end, you'll wield a personalized diversification strategy—a financial lifeboat that laughs at market storms. Whether you're guarding $100 or $100,000, this lesson equips you to grow wealth with resilience. Let's dive in and build something unbreakable!
+            </p>
+        </section>
+
+        <!-- Introduction -->
+        <section id="section1">
+            <h2>Introduction: Diversification – Your Financial Lifeboat</h2>
+            <p>
+                Imagine this: You've scraped together $10,000 and pour it all into "TechTrendz," a buzzy startup promising the next big thing. The stock doubles in a year—$20,000! You're a genius. Then, a scandal hits: the CEO vanishes, and the stock craters 80% overnight. Your $20,000 shrinks to $4,000. Sleepless nights ensue. Now, rewind: same $10,000, but you split it—$5,000 in stocks, $3,000 in bonds, $1,500 in real estate, $500 in cash. TechTrendz tanks, but your bonds climb 5%, real estate holds steady, and cash sits safe. Your portfolio dips just 15%—$8,500 remains. You're calm, still in the game.
+            </p>
+            <p>
+                That's diversification: not dodging risk entirely, but spreading it so no single blow sinks you. It's your financial lifeboat—buoyant, balanced, ready for rough seas. This lesson guides you to construct that lifeboat, step by step.
+            </p>
+            
+            <div class="result-box">
+                <h3>Eye-Opening Stat:</h3>
+                <p>
+                    A 60% stock/40% bond portfolio historically captures 80% of an all-stock portfolio's returns with half the volatility (Vanguard). Balance is power.
+                </p>
+            </div>
+            
+            <h3>Real-Life Hook:</h3>
+            <p>
+                In 2020, Jake, 32, bet $7,000 on airline stocks, expecting a travel boom. When COVID lingered, he lost 55%. His sister, Priya, spread $7,000 across a stock ETF, bonds, and cash—her dip? 12%. Jake panicked; Priya prospered.
+            </p>
+            
+            <h3>Why It's Yours:</h3>
+            <p>
+                Diversification isn't for millionaires—it's for you, right now. This lesson turns a buzzword into your shield and sword.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Your Diversification Wake-Up Call</h3>
+                <p>
+                    Recall a time you (or someone you know) went all-in—$500 in crypto, a single stock, or a 0.1% savings account. Write:
+                </p>
+                <ol>
+                    <li>What happened (or could've)?</li>
+                    <li>How did it feel (stress, regret, missed chances)?</li>
+                    <li>How could diversification have rewritten the story?</li>
+                </ol>
+                <p><em>Example: "I dumped $300 into Bitcoin. It crashed 50%—gut punch. Splitting $150 into stocks and $150 into bonds might've halved the hit."</em></p>
+                <p>This roots the lesson in your reality—let's build from there.</p>
+                <textarea placeholder="Write your diversification wake-up call here..." rows="4"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Your Financial Lifeboat</h3>
+                <div style="max-width: 500px; margin: 20px auto;">
+                    <!-- Ship illustration with multiple sails -->
+                    <div style="position: relative; height: 300px;">
+                        <!-- Ship body -->
+                        <div style="position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); width: 300px; height: 80px; background-color: #8d6e63; border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold;">
+                            Your Financial Portfolio
+                        </div>
+                        
+                        <!-- Water -->
+                        <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50px; background-color: #bbdefb; border-radius: 50%;">
+                            <div style="position: absolute; top: 15px; width: 100%; text-align: center; font-weight: bold; color: #0d47a1;">Market Volatility</div>
+                        </div>
+                        
+                        <!-- Mast -->
+                        <div style="position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); width: 10px; height: 180px; background-color: #5d4037;"></div>
+                        
+                        <!-- Sails representing different assets -->
+                        <div style="position: absolute; bottom: 160px; left: calc(50% - 80px); width: 0; height: 0; border-left: 80px solid transparent; border-bottom: 100px solid #c5e1a5; display: flex; justify-content: center;">
+                            <span style="position: relative; top: 50px; left: -40px; transform: rotate(-30deg); font-weight: bold;">Stocks</span>
+                        </div>
+                        
+                        <div style="position: absolute; bottom: 160px; left: 50%; width: 0; height: 0; border-right: 80px solid transparent; border-bottom: 100px solid #ffcc80; display: flex; justify-content: center;">
+                            <span style="position: relative; top: 50px; left: -40px; transform: rotate(30deg); font-weight: bold;">Bonds</span>
+                        </div>
+                        
+                        <div style="position: absolute; bottom: 230px; left: calc(50% - 40px); width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 60px solid #ef9a9a; display: flex; justify-content: center;">
+                            <span style="position: relative; top: 30px; font-weight: bold;">Real Estate</span>
+                        </div>
+                        
+                        <!-- Life preserver for cash reserves -->
+                        <div style="position: absolute; bottom: 60px; right: 80px; width: 40px; height: 40px; border-radius: 50%; background-color: white; border: 8px solid #f44336; display: flex; justify-content: center; align-items: center; font-size: 10px; font-weight: bold;">Cash</div>
+                    </div>
+                </div>
+                <p>Picture your portfolio as a ship. One investment is a single sail—rip it, and you're adrift. Diversification adds sails, oars, and a motor—stocks, bonds, cash, real estate. Storms come; you sail on.</p>
+            </div>
+        </section>
+
+        <!-- Section 1: Why Diversify? -->
+        <section>
+            <h2>Why Diversify? – The Case Is Ironclad</h2>
+            <p>
+                Why is diversification the golden rule of investing? Let's unpack it with evidence, stories, and hands-on insight.
+            </p>
+            
+            <h3>What Is Diversification, Really?</h3>
+            <p>
+                It's scattering your money across asset classes (stocks, bonds, real estate, cash) and within them (sectors, regions, accounts) to cushion losses and capture gains. It's not about eliminating risk—it's about taming it so one failure doesn't wipe you out.
+            </p>
+            
+            <h3>Why It's Non-Negotiable</h3>
+            <p>
+                Markets are rollercoasters. Stocks rocket up 20% one year, plunge 30% the next. Bonds might yawn during booms but glow in busts. Real estate fights inflation; cash anchors you. Diversification harnesses these opposites, blending growth with safety.
+            </p>
+            
+            <h3>Proof in Numbers</h3>
+            <ul>
+                <li><strong>2008 Crisis:</strong> S&P 500 (stocks) crashed 37%; U.S. Treasury bonds rose 5%. A 60/40 stock-bond mix lost 20%—half the agony, twice the recovery speed.</li>
+                <li><strong>2020 COVID Drop:</strong> Stocks fell 34% in weeks. A 50% stock, 30% bond, 20% cash portfolio dipped 15%, while all-stock investors bled out.</li>
+                <li><strong>Long Game:</strong> Since 1926, a 60/40 mix averaged 8.8% annual returns with 50% less volatility than stocks alone (Vanguard).</li>
+            </ul>
+            
+            <h3>Real-Life Triumph</h3>
+            <p>
+                In 2022, tech stocks tanked 30-40%. Diversified investors with energy stocks (up 60%) and bonds (down 10%) barely flinched—some even gained.
+            </p>
+            
+            <h3>Behavioral Edge</h3>
+            <p>
+                Going all-in feeds panic—selling low, missing rebounds. Diversification keeps you cool, steady, and invested.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Risk Reality Check</h3>
+                <ol>
+                    <li>List two places your money lives (e.g., "Savings, crypto").</li>
+                    <li>Write one risk each faces (e.g., "Savings—stagnation, Crypto—wild swings").</li>
+                    <li>How could diversification help? (e.g., "Add stocks for growth, bonds for calm").</li>
+                    <li>Bonus: Guess your diversification score (0-100%, 0 = all one asset).</li>
+                </ol>
+                <p><em>Example: "Savings ($1,000)—0% growth, Stocks ($500)—crashes. Bonds could stabilize. Score: 30%."</em></p>
+                <textarea placeholder="Write your risk reality check here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: 2008 Crisis Portfolio Performance</h3>
+                <div class="bar-chart">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="bar" style="height: 37px; background-color: #f44336;">
+                            <div class="bar-label">All Stocks</div>
+                            <div class="bar-value">-37%</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="bar" style="height: 20px; background-color: #ff9800;">
+                            <div class="bar-label">60/40 Mix</div>
+                            <div class="bar-value">-20%</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="bar" style="height: 5px; background-color: #4caf50;">
+                            <div class="bar-label">All Bonds</div>
+                            <div class="bar-value">+5%</div>
+                        </div>
+                    </div>
+                </div>
+                <p>Diversification bridges the gap. The 60/40 stock-bond mix lost half as much as an all-stock portfolio during the 2008 financial crisis.</p>
+            </div>
+            
+            <div class="result-box">
+                <strong>Extra Stat:</strong> Asset allocation drives 90%+ of portfolio performance variability (Financial Analysts Journal). Picking winners? Nice. Spreading bets? Essential.
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/d/diversification.asp" target="_blank">Investopedia: Diversification</a> – Charts, history, and examples.</p>
+        </section>
+
+        <!-- Section 2: Asset Classes -->
+        <section>
+            <h2>Asset Classes – Your Diversification Toolbox</h2>
+            <p>
+                Your lifeboat needs materials. Let's explore the key asset classes, their roles, and how they mesh.
+            </p>
+            
+            <h3>The Core Crew</h3>
+            
+            <div class="investment-card">
+                <div class="investment-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Stocks (Equities)</h3>
+                <p>Ownership in companies—growth dynamos. The S&P 500 averages 10% yearly since 1926, but expect 20%+ swings.</p>
+                <p><em>Example: VOO (Vanguard S&P 500 ETF) tracks 500 U.S. giants.</em></p>
+                <div class="return-tag">Avg Return: 10%</div>
+                <div class="risk-tag">Risk: High</div>
+            </div>
+            
+            <div class="investment-card">
+                <div class="investment-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <h3>Bonds (Fixed Income)</h3>
+                <p>Loans to governments/companies—reliable anchors. U.S. Treasuries yield 2-4%, rarely drop over 5%. Corporate bonds offer more, with slight risk.</p>
+                <p><em>Example: BND (Vanguard Total Bond ETF) spans thousands of bonds.</em></p>
+                <div class="return-tag">Avg Return: 3-5%</div>
+                <div class="risk-tag">Risk: Low-Medium</div>
+            </div>
+            
+            <div class="investment-card">
+                <div class="investment-icon"><i class="fas fa-home"></i></div>
+                <h3>Real Estate</h3>
+                <p>Property or REITs—steady income + appreciation. REITs like VNQ average 8-10%, tied to rents and values.</p>
+                <div class="return-tag">Avg Return: 8-10%</div>
+                <div class="risk-tag">Risk: Medium</div>
+            </div>
+            
+            <div class="investment-card">
+                <div class="investment-icon"><i class="fas fa-piggy-bank"></i></div>
+                <h3>Cash & Equivalents</h3>
+                <p>Savings, money markets—safe, liquid. High-yield savings (e.g., Ally at 2.5%) earns modest, risk-free returns.</p>
+                <div class="return-tag">Avg Return: 1-3%</div>
+                <div class="risk-tag">Risk: Very Low</div>
+            </div>
+            
+            <h3>Team Dynamics</h3>
+            <ul>
+                <li><strong>Stocks:</strong> Fuel growth, weather volatility.</li>
+                <li><strong>Bonds:</strong> Steady the ship, pay during downturns.</li>
+                <li><strong>Real Estate:</strong> Diversifies beyond stocks/bonds, fights inflation.</li>
+                <li><strong>Cash:</strong> Your lifeline—emergencies or buying dips.</li>
+                <li><strong>Alternatives:</strong> Sprinkle in for edge (5-10% max).</li>
+            </ul>
+            <p>
+                <em>Sample Mix: Age 30: 65% stocks, 20% bonds, 10% real estate, 5% cash. Age 60: 40% stocks, 40% bonds, 15% real estate, 5% cash.</em>
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Asset Class Explorer</h3>
+                <ol>
+                    <li>Choose three asset classes (e.g., "Stocks, bonds, cash").</li>
+                    <li>List one pro and con each (e.g., "Stocks: 10% growth, volatile; Bonds: 3% steady, slow; Cash: Safe, no gains").</li>
+                    <li>Bonus: Check 10-year returns on Morningstar (e.g., "VOO: 12%, BND: 2.5%").</li>
+                </ol>
+                <textarea placeholder="Write your asset class exploration here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Asset Allocation by Age</h3>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin: 20px 0;">
+                    <!-- Young Investor Pie Chart -->
+                    <div style="max-width: 220px;">
+                        <div style="position: relative; width: 200px; height: 200px; border-radius: 50%; background: conic-gradient(#3f51b5 0% 70%, #ff9800 70% 85%, #4caf50 85% 95%, #03a9f4 95% 100%); margin: 0 auto 10px auto;"></div>
+                        <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">Young (25)</div>
+                        <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #3f51b5;"></div>
+                                <div>70% Stocks</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #ff9800;"></div>
+                                <div>15% Bonds</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #4caf50;"></div>
+                                <div>10% Real Estate</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #03a9f4;"></div>
+                                <div>5% Cash</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mid-Life Investor Pie Chart -->
+                    <div style="max-width: 220px;">
+                        <div style="position: relative; width: 200px; height: 200px; border-radius: 50%; background: conic-gradient(#3f51b5 0% 50%, #ff9800 50% 80%, #4caf50 80% 95%, #03a9f4 95% 100%); margin: 0 auto 10px auto;"></div>
+                        <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">Middle (45)</div>
+                        <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #3f51b5;"></div>
+                                <div>50% Stocks</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #ff9800;"></div>
+                                <div>30% Bonds</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #4caf50;"></div>
+                                <div>15% Real Estate</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #03a9f4;"></div>
+                                <div>5% Cash</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Later Life Investor Pie Chart -->
+                    <div style="max-width: 220px;">
+                        <div style="position: relative; width: 200px; height: 200px; border-radius: 50%; background: conic-gradient(#3f51b5 0% 35%, #ff9800 35% 80%, #4caf50 80% 95%, #03a9f4 95% 100%); margin: 0 auto 10px auto;"></div>
+                        <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">Later (65)</div>
+                        <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #3f51b5;"></div>
+                                <div>35% Stocks</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #ff9800;"></div>
+                                <div>45% Bonds</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #4caf50;"></div>
+                                <div>15% Real Estate</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #03a9f4;"></div>
+                                <div>5% Cash</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-box">
+                <strong>Pro Tip:</strong> Stocks and bonds often zig when the other zags—search "asset correlation" for proof.
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.nerdwallet.com/article/investing/types-of-investments" target="_blank">NerdWallet: Asset Classes</a> – Visuals and breakdowns.</p>
+        </section>
+
+        <!-- Section 3: Diversifying Within Assets -->
+        <section>
+            <h2>Diversifying Within Assets – Don't Bet on One Horse</h2>
+            <p>
+                Spreading across asset classes is step one. Step two? Diversifying within them to dodge concentration traps.
+            </p>
+            
+            <h3>Why It's Critical</h3>
+            <p>
+                The 2000-2002 dot-com bust crushed tech stocks 80%. Healthcare and staples barely budged. Sector diversity was a lifeline.
+            </p>
+            
+            <h3>How to Do It</h3>
+            <ul>
+                <li><strong>Stocks:</strong> Mix sectors (tech, energy, healthcare), regions (U.S., emerging markets), sizes (large-cap, small-cap).
+                <br><em>Example: $10,000—$4,000 VOO (U.S.), $3,000 VXUS (global), $3,000 VB (small-cap).</em></li>
+                <li><strong>Bonds:</strong> Vary durations (short-term for safety, long-term for yield), issuers (government, corporate), quality (safe AAA, riskier BBB).
+                <br><em>Example: $6,000—$3,000 BND (broad), $3,000 TLT (long-term Treasuries).</em></li>
+                <li><strong>Real Estate:</strong> Blend types (residential, commercial) and regions (U.S., Asia).
+                <br><em>Example: $5,000—$3,000 VNQ (U.S. REITs), $2,000 REET (global).</em></li>
+            </ul>
+            
+            <h3>Real-Life Payoff</h3>
+            <p>
+                In 2022, tech sank 30%, energy soared 60%. A portfolio with both shrugged off the tech hit.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Sector Sleuth</h3>
+                <ol>
+                    <li>Visit Vanguard. List three VOO sectors (e.g., "Tech, Finance, Healthcare").</li>
+                    <li>Explain how this helps (e.g., "Tech flops, finance rises—less pain").</li>
+                    <li>Bonus: Note top holdings (Apple, Microsoft)—their sectors diversify you already.</li>
+                </ol>
+                <textarea placeholder="Write your sector analysis here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: 2022 Sector Performance</h3>
+                <table class="asset-table">
+                    <tr>
+                        <th>Sector</th>
+                        <th>2022 Return</th>
+                    </tr>
+                    <tr>
+                        <td>Technology</td>
+                        <td style="color: #f44336;">-30%</td>
+                    </tr>
+                    <tr>
+                        <td>Energy</td>
+                        <td style="color: #4caf50;">+60%</td>
+                    </tr>
+                    <tr>
+                        <td>Healthcare</td>
+                        <td style="color: #f44336;">-5%</td>
+                    </tr>
+                </table>
+                <p>Mixing sectors provides protection when one area underperforms.</p>
+            </div>
+            
+            <div class="result-box">
+                <strong>Extra Insight:</strong> ETFs like VT (global stocks) pack 8,000+ companies—diversification on a dime.
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/s/sectorrisk.asp" target="_blank">Investopedia: Sector Diversification</a> – Sector strategies.</p>
+        </section>
+
+        <!-- Section 4: Diversifying Across Accounts -->
+        <section>
+            <h2>Diversifying Across Accounts – Goals Meet Flexibility</h2>
+            <p>
+                Assets are one piece; accounts are another. Different accounts serve unique roles—growth, safety, tax perks.
+            </p>
+            
+            <h3>The Lineup</h3>
+            <ul>
+                <li><strong>Brokerage:</strong> Taxable, liquid—trade anytime.<br>
+                <em>Example: $5,000 in ETFs for a car in 3 years.</em></li>
+                <li><strong>401(k)/IRA:</strong> Tax-deferred or tax-free retirement growth.<br>
+                <em>Example: $10,000 in a target-date fund for age 65.</em></li>
+                <li><strong>Savings:</strong> FDIC-insured, instant access—emergencies or short-term.<br>
+                <em>Example: $3,000 at 2.5% for a rainy day.</em></li>
+                <li><strong>HSA:</strong> Triple tax-free for medical costs—investible too.<br>
+                <em>Example: $2,000 for future health or retirement.</em></li>
+                <li><strong>529 Plan:</strong> Tax-advantaged for education.</li>
+            </ul>
+            
+            <h3>Why Mix Them?</h3>
+            <ul>
+                <li><strong>Now:</strong> Savings for emergencies.</li>
+                <li><strong>Later:</strong> 401(k) for retirement.</li>
+                <li><strong>Smart:</strong> HSA for healthcare, brokerage for flexibility.</li>
+            </ul>
+            <p>
+                <em>Example: $20,000—$10,000 401(k) (stocks), $5,000 savings (cash), $5,000 brokerage (REITs). Car breaks down? Savings. Retire? 401(k).</em>
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Account Role Play</h3>
+                <ol>
+                    <li>List your accounts (e.g., "Checking, Roth IRA").</li>
+                    <li>Define their jobs (e.g., "Checking—bills, Roth—retirement").</li>
+                    <li>Missing one? Why? (e.g., "No HSA—no qualifying health plan").</li>
+                    <li>Bonus: Total your money across accounts—diversified yet?</li>
+                </ol>
+                <textarea placeholder="Write your account analysis here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Account Selection Flowchart</h3>
+                <div style="max-width: 600px; margin: 20px auto;">
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
+                        <!-- Decision node -->
+                        <div style="background-color: #e3f2fd; padding: 15px; border-radius: 5px; width: 90%; text-align: center;">
+                            <h4 style="margin: 0;">When do you need the money?</h4>
+                        </div>
+                        
+                        <!-- Branches -->
+                        <div style="display: flex; justify-content: space-between; width: 100%; margin-top: -20px;">
+                            <!-- Left branch -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 28%;">
+                                <div style="width: 2px; height: 30px; background-color: #3f51b5;"></div>
+                                <div style="background-color: #e1f5fe; padding: 10px; border-radius: 5px; text-align: center; width: 100%;">
+                                    <strong>Less than 1 year</strong>
+                                </div>
+                                <div style="width: 2px; height: 30px; background-color: #3f51b5;"></div>
+                                <div style="background-color: #b3e5fc; padding: 10px; border-radius: 5px; text-align: center; width: 100%;">
+                                    <strong>Savings Account</strong>
+                                </div>
+                            </div>
+                            
+                            <!-- Middle branch -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 28%;">
+                                <div style="width: 2px; height: 30px; background-color: #3f51b5;"></div>
+                                <div style="background-color: #e1f5fe; padding: 10px; border-radius: 5px; text-align: center; width: 100%;">
+                                    <strong>5-10 years</strong>
+                                </div>
+                                <div style="width: 2px; height: 30px; background-color: #3f51b5;"></div>
+                                <div style="background-color: #b3e5fc; padding: 10px; border-radius: 5px; text-align: center; width: 100%;">
+                                    <strong>Brokerage Account</strong>
+                                </div>
+                            </div>
+                            
+                            <!-- Right branch -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 28%;">
+                                <div style="width: 2px; height: 30px; background-color: #3f51b5;"></div>
+                                <div style="background-color: #e1f5fe; padding: 10px; border-radius: 5px; text-align: center; width: 100%;">
+                                    <strong>Retirement</strong>
+                                </div>
+                                <div style="width: 2px; height: 30px; background-color: #3f51b5;"></div>
+                                <div style="background-color: #b3e5fc; padding: 10px; border-radius: 5px; text-align: center; width: 100%;">
+                                    <strong>401(k)/IRA</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-box">
+                <strong>Pro Tip:</strong> Snag your employer's 401(k) match—free cash supercharges your mix.
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.thebalance.com/types-of-investment-accounts-2466642" target="_blank">The Balance: Investment Accounts</a> – Pros and cons.</p>
+        </section>
+
+        <!-- Section 5: Real-Life Diversification Tales -->
+        <section>
+            <h2>Real-Life Diversification Tales – Wins and Woes</h2>
+            <p>
+                Stories cement lessons. Let's dissect triumphs and tragedies.
+            </p>
+            
+            <h3>Story 1: Kim's Balanced Win</h3>
+            <div class="story-box" style="border-left: 5px solid #4caf50;">
+                <h4>Kim's Balanced Win</h4>
+                <p>
+                    Kim, 33, split $20,000—50% stocks, 30% bonds, 20% cash. In 2022's 25% stock drop, she lost $2,500, not $5,000—bonds and cash softened the blow. She bought more stocks cheap, thriving later.
+                </p>
+            </div>
+            
+            <h3>Story 2: Leo's Tesla Tumble</h3>
+            <div class="story-box" style="border-left: 5px solid #f44336;">
+                <h4>Leo's Tesla Tumble</h4>
+                <p>
+                    Leo, 27, sank $8,000 into Tesla in 2021. A 65% drop in 2022 slashed it to $2,800—he sold, crushed. A $4,000 stock/$4,000 bond split might've lost just $1,500.
+                </p>
+            </div>
+            
+            <h3>Story 3: Aisha's Account Ace</h3>
+            <div class="story-box" style="border-left: 5px solid #4caf50;">
+                <h4>Aisha's Account Ace</h4>
+                <p>
+                    Aisha, 45, spread $30,000—$15,000 401(k) (stocks), $5,000 brokerage (REITs), $10,000 savings. A $7,000 emergency? Savings handled it, investments untouched.
+                </p>
+            </div>
+            
+            <h3>Story 4: Dot-Com Doom</h3>
+            <div class="story-box" style="border-left: 5px solid #f44336;">
+                <h4>Dot-Com Doom</h4>
+                <p>
+                    In 2000, tech crashed 80%. All-tech portfolios evaporated; diversified ones (stocks, bonds, real estate) lost 10-15%, rebounding fast.
+                </p>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Rewrite the Tale</h3>
+                <ol>
+                    <li>Pick a story. Craft a 3-step diversification fix or mimic.</li>
+                    <li><em>Example for Leo: "1. Cap single stocks at 20%. 2. Add $3,000 bonds, $2,000 ETFs. 3. Hold through dips."</em></li>
+                    <li>Apply to you: "I'll split my $2,000—$1,000 VOO, $600 BND, $400 savings."</li>
+                </ol>
+                <textarea placeholder="Write your diversification plan here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Diversification Impact</h3>
+                <div style="display: flex; flex-direction: column; gap: 20px; max-width: 500px; margin: 0 auto;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 120px; font-weight: bold;">Kim:</div>
+                        <div style="flex-grow: 1; background-color: #e8f5e9; padding: 10px; border-radius: 5px;">
+                            Stocks (-25%), Bonds (+5%), Cash (0%) → <strong>-12.5% loss</strong>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 120px; font-weight: bold;">Leo:</div>
+                        <div style="flex-grow: 1; background-color: #ffebee; padding: 10px; border-radius: 5px;">
+                            Tesla (-65%) → <strong>-65% loss</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.morningstar.com/articles/1075405/how-to-build-a-diversified-portfolio" target="_blank">Morningstar: Diversified Portfolios</a> – Case studies.</p>
+        </section>
+
+        <!-- Section 6: Diversifying on a Budget -->
+        <section>
+            <h2>Diversifying on a Budget – Small Starts, Big Wins</h2>
+            <p>
+                No fortune? No problem. Diversify with pocket change.
+            </p>
+            
+            <h3>Micro-Moves</h3>
+            <ul>
+                <li><strong>ETFs:</strong> $50 in VT (8,000+ global stocks).</li>
+                <li><strong>Robo-Advisors:</strong> Betterment diversifies $100 across assets.</li>
+                <li><strong>Fractional Shares:</strong> $10 buys 0.01 Amazon share on Robinhood.</li>
+                <li><strong>Micro-Investing:</strong> Acorns rounds $3.50 coffee to $4, invests $0.50.</li>
+            </ul>
+            
+            <h3>Example</h3>
+            <p>
+                $1,000:<br>
+                $500 VOO (stocks)<br>
+                $300 BND (bonds)<br>
+                $200 savings (2.5%)
+            </p>
+            <p><em>Add $50/month, 6% growth → $5,000 in 5 years.</em></p>
+            
+            <h3>Growth Math</h3>
+            <p>
+                $25/month in VT, 7%, 25 years → $20,000+. Tiny seeds bloom.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Mini-Portfolio Builder</h3>
+                <ol>
+                    <li>Split $200 across three assets (e.g., "$100 VOO, $50 BND, $50 savings").</li>
+                    <li>Justify it (e.g., "VOO grows, BND steadies, savings waits").</li>
+                    <li>Bonus: Calculate 10-year value at 5% on Investor.gov.</li>
+                </ol>
+                <textarea placeholder="Write your mini-portfolio plan here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Budget Portfolio</h3>
+                <div style="position: relative; width: 200px; height: 200px; border-radius: 50%; background: conic-gradient(#3f51b5 0% 50%, #ff9800 50% 75%, #03a9f4 75% 100%); margin: 0 auto 10px auto;"></div>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #3f51b5;"></div>
+                        <div>$100 VOO (50%)</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #ff9800;"></div>
+                        <div>$50 BND (25%)</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #03a9f4;"></div>
+                        <div>$50 Savings (25%)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-box">
+                <strong>Pro Tip:</strong> M1 Finance automates fractional buys—set it, forget it.
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/best-robo-advisors-4693125" target="_blank">Investopedia: Robo-Advisors</a> – Tech hacks.</p>
+        </section>
+
+        <!-- Section 7: Rebalancing -->
+        <section>
+            <h2>Rebalancing – Steering Your Lifeboat</h2>
+            <p>
+                Diversification drifts. Rebalancing keeps it on course.
+            </p>
+            
+            <h3>Why It Matters</h3>
+            <p>
+                A 60/40 stock-bond mix becomes 70/30 after a stock boom—risk spikes. Rebalancing resets it.
+            </p>
+            
+            <h3>How-To</h3>
+            <ul>
+                <li><strong>Annual Check:</strong> If stocks hit 65%, sell 5%, buy bonds.</li>
+                <li><strong>Threshold:</strong> Act if any asset shifts 5%+ from target.</li>
+            </ul>
+            <p>
+                <em>Example: $10,000 (60/40). Stocks grow to $7,000 (70%), bonds $3,000 (30%). Sell $1,000 stocks, buy $1,000 bonds.</em>
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Rebalancing Drill</h3>
+                <p>
+                    Start: $5,000—60% stocks ($3,000), 40% bonds ($2,000).<br>
+                    Year later: Stocks $3,600 (72%), bonds $1,800 (36%).<br>
+                    Rebalance to 60/40—how much to shift?
+                </p>
+                <textarea placeholder="Write your rebalancing calculation here..." rows="4"></textarea>
+                <p><em>Answer: Sell $600 stocks, buy $600 bonds.</em></p>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Rebalancing Impact</h3>
+                <div style="display: flex; justify-content: space-around; margin: 20px 0;">
+                    <!-- Before rebalancing -->
+                    <div style="text-align: center; width: 45%;">
+                        <h4>Before</h4>
+                        <div style="position: relative; width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(#3f51b5 0% 72%, #ff9800 72% 100%); margin: 0 auto 10px auto;"></div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #3f51b5;"></div>
+                            <div>72% Stocks</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #ff9800;"></div>
+                            <div>28% Bonds</div>
+                        </div>
+                    </div>
+                    
+                    <!-- After rebalancing -->
+                    <div style="text-align: center; width: 45%;">
+                        <h4>After</h4>
+                        <div style="position: relative; width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(#3f51b5 0% 60%, #ff9800 60% 100%); margin: 0 auto 10px auto;"></div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #3f51b5;"></div>
+                            <div>60% Stocks</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #ff9800;"></div>
+                            <div>40% Bonds</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-box">
+                <strong>Pro Tip:</strong> Use new cash to rebalance—buy what's low.
+            </div>
+        </section>
+
+        <!-- Section 8: Tax-Efficient Diversification -->
+        <section>
+            <h2>Tax-Efficient Diversification – Keep Your Gains</h2>
+            <p>
+                Account placement slashes taxes. Let's optimize.
+            </p>
+            
+            <h3>Smart Spots</h3>
+            <ul>
+                <li><strong>401(k)/IRA:</strong> Bonds, dividend stocks—defer taxes.</li>
+                <li><strong>Brokerage:</strong> Growth stocks, ETFs—lower capital gains.</li>
+                <li><strong>Roth IRA:</strong> High-growth assets—tax-free forever.</li>
+            </ul>
+            
+            <h3>Example</h3>
+            <p>
+                401(k): $10,000 bonds (tax-deferred interest).<br>
+                Brokerage: $5,000 VOO (taxed at sale).<br>
+                Roth: $3,000 tech stocks (tax-free growth).
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Account Allocator</h3>
+                <ol>
+                    <li>List your accounts (e.g., "Brokerage, IRA").</li>
+                    <li>Assign assets tax-smart (e.g., "Brokerage: VOO, IRA: BND").</li>
+                    <li>Bonus: Estimate tax savings (e.g., "Bonds in IRA saves $150/year").</li>
+                </ol>
+                <textarea placeholder="Write your tax-efficient allocation here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Tax-Smart Account Placement</h3>
+                <table class="asset-table">
+                    <tr>
+                        <th>Account</th>
+                        <th>Best Assets</th>
+                        <th>Tax Win</th>
+                    </tr>
+                    <tr>
+                        <td>401(k)</td>
+                        <td>Bonds, Dividends</td>
+                        <td>Deferred</td>
+                    </tr>
+                    <tr>
+                        <td>Brokerage</td>
+                        <td>Growth Stocks</td>
+                        <td>Lower Gains Tax</td>
+                    </tr>
+                    <tr>
+                        <td>Roth</td>
+                        <td>High-Growth</td>
+                        <td>Tax-Free</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="result-box">
+                <strong>Pro Tip:</strong> Harvest losses in brokerage—sell losers to offset gains.
+            </div>
+        </section>
+
+        <!-- Section 9: Behavioral Pitfalls -->
+        <section>
+            <h2>Behavioral Pitfalls – Mind Over Money</h2>
+            <p>
+                Diversification isn't just math—it's psychology. Avoid these traps.
+            </p>
+            
+            <h3>Pitfall 1: Chasing Hot Trends</h3>
+            <p>
+                Buying what's soaring (crypto in 2021) risks buying high, crashing low.
+                <br><strong>Fix:</strong> Stick to your mix, not headlines.
+            </p>
+            
+            <h3>Pitfall 2: Over-Diversifying</h3>
+            <p>
+                50 stocks might dilute gains—20-30 often suffice.
+                <br><strong>Fix:</strong> Focus on broad ETFs, not endless picks.
+            </p>
+            
+            <h3>Pitfall 3: Panic Selling</h3>
+            <p>
+                A 20% dip tempts you to ditch stocks.
+                <br><strong>Fix:</strong> Diversification reduces dips—trust it.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Mindset Check</h3>
+                <ol>
+                    <li>Recall a time you chased a trend or panicked.</li>
+                    <li>How could diversification have calmed you?</li>
+                </ol>
+                <p><em>Example: "I sold stocks in 2020's dip—bonds would've steadied me."</em></p>
+                <textarea placeholder="Write your behavioral insight here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Emotional Impact</h3>
+                <div style="display: flex; justify-content: space-around; align-items: flex-end; height: 200px; max-width: 500px; margin: 0 auto;">
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 40%;">
+                        <div style="height: 170px; width: 80px; background-color: #f44336; position: relative;">
+                            <div style="position: absolute; bottom: -30px; text-align: center; width: 100%;">All-Stocks<br>-34% (2020)</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 40%;">
+                        <div style="height: 75px; width: 80px; background-color: #ff9800; position: relative;">
+                            <div style="position: absolute; bottom: -30px; text-align: center; width: 100%;">Diversified<br>-15%</div>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 40px;">Less drop, less freakout.</p>
+            </div>
+        </section>
+
+        <!-- Section 10: Interactive Audit -->
+        <section>
+            <h2>Interactive Audit – Full Portfolio Overhaul</h2>
+            <p>
+                Test your skills with a deep-dive scenario.
+            </p>
+            
+            <h3>Meet Sam's Portfolio</h3>
+            <ul>
+                <li><strong>Assets:</strong> $12,000 tech stocks, $3,000 savings.</li>
+                <li><strong>Accounts:</strong> Brokerage, savings.</li>
+                <li><strong>Goals:</strong> Retirement (20 years), vacation (2 years).</li>
+            </ul>
+            
+            <h3>Tasks</h3>
+            <ol>
+                <li>Identify gaps (e.g., "Tech-heavy, no bonds").</li>
+                <li>Propose fixes (e.g., "Add bonds, diversify stocks").</li>
+                <li>Reallocate for goals (e.g., "$3,000 savings for vacation, $12,000 split stocks/bonds for retirement").</li>
+            </ol>
+            
+            <div class="result-box">
+                <strong>Answers:</strong> Gaps—concentration, no growth in savings. Fix—$6,000 VOO, $6,000 BND, $3,000 savings.
+            </div>
+            
+            <div class="activity-box">
+                <h3>Your Audit</h3>
+                <p>List your assets, accounts, gaps, and a 3-step fix. Write it!</p>
+                <textarea placeholder="Write your portfolio audit here..." rows="8"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Portfolio Transformation</h3>
+                <table class="asset-table">
+                    <tr>
+                        <th>Current</th>
+                        <th>Gap</th>
+                        <th>Fix</th>
+                    </tr>
+                    <tr>
+                        <td>$12,000 Tech Stocks</td>
+                        <td>Too Focused</td>
+                        <td>$6,000 VOO</td>
+                    </tr>
+                    <tr>
+                        <td>$3,000 Savings</td>
+                        <td>No Growth</td>
+                        <td>$6,000 BND</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 11: Reflection -->
+        <section>
+            <h2>Reflection – Your Diversification Blueprint</h2>
+            <p>
+                Make it yours with a concrete plan.
+            </p>
+            
+            <h3>Prompts</h3>
+            <ul>
+                <li>Dream asset mix?</li>
+                <li>First move?</li>
+                <li>Tracking method?</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Activity: Blueprint Builder</h3>
+                <p>Write: "I'll diversify my [X] with [Y], starting [Z], tracking via [W]."</p>
+                <p><em>Example: "I'll diversify my $5,000 with 60% VOO, 30% BND, 10% savings, starting Sunday, tracking via Vanguard app."</em></p>
+                <p><strong>Bonus:</strong> Set a 3-month review—e.g., "March 1, check allocations."</p>
+                <textarea placeholder="Write your diversification blueprint here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Sample Blueprint</h3>
+                <div style="position: relative; width: 200px; height: 200px; border-radius: 50%; background: conic-gradient(#3f51b5 0% 60%, #ff9800 60% 90%, #03a9f4 90% 100%); margin: 0 auto 10px auto;"></div>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #3f51b5;"></div>
+                        <div>60% Stocks (VOO)</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #ff9800;"></div>
+                        <div>30% Bonds (BND)</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #03a9f4;"></div>
+                        <div>10% Cash</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 12: Quiz -->
+        <section>
+            <h2>Quiz – Master Your Diversification</h2>
+            <p>
+                Prove your chops!
+            </p>
+            
+            <div class="quiz">
+                <div class="quiz-item">
+                    <p><strong>1. Diversification cuts:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q1" id="q1a" value="A"> <label for="q1a">Taxes</label></div>
+                        <div><input type="radio" name="q1" id="q1b" value="B"> <label for="q1b">Risk</label></div>
+                        <div><input type="radio" name="q1" id="q1c" value="C"> <label for="q1c">Fun</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>2. ETFs like VOO offer:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q2" id="q2a" value="A"> <label for="q2a">One stock</label></div>
+                        <div><input type="radio" name="q2" id="q2b" value="B"> <label for="q2b">Broad mix</label></div>
+                        <div><input type="radio" name="q2" id="q2c" value="C"> <label for="q2c">High fees</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>3. Cash is for:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q3" id="q3a" value="A"> <label for="q3a">Growth</label></div>
+                        <div><input type="radio" name="q3" id="q3b" value="B"> <label for="q3b">Safety</label></div>
+                        <div><input type="radio" name="q3" id="q3c" value="C"> <label for="q3c">Inflation</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>4. 401(k) gives:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q4" id="q4a" value="A"> <label for="q4a">Tax breaks</label></div>
+                        <div><input type="radio" name="q4" id="q4b" value="B"> <label for="q4b">Instant cash</label></div>
+                        <div><input type="radio" name="q4" id="q4c" value="C"> <label for="q4c">No limits</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>5. Rebalancing means:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q5" id="q5a" value="A"> <label for="q5a">Buy more</label></div>
+                        <div><input type="radio" name="q5" id="q5b" value="B"> <label for="q5b">Sell high, buy low</label></div>
+                        <div><input type="radio" name="q5" id="q5c" value="C"> <label for="q5c">Ignore it</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>6. Bonds go in:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q6" id="q6a" value="A"> <label for="q6a">Brokerage</label></div>
+                        <div><input type="radio" name="q6" id="q6b" value="B"> <label for="q6b">401(k)</label></div>
+                        <div><input type="radio" name="q6" id="q6c" value="C"> <label for="q6c">Savings</label></div>
+                    </div>
+                </div>
+                
+                <button onclick="checkQuiz()">Submit Quiz</button>
+                <div id="quiz-result" class="result-box" style="display: none;"></div>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Quiz Reflection</h3>
+                <p>
+                    Take the quiz (5-10 minutes). For each miss, note a takeaway (e.g., "Rebalancing restores my mix"). 6/6? You're a pro!
+                </p>
+                <textarea placeholder="Write your quiz reflections here..." rows="4"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Diversification Cheat Sheet</h3>
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-around; max-width: 500px; margin: 0 auto;">
+                    <div style="width: 150px; text-align: center; margin: 10px; padding: 15px; background-color: #e3f2fd; border-radius: 5px;">
+                        <strong>Stocks:</strong><br>Growth
+                    </div>
+                    <div style="width: 150px; text-align: center; margin: 10px; padding: 15px; background-color: #fff8e1; border-radius: 5px;">
+                        <strong>Bonds:</strong><br>Calm
+                    </div>
+                    <div style="width: 150px; text-align: center; margin: 10px; padding: 15px; background-color: #e8f5e9; border-radius: 5px;">
+                        <strong>Cash:</strong><br>Ready
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2>Conclusion: Your Financial Lifeboat Sails!</h2>
+            <p>
+                You're a diversification maestro! With a custom mix across assets and accounts, you're set to grow wealth through any storm. Next, we'll fortify your emergency plan.
+            </p>
+            
+            <h3>Action Steps:</h3>
+            <ol>
+                <li>Invest $20 in VOO on Fidelity or Robinhood.</li>
+                <li>Write why (e.g., "VOO—500 firms, low cost").</li>
+                <li>Tell a friend—"I'm diversifying, check back in 30 days!"</li>
+            </ol>
+            
+            <h3>Next Up:</h3>
+            <p>
+                <a href="section4lesson4.html">Lesson 4 – Emergency Preparedness: Building Your Financial Panic Room</a>
+            </p>
+            
+            <div class="result-box">
+                <h3>Resources:</h3>
+                <ul>
+                    <li><a href="https://investor.vanguard.com/investment-products/etfs" target="_blank">Vanguard</a> – ETFs galore</li>
+                    <li><a href="https://www.betterment.com/" target="_blank">Betterment</a> – Robo-help</li>
+                    <li><a href="https://www.morningstar.com/" target="_blank">Morningstar</a> – Data deep dive</li>
+                    <li><a href="https://www.bogleheads.org/wiki/Main_Page" target="_blank">Bogleheads</a> – Wisdom from the crowd</li>
+                </ul>
+            </div>
+            
+            <p>
+                Sail forth—your financial future is storm-proof!
+            </p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>FinanceCourse</h3>
+                <p>Learn to secure your financial future with our comprehensive education platform.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="learn.html">Courses</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Investing Glossary</a></li>
+                    <li><a href="#">Calculators</a></li>
+                    <li><a href="#">Market Updates</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 FinanceCourse. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    </body>
+    </html>

@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 3: Adjusting for Life Changes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #007BFF;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #007BFF, #6610f2);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #007BFF;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #007BFF;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #007BFF;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #0069d9;
+        }
+        /* Lesson-specific styles */
+        .scenario-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007BFF;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .example-budget {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f2f2f2;
+        }
+        .change-type-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .change-type {
+            width: 45%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+        }
+        .predictable {
+            background-color: #007BFF;
+        }
+        .unpredictable {
+            background-color: #dc3545;
+        }
+        .step-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #007BFF;
+        }
+        .tip-card {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .tip-title {
+            font-weight: bold;
+            color: #007BFF;
+        }
+        .mistake-box {
+            background-color: #fff4f4;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .mistake-title {
+            font-weight: bold;
+            color: #dc3545;
+        }
+        .fix-title {
+            font-weight: bold;
+            color: #28a745;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 660;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'A') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'B') score++;
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 5. ${score >= 4 ? 'Great job!' : score >= 3 ? 'Good effort!' : 'Keep studying!'}`;
+            document.getElementById('quiz-result').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Budgeting Mastery: Lesson 3 – Adjusting for Life Changes</h1>
+        <p>Learn how to keep your budget flexible and responsive to life's constant changes.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Learning!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview</h2>
+            <p>
+                Welcome back to Budgeting Mastery! By now, you've built your budget (Lesson 1) and mastered tracking your spending (Lesson 2). In Lesson 3, we're focusing on a key skill: keeping your budget flexible as life changes. From new jobs to unexpected bills, life doesn't stay still—and neither should your budget. This lesson will equip you with the tools to adjust quickly and confidently, ensuring your finances stay on track no matter what happens.
+            </p>
+            <p>Here's what you'll learn:</p>
+            <ul>
+                <li>Why flexibility is essential for budgeting success.</li>
+                <li>The types of life changes that affect your money.</li>
+                <li>A step-by-step process to tweak your budget for any situation.</li>
+                <li>How to use your spending data to make smart adjustments.</li>
+                <li>Tips to handle the emotional side of financial shifts.</li>
+                <li>Common pitfalls to avoid.</li>
+                <li>Hands-on practice with real-life scenarios.</li>
+            </ul>
+            <p>
+                By the end, you'll be ready to roll with life's punches—financially and emotionally. Let's get started!
+            </p>
+        </section>
+
+        <!-- Introduction – Why Your Budget Needs to Flex -->
+        <section id="section1">
+            <h2>Introduction – Why Your Budget Needs to Flex</h2>
+            <p>
+                Picture this: Your budget is running smoothly. You're tracking every dollar, and everything's clicking. Then, life happens—you land a promotion, move to a new city, or face a surprise car repair. Suddenly, your budget feels off. That's where flexibility comes in. Adjusting for life changes means updating your budget to match new income, expenses, or goals triggered by events like a raise, a baby, or an emergency.
+            </p>
+            
+            <h3>Why does this matter?</h3>
+            <ul>
+                <li><strong>Control:</strong> A flexible budget keeps you in the driver's seat, even when life feels chaotic.</li>
+                <li><strong>Stress Relief:</strong> Adjusting proactively prevents financial panic down the road.</li>
+                <li><strong>Goal Alignment:</strong> It ensures your budget supports your evolving dreams, like saving for a house or paying off debt.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                Sarah, a 28-year-old graphic designer, got a $400 monthly raise. Instead of spending it all, she adjusted her budget—adding $200 to savings and $100 to debt repayment, leaving $100 for fun. She stayed on track and felt empowered.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Your Turn to Reflect</h3>
+                <p>
+                    Think about a life change you might face soon—like a new job, a big purchase, or an unexpected cost. Jot it down as your "flex target" for this lesson.
+                </p>
+                <p><em>Example: "I might move next year and need to cover higher rent."</em></p>
+                <textarea id="flex-target" placeholder="Write your flex target here..." rows="4"></textarea>
+            </div>
+        </section>
+
+        <!-- Section 1: Types of Life Changes That Impact Your Budget -->
+        <section>
+            <h2>Types of Life Changes That Impact Your Budget</h2>
+            <p>
+                Life changes come in two flavors: predictable (ones you can plan for) and unpredictable (surprises that hit out of nowhere). Let's explore both and how they shake up your finances.
+            </p>
+            
+            <div class="change-type-box">
+                <div class="change-type predictable">
+                    <h3>Predictable Changes</h3>
+                    <p>Events you can see coming</p>
+                </div>
+                <div class="change-type unpredictable">
+                    <h3>Unpredictable Changes</h3>
+                    <p>Surprises that hit suddenly</p>
+                </div>
+            </div>
+            
+            <h3>Predictable Changes</h3>
+            <p>These are events you can see coming, giving you time to prepare.</p>
+            <ul>
+                <li><strong>Career Shifts:</strong> A new job, promotion, or planned break.</li>
+                <li><strong>Family Events:</strong> Getting married, having a kid, or splitting up.</li>
+                <li><strong>Moves:</strong> Relocating or changing your housing.</li>
+                <li><strong>Education:</strong> Starting school or finishing loan payments.</li>
+                <li><strong>Big Plans:</strong> Buying a car, planning a trip, or launching a side hustle.</li>
+            </ul>
+            <p><strong>Impact:</strong> These often shift your income or fixed costs. A promotion might mean more cash to save, while a move could raise your rent but cut commuting expenses.</p>
+            
+            <h3>Unpredictable Changes</h3>
+            <p>These are the wild cards you can't always foresee.</p>
+            <ul>
+                <li><strong>Job Loss:</strong> Layoffs or sudden unemployment.</li>
+                <li><strong>Health Issues:</strong> Medical bills or emergencies.</li>
+                <li><strong>Economic Shifts:</strong> Inflation or rising costs.</li>
+                <li><strong>Disasters:</strong> Storms, fires, or other crises.</li>
+                <li><strong>Family Needs:</strong> Helping a loved one unexpectedly.</li>
+            </ul>
+            <p><strong>Impact:</strong> These can hit your budget hard and fast, demanding quick cuts or emergency funds.</p>
+            
+            <div class="activity-box">
+                <h3>Activity: Spot Your Changes</h3>
+                <p>List one predictable and one unpredictable change you might face.</p>
+                <p><em>Example: Predictable—having a baby next year. Unpredictable—car breaking down.</em></p>
+                <textarea id="your-changes" placeholder="List your changes here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Quick Reference Table</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Type</th>
+                    <th>Example</th>
+                    <th>Budget Impact</th>
+                </tr>
+                <tr>
+                    <td>Predictable</td>
+                    <td>Promotion</td>
+                    <td>Higher income</td>
+                </tr>
+                <tr>
+                    <td>Unpredictable</td>
+                    <td>Medical emergency</td>
+                    <td>Sudden expense</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 2: Strategies to Adjust Your Budget -->
+        <section>
+            <h2>Strategies to Adjust Your Budget</h2>
+            <p>
+                Whether it's planned or a surprise, here's a clear process to flex your budget like a pro.
+            </p>
+            
+            <div class="step-box">
+                <h3>Step 1: Size Up the Change</h3>
+                <p><strong>Predictable:</strong> Pinpoint the financial shift.</p>
+                <p><em>Example: A $300 rent increase—where will it come from?</em></p>
+                <p><strong>Unpredictable:</strong> Estimate short- and long-term effects.</p>
+                <p><em>Example: A $500 repair—can you cover it now, or spread it out?</em></p>
+            </div>
+            
+            <div class="step-box">
+                <h3>Step 2: Check Your Current Budget</h3>
+                <ul>
+                    <li>Pull your tracking data from Lesson 2 to see your spending reality.</li>
+                    <li>Highlight flexible spots (e.g., entertainment) and fixed costs (e.g., utilities).</li>
+                </ul>
+            </div>
+            
+            <div class="step-box">
+                <h3>Step 3: Tweak Your Categories</h3>
+                <ul>
+                    <li><strong>Income Up:</strong> Allocate extra cash to savings, debt, or fun.</li>
+                    <li><strong>Income Down:</strong> Focus on needs, trim wants, consider extra income.</li>
+                    <li><strong>New Costs:</strong> Add a category and fund it by cutting elsewhere.</li>
+                    <li><strong>Lower Costs:</strong> Redirect savings to goals or debt.</li>
+                </ul>
+            </div>
+            
+            <div class="step-box">
+                <h3>Step 4: Update Your System</h3>
+                <p>Adjust your budgeting app (e.g., Mint), spreadsheet, or notebook with new limits.</p>
+            </div>
+            
+            <div class="step-box">
+                <h3>Step 5: Test and Refine</h3>
+                <p>Track for a month post-change. If it's off, tweak again.</p>
+            </div>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                When Juan's car insurance jumped $60, he reviewed his budget, cut $30 from dining out, and $30 from subscriptions. He updated his app and checked weekly—crisis averted!
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Practice Adjusting</h3>
+                <p>Here's a budget:</p>
+                <div class="example-budget">
+                    Income: $3,000<br>
+                    Needs: $1,500 (50%)<br>
+                    Wants: $900 (30%)<br>
+                    Savings/Debt: $600 (20%)
+                </div>
+                <p><strong>Scenario:</strong> A $150 monthly daycare cost starts next month. Adjust it!</p>
+                <textarea id="budget-adjustment" placeholder="Explain your adjustments here..." rows="6"></textarea>
+                <div class="result-box">
+                    <p><strong>Possible Answer:</strong> Reduce Wants to $750 and Savings/Debt to $600, adding a $150 "Daycare" category under Needs (new Needs: $1,650).</p>
+                </div>
+                <p>Now, try your "flex target." How would you adjust?</p>
+                <p><em>Example: "For higher rent ($200 more), I'd cut Wants by $100 and Savings by $100."</em></p>
+                <textarea id="your-adjustment" placeholder="Write your adjustment for your flex target here..." rows="4"></textarea>
+            </div>
+        </section>
+
+        <!-- Section 3: Using Tracking Data to Guide Adjustments -->
+        <section>
+            <h2>Using Tracking Data to Guide Adjustments</h2>
+            <p>
+                Your Lesson 2 tracking skills are your secret weapon here. Here's how they help.
+            </p>
+            
+            <h3>Why It's Key</h3>
+            <ul>
+                <li><strong>Shows Reality:</strong> Tracks actual spending vs. your plan.</li>
+                <li><strong>Finds Flexibility:</strong> Reveals underspending (e.g., $50 less on gas) to reallocate.</li>
+                <li><strong>Spots Trouble:</strong> Flags overspending to avoid over-cutting.</li>
+            </ul>
+            
+            <h3>How to Use It</h3>
+            <ol>
+                <li><strong>Gather Data:</strong> Review 1-3 months of tracked spending.</li>
+                <li><strong>Average It:</strong> Calculate typical costs per category.</li>
+                <li><strong>Compare:</strong> Check against your budget—over or under?</li>
+                <li><strong>Adjust:</strong> Move money based on what's really happening.</li>
+            </ol>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                Mia saw she spent $80 less on groceries than planned each month. When her phone bill rose by $40, she lowered her grocery budget and covered it easily.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Dig Into Your Data</h3>
+                <p>If you've tracked, look at last month. What surprised you? How could you adjust?</p>
+                <p><em>Example: "I spent $150 on clothes, budgeted $200—I can lower it to $175 and save $25."</em></p>
+                <textarea id="data-insights" placeholder="Share your data insights here..." rows="4"></textarea>
+                <hr>
+                <p>No data yet? Try this: Budgeted $400 for groceries, spent $350. Adjust it!</p>
+                <textarea id="sample-adjustment" placeholder="Write your adjustment here..." rows="4"></textarea>
+                <div class="result-box">
+                    <p><strong>Answer:</strong> Lower groceries to $375, add $25 to savings.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Emotional Tips for Financial Shifts -->
+        <section>
+            <h2>Emotional Tips for Financial Shifts</h2>
+            <p>
+                Money changes can mess with your head. Here's how to stay steady.
+            </p>
+            
+            <div class="tip-card">
+                <p class="tip-title">Tip 1: Own the Change</p>
+                <p><strong>Mindset:</strong> Adjustments mean you're in charge, not a victim.</p>
+                <p><strong>Action:</strong> Celebrate wins—like cutting $10 or saving $50.</p>
+            </div>
+            
+            <div class="tip-card">
+                <p class="tip-title">Tip 2: Anchor to Your Goals</p>
+                <p><strong>Mindset:</strong> Focus on why you budget (e.g., debt freedom).</p>
+                <p><strong>Action:</strong> Keep your top goal visible—like a note on your fridge.</p>
+            </div>
+            
+            <div class="tip-card">
+                <p class="tip-title">Tip 3: Expect Surprises</p>
+                <p><strong>Mindset:</strong> Life's unpredictable—your budget's your buffer.</p>
+                <p><strong>Action:</strong> Start an emergency fund, even $20/month.</p>
+            </div>
+            
+            <div class="tip-card">
+                <p class="tip-title">Tip 4: Share the Load</p>
+                <p><strong>Mindset:</strong> Money stress is common—don't go it alone.</p>
+                <p><strong>Action:</strong> Talk to a friend or partner about your plan.</p>
+            </div>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                When Ellie's hours were cut, she felt lost. Chatting with her sister and trimming her budget together—pausing streaming and eating in—lifted her spirits.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Craft a Mantra</h3>
+                <p>Write a phrase to calm money worries.</p>
+                <p><em>Example: "My budget bends, not breaks—I've got this."</em></p>
+                <textarea id="money-mantra" placeholder="Write your money mantra here..." rows="2"></textarea>
+            </div>
+        </section>
+
+        <!-- Section 5: Common Mistakes (and Fixes) -->
+        <section>
+            <h2>Common Mistakes (and Fixes)</h2>
+            <p>
+                Avoid these traps when flexing your budget.
+            </p>
+            
+            <div class="mistake-box">
+                <p class="mistake-title">Mistake 1: Procrastinating</p>
+                <p><strong>Issue:</strong> Waiting until you're broke to adjust.</p>
+                <p class="fix-title">Fix:</p>
+                <p>Act when you spot the change—like signing a new lease.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <p class="mistake-title">Mistake 2: Over-Slashing</p>
+                <p><strong>Issue:</strong> Cutting Wants too hard, risking burnout.</p>
+                <p class="fix-title">Fix:</p>
+                <p>Keep some fun—like $15 for coffee.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <p class="mistake-title">Mistake 3: Forgetting Fixed Costs</p>
+                <p><strong>Issue:</strong> Ignoring must-pays like rent.</p>
+                <p class="fix-title">Fix:</p>
+                <p>Secure needs first, then tweak wants and savings.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <p class="mistake-title">Mistake 4: Skipping Updates</p>
+                <p><strong>Issue:</strong> Not changing your app or sheet.</p>
+                <p class="fix-title">Fix:</p>
+                <p>Update right after adjusting—set a reminder!</p>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Find the Flaw</h3>
+                <p>Budget after a $100 income drop:</p>
+                <div class="example-budget">
+                    Income: $2,900<br>
+                    Needs: $1,500<br>
+                    Wants: $800 (was $900)<br>
+                    Savings/Debt: $600
+                </div>
+                <p>What's wrong?</p>
+                <textarea id="find-flaw" placeholder="Identify the problem here..." rows="4"></textarea>
+                <div class="result-box">
+                    <p><strong>Answer:</strong> Savings/Debt stayed the same—it should drop to $500, with Wants at $850 for balance.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Interactive Activity – Flex Your Budget -->
+        <section>
+            <h2>Interactive Activity – Flex Your Budget</h2>
+            <p>
+                Test your skills with these scenarios! Adjust this budget:
+            </p>
+            
+            <div class="example-budget">
+                Income: $4,000<br>
+                Needs: $2,000 (50%)<br>
+                Wants: $1,200 (30%)<br>
+                Savings/Debt: $800 (20%)
+            </div>
+            
+            <div class="scenario-box">
+                <h3>Scenario 1: Raise Time</h3>
+                <p><strong>New income:</strong> $4,400 (+$400).</p>
+                <p><strong>Goal:</strong> Save more for travel.</p>
+                <p><strong>Adjustment:</strong> Add $200 to Savings/Debt ($1,000), $100 to Wants ($1,300), $100 to Needs ($2,100).</p>
+            </div>
+            
+            <div class="scenario-box">
+                <h3>Scenario 2: Surprise Vet Bill</h3>
+                <p><strong>Cost:</strong> $500 (one-time).</p>
+                <p><strong>Adjustment:</strong> Cut Wants by $250 ($950) and Savings/Debt by $250 ($550) this month.</p>
+            </div>
+            
+            <div class="scenario-box">
+                <h3>Scenario 3: New Baby</h3>
+                <p><strong>Extra costs:</strong> $300/month (ongoing).</p>
+                <p><strong>Adjustment:</strong> Raise Needs to $2,300, lower Wants to $1,000, Savings/Debt to $700.</p>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Your Turn: Pick one and adjust the budget.</h3>
+                <p><em>Example (Scenario 1):</em></p>
+                <div class="example-budget">
+                    Income: $4,400<br>
+                    Needs: $2,100<br>
+                    Wants: $1,300<br>
+                    Savings/Debt: $1,000
+                </div>
+                <p>Select a scenario and write your adjusted budget:</p>
+                <textarea id="scenario-adjustment" placeholder="Write your budget adjustment here..." rows="6"></textarea>
+            </div>
+        </section>
+
+        <!-- Section 7: Reflection – Plan Ahead -->
+        <section>
+            <h2>Reflection – Plan Ahead</h2>
+            <p>
+                Flexibility is about preparing, not just reacting.
+            </p>
+            
+            <h3>Prompts</h3>
+            <ol>
+                <li>What predictable change can you prep for now?</li>
+                <p><em>Example: "I'll save for a wedding next summer."</em></p>
+                
+                <li>How will you tackle a surprise, like a repair?</li>
+                <p><em>Example: "Cut extras and use my emergency fund."</em></p>
+            </ol>
+            
+            <div class="activity-box">
+                <h3>Activity: Write a "Flex Plan" for your "flex target." List two adjustments.</h3>
+                <p><em>Example: "For a move, I'll save $100/month now and cut subscriptions later."</em></p>
+                <textarea id="flex-plan" placeholder="Write your flex plan here..." rows="6"></textarea>
+            </div>
+        </section>
+
+        <!-- Section 8: Quiz – Test Your Skills -->
+        <section>
+            <h2>Quiz – Test Your Skills</h2>
+            <p>
+                Check your mastery with this quick quiz!
+            </p>
+            
+            <div class="quiz">
+                <div class="quiz-item">
+                    <p><strong>Question 1:</strong> Why keep your budget flexible?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q1" value="A" id="q1a">
+                        <label for="q1a">To confuse yourself</label><br>
+                        <input type="radio" name="q1" value="B" id="q1b">
+                        <label for="q1b">To manage life changes smoothly</label><br>
+                        <input type="radio" name="q1" value="C" id="q1c">
+                        <label for="q1c">To spend recklessly</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 2:</strong> What's a predictable change?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q2" value="A" id="q2a">
+                        <label for="q2a">Job loss</label><br>
+                        <input type="radio" name="q2" value="B" id="q2b">
+                        <label for="q2b">Buying a house</label><br>
+                        <input type="radio" name="q2" value="C" id="q2c">
+                        <label for="q2c">A storm</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 3:</strong> How does tracking help?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q3" value="A" id="q3a">
+                        <label for="q3a">Shows where to adjust</label><br>
+                        <input type="radio" name="q3" value="B" id="q3b">
+                        <label for="q3b">Makes you rich</label><br>
+                        <input type="radio" name="q3" value="C" id="q3c">
+                        <label for="q3c">Tracks the weather</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 4:</strong> Income drops—what's first?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q4" value="A" id="q4a">
+                        <label for="q4a">Slash everything</label><br>
+                        <input type="radio" name="q4" value="B" id="q4b">
+                        <label for="q4b">Protect needs, trim wants</label><br>
+                        <input type="radio" name="q4" value="C" id="q4c">
+                        <label for="q4c">Buy a car</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 5:</strong> Common mistake?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q5" value="A" id="q5a">
+                        <label for="q5a">Adjusting early</label><br>
+                        <input type="radio" name="q5" value="B" id="q5b">
+                        <label for="q5b">Over-cutting fun</label><br>
+                        <input type="radio" name="q5" value="C" id="q5c">
+                        <label for="q5c">Using data</label>
+                    </div>
+                </div>
+                
+                <button onclick="checkQuiz()">Submit Quiz</button>
+                <div id="quiz-result" class="result-box" style="display: none;"></div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2>Conclusion – You're a Budget Flex Master!</h2>
+            <p>
+                Congrats—you can now adjust your budget for anything life throws at you! It's a living tool that grows with you. With these strategies and practice, you're set to thrive.
+            </p>
+            
+            <h3>Next Up:</h3>
+            <ul>
+                <li>Lesson 4: Cutting Costs Smartly – Save without suffering.</li>
+                <li>Lesson 5: Emergency Fund Blueprint – Build your safety net.</li>
+            </ul>
+            
+            <h3>Action Steps:</h3>
+            <ul>
+                <li>Set a monthly budget review date.</li>
+                <li>Start a "Flex Fund"—even $10/month counts!</li>
+                <li>Keep flexing—you've got this!</li>
+            </ul>
+            
+            <div class="activity-box">
+                <a href="section2lesson4.html" class="cta-button">Next Lesson: Cutting Costs Smartly</a>
+                <a href="index.html" class="cta-button">Return to Course Overview</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="learn.html">Learn</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: rthompson25@bayschoolsf.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 FinanceCourse. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

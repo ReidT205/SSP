@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 4: Cutting Costs Smartly</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #28a745;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #28a745;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #28a745;
+            border-bottom: 2px solid #28a745;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #218838;
+        }
+        /* Lesson-specific styles */
+        .strategy-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .example-budget {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f2f2f2;
+        }
+        .cut-type-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .cut-type {
+            width: 45%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+        }
+        .dumb-cut {
+            background-color: #dc3545;
+        }
+        .smart-cut {
+            background-color: #28a745;
+        }
+        .step-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #28a745;
+        }
+        .hack-card {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .hack-title {
+            font-weight: bold;
+            color: #28a745;
+        }
+        .mistake-box {
+            background-color: #fff4f4;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .mistake-title {
+            font-weight: bold;
+            color: #dc3545;
+        }
+        .fix-title {
+            font-weight: bold;
+            color: #28a745;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 660;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'A') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'A') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'B') score++;
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 3. ${score >= 3 ? 'Perfect score! Great job!' : score >= 2 ? 'Good effort!' : 'Keep studying!'}`;
+            document.getElementById('quiz-result').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Budgeting Mastery: Lesson 4 – Cutting Costs Smartly</h1>
+        <p>Learn how to save money without sacrifice, find clever ways to cut costs, and fund the things that truly matter to you.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Learning!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview</h2>
+            <p>
+                Welcome back to the Budgeting Mastery series! By this point, you've crafted a flexible budget, honed your expense-tracking skills, and learned to adapt to life's twists and turns. Now, in Lesson 4, we're tackling an essential next step: cutting costs smartly. This isn't about slashing everything you enjoy or adopting a bare-bones lifestyle—it's about discovering clever, low-effort ways to save money while keeping your quality of life intact or even improving it. Imagine this as a treasure hunt: you're uncovering hidden savings in your budget to fund the things that truly matter to you.
+            </p>
+            <p>Here's what you'll gain from this ultra-detailed lesson:</p>
+            <ul>
+                <li>A clear understanding of why strategic cost-cutting accelerates your financial dreams.</li>
+                <li>The ability to distinguish between cuts that drain you and those that energize you.</li>
+                <li>A robust set of eight actionable strategies (up from seven!) to trim expenses across all budget areas.</li>
+                <li>Advanced techniques to analyze your spending data for maximum savings potential.</li>
+                <li>Psychological tools to stay motivated, avoid deprivation, and make saving fun.</li>
+                <li>A deep dive into common mistakes, with detailed fixes to ensure long-term success.</li>
+                <li>Hands-on activities with real-world scenarios to sharpen your skills.</li>
+            </ul>
+            <p>
+                By the end, you'll walk away with a personalized, step-by-step plan to cut costs seamlessly, tailored to your unique lifestyle. Let's transform saving into a skill you're proud to wield!
+            </p>
+        </section>
+
+        <!-- Introduction – Why Cutting Costs Isn't About Deprivation -->
+        <section id="section1">
+            <h2>Introduction – Why Cutting Costs Isn't About Deprivation</h2>
+            <p>
+                Picture this: You're browsing online, drooling over a sleek new laptop that's just out of reach because your budget's tight. Now imagine tweaking a few everyday expenses—like saving $50 a month on takeout without missing your favorite flavors—and suddenly, that laptop's yours, no guilt attached. That's the magic of smart cost-cutting: it's not about sacrifice; it's about efficiency—getting the same joy (or more!) for less money.
+            </p>
+            
+            <p>
+                What does "smart cutting" mean? It's about identifying and eliminating spending that doesn't add value to your life, while preserving or enhancing what does. You'll learn to spot waste, negotiate better deals, and make small, impactful changes that snowball into big savings—all without feeling like you're punishing yourself.
+            </p>
+            
+            <h3>Why it's worth mastering:</h3>
+            <ul>
+                <li><strong>Accelerate Your Goals:</strong> Redirect savings to pay off debt faster, build an emergency fund, or splurge on a dream purchase.</li>
+                <li><strong>Ease Financial Pressure:</strong> A leaner budget gives you breathing room for unexpected expenses.</li>
+                <li><strong>Empower Your Choices:</strong> Spend confidently on what sparks joy by ditching what doesn't.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                Meet Priya, a teacher who spent $120 monthly on convenience store snacks. By prepping homemade alternatives she loved, she cut that to $30—saving $1,080 a year. Now, she's funding a summer road trip with her family.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Your First Step – Reflect</h3>
+                <p>
+                    Think of one thing you'd love to spend more on if you freed up cash—maybe a cooking class, a weekend getaway, or a gift for someone special. Write it down as your "joy target" to fuel your motivation.
+                </p>
+                <p><em>Example: "I'd love to save for a pottery workshop."</em></p>
+                <textarea id="joy-target" placeholder="Write your joy target here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <p>
+                Imagine your budget as a garden. Smart cuts prune the weeds (wasteful spending), leaving more sunlight and water for the flowers (your goals and joys).
+            </p>
+        </section>
+
+        <!-- Section 1: "Dumb Cuts" vs. "Smart Cuts" – Know the Difference -->
+        <section>
+            <h2>"Dumb Cuts" vs. "Smart Cuts" – Know the Difference</h2>
+            <p>
+                Not all cost-cutting methods are created equal. Let's break down the two approaches to see why one sets you up for success while the other leads to frustration.
+            </p>
+            
+            <div class="cut-type-box">
+                <div class="cut-type dumb-cut">
+                    <h3>"Dumb Cuts"</h3>
+                    <p>The Short-Lived Struggle</p>
+                </div>
+                <div class="cut-type smart-cut">
+                    <h3>"Smart Cuts"</h3>
+                    <p>The Sustainable Win</p>
+                </div>
+            </div>
+            
+            <h3>"Dumb Cuts": The Short-Lived Struggle</h3>
+            <p>These are hasty, heavy-handed reductions that target things you care about or skimp on quality, making them hard to sustain.</p>
+            <h4>Examples:</h4>
+            <ul>
+                <li>Canceling your gym membership and losing your fitness routine.</li>
+                <li>Switching to the cheapest internet plan that lags during work calls.</li>
+                <li>Skipping all coffee dates with friends to save a few bucks.</li>
+            </ul>
+            <p><strong>Why They Fail:</strong> They spark resentment or backfire with hidden costs (like replacing low-quality items). You might save briefly, only to binge-spend later to "make up" for it.</p>
+            
+            <h4>Case Study</h4>
+            <p>Alex cut his grocery budget by 50%, buying only discount items. He hated the taste, gave up after two weeks, and splurged $200 on takeout to compensate.</p>
+            
+            <h3>"Smart Cuts": The Sustainable Win</h3>
+            <p>These are thoughtful, strategic reductions that trim fat without cutting into your happiness. They focus on areas you won't miss or find better alternatives for.</p>
+            <h4>Examples:</h4>
+            <ul>
+                <li>Switching to a mobile plan with identical data for $20 less.</li>
+                <li>Hosting a game night at home instead of an expensive bar outing.</li>
+                <li>Buying gently used furniture instead of full-price pieces.</li>
+            </ul>
+            <p><strong>Why They Work:</strong> They align with your values, feel rewarding, and stick because they don't disrupt your life. You're in control, not deprived.</p>
+            
+            <h4>Case Study</h4>
+            <p>Maria swapped her $60 cable package for a $15 streaming service with her favorite shows—saving $540 annually without missing a beat.</p>
+            
+            <div class="activity-box">
+                <h3>Activity: Identify the Cut Type</h3>
+                <p>Classify these as "dumb" or "smart" cuts:</p>
+                <ol>
+                    <li>Dropping your phone plan for a prepaid one with spotty service.</li>
+                    <li>Cooking a big batch of chili instead of ordering delivery twice a week.</li>
+                    <li>Buying dollar-store tools that break after one use.</li>
+                </ol>
+                <textarea id="cut-type" placeholder="Classify the cuts here..." rows="4"></textarea>
+                <div class="result-box">
+                    <p><strong>Answers:</strong></p>
+                    <ol>
+                        <li>Dumb</li>
+                        <li>Smart</li>
+                        <li>Dumb</li>
+                    </ol>
+                </div>
+                <p>Your Turn: Think of a "dumb cut" you've tried that fizzled out. Now, propose a "smart cut" to replace it.</p>
+                <p><em>Example: "I canceled my music app and missed it (dumb cut). I'll switch to a free version with ads I can handle (smart cut)."</em></p>
+                <textarea id="your-cuts" placeholder="Write about your dumb and smart cuts..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Cut Type</th>
+                    <th>Impact on Life</th>
+                    <th>Feels Like</th>
+                    <th>Sustainability</th>
+                </tr>
+                <tr>
+                    <td>Dumb Cuts</td>
+                    <td>Disrupts joy</td>
+                    <td>Punishment</td>
+                    <td>Low</td>
+                </tr>
+                <tr>
+                    <td>Smart Cuts</td>
+                    <td>Maintains joy</td>
+                    <td>Clever victory</td>
+                    <td>High</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 2: Eight Proven Strategies to Cut Costs Without Sacrifice -->
+        <section>
+            <h2>Eight Proven Strategies to Cut Costs Without Sacrifice</h2>
+            <p>
+                Here are eight detailed, actionable strategies to slash expenses across your budget. Each includes step-by-step guidance, examples, and pro tips to maximize your savings.
+            </p>
+            
+            <div class="strategy-box">
+                <h3>Strategy 1: Play the "Needs vs. Wants" Game</h3>
+                <p><strong>How It Works:</strong> Review your spending and label each expense as a "Need" (essentials like rent) or "Want" (extras like subscriptions). For each Want, ask: "Does this bring me joy, or is it autopilot spending?" Cut or scale back low-value Wants.</p>
+                
+                <h4>Step-by-Step:</h4>
+                <ol>
+                    <li>List last month's expenses.</li>
+                    <li>Mark Needs (e.g., groceries) and Wants (e.g., premium coffee).</li>
+                    <li>Rate Wants 1-5 for happiness (1 = "meh," 5 = "love it").</li>
+                    <li>Cut or reduce items rated 3 or below.</li>
+                </ol>
+                
+                <p><strong>Example:</strong> You spend $30/month on a gaming app you barely play (rated 2). Cancel it—save $360/year.</p>
+                
+                <p><strong>Pro Tip:</strong> Use the "30-Day Rule"—pause for 30 days before buying Wants rated 4 or 5. If the urge fades, you don't need it!</p>
+            </div>
+            
+            <div class="strategy-box">
+                <h3>Strategy 2: Audit Your Subscriptions</h3>
+                <p><strong>How It Works:</strong> Dig into every recurring charge—streaming, apps, memberships. Cancel unused ones, downgrade overlapping services, or negotiate better rates.</p>
+                
+                <h4>Step-by-Step:</h4>
+                <ol>
+                    <li>Check bank statements for all subscriptions.</li>
+                    <li>List each one with cost and usage (e.g., "Netflix, $15, watch weekly").</li>
+                    <li>Cut anything unused in 30+ days or redundant (e.g., two music apps).</li>
+                    <li>Call providers to ask for discounts.</li>
+                </ol>
+                
+                <p><strong>Example:</strong> You pay $12 for a magazine app you forgot about. Drop it—save $144/year.</p>
+                
+                <p><strong>Pro Tip:</strong> Use apps like Rocket Money or Trim to auto-detect and cancel subscriptions.</p>
+            </div>
+            
+            <div class="strategy-box">
+                <h3>Strategy 3: Slash Utility Bills</h3>
+                <p><strong>How It Works:</strong> Reduce energy, water, and internet costs with small habit changes or provider tweaks.</p>
+                
+                <h4>Step-by-Step:</h4>
+                <ol>
+                    <li>Check last month's bills for baseline costs.</li>
+                    <li>Swap to LED bulbs, unplug idle devices, or lower the thermostat 2°F.</li>
+                    <li>Research competitor rates and call your provider to match or beat them.</li>
+                </ol>
+                
+                <p><strong>Example:</strong> Switching to a $50 internet plan from $70 with the same speed saves $240/year.</p>
+                
+                <p><strong>Pro Tip:</strong> Install a $20 programmable thermostat—save up to $100/year on heating/cooling.</p>
+            </div>
+            
+            <div class="strategy-box">
+                <h3>Strategy 4: Bulk Buy Smartly</h3>
+                <p><strong>How It Works:</strong> Purchase non-perishables in larger quantities when unit prices drop, but only for items you'll use.</p>
+                
+                <h4>Step-by-Step:</h4>
+                <ol>
+                    <li>List staples you buy often (e.g., rice, soap).</li>
+                    <li>Compare unit prices at stores or online (e.g., $0.10/roll vs. $0.15/roll).</li>
+                    <li>Buy in bulk if savings exceed 20% and storage isn't an issue.</li>
+                </ol>
+                
+                <p><strong>Example:</strong> A 24-pack of paper towels saves $10/month over weekly buys—$120/year.</p>
+                
+                <p><strong>Pro Tip:</strong> Split bulk buys with a roommate to avoid overstocking.</p>
+            </div>
+            
+            <div class="strategy-box">
+                <h3>Strategy 5: DIY for Fun and Savings</h3>
+                <p><strong>How It Works:</strong> Replace paid services or products with homemade versions—think cooking, crafts, or repairs.</p>
+                
+                <h4>Step-by-Step:</h4>
+                <ol>
+                    <li>Identify one outsourced expense (e.g., $20 weekly latte).</li>
+                    <li>Find a DIY alternative (e.g., brew at home for $5).</li>
+                    <li>Test it for a week—keep if you enjoy it.</li>
+                </ol>
+                
+                <p><strong>Example:</strong> Making your own pizza instead of $15 delivery saves $10/meal.</p>
+                
+                <p><strong>Pro Tip:</strong> Watch YouTube tutorials to master DIY skills like bread-baking or furniture fixes.</p>
+            </div>
+            
+            <div class="strategy-box">
+                <h3>Strategy 6: Leverage Freebies and Discounts</h3>
+                <p><strong>How It Works:</strong> Tap into coupons, loyalty rewards, cashback offers, or free community resources.</p>
+                
+                <h4>Step-by-Step:</h4>
+                <ol>
+                    <li>Download apps like Ibotta or Fetch for grocery rebates.</li>
+                    <li>Sign up for store loyalty programs (e.g., Target Circle).</li>
+                    <li>Check local libraries or parks for free events.</li>
+                </ol>
+                
+                <p><strong>Example:</strong> A 25% off coupon on a $40 jacket saves $10.</p>
+                
+                <p><strong>Pro Tip:</strong> Use browser extensions like Honey to auto-apply discounts online.</p>
+            </div>
+            
+            <div class="strategy-box">
+                <h3>Strategy 7: Optimize Transportation</h3>
+                <p><strong>How It Works:</strong> Cut commuting or travel costs with alternatives like carpooling, biking, or remote work.</p>
+                
+                <h4>Step-by-Step:</h4>
+                <ol>
+                    <li>Calculate weekly transport costs (e.g., $40 gas).</li>
+                    <li>Test one change (e.g., bike to work twice weekly).</li>
+                    <li>Adjust based on savings and comfort.</li>
+                </ol>
+                
+                <p><strong>Example:</strong> Public transit at $2/trip vs. $10 gas saves $8/trip.</p>
+                
+                <p><strong>Pro Tip:</strong> Maintain your car (oil changes, tire pressure) to save $100s on repairs.</p>
+            </div>
+            
+            <div class="strategy-box">
+                <h3>Strategy 8: Negotiate Like a Pro</h3>
+                <p><strong>How It Works:</strong> Haggle bills, memberships, or big purchases to lower costs without changing habits.</p>
+                
+                <h4>Step-by-Step:</h4>
+                <ol>
+                    <li>Gather competitor offers (e.g., $40 gym vs. your $50 one).</li>
+                    <li>Call your provider, mention the better deal, and ask for a match.</li>
+                    <li>Be polite but firm—threaten to switch if needed.</li>
+                </ol>
+                
+                <p><strong>Example:</strong> Negotiating rent from $1,200 to $1,150 saves $600/year.</p>
+                
+                <p><strong>Pro Tip:</strong> Time negotiations near contract renewals for leverage.</p>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Build Your Strategy Trio</h3>
+                <p>Pick three strategies to try this month. Detail your plan for each.</p>
+                <p><em>Example: "1. Audit subscriptions—cancel $10 app. 2. Bulk buy rice—save $5/month. 3. Negotiate cable—aim for $15 off."</em></p>
+                <textarea id="strategy-trio" placeholder="Write your strategy trio here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Strategy</th>
+                    <th>Potential Annual Savings</th>
+                    <th>Ease (1-5)</th>
+                </tr>
+                <tr>
+                    <td>Cancel Unused App</td>
+                    <td>$360</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Bulk Buy Staples</td>
+                    <td>$120</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Negotiate Internet</td>
+                    <td>$240</td>
+                    <td>2</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 3: Mine Your Spending Data for Savings Gold -->
+        <section>
+            <h2>Mine Your Spending Data for Savings Gold</h2>
+            <p>
+                Your expense tracking from past lessons is a goldmine. Here's a detailed process to unearth savings opportunities.
+            </p>
+            
+            <h3>Step-by-Step Process</h3>
+            <ol>
+                <li><strong>Gather Your Data:</strong> Export or review 1-3 months of spending (via app, bank statements, or notes).</li>
+                <li><strong>Categorize Everything:</strong> Group into buckets (e.g., housing, food, fun).</li>
+                <li><strong>Spot the Leaks:</strong> Flag areas exceeding your budget or surprising you (e.g., $200 on impulse buys).</li>
+                <li><strong>Set a Cut Target:</strong> Choose one category and aim for a 10-25% reduction.</li>
+                <li><strong>Brainstorm Alternatives:</strong> List 2-3 smart cuts per leak (e.g., "shop sales" for clothes).</li>
+                <li><strong>Test and Track:</strong> Implement for two weeks, monitor savings, and refine.</li>
+            </ol>
+            
+            <h3>Common Leaks and Fixes</h3>
+            <ul>
+                <li><strong>Eating Out:</strong> Swap two $15 meals for $5 home-cooked—save $20.</li>
+                <li><strong>Shopping:</strong> Use a wishlist and wait for discounts—save $30.</li>
+                <li><strong>Utilities:</strong> Lower heat at night—save $10.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                Tomas reviewed his $400 grocery spend. He found $80 went to last-minute buys. Planning meals cut it to $320—saving $960/year.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Leak Hunt</h3>
+                <p>Using your data (or estimates), pick one category. Set a 15% cut goal and list two smart cuts.</p>
+                <p><em>Example: "Dining Out: $200 → $170. 1. Cook one extra meal ($20). 2. Use coupons ($10)."</em></p>
+                <textarea id="leak-hunt" placeholder="Write your leak hunt plan here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Category</th>
+                    <th>Current</th>
+                    <th>Target</th>
+                    <th>Savings</th>
+                    <th>Smart Cuts</th>
+                </tr>
+                <tr>
+                    <td>Groceries</td>
+                    <td>$400</td>
+                    <td>$340</td>
+                    <td>$60</td>
+                    <td>Meal plan, buy in bulk</td>
+                </tr>
+                <tr>
+                    <td>Fun</td>
+                    <td>$120</td>
+                    <td>$100</td>
+                    <td>$20</td>
+                    <td>Free events, host nights</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 4: Emotional Hacks to Make Saving a Joy -->
+        <section>
+            <h2>Emotional Hacks to Make Saving a Joy</h2>
+            <p>
+                Cutting costs can tug at your emotions. These five hacks keep it positive and sustainable.
+            </p>
+            
+            <div class="hack-card">
+                <p class="hack-title">Hack 1: Reframe as "Choosing"</p>
+                <p><strong>Mindset:</strong> You're not losing—you're prioritizing.</p>
+                <p><strong>Example:</strong> "I'm choosing $20 less on takeout for a concert ticket."</p>
+            </div>
+            
+            <div class="hack-card">
+                <p class="hack-title">Hack 2: Celebrate Every Win</p>
+                <p><strong>Mindset:</strong> Small savings are big victories.</p>
+                <p><strong>Example:</strong> Saved $10 on groceries? Watch a free movie night.</p>
+            </div>
+            
+            <div class="hack-card">
+                <p class="hack-title">Hack 3: Focus on Gains</p>
+                <p><strong>Mindset:</strong> Savings = progress toward freedom.</p>
+                <p><strong>Example:</strong> "$15 less on utilities = $15 more for my dream home."</p>
+            </div>
+            
+            <div class="hack-card">
+                <p class="hack-title">Hack 4: Gamify the Process</p>
+                <p><strong>Mindset:</strong> Turn cuts into a challenge.</p>
+                <p><strong>Example:</strong> "Can I shave $5 off my phone bill this month?"</p>
+            </div>
+            
+            <div class="hack-card">
+                <p class="hack-title">Hack 5: Visualize the Reward</p>
+                <p><strong>Mindset:</strong> Picture your joy target funded.</p>
+                <p><strong>Example:</strong> "Cutting $30 subscriptions = new hiking boots."</p>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Hack It Out</h3>
+                <p>Pick two hacks. Write how you'll use them this week.</p>
+                <p><em>Example: "1. Celebrate $10 saved with a tea break. 2. Visualize $25 toward a spa day."</em></p>
+                <textarea id="hack-it-out" placeholder="Write your hacks here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Hack</th>
+                    <th>Boosts</th>
+                    <th>Try This</th>
+                </tr>
+                <tr>
+                    <td>Reframe as Choosing</td>
+                    <td>Confidence</td>
+                    <td>Tie cuts to a goal</td>
+                </tr>
+                <tr>
+                    <td>Visualize Reward</td>
+                    <td>Excitement</td>
+                    <td>Sketch your joy target</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 5: Common Pitfalls – Avoid These Traps -->
+        <section>
+            <h2>Common Pitfalls – Avoid These Traps</h2>
+            <p>
+                Here's a deep dive into five pitfalls, with detailed prevention plans.
+            </p>
+            
+            <div class="mistake-box">
+                <p class="mistake-title">Mistake 1: Over-Cutting</p>
+                <p><strong>Problem:</strong> Slashing too much too fast leads to burnout.</p>
+                <p class="fix-title">Fix:</p>
+                <p>Cut one category by 10% first. Add more after 30 days.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <p class="mistake-title">Mistake 2: Quality Compromise</p>
+                <p><strong>Problem:</strong> Cheap buys fail fast (e.g., $10 shoes vs. $50 durable ones).</p>
+                <p class="fix-title">Fix:</p>
+                <p>Compare cost-per-use (e.g., $50 shoes/50 wears = $1/use).</p>
+            </div>
+            
+            <div class="mistake-box">
+                <p class="mistake-title">Mistake 3: Static Plans</p>
+                <p><strong>Problem:</strong> Cuts don't evolve with your life.</p>
+                <p class="fix-title">Fix:</p>
+                <p>Review monthly—swap a $10 cut that's tough for an easier one.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <p class="mistake-title">Mistake 4: Social Isolation</p>
+                <p><strong>Problem:</strong> Skipping friends to save feels lonely.</p>
+                <p class="fix-title">Fix:</p>
+                <p>Host a $0 movie night instead of a $30 bar tab.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <p class="mistake-title">Mistake 5: Ignoring Small Wins</p>
+                <p><strong>Problem:</strong> Overlooking $5 savings kills momentum.</p>
+                <p class="fix-title">Fix:</p>
+                <p>Track every dollar saved in a "win jar."</p>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Dodge the Trap</h3>
+                <p>Pick one pitfall you've hit before. Write a fix.</p>
+                <p><em>Example: "Over-cut groceries. Fix: Reduce by $20, not $50."</em></p>
+                <textarea id="dodge-trap" placeholder="Write your pitfall and fix here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Pitfall</th>
+                    <th>Sign</th>
+                    <th>Fix</th>
+                </tr>
+                <tr>
+                    <td>Over-Cutting</td>
+                    <td>Feeling deprived</td>
+                    <td>Start small, scale up</td>
+                </tr>
+                <tr>
+                    <td>Quality Compromise</td>
+                    <td>Replacing items often</td>
+                    <td>Calculate cost-per-use</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 6: Interactive Activity – Master Your Cuts -->
+        <section>
+            <h2>Interactive Activity – Master Your Cuts</h2>
+            <p>
+                Practice with Ravi's budget:
+            </p>
+            
+            <div class="example-budget">
+                Rent: $1,000<br>
+                Groceries: $300<br>
+                Dining Out: $180<br>
+                Utilities: $130<br>
+                Subscriptions: $60<br>
+                Fun: $100<br>
+                Savings: $200
+            </div>
+            
+            <p><strong>Task:</strong> Cut $100/month smartly. Suggest three cuts and alternatives.</p>
+            
+            <div class="activity-box">
+                <textarea id="master-cuts" placeholder="Write your cuts for Ravi's budget here..." rows="6"></textarea>
+                <div class="result-box">
+                    <p><strong>Answer:</strong></p>
+                    <ul>
+                        <li>Dining Out: $180 → $120 (save $60) – Cook two extra meals.</li>
+                        <li>Subscriptions: $60 → $40 (save $20) – Drop one app.</li>
+                        <li>Utilities: $130 → $110 (save $20) – Use LED bulbs.</li>
+                    </ul>
+                </div>
+                <p>Your Turn: Cut $75 from your budget. Detail your plan.</p>
+                <p><em>Example: "Groceries: $250 → $210 ($40) – bulk buy. Fun: $80 → $65 ($15) – free events."</em></p>
+                <textarea id="your-cuts-plan" placeholder="Write your own budget cuts here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Category</th>
+                    <th>Current</th>
+                    <th>New</th>
+                    <th>Savings</th>
+                    <th>How</th>
+                </tr>
+                <tr>
+                    <td>Dining Out</td>
+                    <td>$180</td>
+                    <td>$120</td>
+                    <td>$60</td>
+                    <td>Cook more</td>
+                </tr>
+                <tr>
+                    <td>Utilities</td>
+                    <td>$130</td>
+                    <td>$110</td>
+                    <td>$20</td>
+                    <td>Energy tweaks</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 7: Reflection – Link Cuts to Dreams -->
+        <section>
+            <h2>Reflection – Link Cuts to Dreams</h2>
+            <p>
+                Connect your savings to what excites you.
+            </p>
+            
+            <h3>Prompts</h3>
+            <ol>
+                <li>How will $50/month extra speed up a goal?</li>
+                <p><em>Example: "Pays off my credit card four months early."</em></p>
+                
+                <li>What's your joy target?</li>
+                <p><em>Example: "A new guitar."</em></p>
+            </ol>
+            
+            <div class="activity-box">
+                <h3>Activity: Cut-to-Joy Map</h3>
+                <p>Link one cut to your target.</p>
+                <p><em>Example: "Cut $20 dining out → guitar fund."</em></p>
+                <textarea id="cut-to-joy" placeholder="Write your cut-to-joy map here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Cut</th>
+                    <th>Savings</th>
+                    <th>Joy Target</th>
+                </tr>
+                <tr>
+                    <td>Dining Out</td>
+                    <td>$20</td>
+                    <td>Guitar Fund</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 8: Quiz – Prove Your Mastery -->
+        <section>
+            <h2>Quiz – Prove Your Mastery</h2>
+            <p>
+                Test your skills with this quick quiz!
+            </p>
+            
+            <div class="quiz">
+                <div class="quiz-item">
+                    <p><strong>Question 1:</strong> What's a smart cut?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q1" value="A" id="q1a">
+                        <label for="q1a">Cuts that keep joy</label><br>
+                        <input type="radio" name="q1" value="B" id="q1b">
+                        <label for="q1b">Cuts that hurt</label><br>
+                        <input type="radio" name="q1" value="C" id="q1c">
+                        <label for="q1c">Random cuts</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 2:</strong> Best utility fix?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q2" value="A" id="q2a">
+                        <label for="q2a">LED bulbs</label><br>
+                        <input type="radio" name="q2" value="B" id="q2b">
+                        <label for="q2b">Higher bills</label><br>
+                        <input type="radio" name="q2" value="C" id="q2c">
+                        <label for="q2c">Ignore it</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 3:</strong> Pitfall to avoid?</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q3" value="A" id="q3a">
+                        <label for="q3a">Reviewing cuts</label><br>
+                        <input type="radio" name="q3" value="B" id="q3b">
+                        <label for="q3b">Over-cutting</label><br>
+                        <input type="radio" name="q3" value="C" id="q3c">
+                        <label for="q3c">Saving small</label>
+                    </div>
+                </div>
+                
+                <button onclick="checkQuiz()">Submit Quiz</button>
+                <div id="quiz-result" class="result-box" style="display: none;"></div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2>Conclusion – You're a Cost-Cutting Star!</h2>
+            <p>
+                Well done—you've mastered cutting costs without sacrifice! With these tools, you can slim your budget, boost your savings, and still savor life's joys. Saving smart isn't about less—it's about more of what you love.
+            </p>
+            
+            <h3>Next Up:</h3>
+            <ul>
+                <li>Lesson 5: Emergency Fund Blueprint – Build your safety net.</li>
+            </ul>
+            
+            <h3>Action Steps:</h3>
+            <ul>
+                <li>Try one smart cut this week.</li>
+                <li>Track your savings and celebrate every win!</li>
+                <li>Keep it up—you're on your way to financial mastery!</li>
+            </ul>
+            
+            <div class="activity-box">
+                <a href="section2lesson5.html" class="cta-button">Next Lesson: Emergency Fund Blueprint</a>
+                <a href="index.html" class="cta-button">Return to Course Overview</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="learn.html">Learn</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: rthompson25@bayschoolsf.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 FinanceCourse. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

@@ -4,438 +4,1453 @@
     <meta charset="UTF-8">
     <title>Finance Course</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* Global Styles */
+        /* ====== GLOBAL STYLES ====== */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #60a5fa;
+            --secondary: #0284c7;
+            --accent: #f97316;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gradient: linear-gradient(120deg, #2563eb, #0284c7);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-color: var(--light);
         }
+        
         a {
             text-decoration: none;
             color: inherit;
+            transition: all 0.3s ease;
         }
-        /* Header */
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-primary:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: -1;
+            transition: all 0.5s ease;
+        }
+        
+        .btn-primary:hover:before {
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 1.25rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 50px;
+        }
+        
+        .section-description {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* ====== HEADER ====== */
         header {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+            padding: 0.75rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
+        
+        header.scrolled {
+            box-shadow: var(--shadow-md);
+            padding: 0.5rem 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
         .navbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            max-width: 1200px;
-            padding: 20px;
-            margin: 0 auto;
+            padding: 0.5rem 0;
         }
+        
         .logo {
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
         }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 2rem;
+            align-items: center;
         }
+        
         .nav-links a {
-            font-size: 16px;
-            padding: 5px 0;
-            transition: color 0.3s;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--dark);
+            position: relative;
         }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+        
         .nav-links a:hover {
-            color: #007BFF;
+            color: var(--primary);
         }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
         .menu-toggle {
             display: none;
-            font-size: 24px;
+            font-size: 1.5rem;
             cursor: pointer;
+            color: var(--primary);
         }
-        /* Hero Section */
+        
+        /* ====== HERO SECTION ====== */
         .hero {
-            background: linear-gradient(45deg, #007BFF, #00C6FF);
-            color: #fff;
-            text-align: center;
-            padding: 100px 20px;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            padding: 100px 0 60px 0;
+            overflow: hidden;
         }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' fill-opacity='0.05' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'%3E%3C/path%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+        
         .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-in-out;
         }
+        
         .hero p {
-            font-size: 20px;
-            margin-bottom: 40px;
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease-in-out 0.2s;
+            animation-fill-mode: both;
+            opacity: 0.9;
         }
+        
         .hero .cta-button {
-            background-color: #fff;
-            color: #4169E1;
-            padding: 15px 30px;
-            font-size: 18px;
+            background-color: white;
+            color: var(--primary);
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            animation: fadeInUp 1s ease-in-out 0.4s;
+            animation-fill-mode: both;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
+        
         .hero .cta-button:hover {
-            background-color: #f1f1f1;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
-        /* Why Us Section */
+        
+        .hero-image-container {
+            position: absolute;
+            bottom: -5rem;
+            right: -1rem;
+            width: 550px;
+            animation: float 5s ease-in-out infinite;
+            display: none;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: auto;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-in-out 0.6s;
+            animation-fill-mode: both;
+        }
+        
+        .stat {
+            text-align: center;
+            color: white;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .stat-text {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 2;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+        
+        /* ====== WHY US SECTION ====== */
         .why-us {
-            padding: 60px 20px;
-            background-color: #fff;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+            background-color: white;
         }
-        .why-us h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 36px;
+        
+        .why-us::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            left: 0;
+            right: 0;
+            height: 250px;
+            background-color: white;
+            transform: skewY(-5deg);
+            z-index: 0;
         }
+        
         .why-us-content {
-            display: flex;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
         }
+        
         .why-us-item {
-            background-color: #fff;
-            border-radius: 10px;
-            flex: 1 1 300px;
-            padding: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-        .why-us-item:hover {
-            transform: translateY(-5px);
-        }
-        .why-us-item h3 {
-            margin-bottom: 15px;
-            font-size: 24px;
-        }
-        .why-us-item p {
-            font-size: 16px;
-            color: #555;
-        }
-        /* Features Section */
-        .features {
-            background-color: #f1f1f1;
-            padding: 60px 20px;
-        }
-        .features h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 36px;
-        }
-        .feature-cards {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 100%;
         }
+        
+        .why-us-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .why-us-item::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 0 0 50px 50px;
+            transition: width 0.3s ease;
+        }
+        
+        .why-us-item:hover::before {
+            width: 80%;
+        }
+        
+        .why-us-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        
+        .why-us-item h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .why-us-item p {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        /* ====== FEATURES SECTION ====== */
+        .features {
+            padding: 100px 0;
+            background-color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='152' height='152' viewBox='0 0 152 152'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='temple' fill='%232563eb' fill-opacity='0.03'%3E%3Cpath d='M152 150v2H0v-2h28v-8H8v-20H0v-2h8V80h42v20h20v42H30v8h90v-8H80v-42h20V80h42v40h8V30h-8v40h-42V50H80V8h40V0h2v8h20v20h8V0h2v150zm-2 0v-28h-8v20h-20v8h28zM82 30v18h18V30H82zm20 18h20v20h18V30h-20V10H82v18h20v20zm0 2v18h18V50h-18zm20-22h18V10h-18v18zm-54 92v-18H50v18h18zm-20-18H28V82H10v38h20v20h38v-18H48v-20zm0-2V82H30v18h18zm-20 22H10v18h18v-18zm54 0v18h38v-20h20V82h-18v20h-20v20H82zm18-20H82v18h18v-18zm2-2h18V82h-18v18zm20 40v-18h18v18h-18zM30 0h-2v8H8v20H0v2h8v40h42V50h20V8H30V0zm20 48h18V30H50v18zm18-20H48v20H28v20H10V30h20V10h38v18zM30 50h18v18H30V50zm-2-40H10v18h18V10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
         .feature-card {
-            background-color: #fff;
-            border-radius: 10px;
-            flex: 1;
-            min-width: 250px;
-            max-width: 350px;
-            padding: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
         }
+        
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
         }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+        
         .feature-card h3 {
-            margin-bottom: 15px;
-            font-size: 24px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
         }
+        
         .feature-card p {
-            font-size: 16px;
-            color: #555;
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
-        /* Feedback Section */
+        
+        .feature-card .read-more {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: auto;
+        }
+        
+        .feature-card .read-more:hover {
+            color: var(--primary-dark);
+        }
+        
+        /* ====== FEEDBACK SECTION ====== */
         .feedback {
-            padding: 60px 20px;
-            background-color: #fff;
+            padding: 100px 0;
+            background-color: white;
             position: relative;
         }
-        .feedback h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 36px;
-        }
-        .feedback-slider {
+        
+        .feedback-slider-container {
+            position: relative;
             max-width: 800px;
             margin: 0 auto;
-            overflow: hidden;
-            position: relative;
         }
+        
+        .feedback-slider {
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+        }
+        
         .feedback-slide {
             display: flex;
             transition: transform 0.5s ease-in-out;
         }
+        
         .feedback-item {
             min-width: 100%;
             box-sizing: border-box;
-            padding: 20px;
+            padding: 40px;
+            background: white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .feedback-item:before {
+            content: '\201C';
+            font-size: 5rem;
+            line-height: 0;
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            color: var(--primary-light);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+        
+        .feedback-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            border: 3px solid var(--primary-light);
+            object-fit: cover;
+        }
+        
+        .feedback-item p {
+            font-size: 1.125rem;
+            color: var(--dark);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
             text-align: center;
         }
-        .feedback-item p {
-            font-size: 18px;
-            color: #555;
-            margin-bottom: 15px;
-        }
+        
         .feedback-item h4 {
-            font-size: 20px;
-            color: #333;
+            font-size: 1.125rem;
+            color: var(--primary);
+            font-weight: 700;
         }
+        
+        .feedback-job {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        .feedback-rating {
+            display: flex;
+            gap: 5px;
+            color: var(--warning);
+            font-size: 1.25rem;
+            margin-top: 0.5rem;
+        }
+        
         /* Navigation Buttons */
         .feedback-nav {
             position: absolute;
             top: 50%;
-            left: 15%;
-            width: 70%;
-            display: flex;
-            justify-content: space-between;
+            left: 0;
+            right: 0;
             transform: translateY(-50%);
-            pointer-events: none;
-        }
-        .feedback-nav button {
-            background-color: rgba(255, 255, 255, 0.7);
-            border: none;
-            font-size: 30px;
-            cursor: pointer;
-            color: #007BFF;
-            transition: background-color 0.3s;
-            pointer-events: all;
-        }
-        .feedback-nav button:hover {
-            background-color: rgba(255, 255, 255, 1);
-        }
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 40px 20px;
-        }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
+            pointer-events: none;
+            z-index: 10;
+            padding: 0 -20px;
         }
+        
+        .feedback-nav button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            pointer-events: all;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .feedback-nav button:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.05);
+        }
+        
+        .feedback-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #e5e7eb;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background-color: var(--primary);
+            transform: scale(1.2);
+        }
+        
+        /* ====== CALL TO ACTION ====== */
+        .cta {
+            padding: 80px 0;
+            background: var(--gradient);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            text-align: center;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta .btn-light {
+            background-color: white;
+            color: var(--primary);
+            font-weight: 600;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .cta .btn-light:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* ====== FOOTER ====== */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
         .footer-section {
-            flex: 1 1 200px;
-            margin: 10px;
+            position: relative;
         }
+        
         .footer-section h3 {
-            margin-bottom: 15px;
-            font-size: 18px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
         }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-section p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
         .footer-section ul {
             list-style: none;
             padding: 0;
         }
+        
         .footer-section ul li {
-            margin-bottom: 10px;
+            margin-bottom: 1rem;
         }
+        
         .footer-section ul li a {
-            color: #fff;
-            transition: color 0.3s;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        
+        .footer-section ul li a i {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
         .footer-section ul li a:hover {
-            color: #ccc;
+            color: white;
+            transform: translateX(5px);
         }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
         .footer-bottom {
             text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #ccc;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
         }
-        /* Responsive Design */
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            z-index: 99;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* ====== RESPONSIVE DESIGN ====== */
+        @media (min-width: 992px) {
+            .hero-content {
+                text-align: left;
+                margin-left: 4rem;
+            }
+            
+            .hero-image-container {
+                display: block;
+            }
+            
+            .hero-image {
+                max-width: 550px;
+            }
+            
+            .hero-stats {
+                justify-content: flex-start;
+                margin-left: 1rem;
+            }
+        }
+        
+        @media (max-width: 991px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.75rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+        }
+        
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow-md);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 999;
             }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
             .menu-toggle {
                 display: block;
             }
-            .features h2, .why-us h2, .feedback h2, footer h3 {
-                font-size: 28px;
-            }
+            
             .hero h1 {
-                font-size: 36px;
+                font-size: 2.25rem;
             }
+            
             .hero p {
-                font-size: 18px;
+                font-size: 1rem;
             }
-            .why-us-content {
-                flex-direction: column;
-                align-items: center;
-            }
-            .feedback-item p {
-                font-size: 16px;
-            }
+            
             .feedback-nav button {
-                font-size: 24px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .cta h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-section {
+                margin-bottom: 2rem;
             }
         }
-        @media (max-width: 600px) {
-            .feature-card, .why-us-item, .footer-section {
-                min-width: 80%;
-                margin: 0 auto 20px;
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .section-description {
+                font-size: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 0.95rem;
+            }
+            
+            .hero .cta-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .why-us-item, .feature-card, .feedback-item {
+                padding: 25px 20px;
+            }
+            
+            .feedback-item p {
+                font-size: 1rem;
+            }
+            
+            .cta h2 {
+                font-size: 1.75rem;
+            }
+            
+            .cta p {
+                font-size: 1rem;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                right: 15px;
+                bottom: 15px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <nav class="navbar">
-            <div class="logo"><a href="index.html">FinanceCourse</a></div>
-            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
-            <div class="nav-links" id="nav-links">
-                <a href="learn.html">Learn</a>
-                <a href="about.html">About</a>
-            </div>
-        </nav>
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Finance<span>Course</span></a>
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="nav-links" id="nav-links">
+                    <a href="learn.html"><i class="fas fa-graduation-cap"></i> Learn</a>
+                    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <h1>Master Your Financial Future</h1>
-        <p>Begin your journey to financial literacy and independence today.</p>
-        <button class="cta-button" onclick="location.href='learn.html'">Get Started</button>
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Master Your Financial Future</h1>
+                <p>Begin your journey to financial literacy and independence today with our comprehensive, easy-to-follow finance courses.</p>
+                <button class="cta-button" onclick="location.href='learn.html'">
+                    <i class="fas fa-rocket"></i> Start Learning Now
+                </button>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number"><i class="fas fa-book-open"></i> 20</div>
+                        <div class="stat-text">Courses</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number"><i class="fas fa-users"></i> 5K+</div>
+                        <div class="stat-text">Students</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number"><i class="fas fa-star"></i> 4.9</div>
+                        <div class="stat-text">Rating</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-image-container">
+                <img src="https://illustrations.popsy.co/amber/student-studying.svg" alt="Financial Learning" class="hero-image">
+            </div>
+        </div>
+        
+        <a href="#why-us" class="scroll-indicator" aria-label="Scroll down">
+            <i class="fas fa-angle-down"></i>
+        </a>
     </section>
 
     <!-- Why Us Section -->
-    <section class="why-us">
-        <h2>Why Choose Us</h2>
-        <div class="why-us-content">
-            <div class="why-us-item">
-                <h3>Comprehensive Curriculum</h3>
-                <p>Our courses cover all aspects of financial literacy, ensuring you get a well-rounded education.</p>
-            </div>
-            <div class="why-us-item">
-                <h3>Expert Instructors</h3>
-                <p>Learn from industry professionals with years of experience in finance and education.</p>
-            </div>
-            <div class="why-us-item">
-                <h3>Flexible Learning</h3>
-                <p>Access our materials anytime, anywhere, and learn at your own pace.</p>
+    <section class="why-us" id="why-us">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Why Choose Us</h2>
+            <p class="section-description" data-aos="fade-up">Our unique approach to financial education ensures you'll gain practical skills and knowledge you can apply immediately.</p>
+            
+            <div class="why-us-content">
+                <div class="why-us-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="why-us-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Comprehensive Curriculum</h3>
+                    <p>Our courses cover all aspects of financial literacy from basic budgeting to advanced investing strategies, ensuring you get a well-rounded education tailored to your level.</p>
+                </div>
+                
+                <div class="why-us-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="why-us-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Expert Instructors</h3>
+                    <p>Learn from certified financial advisors and industry professionals with years of experience in both finance and education who can break down complex concepts into simple steps.</p>
+                </div>
+                
+                <div class="why-us-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="why-us-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Flexible Learning</h3>
+                    <p>Access our materials anytime, anywhere, and learn at your own pace. Our platform is designed to fit into your busy schedule, with mobile-friendly lessons you can take on the go.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="features">
-        <h2>What You'll Learn</h2>
-        <div class="feature-cards">
-            <div class="feature-card">
-                <h3>Personal Finance</h3>
-                <p>Learn how to manage your money effectively and build a secure financial future.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Investing Strategies</h3>
-                <p>Understand the basics of investing and how to grow your wealth over time.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Risk Management</h3>
-                <p>Discover how to identify and mitigate financial risks in your life.</p>
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">What You'll Learn</h2>
+            <p class="section-description" data-aos="fade-up">Our curriculum is designed to give you practical skills you can apply to your financial life immediately.</p>
+            
+            <div class="feature-cards">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3>Personal Finance</h3>
+                    <p>Master the fundamentals of budgeting, saving, and managing debt. Learn how to track your spending, create an emergency fund, and develop healthy financial habits that last a lifetime.</p>
+                    <a href="learn.html" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Investing Strategies</h3>
+                    <p>Understand the basics of investing, from stocks and bonds to mutual funds and ETFs. Discover how to build a diversified portfolio aligned with your goals and risk tolerance.</p>
+                    <a href="learn.html" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Risk Management</h3>
+                    <p>Learn how to identify and mitigate financial risks through insurance, diversification, and proper planning. Protect your assets and prepare for unexpected financial challenges.</p>
+                    <a href="learn.html" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Feedback Section -->
     <section class="feedback">
-        <h2>What Our Students Say</h2>
-        <div class="feedback-slider" id="feedback-slider">
-            <div class="feedback-slide">
-                <div class="feedback-item">
-                    <p>"Finally found financial advice that doesn't make me feel like I'm reading ancient Greek. Clear, simple, and no judgment about my impulse shopping habit."</p>
-                    <h4>- Mike T.</h4>
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">What Our Students Say</h2>
+            <p class="section-description" data-aos="fade-up">Don't just take our word for it - hear from students who have transformed their financial lives through our courses.</p>
+            
+            <div class="feedback-slider-container" data-aos="fade-up">
+                <div class="feedback-slider" id="feedback-slider">
+                    <div class="feedback-slide">
+                        <div class="feedback-item">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Mike T." class="feedback-avatar">
+                            <p>"Finally found financial advice that doesn't make me feel like I'm reading ancient Greek. Clear, simple, and no judgment about my impulse shopping habit."</p>
+                            <h4>Mike Thompson</h4>
+                            <div class="feedback-job">Marketing Specialist</div>
+                            <div class="feedback-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="feedback-item">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria T." class="feedback-avatar">
+                            <p>"The budgeting tools changed my life! Finally figured out where my paycheck was going - turns out buying artisanal coffee 3x a day adds up. Who knew?"</p>
+                            <h4>Maria Torres</h4>
+                            <div class="feedback-job">Freelance Designer</div>
+                            <div class="feedback-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="feedback-item">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="John D." class="feedback-avatar">
+                            <p>"This platform taught me more about money management than four years of college. And it was definitely cheaper!"</p>
+                            <h4>John Davis</h4>
+                            <div class="feedback-job">Software Engineer</div>
+                            <div class="feedback-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <div class="feedback-item">
+                            <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Rachel M." class="feedback-avatar">
+                            <p>"I used to make financial decisions by consulting my cat. Thanks to this platform, I've upgraded to actual market analysis. Though sometimes I still run things by Mr. Whiskers, just in case."</p>
+                            <h4>Rachel Martinez</h4>
+                            <div class="feedback-job">Elementary Teacher</div>
+                            <div class="feedback-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="feedback-item">
+                            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Greg T." class="feedback-avatar">
+                            <p>"Used to think 'diversification' meant having two different checking accounts. Thanks to the educational resources here, I now have a proper investment strategy!"</p>
+                            <h4>Greg Thomas</h4>
+                            <div class="feedback-job">Retail Manager</div>
+                            <div class="feedback-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="feedback-item">
+                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Zachary L." class="feedback-avatar">
+                            <p>"After using the budget tracker for a month, I realized I was spending $400 on rubber ducks. RUBBER DUCKS! Now I'm investing that money instead. My bathtub is emptier but my wallet is fuller."</p>
+                            <h4>Zachary Lee</h4>
+                            <div class="feedback-job">Graphic Designer</div>
+                            <div class="feedback-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="feedback-item">
-                    <p>"The budgeting tools changed my life! Finally figured out where my paycheck was going - turns out buying artisanal coffee 3x a day adds up. Who knew?"</p>
-                    <h4>- Maria T.</h4>
+                <div class="feedback-nav">
+                    <button id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                    <button id="nextBtn"><i class="fas fa-chevron-right"></i></button>
                 </div>
-                <div class="feedback-item">
-                    <p>"This platform taught me more about money management than four years of college. And it was definitely cheaper!"</p>
-                    <h4>- John D.</h4>
-                </div>
-                <div class="feedback-item">
-                    <p>"I used to make financial decisions by consulting my cat. Thanks to this platform, I've upgraded to actual market analysis. Though sometimes I still run things by Mr. Whiskers, just in case."</p>
-                    <h4>- Rachel M.</h4>
-                </div>
-                <div class="feedback-item">
-                    <p>"Used to think 'diversification' meant having two different checking accounts. Thanks to the educational resources here, I now have a proper investment strategy!"</p>
-                    <h4>- Greg T.</h4>
-                </div>
-                <div class="feedback-item">
-                    <p>"After using the budget tracker for a month, I realized I was spending $400 on rubber ducks. RUBBER DUCKS! Now I'm investing that money instead. My bathtub is emptier but my wallet is fuller."</p>
-                    <h4>- Zachary L.</h4>
+                <div class="feedback-dots" id="feedback-dots">
+                    <!-- Dots will be generated by JavaScript -->
                 </div>
             </div>
         </div>
-        <div class="feedback-nav">
-            <button id="prevBtn">&#10094;</button>
-            <button id="nextBtn">&#10095;</button>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Take Control of Your Financial Future?</h2>
+                <p>Join thousands of students who have already transformed their relationship with money through our comprehensive financial education program.</p>
+                <a href="learn.html" class="btn btn-light">Start Your Journey Today <i class="fas fa-arrow-right"></i></a>
+            </div>
         </div>
     </section>
 
     <!-- Footer Section -->
-    <!-- New Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>About Us</h3>
-                <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About FinanceCourse</h3>
+                    <p>We're dedicated to providing accessible financial education that empowers everyone to build a secure and prosperous future, regardless of their background or starting point.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="learn.html"><i class="fas fa-graduation-cap"></i> Learn</a></li>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Courses</h3>
+                    <ul>
+                        <li><a href="section1lesson1.html"><i class="fas fa-coins"></i> Money Mindset & Basics</a></li>
+                        <li><a href="section2lesson1.html"><i class="fas fa-piggy-bank"></i> Designing Your Budget</a></li>
+                        <li><a href="section3lesson1.html"><i class="fas fa-chart-line"></i> Power of Investing</a></li>
+                        <li><a href="section4lesson1.html"><i class="fas fa-shield-alt"></i> Financial Risk Management</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="mailto:rthompson25@bayschoolsf.org"><i class="fas fa-envelope"></i> rthompson25@bayschoolsf.org</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> San Francisco, CA</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="learn.html">Learn</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
+            
+            <div class="footer-bottom">
+                &copy; 2024 FinanceCourse. All rights reserved.
             </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>Email: rthompson25@bayschoolsf.org</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2024 FinanceCourse. All rights reserved.
         </div>
     </footer>
 
-    <!-- JavaScript for Menu Toggle -->
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- JavaScript -->
     <script>
-        function toggleMenu() {
+        // Initialize AOS Animation Library
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                offset: 100
+            });
+            
+            // Menu Toggle
+            const menuToggle = document.getElementById('menu-toggle');
             const navLinks = document.getElementById('nav-links');
-            navLinks.classList.toggle('active');
-        }
-
-        // JavaScript for Feedback Slider
-        const slider = document.getElementById('feedback-slider');
-        const slide = slider.querySelector('.feedback-slide');
-        const nextBtn = document.getElementById('nextBtn');
-        const prevBtn = document.getElementById('prevBtn');
-        let currentIndex = 0;
-
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % slide.children.length;
-            updateSlidePosition();
+            
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+                
+                if (menuToggle.classList.contains('active')) {
+                    menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Header Scroll Effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Feedback Slider
+            const slider = document.getElementById('feedback-slider');
+            const slide = slider.querySelector('.feedback-slide');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const dotsContainer = document.getElementById('feedback-dots');
+            const slideItems = slide.children;
+            let currentIndex = 0;
+            
+            // Create dots for each slide
+            for (let i = 0; i < slideItems.length; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    goToSlide(i);
+                });
+                dotsContainer.appendChild(dot);
+            }
+            
+            // Update dots
+            const updateDots = () => {
+                const dots = document.querySelectorAll('.dot');
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            };
+            
+            // Go to slide
+            const goToSlide = (index) => {
+                currentIndex = index;
+                updateSlidePosition();
+                updateDots();
+            };
+            
+            // Next slide
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slideItems.length;
+                updateSlidePosition();
+                updateDots();
+            });
+            
+            // Previous slide
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slideItems.length) % slideItems.length;
+                updateSlidePosition();
+                updateDots();
+            });
+            
+            // Update slide position
+            const updateSlidePosition = () => {
+                slide.style.transform = `translateX(-${currentIndex * 100}%)`;
+            };
+            
+            // Auto slide
+            let slideInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % slideItems.length;
+                updateSlidePosition();
+                updateDots();
+            }, 5000);
+            
+            // Pause auto slide on hover
+            slider.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            slider.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % slideItems.length;
+                    updateSlidePosition();
+                    updateDots();
+                }, 5000);
+            });
+            
+            // Back to top button
+            const backToTopBtn = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Scroll indicator
+            document.querySelector('.scroll-indicator').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('why-us').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
-
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + slide.children.length) % slide.children.length;
-            updateSlidePosition();
-        });
-
-        function updateSlidePosition() {
-            slide.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
-        }
     </script>
 </body>
 </html>

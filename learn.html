@@ -4,629 +4,823 @@
     <meta charset="UTF-8">
     <title>Learn - Finance Course</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* Global Styles */
+        /* ====== GLOBAL STYLES ====== */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #60a5fa;
+            --secondary: #0284c7;
+            --accent: #f97316;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gradient: linear-gradient(120deg, #2563eb, #0284c7);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-color: var(--light);
         }
+        
         a {
             text-decoration: none;
             color: inherit;
+            transition: all 0.3s ease;
         }
-        /* Header */
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-primary:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: -1;
+            transition: all 0.5s ease;
+        }
+        
+        .btn-primary:hover:before {
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        
+        /* ====== HEADER ====== */
         header {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+            padding: 0.75rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
+        
+        header.scrolled {
+            box-shadow: var(--shadow-md);
+            padding: 0.5rem 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
         .navbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            max-width: 1200px;
-            padding: 20px;
-            margin: 0 auto;
+            padding: 0.5rem 0;
         }
+        
         .logo {
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
         }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 2rem;
+            align-items: center;
         }
+        
         .nav-links a {
-            font-size: 16px;
-            padding: 5px 0;
-            transition: color 0.3s;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--dark);
+            position: relative;
         }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+        
         .nav-links a:hover {
-            color: #007BFF;
+            color: var(--primary);
         }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
         .menu-toggle {
             display: none;
-            font-size: 24px;
+            font-size: 1.5rem;
             cursor: pointer;
+            color: var(--primary);
         }
-        /* Hero Section */
+        
+        /* ====== HERO SECTION ====== */
         .hero {
+            position: relative;
+            min-height: 50vh;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            background: linear-gradient(45deg, #007BFF, #00C6FF);
-            color: #fff;
-            padding: 100px 20px;
-        }
-        .hero-content {
-            flex: 1;
-        }
-        .hero-content h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        .hero-content p {
-            font-size: 20px;
-            margin-bottom: 40px;
-        }
-        .hero-image {
-            flex: 1;
-            display: flex;
             justify-content: center;
+            background: var(--gradient);
+            padding: 120px 0 60px 0;
+            overflow: hidden;
         }
-        .hero-image img {
-            max-width: 100%;
-            height: auto;
-        }
-        /* Featured Section */
-        .featured {
-            padding: 60px 20px;
-            background-color: #f1f1f1;
-        }
-        .featured h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 36px;
-        }
-        .featured-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-        .featured-item {
-            background-color: #fff;
-            border-radius: 10px;
-            width: 250px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .featured-item img {
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' fill-opacity='0.05' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'%3E%3C/path%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        
+        .hero-content h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 5%;
+            bottom: 0;
+            width: 400px;
             height: auto;
-            border-radius: 10px;
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+            display: none;
         }
-        .featured-item .category {
-            font-size: 14px;
-            color: #007BFF;
-            margin-top: 10px;
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
-        .featured-item h3 {
-            margin: 10px 0;
-            font-size: 20px;
-            font-weight: bold;
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .featured-item p {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 15px;
-        }
-        .featured-item a {
-            color: #007BFF;
-            text-decoration: underline;
-            font-size: 16px;
-        }
-        /* Lessons Section */
+        
+        /* ====== LESSONS SECTION ====== */
         .lessons {
-            padding: 60px 20px;
-            background-color: #fff;
+            padding: 80px 20px;
+            background-color: var(--light);
+            position: relative;
         }
-        .lessons h2 {
+        
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             text-align: center;
-            margin-bottom: 10px;
-            font-size: 36px;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 1.25rem;
         }
-        .lessons p.description {
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 50px;
+        }
+        
+        .section-description {
             text-align: center;
-            font-size: 18px;
-            margin-bottom: 50px;
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-            color: #555;
+            animation: fadeIn 1s ease-in-out;
         }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
         .categories {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
         }
+        
         .category-section {
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
         }
+        
+        .category-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient);
+        }
+        
+        .category-section:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
         .category-section h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
             cursor: pointer;
             position: relative;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            font-weight: 600;
         }
+        
+        .category-section h3 i {
+            margin-right: 10px;
+            font-size: 1.4rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
         .category-section h3::after {
             content: '\25BC';
             position: absolute;
             right: 0;
-            font-size: 18px;
+            font-size: 0.9rem;
+            transition: transform 0.3s;
+            color: var(--gray);
         }
+        
         .lessons-list {
             display: none;
-            margin-top: 10px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 15px;
         }
+        
         .lesson-item {
-            padding: 8px;
-            border-bottom: 1px solid #eaeaea;
-            font-size: 16px;
-            color: #555;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: var(--dark);
+            background-color: rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
         }
-        .lesson-item:last-child {
-            border-bottom: none;
+        
+        .lesson-item i {
+            margin-right: 10px;
+            color: var(--primary);
+            font-size: 1rem;
         }
+        
+        .lesson-item:hover {
+            background-color: rgba(37, 99, 235, 0.08);
+            transform: translateX(5px);
+        }
+        
+        .lesson-item a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            font-weight: 500;
+        }
+        
+        .lesson-item a:hover {
+            color: var(--primary);
+        }
+        
         .category-section.active .lessons-list {
             display: block;
+            animation: fadeIn 0.5s ease;
         }
+        
         .category-section.active h3::after {
             content: '\25B2';
+            transform: translateY(-2px);
         }
-        /* Resources Section */
-        .resources {
-            padding: 60px 20px;
-            background-color: #f9f9f9;
-        }
-        .resources h2 {
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 36px;
-        }
-        .resources p.description {
-            text-align: center;
-            font-size: 18px;
-            margin-bottom: 50px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            color: #555;
-        }
-        .resources-categories {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .resources-category-section {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .resources-category-section h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            position: relative;
-            color: #007BFF;
-        }
-        .resources-category-section h3::after {
-            content: '\25BC';
-            position: absolute;
-            right: 0;
-            font-size: 18px;
-        }
-        .resources-list {
-            display: none;
-            margin-top: 10px;
-        }
-        .resource-item {
-            padding: 8px;
-            border-bottom: 1px solid #eaeaea;
-            font-size: 16px;
-            color: #555;
-        }
-        .resource-item:last-child {
-            border-bottom: none;
-        }
-        .resources-category-section.active .resources-list {
-            display: block;
-        }
-        .resources-category-section.active h3::after {
-            content: '\25B2';
-        }
-        /* Footer */
+        
+        /* ====== FOOTER ====== */
         footer {
-            background-color: #333;
-            color: #fff;
-            padding: 40px 20px;
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+            position: relative;
+            overflow: hidden;
         }
+        
         .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
         }
+        
         .footer-section {
-            flex: 1 1 200px;
-            margin: 10px;
+            position: relative;
         }
+        
         .footer-section h3 {
-            margin-bottom: 15px;
-            font-size: 18px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
         }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-section p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
         .footer-section ul {
             list-style: none;
             padding: 0;
         }
+        
         .footer-section ul li {
-            margin-bottom: 10px;
+            margin-bottom: 1rem;
         }
+        
         .footer-section ul li a {
-            color: #fff;
-            transition: color 0.3s;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        
+        .footer-section ul li a i {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
         .footer-section ul li a:hover {
-            color: #ccc;
+            color: white;
+            transform: translateX(5px);
         }
+        
         .footer-bottom {
             text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #ccc;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
         }
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .categories, .resources-categories {
-                grid-template-columns: repeat(3, 1fr);
+        
+        /* ====== RESPONSIVE DESIGN ====== */
+        @media (min-width: 992px) {
+            .hero-image {
+                display: block;
             }
         }
-        @media (max-width: 992px) {
-            .categories, .resources-categories {
-                grid-template-columns: repeat(2, 1fr);
+        
+        @media (max-width: 991px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .categories {
+                grid-template-columns: 1fr;
+                max-width: 700px;
+                margin: 0 auto;
             }
         }
-        @media (max-width: 600px) {
+        
+        @media (max-width: 768px) {
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow-md);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 999;
             }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
             .menu-toggle {
                 display: block;
             }
-            .nav-links.active {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-                position: absolute;
-                top: 60px;
-                right: 20px;
-                background-color: #fff;
-                padding: 20px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
             }
-            .categories, .resources-categories {
-                grid-template-columns: 1fr;
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .category-section {
+                padding: 25px 20px;
+            }
+            
+            .footer-section {
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .section-description {
+                font-size: 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.9rem;
+            }
+            
+            .hero-content p {
+                font-size: 0.95rem;
+            }
+            
+            .category-section h3 {
+                font-size: 1.1rem;
+            }
+            
+            .lesson-item {
+                padding: 10px;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <nav class="navbar">
-            <div class="logo"><a href="index.html">FinanceCourse</a></div>
-            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
-            <div class="nav-links" id="nav-links">
-                <a href="index.html">Home</a>
-                <a href="learn.html">Learn</a>
-                <a href="about.html">About</a>
-            </div>
-        </nav>
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Finance<span>Course</span></a>
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="nav-links" id="nav-links">
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="learn.html"><i class="fas fa-graduation-cap"></i> Learn</a>
+                    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Learn</h1>
-            <p>Start building your financial knowledge with our curated lessons and resources.</p>
-        </div>
-        <div class="hero-image">
-            <!-- Placeholder for image -->
-            <img src="rocket1.jpg" alt="Learning Image">
-        </div>
-    </section>
-
-    <!-- Featured Section -->
-    <section class="featured">
-        <h2>Featured</h2>
-        <div class="featured-items">
-            <div class="featured-item">
-                <img src="rocket1.jpg" alt="Resource 1">
-                <div class="category">Article</div>
-                <h3>Understanding Credit Scores</h3>
-                <p>Learn how credit scores work and how to improve yours.</p>
-                <a href="#">Read More</a>
-            </div>
-            <div class="featured-item">
-                <img src="rocket1.jpg" alt="Resource 2">
-                <div class="category">Video</div>
-                <h3>Investing 101</h3>
-                <p>An introductory video on the basics of investing.</p>
-                <a href="#">Watch Now</a>
-            </div>
-            <div class="featured-item">
-                <img src="rocket1.jpg" alt="Resource 3">
-                <div class="category">Tool</div>
-                <h3>Budget Planner</h3>
-                <p>Use our budgeting tool to plan your finances.</p>
-                <a href="#">Try It</a>
-            </div>
-            <div class="featured-item">
-                <img src="rocket1.jpg" alt="Resource 4">
-                <div class="category">Podcast</div>
-                <h3>Financial Freedom</h3>
-                <p>Listen to experts discuss pathways to financial freedom.</p>
-                <a href="#">Listen Now</a>
-            </div>
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Financial Education Made Simple</h1>
+            <p>Start building your financial future today with our comprehensive, easy-to-follow courses designed to make money management accessible for everyone.</p>
         </div>
     </section>
 
     <!-- Lessons Section -->
     <section class="lessons">
-        <h2>Lessons</h2>
-        <p class="description">Dive into our comprehensive lessons designed to enhance your financial understanding across various domains.</p>
+        <h2 class="section-title" data-aos="fade-up">Course Curriculum</h2>
+        <p class="section-description" data-aos="fade-up">Explore our four comprehensive modules designed to build your financial knowledge from the ground up. Each lesson builds on the previous one to create a solid foundation for your financial journey.</p>
         <div class="categories">
             <!-- Category 1 -->
-            <div class="category-section">
-                <h3>Personal Finance Foundations</h3>
+            <div class="category-section" data-aos="fade-up" data-aos-delay="100">
+                <h3><i class="fas fa-seedling"></i> 1. Personal Finance Foundations</h3>
                 <div class="lessons-list">
-                    <div class="lesson-item"><a href="section1lesson1.html">Lesson 1: Money Mindset & Basics</a></div>
-                    <div class="lesson-item"><a href="section1lesson2.html">Lesson 2: Budgeting 101</a></div>
-                    <div class="lesson-item"><a href="section1lesson3.html">Lesson 3: Saving Strategies</a></div>
-                    <div class="lesson-item"><a href="section1lesson4.html">Lesson 4: Debt Management</a></div>
-                    <div class="lesson-item"><a href="section1lesson5.html">Lesson 5: Credit Essentials</a></div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section1lesson1.html">Lesson 1: Money Mindset & Basics</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section1lesson2.html">Lesson 2: Budgeting 101</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section1lesson3.html">Lesson 3: Saving Strategies</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section1lesson4.html">Lesson 4: Debt Management</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section1lesson5.html">Lesson 5: Credit Essentials</a>
+                    </div>
                 </div>
             </div>
             <!-- Category 2 -->
-            <div class="category-section">
-                <h3>Budgeting Mastery</h3>
+            <div class="category-section" data-aos="fade-up" data-aos-delay="200">
+                <h3><i class="fas fa-chart-pie"></i> 2. Budgeting Mastery</h3>
                 <div class="lessons-list">
-                    <div class="lesson-item"><a href="section2lesson1.html">Lesson 1: Designing Your Budget</a></div>
-                    <div class="lesson-item"><a href="section2lesson2.html">Lesson 2: Tracking Spending</a></div>
-                    <div class="lesson-item"><a href="section2lesson3.html">Lesson 3: Adjusting for Life Changes</a></div>
-                    <div class="lesson-item"><a href="section2lesson4.html">Lesson 4: Cutting Costs Smartly</a></div>
-                    <div class="lesson-item"><a href="section2lesson5.html">Lesson 5: Emergency Fund Blueprint</a></div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section2lesson1.html">Lesson 1: Designing Your Budget</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section2lesson2.html">Lesson 2: Tracking Spending</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section2lesson3.html">Lesson 3: Adjusting for Life Changes</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section2lesson4.html">Lesson 4: Cutting Costs Smartly</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section2lesson5.html">Lesson 5: Emergency Fund Blueprint</a>
+                    </div>
                 </div>
             </div>
             <!-- Category 3 -->
-            <div class="category-section">
-                <h3>Spending Smartly</h3>
+            <div class="category-section" data-aos="fade-up" data-aos-delay="300">
+                <h3><i class="fas fa-chart-line"></i> 3. Investing for Beginners</h3>
                 <div class="lessons-list">
-                    <div class="lesson-item">Lesson 1: Needs vs. Wants</div>
-                    <div class="lesson-item">Lesson 2: Avoiding Impulse Buys</div>
-                    <div class="lesson-item">Lesson 3: Getting More Value</div>
-                    <div class="lesson-item">Lesson 4: Lifestyle Inflation Traps</div>
-                    <div class="lesson-item">Lesson 5: Smart Big Purchases</div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section3lesson1.html">Lesson 1: The Power of Investing</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section3lesson2.html">Lesson 2: Investment Vehicles</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section3lesson3.html">Lesson 3: Risk and Return</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section3lesson4.html">Lesson 4: Building Your Portfolio</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section3lesson5.html">Lesson 5: Investment Strategies</a>
+                    </div>
                 </div>
             </div>
             <!-- Category 4 -->
-            <div class="category-section">
-                <h3>Financial Goals & Planning</h3>
+            <div class="category-section" data-aos="fade-up" data-aos-delay="400">
+                <h3><i class="fas fa-shield-alt"></i> 4. Financial Security & Risk Management</h3>
                 <div class="lessons-list">
-                    <div class="lesson-item">Lesson 1: Setting Money Goals</div>
-                    <div class="lesson-item">Lesson 2: Short-Term Wins</div>
-                    <div class="lesson-item">Lesson 3: Long-Term Dreams</div>
-                    <div class="lesson-item">Lesson 4: Tracking Progress</div>
-                    <div class="lesson-item">Lesson 5: Adjusting Your Plan</div>
-                </div>
-            </div>
-            <!-- Category 5 -->
-            <div class="category-section">
-                <h3>Investing Basics</h3>
-                <div class="lessons-list">
-                    <div class="lesson-item"><a href="section5lesson1.html">Lesson 1: Why Invest?</a></div>
-                    <div class="lesson-item">Lesson 2: Investment Options</div>
-                    <div class="lesson-item">Lesson 3: Risk vs. Reward</div>
-                    <div class="lesson-item">Lesson 4: Crafting a Portfolio</div>
-                    <div class="lesson-item">Lesson 5: Investment Approaches</div>
-                </div>
-            </div>
-            <!-- Category 6 -->
-            <div class="category-section">
-                <h3>Stock Market Deep Dive</h3>
-                <div class="lessons-list">
-                    <div class="lesson-item">Lesson 1: Stock Market 101</div>
-                    <div class="lesson-item">Lesson 2: Trading Mechanics</div>
-                    <div class="lesson-item">Lesson 3: Stock Analysis Made Simple</div>
-                    <div class="lesson-item">Lesson 4: Time Horizons in Stocks</div>
-                    <div class="lesson-item">Lesson 5: Your First Stock Portfolio</div>
-                </div>
-            </div>
-            <!-- Category 7 -->
-            <div class="category-section">
-                <h3>Tax Essentials</h3>
-                <div class="lessons-list">
-                    <div class="lesson-item">Lesson 1: Taxes Unpacked</div>
-                    <div class="lesson-item">Lesson 2: Tax-Smart Accounts</div>
-                    <div class="lesson-item">Lesson 3: Maximizing Deductions</div>
-                    <div class="lesson-item">Lesson 4: Taxes and Investing</div>
-                    <div class="lesson-item">Lesson 5: Filing Made Easy</div>
-                </div>
-            </div>
-            <!-- Category 8 -->
-            <div class="category-section">
-                <h3>Risk Management & Protection</h3>
-                <div class="lessons-list">
-                    <div class="lesson-item">Lesson 1: What Are Financial Risks?</div>
-                    <div class="lesson-item">Lesson 2: Insurance 101</div>
-                    <div class="lesson-item">Lesson 3: Diversifying Your Money</div>
-                    <div class="lesson-item">Lesson 4: Backup Plans</div>
-                    <div class="lesson-item">Lesson 5: Avoiding Scams</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resources Section -->
-    <section class="resources">
-        <h2>Resources</h2>
-        <p class="description">Explore our extensive collection of resources tailored to enhance your financial knowledge and skills.</p>
-        <div class="resources-categories">
-            <!-- Category 1 -->
-            <div class="resources-category-section">
-                <h3>eBooks</h3>
-                <div class="resources-list">
-                    <div class="resource-item">eBook 1: Smart Investing</div>
-                    <div class="resource-item">eBook 2: Personal Finance Mastery</div>
-                    <div class="resource-item">eBook 3: The Basics of Budgeting</div>
-                    <div class="resource-item">eBook 4: Retirement Planning Guide</div>
-                    <div class="resource-item">eBook 5: Tax Strategies Explained</div>
-                </div>
-            </div>
-            <!-- Category 2 -->
-            <div class="resources-category-section">
-                <h3>Webinars</h3>
-                <div class="resources-list">
-                    <div class="resource-item">Webinar 1: Investment Opportunities</div>
-                    <div class="resource-item">Webinar 2: Managing Debt Effectively</div>
-                    <div class="resource-item">Webinar 3: Building Credit Scores</div>
-                    <div class="resource-item">Webinar 4: Financial Goal Setting</div>
-                    <div class="resource-item">Webinar 5: Advanced Tax Planning</div>
-                </div>
-            </div>
-            <!-- Category 3 -->
-            <div class="resources-category-section">
-                <h3>Templates</h3>
-                <div class="resources-list">
-                    <div class="resource-item">Template 1: Monthly Budget</div>
-                    <div class="resource-item">Template 2: Investment Tracker</div>
-                    <div class="resource-item">Template 3: Debt Reduction Plan</div>
-                    <div class="resource-item">Template 4: Financial Goal Worksheet</div>
-                    <div class="resource-item">Template 5: Tax Planning Calendar</div>
-                </div>
-            </div>
-            <!-- Category 4 -->
-            <div class="resources-category-section">
-                <h3>Infographics</h3>
-                <div class="resources-list">
-                    <div class="resource-item">Infographic 1: Understanding Interest Rates</div>
-                    <div class="resource-item">Infographic 2: Steps to Financial Freedom</div>
-                    <div class="resource-item">Infographic 3: Investment Portfolio Allocation</div>
-                    <div class="resource-item">Infographic 4: Tax Benefits Explained</div>
-                    <div class="resource-item">Infographic 5: Risk Management Strategies</div>
-                </div>
-            </div>
-            <!-- Category 5 -->
-            <div class="resources-category-section">
-                <h3>Articles</h3>
-                <div class="resources-list">
-                    <div class="resource-item">Article 1: The Importance of Saving Early</div>
-                    <div class="resource-item">Article 2: Diversification in Investments</div>
-                    <div class="resource-item">Article 3: How to Choose the Right Retirement Plan</div>
-                    <div class="resource-item">Article 4: Tax Deductions You Might Be Missing</div>
-                    <div class="resource-item">Article 5: Building an Emergency Fund</div>
-                </div>
-            </div>
-            <!-- Category 6 -->
-            <div class="resources-category-section">
-                <h3>Tools</h3>
-                <div class="resources-list">
-                    <div class="resource-item">Tool 1: Investment Calculator</div>
-                    <div class="resource-item">Tool 2: Budgeting App</div>
-                    <div class="resource-item">Tool 3: Debt Repayment Scheduler</div>
-                    <div class="resource-item">Tool 4: Tax Filing Assistant</div>
-                    <div class="resource-item">Tool 5: Retirement Savings Estimator</div>
-                </div>
-            </div>
-            <!-- Category 7 -->
-            <div class="resources-category-section">
-                <h3>Podcasts</h3>
-                <div class="resources-list">
-                    <div class="resource-item">Podcast 1: Financial Freedom Talks</div>
-                    <div class="resource-item">Podcast 2: Investing Insights</div>
-                    <div class="resource-item">Podcast 3: Personal Finance Daily</div>
-                    <div class="resource-item">Podcast 4: Tax Tips and Tricks</div>
-                    <div class="resource-item">Podcast 5: Retirement Ready</div>
-                </div>
-            </div>
-            <!-- Category 8 -->
-            <div class="resources-category-section">
-                <h3>Videos</h3>
-                <div class="resources-list">
-                    <div class="resource-item">Video 1: Basics of Stock Market</div>
-                    <div class="resource-item">Video 2: Effective Budgeting Techniques</div>
-                    <div class="resource-item">Video 3: Retirement Planning Essentials</div>
-                    <div class="resource-item">Video 4: Understanding Tax Brackets</div>
-                    <div class="resource-item">Video 5: Risk Management in Investments</div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section4lesson1.html">Lesson 1: Identifying Financial Risks</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section4lesson2.html">Lesson 2: Insurance Essentials</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section4lesson3.html">Lesson 3: Diversification in Practice</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section4lesson4.html">Lesson 4: Emergency Preparedness</a>
+                    </div>
+                    <div class="lesson-item">
+                        <i class="fas fa-book-open"></i>
+                        <a href="section4lesson5.html">Lesson 5: Protecting Against Fraud</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer Section -->
-    <!-- New Footer -->
-<footer>
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>About Us</h3>
-            <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About FinanceCourse</h3>
+                    <p>We're dedicated to providing accessible financial education that empowers everyone to build a secure and prosperous future, regardless of their background or starting point.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="learn.html"><i class="fas fa-graduation-cap"></i> Learn</a></li>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Courses</h3>
+                    <ul>
+                        <li><a href="section1lesson1.html"><i class="fas fa-coins"></i> Money Mindset & Basics</a></li>
+                        <li><a href="section2lesson1.html"><i class="fas fa-piggy-bank"></i> Designing Your Budget</a></li>
+                        <li><a href="section3lesson1.html"><i class="fas fa-chart-line"></i> Power of Investing</a></li>
+                        <li><a href="section4lesson1.html"><i class="fas fa-shield-alt"></i> Financial Risk Management</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="mailto:rthompson25@bayschoolsf.org"><i class="fas fa-envelope"></i> rthompson25@bayschoolsf.org</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> San Francisco, CA</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                &copy; 2024 FinanceCourse. All rights reserved.
+            </div>
         </div>
-        <div class="footer-section">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="learn.html">Learn</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h3>Contact Us</h3>
-            <p>Email: rthompson25@bayschoolsf.org</p>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        &copy; 2024 FinanceCourse. All rights reserved.
-    </div>
-</footer>
+    </footer>
 
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <!-- JavaScript for Menu Toggle and Accordion -->
     <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById('nav-links');
-            navLinks.classList.toggle('active');
-        }
-
-        // Accordion functionality for Lessons
-        const lessonsCategories = document.querySelectorAll('.lessons .category-section h3');
-        lessonsCategories.forEach((category) => {
-            category.addEventListener('click', () => {
-                category.parentElement.classList.toggle('active');
+        // Initialize AOS Animation Library
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                offset: 100
             });
-        });
+            
+            // Menu Toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+            
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+                
+                if (menuToggle.classList.contains('active')) {
+                    menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Header Scroll Effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
 
-        // Accordion functionality for Resources
-        const resourcesCategories = document.querySelectorAll('.resources .resources-category-section h3');
-        resourcesCategories.forEach((category) => {
-            category.addEventListener('click', () => {
-                category.parentElement.classList.toggle('active');
+            // Accordion functionality for Lessons
+            const lessonsCategories = document.querySelectorAll('.lessons .category-section h3');
+            lessonsCategories.forEach((category) => {
+                category.addEventListener('click', () => {
+                    category.parentElement.classList.toggle('active');
+                });
+            });
+
+            // Open all categories by default
+            document.querySelectorAll('.category-section').forEach(section => {
+                section.classList.add('active');
             });
         });
     </script>

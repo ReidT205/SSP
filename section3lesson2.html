@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 2: Investment Vehicles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #5b3fd8;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #3f51b5, #5b3fd8);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #5b3fd8;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #3f51b5;
+            border-bottom: 2px solid #3f51b5;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3f51b5;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #3f51b5;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #303f9f;
+        }
+        /* Lesson-specific styles */
+        .example-box {
+            background-color: #f0f4ff;
+            border: 1px solid #d0d9ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #3f51b5;
+            color: white;
+        }
+        .visual-aid {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .visual-aid img {
+            max-width: 100%;
+            height: auto;
+        }
+        .calculator-button {
+            display: inline-block;
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+            text-decoration: none;
+        }
+        .calculator-button:hover {
+            background-color: #303f9f;
+        }
+        .graph-placeholder {
+            height: 200px;
+            background-color: #f0f4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .investment-card {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .investment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+        }
+        .stock-card::before {
+            background-color: #4caf50;
+        }
+        .bond-card::before {
+            background-color: #2196f3;
+        }
+        .fund-card::before {
+            background-color: #9c27b0;
+        }
+        .etf-card::before {
+            background-color: #ff9800;
+        }
+        .realestate-card::before {
+            background-color: #795548;
+        }
+        .investment-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #3f51b5;
+        }
+        .tool-comparison {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .tool-item {
+            background-color: #f0f4ff;
+            border-radius: 5px;
+            padding: 15px;
+            flex: 1 1 45%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .tool-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #3f51b5;
+        }
+        .risk-meter {
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .risk-level {
+            height: 100%;
+            border-radius: 10px;
+        }
+        .risk-low {
+            width: 30%;
+            background-color: #4caf50;
+        }
+        .risk-medium {
+            width: 60%;
+            background-color: #ff9800;
+        }
+        .risk-high {
+            width: 90%;
+            background-color: #f44336;
+        }
+        .comparison-bars {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            height: 200px;
+            align-items: flex-end;
+        }
+        .comparison-bar {
+            flex: 1;
+            background-color: #3f51b5;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            padding-top: 10px;
+            border-radius: 5px 5px 0 0;
+        }
+        .bar-label {
+            margin-top: 10px;
+            color: #333;
+            font-weight: normal;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 660;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'B') score++;
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 5. ${score >= 4 ? 'Amazing! You\'re ready to start investing!' : score >= 3 ? 'Good job! Review the lesson and you\'ll be an expert.' : 'Keep studying about these investment vehicles!'}`;
+            document.getElementById('quiz-result').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Investing for Beginners: Lesson 2 – Investment Vehicles: Your Financial Toolbox</h1>
+        <p>Discover the various investment options that can help you build wealth and achieve your financial goals.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Learning!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview: Building Your Financial Toolkit</h2>
+            <p>
+                Welcome back to Investing for Beginners! In Lesson 1, you discovered the transformative power of investing—how it grows your wealth, outpaces inflation, and turns dreams into reality. Now, in Lesson 2, we're diving into the tools that make it all happen: investment vehicles. These are the engines of your financial journey, each with unique strengths, risks, and rewards.
+            </p>
+            <p>Here's what you'll master:</p>
+            <ul>
+                <li>Rich, Detailed Breakdowns: Explore stocks, bonds, mutual funds, ETFs, and real estate with pros, cons, and insider tips.</li>
+                <li>Hands-On Exploration: Use real-world tools like stock trackers and bond calculators to see investments in action.</li>
+                <li>Tailored Choices: Learn how to match vehicles to your goals, budget, and comfort with risk.</li>
+                <li>Inspiring Scenarios: Meet everyday investors who've used these tools to build wealth.</li>
+                <li>Your Personal Toolbox: Build a mental toolbox stocked with options to fuel your financial success.</li>
+            </ul>
+            <p>
+                By the end, you'll have the know-how to pick the vehicles that'll drive you toward your goals—whether it's a cozy retirement, a dream home, or a college fund. Let's get rolling!
+            </p>
+        </section>
+
+        <!-- Introduction: Your Investment Toolbox -->
+        <section id="section1">
+            <h2>Introduction: Your Investment Toolbox</h2>
+            <p>
+                Imagine you're a master builder, crafting your financial future. In your toolbox, each investment vehicle is a specialized tool:
+            </p>
+            <ul>
+                <li>Stocks are your high-speed drill—powerful for growth but requiring precision.</li>
+                <li>Bonds are your sturdy hammer—steady and reliable for stability.</li>
+                <li>Mutual Funds and ETFs are your versatile screwdrivers—adaptable and easy to use.</li>
+                <li>Real Estate is your heavy-duty saw—tangible and built for long-term gains.</li>
+            </ul>
+            <p>
+                Just like a builder chooses the right tool for the job, you'll learn to select the best vehicles for your goals. This lesson opens the toolbox wide, giving you the skills to wield each one confidently. Let's start building!
+            </p>
+            
+            <div class="activity-box">
+                <h3>Reflection Prompt: Dream Investment Kickoff</h3>
+                <p>
+                    If you had unlimited funds, what would you invest in—a hot tech stock, a cozy rental cabin, or a safe government bond? Write a quick sentence about what draws you to it and why.
+                </p>
+                <p><em>Example: "I'd buy a rental cabin—it feels real, and I love the idea of passive income while it grows in value."</em></p>
+                <textarea placeholder="Write your dream investment here..." rows="3"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid:</h3>
+                <p>
+                    Picture your investment portfolio as a toolbox. Each vehicle is a tool with a unique purpose—choose wisely to build a sturdy financial house!
+                </p>
+                <div class="tool-comparison">
+                    <div class="tool-item">
+                        <i class="fas fa-chart-line tool-icon"></i>
+                        <h4>Stocks</h4>
+                        <p>Precision growth tool</p>
+                    </div>
+                    <div class="tool-item">
+                        <i class="fas fa-gavel tool-icon"></i>
+                        <h4>Bonds</h4>
+                        <p>Stability foundation tool</p>
+                    </div>
+                    <div class="tool-item">
+                        <i class="fas fa-users tool-icon"></i>
+                        <h4>Mutual Funds</h4>
+                        <p>Multi-purpose team tool</p>
+                    </div>
+                    <div class="tool-item">
+                        <i class="fas fa-exchange-alt tool-icon"></i>
+                        <h4>ETFs</h4>
+                        <p>Flexible trading tool</p>
+                    </div>
+                    <div class="tool-item">
+                        <i class="fas fa-home tool-icon"></i>
+                        <h4>Real Estate</h4>
+                        <p>Tangible building tool</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Stocks – Owning a Piece of the Action -->
+        <section>
+            <h2>Stocks – Owning a Piece of the Action</h2>
+            <p>
+                Stocks are the rockstars of investing—high-energy, high-potential, and sometimes unpredictable. Let's dive into what they are, how they work, and how to handle them like a pro.
+            </p>
+            
+            <div class="investment-card stock-card">
+                <i class="fas fa-chart-line investment-icon"></i>
+                <h3>What Are Stocks?</h3>
+                <p>
+                    Stocks are shares of ownership in a company. When you buy a stock, you're a mini-owner, betting on the company's success. If it thrives, your investment grows. If it stumbles, your shares can lose value.
+                </p>
+            </div>
+            
+            <h3>How You Earn</h3>
+            <p>Profits come in two flavors:</p>
+            <ul>
+                <li><strong>Dividends:</strong> Regular cash payouts (e.g., $1 per share annually from a stable company).</li>
+                <li><strong>Capital Gains:</strong> Selling shares at a higher price than you paid.</li>
+            </ul>
+            <p>Historically, stocks have averaged 7-10% yearly returns since the 1920s—beating inflation and savings accounts hands down.</p>
+            
+            <h3>Risks Deep Dive</h3>
+            <p>Stocks are volatile—prices can swing based on:</p>
+            <ul>
+                <li><strong>Company News:</strong> A new product launch (up!) or a CEO scandal (down!).</li>
+                <li><strong>Market Trends:</strong> Tech booms or recessions.</li>
+                <li><strong>Economic Shifts:</strong> Interest rate hikes or global events.</li>
+            </ul>
+            <p>Worst case? A stock can drop to zero if the company goes bankrupt—but that's rare with diversification.</p>
+            
+            <h3>Types of Stocks</h3>
+            <ul>
+                <li><strong>Blue-Chip Stocks:</strong> Stable giants like Coca-Cola or Microsoft—lower risk, steady growth.</li>
+                <li><strong>Growth Stocks:</strong> High-flyers like Tesla or Zoom—riskier but with explosive potential.</li>
+                <li><strong>Value Stocks:</strong> Undervalued gems like Ford—bought cheap, hoping for a rebound.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                You buy 10 shares of Nike at $100 each ($1,000 total). A year later, the price hits $130, and you've earned $10 in dividends. Your investment is now $1,310—a 31% gain!
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Stock Detective</h3>
+                <ol>
+                    <li>Pick a company you love (e.g., Netflix, Adidas).</li>
+                    <li>Visit <a href="https://finance.yahoo.com/" target="_blank">Yahoo Finance</a> and search its stock symbol (e.g., NFLX).</li>
+                    <li>Check the 1-year chart—what's the highest and lowest price?</li>
+                    <li>Calculate: If you bought 5 shares at the low and sold at the high, what's your profit?</li>
+                </ol>
+                <p><em>Example: NFLX low $450, high $600. Profit = (5 × $600) - (5 × $450) = $3,000 - $2,250 = $750.</em></p>
+                <p><strong>Fun Twist:</strong> Write a "stock headline" for its performance (e.g., "Netflix Soars on New Hits!").</p>
+                <textarea placeholder="Write your Stock Detective findings here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Stock Type</th>
+                    <th>Risk</th>
+                    <th>Reward</th>
+                    <th>Best For</th>
+                </tr>
+                <tr>
+                    <td>Blue-Chip</td>
+                    <td>Low-Medium</td>
+                    <td>Steady Growth</td>
+                    <td>Long-term stability</td>
+                </tr>
+                <tr>
+                    <td>Growth</td>
+                    <td>High</td>
+                    <td>High Growth</td>
+                    <td>Aggressive investors</td>
+                </tr>
+                <tr>
+                    <td>Value</td>
+                    <td>Medium</td>
+                    <td>Potential Upside</td>
+                    <td>Patient bargain hunters</td>
+                </tr>
+            </table>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/s/stock.asp" target="_blank">Investopedia: Stocks</a> – A beginner's treasure trove with examples and FAQs.</p>
+        </section>
+
+        <!-- Section 2: Bonds – Lending for Stability -->
+        <section>
+            <h2>Bonds – Lending for Stability</h2>
+            <p>
+                Bonds are the steady-Eddies of investing—calm, predictable, and built for safety. Let's explore how they work and why they're a portfolio staple.
+            </p>
+            
+            <div class="investment-card bond-card">
+                <i class="fas fa-gavel investment-icon"></i>
+                <h3>What Are Bonds?</h3>
+                <p>
+                    Bonds are loans you make to governments or companies. They borrow your money, pay you interest (the "coupon"), and return your principal at maturity. It's like being a mini-banker!
+                </p>
+            </div>
+            
+            <h3>How You Earn</h3>
+            <p>Interest is fixed and reliable:</p>
+            <ul>
+                <li>A $1,000 bond at 3% pays $30 yearly until maturity.</li>
+                <li>Returns range from 1-5%, with government bonds safest and corporate bonds offering higher yields (but more risk).</li>
+            </ul>
+            
+            <h3>Risks Deep Dive</h3>
+            <ul>
+                <li><strong>Default Risk:</strong> The issuer might not repay (rare for U.S. Treasuries, higher for shaky companies).</li>
+                <li><strong>Interest Rate Risk:</strong> If rates rise, your bond's value drops (e.g., a 2% bond looks weak next to new 4% bonds).</li>
+                <li><strong>Inflation Risk:</strong> Fixed payments can lose purchasing power over time.</li>
+            </ul>
+            
+            <h3>Types of Bonds</h3>
+            <ul>
+                <li><strong>Treasury Bonds:</strong> Issued by the federal government—ultra-safe.</li>
+                <li><strong>Municipal Bonds:</strong> Issued by cities or states—often tax-free.</li>
+                <li><strong>Corporate Bonds:</strong> Issued by companies—higher risk, higher reward.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                You buy a $1,000 U.S. Treasury bond at 2% for 10 years. You get $20 yearly, and after a decade, your $1,000 back—totaling $200 in interest. Steady and secure!
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Bond Yield Explorer</h3>
+                <ol>
+                    <li>Visit <a href="https://www.treasurydirect.gov/marketable-securities/treasury-bonds/" target="_blank">TreasuryDirect</a> and find today's 10-year Treasury yield (e.g., 3.5%).</li>
+                    <li>Calculate the annual interest on a $500 bond:
+                        <br>Interest = $500 × 0.035 = $17.50.
+                    </li>
+                </ol>
+                <p>Would that feel worth it? Write: "$17.50/year on $500—safe but slow!"</p>
+                <p><strong>Bonus:</strong> Check a corporate bond yield (e.g., 5%)—how does $25/year sound?</p>
+                <textarea placeholder="Write your Bond Yield Explorer findings here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Bond Type</th>
+                    <th>Risk</th>
+                    <th>Return</th>
+                    <th>Best For</th>
+                </tr>
+                <tr>
+                    <td>Treasury</td>
+                    <td>Very Low</td>
+                    <td>1-3%</td>
+                    <td>Safety-first investors</td>
+                </tr>
+                <tr>
+                    <td>Municipal</td>
+                    <td>Low-Medium</td>
+                    <td>2-4%</td>
+                    <td>Tax-conscious investors</td>
+                </tr>
+                <tr>
+                    <td>Corporate</td>
+                    <td>Medium-High</td>
+                    <td>3-6%</td>
+                    <td>Income seekers</td>
+                </tr>
+            </table>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/b/bond.asp" target="_blank">Investopedia: Bonds</a> – A detailed roadmap to bonds, from safety to strategy.</p>
+        </section>
+
+        <!-- Section 3: Mutual Funds – Pooling with Professionals -->
+        <section>
+            <h2>Mutual Funds – Pooling with Professionals</h2>
+            <p>
+                Mutual funds are the teamwork champions of investing—pooling your money with others for expert management and diversification. Let's see how they roll.
+            </p>
+            
+            <div class="investment-card fund-card">
+                <i class="fas fa-users investment-icon"></i>
+                <h3>What Are Mutual Funds?</h3>
+                <p>
+                    Mutual funds collect money from many investors to buy a diverse mix of stocks, bonds, or both. A professional manager runs the show, aiming to grow the fund's value.
+                </p>
+            </div>
+            
+            <h3>How You Earn</h3>
+            <ul>
+                <li>Returns depend on the fund's focus: stock funds might average 7-10%, bond funds 3-5%.</li>
+                <li>You buy "shares" of the fund, and their value rises (or falls) with the underlying assets.</li>
+            </ul>
+            
+            <h3>Risks Deep Dive</h3>
+            <ul>
+                <li><strong>Fees:</strong> Expense ratios (e.g., 1-2% yearly) can nibble at gains.</li>
+                <li><strong>Manager Risk:</strong> The manager might underperform or make poor picks.</li>
+                <li><strong>Market Risk:</strong> The fund's value can drop with the market.</li>
+            </ul>
+            
+            <h3>Types of Mutual Funds</h3>
+            <ul>
+                <li><strong>Equity Funds:</strong> Stock-focused for growth.</li>
+                <li><strong>Fixed-Income Funds:</strong> Bond-focused for income.</li>
+                <li><strong>Balanced Funds:</strong> A mix for moderate risk.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                You invest $500 in a mutual fund with a 60/40 stock-bond split. If it grows 8% in a year, your $500 becomes $540, minus a $5 fee (1% expense ratio)—net gain: $35.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Fund Finder</h3>
+                <ol>
+                    <li>Visit <a href="https://www.morningstar.com/" target="_blank">Morningstar</a> and search for the Vanguard Total Stock Market Fund (VTSAX).</li>
+                    <li>Note its 5-year return (e.g., 10.5%) and expense ratio (e.g., 0.04%).</li>
+                    <li>Check its top holdings—write down one company you recognize (e.g., Apple).</li>
+                </ol>
+                <p><strong>Fun Twist:</strong> Imagine you're the manager—would you buy more Apple or diversify?</p>
+                <textarea placeholder="Write your Fund Finder findings here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Fund Type</th>
+                    <th>Risk</th>
+                    <th>Return</th>
+                    <th>Best For</th>
+                </tr>
+                <tr>
+                    <td>Equity</td>
+                    <td>High</td>
+                    <td>7-10%</td>
+                    <td>Growth seekers</td>
+                </tr>
+                <tr>
+                    <td>Fixed-Income</td>
+                    <td>Low-Medium</td>
+                    <td>3-5%</td>
+                    <td>Income-focused investors</td>
+                </tr>
+                <tr>
+                    <td>Balanced</td>
+                    <td>Medium</td>
+                    <td>5-7%</td>
+                    <td>Moderate risk takers</td>
+                </tr>
+            </table>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/m/mutualfund.asp" target="_blank">Investopedia: Mutual Funds</a> – A full scoop on how funds work and what to watch for.</p>
+        </section>
+
+        <!-- Section 4: ETFs – Flexible and Affordable -->
+        <section>
+            <h2>ETFs – Flexible and Affordable</h2>
+            <p>
+                ETFs (Exchange-Traded Funds) are the Swiss Army knives of investing—versatile, low-cost, and easy to trade. Let's explore why they're a beginner's favorite.
+            </p>
+            
+            <div class="investment-card etf-card">
+                <i class="fas fa-exchange-alt investment-icon"></i>
+                <h3>What Are ETFs?</h3>
+                <p>
+                    ETFs are baskets of assets (like mutual funds) but trade like stocks on exchanges. Many track indexes (e.g., S&P 500) for broad, affordable exposure.
+                </p>
+            </div>
+            
+            <h3>How You Earn</h3>
+            <ul>
+                <li>Returns mirror the assets—S&P 500 ETFs average 7-10%.</li>
+                <li>You buy shares at market price, which can shift throughout the day.</li>
+            </ul>
+            
+            <h3>Risks Deep Dive</h3>
+            <ul>
+                <li><strong>Market Risk:</strong> ETFs follow the market's ups and downs.</li>
+                <li><strong>Low Fees:</strong> Expense ratios are tiny (0.03-0.5%), but still nibble at gains.</li>
+                <li><strong>Liquidity:</strong> Sell anytime the market's open—no lock-ins.</li>
+            </ul>
+            
+            <h3>Types of ETFs</h3>
+            <ul>
+                <li><strong>Equity ETFs:</strong> Track stock indexes (e.g., SPY for S&P 500).</li>
+                <li><strong>Bond ETFs:</strong> Track bond indexes for income.</li>
+                <li><strong>Sector ETFs:</strong> Focus on industries like tech or healthcare.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                You buy $100 of SPY (S&P 500 ETF) at $400 per share (0.25 shares). If it hits $440, your stake is $110—a 10% gain, minus a tiny $0.09 fee (0.09% expense ratio).
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: ETF Showdown</h3>
+                <ol>
+                    <li>Visit <a href="https://www.etf.com/" target="_blank">ETF.com</a> and compare SPY and VOO (both track the S&P 500).</li>
+                    <li>Note their expense ratios (e.g., SPY 0.09%, VOO 0.03%) and 1-year returns.</li>
+                </ol>
+                <p>Which is cheaper? Write: "VOO's lower fee saves me $0.60/year on $1,000—small but smart!"</p>
+                <p><strong>Bonus:</strong> Track SPY's price for a day—how much does it move?</p>
+                <textarea placeholder="Write your ETF Showdown findings here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>ETF Type</th>
+                    <th>Risk</th>
+                    <th>Return</th>
+                    <th>Best For</th>
+                </tr>
+                <tr>
+                    <td>Equity</td>
+                    <td>Medium-High</td>
+                    <td>7-10%</td>
+                    <td>Growth investors</td>
+                </tr>
+                <tr>
+                    <td>Bond</td>
+                    <td>Low-Medium</td>
+                    <td>2-5%</td>
+                    <td>Income seekers</td>
+                </tr>
+                <tr>
+                    <td>Sector</td>
+                    <td>High</td>
+                    <td>Varies</td>
+                    <td>Targeted bets</td>
+                </tr>
+            </table>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/e/etf.asp" target="_blank">Investopedia: ETFs</a> – A beginner's playbook for mastering ETFs.</p>
+        </section>
+
+        <!-- Section 5: Real Estate – Tangible Wealth -->
+        <section>
+            <h2>Real Estate – Tangible Wealth</h2>
+            <p>
+                Real estate is the hands-on hero of investing—offering income, growth, and a physical asset. Let's see how it works and if it's your vibe.
+            </p>
+            
+            <div class="investment-card realestate-card">
+                <i class="fas fa-home investment-icon"></i>
+                <h3>What Is Real Estate Investing?</h3>
+                <p>
+                    Real estate investing means buying property (e.g., a rental house) or shares in Real Estate Investment Trusts (REITs), which own income-generating properties like malls or apartments.
+                </p>
+            </div>
+            
+            <h3>How You Earn</h3>
+            <ul>
+                <li><strong>Rental Income:</strong> Monthly cash from tenants (e.g., $800 from a condo).</li>
+                <li><strong>Appreciation:</strong> Property value growth (e.g., 3-5% yearly).</li>
+                <li><strong>REIT Dividends:</strong> REITs pay out profits (e.g., 4% annually).</li>
+            </ul>
+            
+            <h3>Risks Deep Dive</h3>
+            <ul>
+                <li><strong>Upkeep Costs:</strong> Properties need repairs and maintenance.</li>
+                <li><strong>Tenant Issues:</strong> Vacancies or late payments hurt cash flow.</li>
+                <li><strong>Market Slumps:</strong> Values can drop (e.g., 2008 crash).</li>
+                <li><strong>Liquidity:</strong> Selling takes time—weeks or months.</li>
+            </ul>
+            
+            <h3>Types of Real Estate Investments</h3>
+            <ul>
+                <li><strong>Direct Ownership:</strong> You're the landlord—hands-on but high potential.</li>
+                <li><strong>REITs:</strong> Buy shares in property portfolios—hands-off, liquid.</li>
+                <li><strong>Crowdfunding:</strong> Invest small amounts in big projects online.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                You buy a $100,000 rental with $20,000 down (mortgage covers the rest). It appreciates 4% ($4,000) yearly and nets $500/month after expenses—building equity and cash flow.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Property Scout</h3>
+                <ol>
+                    <li>Visit <a href="https://www.zillow.com/" target="_blank">Zillow</a> and find a rental property in your area.</li>
+                    <li>Note the price (e.g., $150,000) and estimated rent (e.g., $1,200/month).</li>
+                    <li>Calculate the down payment (20% = $30,000) and potential profit (rent minus mortgage, taxes, etc.).</li>
+                </ol>
+                <p>Would $300 monthly profit tempt you? Write: "$300/month plus appreciation—sounds solid!"</p>
+                <textarea placeholder="Write your Property Scout findings here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Investment</th>
+                    <th>Risk</th>
+                    <th>Return</th>
+                    <th>Best For</th>
+                </tr>
+                <tr>
+                    <td>Direct Ownership</td>
+                    <td>High</td>
+                    <td>5-10%</td>
+                    <td>Hands-on investors</td>
+                </tr>
+                <tr>
+                    <td>REITs</td>
+                    <td>Medium</td>
+                    <td>4-8%</td>
+                    <td>Passive income seekers</td>
+                </tr>
+                <tr>
+                    <td>Crowdfunding</td>
+                    <td>Medium-High</td>
+                    <td>Varies</td>
+                    <td>Small-stake investors</td>
+                </tr>
+            </table>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/r/reit.asp" target="_blank">Investopedia: REITs</a> – A goldmine of real estate investing basics.</p>
+        </section>
+
+        <!-- Section 6: Comparing Investment Vehicles -->
+        <section>
+            <h2>Comparing Investment Vehicles</h2>
+            <p>
+                Now that you've met the players, let's see how they stack up. This comparison will help you pick the right mix for your goals.
+            </p>
+            
+            <h3>Comparison Table</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Vehicle</th>
+                    <th>Risk</th>
+                    <th>Return</th>
+                    <th>Liquidity</th>
+                    <th>Minimum Investment</th>
+                </tr>
+                <tr>
+                    <td>Stocks</td>
+                    <td>High</td>
+                    <td>7-10%</td>
+                    <td>High</td>
+                    <td>$1 (fractional shares)</td>
+                </tr>
+                <tr>
+                    <td>Bonds</td>
+                    <td>Low-Moderate</td>
+                    <td>1-5%</td>
+                    <td>Moderate</td>
+                    <td>$100+</td>
+                </tr>
+                <tr>
+                    <td>Mutual Funds</td>
+                    <td>Moderate-High</td>
+                    <td>5-10%</td>
+                    <td>Moderate</td>
+                    <td>$100-$1,000</td>
+                </tr>
+                <tr>
+                    <td>ETFs</td>
+                    <td>Moderate-High</td>
+                    <td>5-10%</td>
+                    <td>High</td>
+                    <td>$10+</td>
+                </tr>
+                <tr>
+                    <td>Real Estate</td>
+                    <td>Moderate-High</td>
+                    <td>5-8%</td>
+                    <td>Low</td>
+                    <td>$5,000+ (REITs), $20K+ (property)</td>
+                </tr>
+            </table>
+            
+            <h3>Scenarios to Guide You</h3>
+            <ul>
+                <li><strong>Got $500 and Hate Risk?</strong> Try bonds or a bond ETF for steady, low-risk returns.</li>
+                <li><strong>Love Growth and Can Wait 10 Years?</strong> Stocks or equity ETFs are your speedsters.</li>
+                <li><strong>Want Passive Income Without Tenants?</strong> REITs offer real estate perks without the hassle.</li>
+                <li><strong>Mix It Up:</strong> Most investors blend—e.g., 60% stocks, 30% bonds, 10% REITs—for balance.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Portfolio Builder</h3>
+                <ol>
+                    <li>Pretend you have $1,000 to invest.</li>
+                    <li>Split it across two vehicles (e.g., $600 in an ETF, $400 in bonds).</li>
+                    <li>Write your rationale: "ETFs for growth, bonds for safety—balanced for my 5-year goal."</li>
+                </ol>
+                <p><strong>Fun Twist:</strong> Name your portfolio (e.g., "Steady Climber") and sketch a pie chart of your split.</p>
+                <textarea placeholder="Write your Portfolio Builder plan here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="comparison-bars">
+                <div class="comparison-bar" style="height: 90%;">
+                    High
+                    <span class="bar-label">Risk: Stocks</span>
+                </div>
+                <div class="comparison-bar" style="height: 40%;">
+                    Low
+                    <span class="bar-label">Risk: Bonds</span>
+                </div>
+                <div class="comparison-bar" style="height: 90%;">
+                    High
+                    <span class="bar-label">Return: Stocks</span>
+                </div>
+                <div class="comparison-bar" style="height: 30%;">
+                    Low
+                    <span class="bar-label">Return: Bonds</span>
+                </div>
+                <div class="comparison-bar" style="height: 90%;">
+                    High
+                    <span class="bar-label">Liquidity: ETFs</span>
+                </div>
+                <div class="comparison-bar" style="height: 30%;">
+                    Low
+                    <span class="bar-label">Liquidity: Real Estate</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Reflection – Your Vehicle Match -->
+        <section>
+            <h2>Reflection – Your Vehicle Match</h2>
+            <p>
+                Choosing investments is personal. Let's connect these vehicles to your life.
+            </p>
+            
+            <h3>Finding Your Fit</h3>
+            <p>Which vehicle vibes with your goals and gut?</p>
+            <ul>
+                <li><strong>Stocks:</strong> For big wins and thrill-seekers.</li>
+                <li><strong>Bonds:</strong> For calm and caution.</li>
+                <li><strong>Mutual Funds/ETFs:</strong> For set-it-and-forget-it ease.</li>
+                <li><strong>Real Estate:</strong> For hands-on builders.</li>
+            </ul>
+            
+            <h3>What's at Stake</h3>
+            <p>
+                Pick right, and your money accelerates toward your dreams. Pick wrong, and you might face stress (too risky) or stagnation (too safe).
+            </p>
+            
+            <h3>Personal Angle</h3>
+            <ul>
+                <li><strong>20-Somethings:</strong> Lean into stocks or ETFs for decades of growth.</li>
+                <li><strong>40-Somethings:</strong> Mix bonds and real estate for income and stability.</li>
+                <li><strong>Risk-Averse:</strong> Bonds or low-cost index funds for peace of mind.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Investment Matchmaker</h3>
+                <p>Write a paragraph: "I'd start with [vehicle] because [reason tied to my life]."</p>
+                <p><em>Example: "I'd start with ETFs because I'm 28, want diversification, and can only spare $50 monthly."</em></p>
+                <p><strong>Bonus:</strong> Draw a "vehicle" icon next to your choice (e.g., a rocket for stocks, a house for real estate).</p>
+                <textarea placeholder="Write your Investment Matchmaker paragraph here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Investment Vehicle Decision Flowchart</h4>
+                <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+                    <p><strong>If you have a short-term goal (1-3 years):</strong> → Bonds or High-Yield Savings</p>
+                    <p><strong>If you want long-term growth (5+ years):</strong> → Stocks or ETFs</p>
+                    <p><strong>If you value hands-off investing:</strong> → Mutual Funds or ETFs</p>
+                    <p><strong>If you enjoy research and picking winners:</strong> → Individual Stocks</p>
+                    <p><strong>If you want passive income:</strong> → Dividend Stocks or REITs</p>
+                    <p><strong>If you like tangible assets:</strong> → Real Estate</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Quiz – Know Your Vehicles -->
+        <section>
+            <h2>Quiz – Know Your Vehicles</h2>
+            <p>
+                Test your mastery with this fun, quick quiz!
+            </p>
+            
+            <div class="quiz">
+                <div class="quiz-item">
+                    <p><strong>Question 1:</strong> Stocks give you:</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q1" value="A" id="q1a">
+                        <label for="q1a">Loans to repay</label><br>
+                        <input type="radio" name="q1" value="B" id="q1b">
+                        <label for="q1b">Ownership stakes</label><br>
+                        <input type="radio" name="q1" value="C" id="q1c">
+                        <label for="q1c">Property deeds</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 2:</strong> Bonds are best for:</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q2" value="A" id="q2a">
+                        <label for="q2a">High risk</label><br>
+                        <input type="radio" name="q2" value="B" id="q2b">
+                        <label for="q2b">Low-moderate risk</label><br>
+                        <input type="radio" name="q2" value="C" id="q2c">
+                        <label for="q2c">Zero risk</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 3:</strong> ETFs shine with:</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q3" value="A" id="q3a">
+                        <label for="q3a">High fees</label><br>
+                        <input type="radio" name="q3" value="B" id="q3b">
+                        <label for="q3b">Low fees</label><br>
+                        <input type="radio" name="q3" value="C" id="q3c">
+                        <label for="q3c">Fixed returns</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 4:</strong> Real estate can offer:</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q4" value="A" id="q4a">
+                        <label for="q4a">Dividends</label><br>
+                        <input type="radio" name="q4" value="B" id="q4b">
+                        <label for="q4b">Rental income</label><br>
+                        <input type="radio" name="q4" value="C" id="q4c">
+                        <label for="q4c">Interest only</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 5:</strong> Mutual funds are managed by:</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q5" value="A" id="q5a">
+                        <label for="q5a">You</label><br>
+                        <input type="radio" name="q5" value="B" id="q5b">
+                        <label for="q5b">Professionals</label><br>
+                        <input type="radio" name="q5" value="C" id="q5c">
+                        <label for="q5c">The government</label>
+                    </div>
+                </div>
+                
+                <button onclick="checkQuiz()">Submit Quiz</button>
+                <div id="quiz-result" class="result-box" style="display: none;"></div>
+                
+                <div class="activity-box" style="margin-top: 20px;">
+                    <p>Take the quiz (set a 4-minute timer for fun!). Score it, then pick one missed question and write a quirky reminder (e.g., "ETFs = low fees, not high—duh!").</p>
+                    <textarea placeholder="Write your quirky reminder here..." rows="3"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2>Conclusion: Your Toolbox Is Loaded!</h2>
+            <p>
+                You've just stocked your financial toolbox with five powerful vehicles—stocks for ambition, bonds for balance, mutual funds and ETFs for ease, and real estate for roots. You're ready to pick the tools that suit your journey. Next, we'll tackle how to balance their risks and rewards in Lesson 3!
+            </p>
+            
+            <h3>Take Action:</h3>
+            <p>
+                Choose one vehicle—like Apple stock (AAPL) or the VOO ETF—and look up its current price on <a href="https://finance.yahoo.com/" target="_blank">Yahoo Finance</a>. Write down the price and one reason it intrigues you (e.g., "Apple's innovative").
+            </p>
+            
+            <h3>Resources:</h3>
+            <ul>
+                <li><a href="https://finance.yahoo.com/" target="_blank">Yahoo Finance</a> – Stock and ETF prices.</li>
+                <li><a href="https://www.treasurydirect.gov/" target="_blank">TreasuryDirect</a> – Bond yields.</li>
+                <li><a href="https://www.morningstar.com/" target="_blank">Morningstar</a> – Mutual fund insights.</li>
+                <li><a href="https://www.zillow.com/" target="_blank">Zillow</a> – Real estate listings.</li>
+            </ul>
+            
+            <p>Your investment adventure is rolling—choose your vehicles and hit the road!</p>
+            
+            <div class="activity-box">
+                <a href="section3lesson3.html" class="cta-button">Next Lesson: Risk and Portfolio Management</a>
+                <a href="index.html" class="cta-button">Return to Course Overview</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="learn.html">Learn</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: rthompson25@bayschoolsf.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 FinanceCourse. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

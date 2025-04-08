@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 4: Building Your Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #5b3fd8;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #3f51b5, #5b3fd8);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #5b3fd8;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #3f51b5;
+            border-bottom: 2px solid #3f51b5;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3f51b5;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #3f51b5;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #303f9f;
+        }
+        /* Lesson-specific styles */
+        .example-box {
+            background-color: #f0f4ff;
+            border: 1px solid #d0d9ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #3f51b5;
+            color: white;
+        }
+        .visual-aid {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .visual-aid img {
+            max-width: 100%;
+            height: auto;
+        }
+        .calculator-button {
+            display: inline-block;
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+            text-decoration: none;
+        }
+        .calculator-button:hover {
+            background-color: #303f9f;
+        }
+        .graph-placeholder {
+            height: 200px;
+            background-color: #f0f4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .case-study {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid #3f51b5;
+        }
+        .case-study h3 {
+            color: #3f51b5;
+            margin-top: 0;
+        }
+        .portfolio-bar {
+            height: 30px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin: 10px 0;
+            display: flex;
+            overflow: hidden;
+        }
+        .bar-stocks {
+            height: 100%;
+            background-color: #3f51b5;
+        }
+        .bar-bonds {
+            height: 100%;
+            background-color: #4caf50;
+        }
+        .bar-cash {
+            height: 100%;
+            background-color: #ff9800;
+        }
+        .bar-other {
+            height: 100%;
+            background-color: #f44336;
+        }
+        .pie-chart {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 20px auto;
+            background: conic-gradient(
+                #3f51b5 0% 60%,
+                #4caf50 60% 90%,
+                #ff9800 90% 100%
+            );
+            position: relative;
+        }
+        .pie-legend {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+        }
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            border-radius: 3px;
+        }
+        .castle-visual {
+            position: relative;
+            height: 280px;
+            margin: 30px auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        .castle-tower {
+            width: 60px;
+            background-color: #3f51b5;
+            border-radius: 5px 5px 0 0;
+            margin: 0 15px;
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+        .castle-tower:before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 0;
+            right: 0;
+            height: 15px;
+            background-color: #3f51b5;
+            border-radius: 5px 5px 0 0;
+        }
+        .castle-wall {
+            width: 100px;
+            height: 100px;
+            background-color: #4caf50;
+            position: relative;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .castle-moat {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background-color: #2196f3;
+            border-radius: 0 0 5px 5px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .asset-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .asset-table th, .asset-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .asset-table th {
+            background-color: #f2f2f2;
+        }
+        .asset-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 660;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'B') score++;
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 5. ${score >= 4 ? 'Amazing! You\'re a portfolio building master!' : score >= 3 ? 'Good job! Review the material to build stronger portfolios.' : 'Keep studying about portfolio building!'}`;
+            document.getElementById('quiz-result').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Investing for Beginners: Lesson 4 – Building Your Portfolio: Your Financial Fortress</h1>
+        <p>Learn how to create a personalized investment mix that aligns with your goals, manages risk, and builds wealth over time.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Learning!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview: Crafting Your Investment Blueprint</h2>
+            <p>
+                Welcome back to Investing for Beginners! In Lesson 3, you explored risk and return. Now, Lesson 4 is your hands-on blueprint for building a portfolio—a personalized mix of investments tailored to hit your financial targets. Whether you're starting with $50 or $50,000, this lesson equips you with:
+            </p>
+            <ul>
+                <li>Diversification: Spread your risk and boost growth with a smart asset mix.</li>
+                <li>Asset Allocation: Design the perfect balance of stocks, bonds, and more for your goals.</li>
+                <li>Starting Small: Begin investing with pocket change using accessible tools.</li>
+                <li>Rebalancing: Keep your portfolio aligned with your plan over time.</li>
+                <li>Tools: Leverage apps, platforms, and spreadsheets to build and track your investments.</li>
+                <li>Real-Life Examples: Peek into portfolios that worked—and why they succeeded.</li>
+            </ul>
+            <p>
+                By the end, you'll have a rock-solid, actionable plan to launch your investing journey, customized to your goals and budget. Let's start constructing your financial fortress!
+            </p>
+        </section>
+
+        <!-- Introduction: Your Financial Fortress -->
+        <section id="section1">
+            <h2>Introduction: Your Financial Fortress</h2>
+            <p>
+                Imagine your portfolio as a castle for your money—each investment is a brick, tower, or gate, working together to protect and grow your wealth. A well-built fortress stands strong against market storms and builds value over decades, while a shaky one might crack under pressure. Whether you're guarding $100 or $10,000, this lesson will show you how to lay a sturdy foundation and raise walls that endure.
+            </p>
+            
+            <h3>Why It Matters:</h3>
+            <p>
+                Your portfolio isn't just a pile of assets—it's your strategy to turn dreams like a comfy retirement or a dream home into reality. With the right design, you'll grow your wealth while sleeping easy.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Reflection Prompt: Your Castle's Purpose</h3>
+                <p>
+                    Name one goal your portfolio will protect or achieve—like "a comfy retirement" or "my kid's college fund." Write a quick sentence on why it matters to you.
+                </p>
+                <p><em>Example: "I want a portfolio for a comfy retirement so I can relax by the beach without financial stress."</em></p>
+                <textarea placeholder="Write your reflection here..." rows="3"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Financial Fortress</h3>
+                <div class="castle-visual">
+                    <div class="castle-tower" style="height: 180px;">
+                        <span style="position: absolute; bottom: 10px; left: 0; right: 0;">Stocks</span>
+                    </div>
+                    <div class="castle-wall">
+                        <span>Bonds</span>
+                    </div>
+                    <div class="castle-tower" style="height: 150px;">
+                        <span style="position: absolute; bottom: 10px; left: 0; right: 0;">REITs</span>
+                    </div>
+                    <div class="castle-moat">Cash</div>
+                </div>
+                <p>Picture a medieval castle: "Stocks" as the towering keep (growth potential), "Bonds" as the sturdy walls (stability), and "Cash" as the moat (protection). Every piece plays a role in your fortress!</p>
+            </div>
+        </section>
+
+        <!-- Section 1: Why Diversify? -->
+        <section>
+            <h2>Why Diversify?</h2>
+            <p>
+                Diversification is your castle's first defense—a safety net that keeps one bad investment from toppling your wealth. Let's break it down.
+            </p>
+            
+            <h3>What Is Diversification?</h3>
+            <p>
+                Diversification means spreading your money across different asset types—like stocks, bonds, and real estate—so a single flop doesn't sink your ship. It's the classic "don't put all your eggs in one basket" approach.
+            </p>
+            
+            <h3>How It Works</h3>
+            <p>
+                If stocks crash 20% but bonds gain 3%, a diversified portfolio softens the blow. The more varied your assets, the less you'll panic when markets dip.
+            </p>
+            
+            <h3>Numbers That Prove It</h3>
+            <ul>
+                <li><strong>100% Stocks:</strong> A $5,000 portfolio drops to $4,000 in a 20% crash—a $1,000 loss.</li>
+                <li><strong>50% Stocks, 50% Bonds:</strong> Stocks fall to $2,000 (from $2,500), but bonds rise to $2,575 (from $2,500 at 3%). Total: $4,575—a loss of just $425, or 8.5%.</li>
+            </ul>
+            <p>Diversification cuts your pain in half!</p>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                In 2008, stocks plummeted 37%, but bonds gained 5%. A diversified investor with 50% stocks and 50% bonds lost only 16%—far less than an all-stock portfolio—and bounced back quicker.
+            </p>
+            
+            <h3>Beyond Asset Types</h3>
+            <p>
+                Diversify within categories, too:
+            </p>
+            <ul>
+                <li><strong>Stocks:</strong> Mix sectors (tech, healthcare) and regions (U.S., Europe).</li>
+                <li><strong>Bonds:</strong> Blend government and corporate bonds.</li>
+            </ul>
+            <p>This shields you from sector slumps or regional hiccups.</p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Your Diversification Mix</h3>
+                <ol>
+                    <li>List three asset types you'd include—like "stocks, bonds, REITs."</li>
+                    <li>Write one reason for each:
+                        <br><em>"Stocks for growth, bonds for safety, REITs for income."</em>
+                    </li>
+                    <li>How would they balance each other?
+                        <br><em>"If stocks tank, bonds stabilize, and REITs pay steady dividends."</em>
+                    </li>
+                </ol>
+                <p><strong>Fun Twist:</strong> If your portfolio were a meal, what would it be?
+                    <br><em>"Stocks = spicy entrée, bonds = hearty side, REITs = sweet dessert."</em>
+                </p>
+                <textarea placeholder="Write your diversification mix here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Diversification in Action: Market Crash Scenario</h4>
+                <div style="display: flex; justify-content: space-around; margin-top: 30px;">
+                    <!-- 100% Stocks -->
+                    <div style="text-align: center; width: 45%;">
+                        <div style="font-weight: bold; margin-bottom: 15px;">100% Stocks</div>
+                        <div style="height: 200px; background-color: #f0f4ff; border-radius: 5px; position: relative; overflow: hidden;">
+                            <div style="position: absolute; bottom: 0; width: 100%; height: 100%; background-color: #3f51b5; transition: height 1s ease;"></div>
+                            <div style="position: absolute; bottom: 0; width: 100%; height: 80%; background-color: #f44336; transition: height 1s ease;"></div>
+                        </div>
+                        <div style="margin-top: 10px;">-20% Loss</div>
+                    </div>
+                    
+                    <!-- 50/50 Mix -->
+                    <div style="text-align: center; width: 45%;">
+                        <div style="font-weight: bold; margin-bottom: 15px;">50% Stocks, 50% Bonds</div>
+                        <div style="height: 200px; background-color: #f0f4ff; border-radius: 5px; position: relative; overflow: hidden;">
+                            <div style="position: absolute; bottom: 0; left: 0; width: 50%; height: 100%; background-color: #3f51b5; transition: height 1s ease;"></div>
+                            <div style="position: absolute; bottom: 0; left: 0; width: 50%; height: 80%; background-color: #f44336; transition: height 1s ease;"></div>
+                            <div style="position: absolute; bottom: 0; right: 0; width: 50%; height: 100%; background-color: #4caf50; transition: height 1s ease;"></div>
+                            <div style="position: absolute; bottom: 0; right: 0; width: 50%; height: 103%; background-color: #8bc34a; transition: height 1s ease;"></div>
+                        </div>
+                        <div style="margin-top: 10px;">-8.5% Loss</div>
+                    </div>
+                </div>
+                <p style="margin-top: 20px;">Bar chart comparing a 100% stock portfolio's crash (-20%) vs. a 50/50 mix (-8.5%). See diversification in action!</p>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/d/diversification.asp" target="_blank">Investopedia: Diversification</a> – Dive deeper with stats and stories.</p>
+        </section>
+
+        <!-- Section 2: Asset Allocation Basics -->
+        <section>
+            <h2>Asset Allocation Basics</h2>
+            <p>
+                Asset allocation is your portfolio's recipe—deciding how much goes to stocks, bonds, cash, and more. Let's design yours.
+            </p>
+            
+            <h3>What Is Asset Allocation?</h3>
+            <p>
+                Asset allocation is choosing the percentage of each asset type in your portfolio based on your goals, risk tolerance, and timeline. It's the blueprint for your financial fortress.
+            </p>
+            
+            <h3>Factors That Shape It</h3>
+            <ul>
+                <li><strong>Age:</strong> Younger? Favor stocks for growth. Older? Lean on bonds for stability.</li>
+                <li><strong>Goals:</strong> Saving for a car in 5 years? Play it safer. Retirement in 30 years? Focus on growth.</li>
+                <li><strong>Risk Tolerance:</strong> Aggressive? Load up on stocks. Conservative? Balance with bonds.</li>
+            </ul>
+            
+            <h3>Classic Allocation Mixes</h3>
+            <ul>
+                <li><strong>Young Aggressive (20s-30s):</strong> 80% stocks, 20% bonds.</li>
+                <li><strong>Middle Moderate (40s-50s):</strong> 60% stocks, 40% bonds.</li>
+                <li><strong>Older Conservative (60+):</strong> 40% stocks, 60% bonds.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>A 35-year-old with $10,000 might choose:</p>
+            <ul>
+                <li>70% stocks ($7,000 in VOO, an S&P 500 ETF).</li>
+                <li>20% bonds ($2,000 in BND, a total bond ETF).</li>
+                <li>10% cash ($1,000 in a high-yield savings account).</li>
+            </ul>
+            <p>This mix blends growth with a safety cushion.</p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Design Your Allocation</h3>
+                <ol>
+                    <li>Based on your age and risk tolerance, design a $10,000 allocation:
+                        <br><em>"I'm 28, moderate risk: 70% stocks, 20% bonds, 10% cash."</em>
+                    </li>
+                    <li>Write why it fits you:
+                        <br><em>"I want growth but some stability for peace of mind."</em>
+                    </li>
+                </ol>
+                <p><strong>Bonus:</strong> Adjust for a short-term goal (e.g., 5 years)—how would it change?
+                    <br><em>"For a 5-year goal, I'd shift to 50% stocks, 40% bonds, 10% cash—less risk."</em>
+                </p>
+                <textarea placeholder="Write your allocation plan here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Asset Allocation by Age</h4>
+                <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 20px; gap: 20px;">
+                    <!-- 25-Year-Old -->
+                    <div style="text-align: center; flex: 1; min-width: 200px;">
+                        <div style="font-weight: bold; margin-bottom: 10px;">25-Year-Old</div>
+                        <div style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto; background: conic-gradient(#3f51b5 0% 80%, #4caf50 80% 100%);"></div>
+                        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px;">
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #3f51b5; margin-right: 5px;"></span>Stocks 80%</div>
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #4caf50; margin-right: 5px;"></span>Bonds 20%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 45-Year-Old -->
+                    <div style="text-align: center; flex: 1; min-width: 200px;">
+                        <div style="font-weight: bold; margin-bottom: 10px;">45-Year-Old</div>
+                        <div style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto; background: conic-gradient(#3f51b5 0% 60%, #4caf50 60% 100%);"></div>
+                        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px;">
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #3f51b5; margin-right: 5px;"></span>Stocks 60%</div>
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #4caf50; margin-right: 5px;"></span>Bonds 40%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 65-Year-Old -->
+                    <div style="text-align: center; flex: 1; min-width: 200px;">
+                        <div style="font-weight: bold; margin-bottom: 10px;">65-Year-Old</div>
+                        <div style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto; background: conic-gradient(#3f51b5 0% 40%, #4caf50 40% 100%);"></div>
+                        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px;">
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #3f51b5; margin-right: 5px;"></span>Stocks 40%</div>
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #4caf50; margin-right: 5px;"></span>Bonds 60%</div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 30px;">Watch the shift from growth to safety as age increases!</p>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/a/assetallocation.asp" target="_blank">Investopedia: Asset Allocation</a> – A beginner's guide to crafting your mix.</p>
+        </section>
+
+        <!-- Section 3: Starting Small -->
+        <section>
+            <h2>Starting Small</h2>
+            <p>
+                You don't need a fortune to invest—pocket change can kickstart your fortress. Let's see how.
+            </p>
+            
+            <h3>No Big Bucks Needed</h3>
+            <p>Investing is for everyone, thanks to:</p>
+            <ul>
+                <li><strong>Fractional Shares:</strong> Buy a piece of pricey stocks like Amazon for $15 on apps like Robinhood.</li>
+                <li><strong>Low-Minimum ETFs:</strong> Start with $10 in broad-market funds like SCHB (Schwab U.S. Broad Market ETF).</li>
+                <li><strong>Robo-Advisors:</strong> Platforms like Betterment build a diversified portfolio with just $100.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <ul>
+                <li><strong>Fractional Shares:</strong> $50 buys 0.015 shares of Tesla (if it's $3,300/share).</li>
+                <li><strong>ETFs:</strong> $50 in SCHB gets you exposure to 3,000+ companies for a tiny 0.03% fee.</li>
+                <li><strong>Robo-Advisors:</strong> Betterment invests $100 across stocks and bonds, auto-adjusting as markets move.</li>
+            </ul>
+            
+            <h3>Growth Potential</h3>
+            <p>Invest $25 monthly in an ETF at 7% for 20 years:</p>
+            <ul>
+                <li>Total invested: $6,000.</li>
+                <li>Future value: $13,000+.</li>
+            </ul>
+            <p>Small steps build big castles!</p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: ETF Explorer</h3>
+                <ol>
+                    <li>Visit Vanguard or Fidelity and find an ETF under $100/share.</li>
+                    <li>Note its price, expense ratio, and what it holds:
+                        <br><em>"SCHB, $50, 0.03%, U.S. stocks."</em>
+                    </li>
+                    <li>Write if it tempts you:
+                        <br><em>"SCHB's low fee and broad coverage make it perfect for my $50 start!"</em>
+                    </li>
+                </ol>
+                <p><strong>Bonus:</strong> Calculate how many shares $50 buys:
+                    <br><em>"$50 / $50 = 1 share."</em>
+                </p>
+                <textarea placeholder="Write your ETF Explorer findings here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="asset-table">
+                <tr>
+                    <th>Method</th>
+                    <th>Minimum</th>
+                    <th>Example</th>
+                    <th>Best For</th>
+                </tr>
+                <tr>
+                    <td>Fractional Shares</td>
+                    <td>$1+</td>
+                    <td>0.1 shares of Apple</td>
+                    <td>Stock enthusiasts</td>
+                </tr>
+                <tr>
+                    <td>ETFs</td>
+                    <td>$10+</td>
+                    <td>SCHB at $50</td>
+                    <td>Diversified starters</td>
+                </tr>
+                <tr>
+                    <td>Robo-Advisors</td>
+                    <td>$100+</td>
+                    <td>Betterment</td>
+                    <td>Hands-off investors</td>
+                </tr>
+            </table>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/f/fractionalshare.asp" target="_blank">Investopedia: Fractional Shares</a> – A guide to starting small but smart.</p>
+        </section>
+
+        <!-- Section 4: Rebalancing Your Portfolio -->
+        <section>
+            <h2>Rebalancing Your Portfolio</h2>
+            <p>
+                Rebalancing is like tuning up your castle—keeping it strong by resetting your asset mix to target. Let's master it.
+            </p>
+            
+            <h3>What Is Rebalancing?</h3>
+            <p>
+                Rebalancing means adjusting your portfolio back to its intended allocation. If stocks jump from 60% to 70%, you sell some and buy bonds to return to 60/40. It keeps your risk in check.
+            </p>
+            
+            <h3>When to Rebalance</h3>
+            <ul>
+                <li><strong>Yearly:</strong> Review every January.</li>
+                <li><strong>After Big Shifts:</strong> If an asset moves 10%+ off target, tweak it.</li>
+                <li><strong>Don't Overdo It:</strong> Too much rebalancing racks up fees and taxes.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>Your $10,000 portfolio (60% stocks, 40% bonds) grows to $12,000:</p>
+            <ul>
+                <li>Stocks: $8,400 (70%).</li>
+                <li>Bonds: $3,600 (30%).</li>
+            </ul>
+            <p>To rebalance to 60/40:</p>
+            <ul>
+                <li>Sell $1,200 stocks (to $7,200, or 60%).</li>
+                <li>Buy $1,200 bonds (to $4,800, or 40%).</li>
+            </ul>
+            <p>This locks in gains and buys low.</p>
+            
+            <h3>Why It Works</h3>
+            <p>
+                Rebalancing forces you to sell high (stocks after a surge) and buy low (bonds after a dip), maintaining your risk level.
+            </p>
+            
+            <h3>Tools</h3>
+            <p>
+                Brokerages like Fidelity offer free or low-cost auto-rebalancing—set it and relax.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Rebalancing Math</h3>
+                <p>Your $5,000 portfolio (70% stocks, 30% bonds) grows to $6,000:</p>
+                <ul>
+                    <li>Stocks: $4,500 (75%).</li>
+                    <li>Bonds: $1,500 (25%).</li>
+                </ul>
+                <p>Calculate how to rebalance to 70/30:</p>
+                <ul>
+                    <li>Target stocks: 70% of $6,000 = $4,200.</li>
+                    <li>Sell $300 stocks ($4,500 - $4,200).</li>
+                    <li>Buy $300 bonds (to $1,800, or 30%).</li>
+                </ul>
+                <p>Write it out:
+                    <br><em>"Sell $300 stocks, buy $300 bonds—back to 70/30."</em>
+                </p>
+                <p><strong>Fun Twist:</strong> If your portfolio were a garden, rebalancing is pruning—keeping it thriving!</p>
+                <textarea placeholder="Write your rebalancing calculation here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Before and After Rebalancing</h4>
+                <table class="asset-table">
+                    <tr>
+                        <th>Asset</th>
+                        <th>Before</th>
+                        <th>After Rebalance</th>
+                    </tr>
+                    <tr>
+                        <td>Stocks</td>
+                        <td>$4,500</td>
+                        <td>$4,200</td>
+                    </tr>
+                    <tr>
+                        <td>Bonds</td>
+                        <td>$1,500</td>
+                        <td>$1,800</td>
+                    </tr>
+                </table>
+                <div style="margin-top: 30px; display: flex; justify-content: space-around;">
+                    <!-- Before Rebalance -->
+                    <div style="text-align: center; width: 45%;">
+                        <div style="font-weight: bold; margin-bottom: 10px;">Before Rebalance</div>
+                        <div style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto; background: conic-gradient(#3f51b5 0% 75%, #4caf50 75% 100%);"></div>
+                        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px;">
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #3f51b5; margin-right: 5px;"></span>75%</div>
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #4caf50; margin-right: 5px;"></span>25%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- After Rebalance -->
+                    <div style="text-align: center; width: 45%;">
+                        <div style="font-weight: bold; margin-bottom: 10px;">After Rebalance</div>
+                        <div style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto; background: conic-gradient(#3f51b5 0% 70%, #4caf50 70% 100%);"></div>
+                        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px;">
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #3f51b5; margin-right: 5px;"></span>70%</div>
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #4caf50; margin-right: 5px;"></span>30%</div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 20px;">See the shift back to target!</p>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/r/rebalancing.asp" target="_blank">Investopedia: Rebalancing</a> – A guide to keeping your portfolio balanced.</p>
+        </section>
+
+        <!-- Section 5: Tools for Portfolio Building -->
+        <section>
+            <h2>Tools for Portfolio Building</h2>
+            <p>
+                Building your fortress is easier with the right tools. Let's explore platforms and apps to make it happen.
+            </p>
+            
+            <h3>Platforms to Build On</h3>
+            <ul>
+                <li><strong>Brokerages:</strong> DIY options like Schwab or Vanguard offer $0 trades and low-fee funds.</li>
+                <li><strong>Robo-Advisors:</strong> Hands-off platforms like Wealthfront or Betterment manage your mix for a small fee (0.25%).</li>
+            </ul>
+            
+            <h3>Analysis Tools</h3>
+            <ul>
+                <li><strong>Portfolio Visualizer:</strong> Free tool to project growth and test mixes (e.g., 60/40 vs. 80/20 over 10 years).</li>
+                <li><strong>Morningstar:</strong> Track fund performance and fees.</li>
+            </ul>
+            
+            <h3>Cost Watch</h3>
+            <p>Fees eat gains:</p>
+            <ul>
+                <li><strong>ETFs:</strong> Low fees (0.03-0.5%)—e.g., VOO at 0.03%.</li>
+                <li><strong>Mutual Funds:</strong> Higher fees (0.5-2%)—e.g., 1% on $10,000 costs $100/year.</li>
+            </ul>
+            <p>Choose low-cost options to keep more money.</p>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                Wealthfront splits $500 into 60% stocks and 40% bonds for just $1.25/year—auto-managed and diversified.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Portfolio Projection</h3>
+                <ol>
+                    <li>Visit Portfolio Visualizer and input a $1,000 mix: 50% VOO, 50% BND.</li>
+                    <li>Project 10-year growth at 7%:
+                        <br><em>"$1,000 → $2,000+."</em>
+                    </li>
+                    <li>Write what you see:
+                        <br><em>"At 7%, my $1K doubles in a decade—awesome!"</em>
+                    </li>
+                </ol>
+                <p><strong>Bonus:</strong> Test a 100% stock mix—how does risk/reward change?
+                    <br><em>"Bigger gains, but wilder swings."</em>
+                </p>
+                <textarea placeholder="Write your portfolio projection results here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Portfolio Building Tools Comparison</h4>
+                <table class="asset-table">
+                    <tr>
+                        <th>Tool</th>
+                        <th>Type</th>
+                        <th>Best For</th>
+                    </tr>
+                    <tr>
+                        <td>Schwab</td>
+                        <td>Brokerage</td>
+                        <td>DIY investors</td>
+                    </tr>
+                    <tr>
+                        <td>Betterment</td>
+                        <td>Robo-Advisor</td>
+                        <td>Hands-off starters</td>
+                    </tr>
+                    <tr>
+                        <td>Portfolio Visualizer</td>
+                        <td>Analysis</td>
+                        <td>Growth projections</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 20px;">Choose the right tool for your investing style!</p>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.betterment.com/" target="_blank">Betterment</a> – A newbie-friendly robo-advisor walkthrough.</p>
+        </section>
+
+        <!-- Section 6: Real-Life Portfolio Examples -->
+        <section>
+            <h2>Real-Life Portfolio Examples</h2>
+            <p>
+                Let's peek into three real portfolios to see how age, goals, and risk shape the mix.
+            </p>
+            
+            <div class="case-study">
+                <h3>Case 1: Mia, 30, $10,000</h3>
+                <p><strong>Mix:</strong> 70% stocks (VOO), 20% bonds (BND), 10% cash.</p>
+                <p><strong>Outcome:</strong> After 5 years at 7%, $14,025—growth with a buffer.</p>
+                <p><strong>Why:</strong> Young and moderate, she wants growth without huge risks.</p>
+                <div class="portfolio-bar">
+                    <div class="bar-stocks" style="width: 70%;"></div>
+                    <div class="bar-bonds" style="width: 20%;"></div>
+                    <div class="bar-cash" style="width: 10%;"></div>
+                </div>
+            </div>
+            
+            <div class="case-study">
+                <h3>Case 2: Tom, 55, $50,000</h3>
+                <p><strong>Mix:</strong> 50% bonds (BND), 40% stocks (VTSAX), 10% cash.</p>
+                <p><strong>Outcome:</strong> In 5 years at 5%, $63,814—safe but growing.</p>
+                <p><strong>Why:</strong> Nearing retirement, he prioritizes stability.</p>
+                <div class="portfolio-bar">
+                    <div class="bar-stocks" style="width: 40%;"></div>
+                    <div class="bar-bonds" style="width: 50%;"></div>
+                    <div class="bar-cash" style="width: 10%;"></div>
+                </div>
+            </div>
+            
+            <div class="case-study">
+                <h3>Case 3: Sam, 25, $2,000</h3>
+                <p><strong>Mix:</strong> 100% stocks (tech ETF).</p>
+                <p><strong>Outcome:</strong> Hits $3,400 in 5 years (11%), but a 20% dip tests his grit.</p>
+                <p><strong>Why:</strong> Young and aggressive, he's chasing max growth.</p>
+                <div class="portfolio-bar">
+                    <div class="bar-stocks" style="width: 100%;"></div>
+                </div>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Tweak a Portfolio</h3>
+                <ol>
+                    <li>Pick Case 1 (Mia) and adjust it for your age/goals:
+                        <br><em>"I'm 25, aggressive—80% stocks, 20% bonds."</em>
+                    </li>
+                    <li>Write your $10,000 split:
+                        <br><em>"$8,000 VOO, $2,000 BND—more stocks since I've got time."</em>
+                    </li>
+                </ol>
+                <p><strong>Bonus:</strong> If you had $2,000 like Sam, would you go 100% stocks? Why or why not?
+                    <br><em>"No—80/20 for a bit of safety."</em>
+                </p>
+                <textarea placeholder="Write your portfolio tweak here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Portfolio Allocations by Age</h4>
+                <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 20px; gap: 20px;">
+                    <!-- Mia's Portfolio -->
+                    <div style="text-align: center; flex: 1; min-width: 200px;">
+                        <div style="font-weight: bold; margin-bottom: 10px;">Mia (30)</div>
+                        <div style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto; background: conic-gradient(#3f51b5 0% 70%, #4caf50 70% 90%, #ff9800 90% 100%);"></div>
+                        <div style="margin-top: 15px; text-align: left; max-width: 150px; margin-left: auto; margin-right: auto;">
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #3f51b5; margin-right: 5px;"></span>Stocks 70%</div>
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #4caf50; margin-right: 5px;"></span>Bonds 20%</div>
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #ff9800; margin-right: 5px;"></span>Cash 10%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tom's Portfolio -->
+                    <div style="text-align: center; flex: 1; min-width: 200px;">
+                        <div style="font-weight: bold; margin-bottom: 10px;">Tom (55)</div>
+                        <div style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto; background: conic-gradient(#3f51b5 0% 40%, #4caf50 40% 90%, #ff9800 90% 100%);"></div>
+                        <div style="margin-top: 15px; text-align: left; max-width: 150px; margin-left: auto; margin-right: auto;">
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #3f51b5; margin-right: 5px;"></span>Stocks 40%</div>
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #4caf50; margin-right: 5px;"></span>Bonds 50%</div>
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #ff9800; margin-right: 5px;"></span>Cash 10%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sam's Portfolio -->
+                    <div style="text-align: center; flex: 1; min-width: 200px;">
+                        <div style="font-weight: bold; margin-bottom: 10px;">Sam (25)</div>
+                        <div style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto; background: conic-gradient(#3f51b5 0% 100%);"></div>
+                        <div style="margin-top: 15px; text-align: left; max-width: 150px; margin-left: auto; margin-right: auto;">
+                            <div><span style="display: inline-block; width: 12px; height: 12px; background-color: #3f51b5; margin-right: 5px;"></span>Stocks 100%</div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 30px;">Bar graphs showing each portfolio's allocation—color-coded for stocks, bonds, and cash. See the shift with age!</p>
+            </div>
+        </section>
+
+        <!-- Section 7: Reflection – Your Portfolio Vision -->
+        <section>
+            <h2>Reflection – Your Portfolio Vision</h2>
+            <p>
+                Let's tie your portfolio to your dreams.
+            </p>
+            
+            <h3>Your Blueprint</h3>
+            <p>
+                What mix feels ambitious yet doable? More stocks for growth or bonds for calm?
+            </p>
+            
+            <h3>Why It Matters</h3>
+            <p>
+                Diversify well, and your fortress weathers storms. Skimp, and a crash could hurt—or bore you with slow gains.
+            </p>
+            
+            <h3>Dream Tie-In</h3>
+            <p>
+                Link it to your intro goal:
+                <br><em>"60% stocks to retire by 50 and travel the world."</em>
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Portfolio Purpose</h3>
+                <p>Write: "My portfolio will include [assets] to achieve [goal]."</p>
+                <p><em>Example: "70% ETFs, 30% bonds to save $100K for a house in 15 years."</em></p>
+                <p>Add a hopeful twist: "I'll sip coffee in my dream home, knowing I built it step by step."</p>
+                <textarea placeholder="Write your portfolio purpose here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Your Dream Mix</h4>
+                <div style="position: relative; width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; border: 2px dashed #3f51b5;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                        <p>Fill in your<br>dream mix</p>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <div><span style="display: inline-block; width: 15px; height: 15px; background-color: #3f51b5; margin-right: 5px;"></span>Stocks ___%</div>
+                    <div><span style="display: inline-block; width: 15px; height: 15px; background-color: #4caf50; margin-right: 5px;"></span>Bonds ___%</div>
+                    <div><span style="display: inline-block; width: 15px; height: 15px; background-color: #ff9800; margin-right: 5px;"></span>Cash ___%</div>
+                    <div><span style="display: inline-block; width: 15px; height: 15px; background-color: #f44336; margin-right: 5px;"></span>Other ___%</div>
+                </div>
+                <p style="margin-top: 20px;">A blank pie chart—fill in your dream mix with percentages and labels.</p>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/p/portfoliomanagement.asp" target="_blank">Investopedia: Portfolio Management</a> – Align your portfolio with your goals.</p>
+        </section>
+
+<!-- Section 8: Quiz – Portfolio Skills -->
+<section>
+    <h2>Quiz – Portfolio Skills</h2>
+    <p>
+        Test your fortress-building skills!
+    </p>
+    
+    <div class="quiz">
+        <div class="quiz-item">
+            <p><strong>1. Diversification:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q1" id="q1a" value="A"> <label for="q1a">Increases risk</label></div>
+                <div><input type="radio" name="q1" id="q1b" value="B"> <label for="q1b">Reduces risk</label></div>
+                <div><input type="radio" name="q1" id="q1c" value="C"> <label for="q1c">No effect</label></div>
+            </div>
+        </div>
+        
+        <div class="quiz-item">
+            <p><strong>2. Young investors lean toward:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q2" id="q2a" value="A"> <label for="q2a">Bonds</label></div>
+                <div><input type="radio" name="q2" id="q2b" value="B"> <label for="q2b">Stocks</label></div>
+                <div><input type="radio" name="q2" id="q2c" value="C"> <label for="q2c">Cash only</label></div>
+            </div>
+        </div>
+        
+        <div class="quiz-item">
+            <p><strong>3. Rebalance:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q3" id="q3a" value="A"> <label for="q3a">Daily</label></div>
+                <div><input type="radio" name="q3" id="q3b" value="B"> <label for="q3b">Yearly-ish</label></div>
+                <div><input type="radio" name="q3" id="q3c" value="C"> <label for="q3c">Never</label></div>
+            </div>
+        </div>
+        
+        <div class="quiz-item">
+            <p><strong>4. ETFs are great for:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q4" id="q4a" value="A"> <label for="q4a">Big budgets only</label></div>
+                <div><input type="radio" name="q4" id="q4b" value="B"> <label for="q4b">Small starts</label></div>
+                <div><input type="radio" name="q4" id="q4c" value="C"> <label for="q4c">Pros only</label></div>
+            </div>
+        </div>
+        
+        <div class="quiz-item">
+            <p><strong>5. A 60/40 stock-bond mix suits:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q5" id="q5a" value="A"> <label for="q5a">Aggressive investors</label></div>
+                <div><input type="radio" name="q5" id="q5b" value="B"> <label for="q5b">Moderate investors</label></div>
+                <div><input type="radio" name="q5" id="q5c" value="C"> <label for="q5c">Conservative investors</label></div>
+            </div>
+        </div>
+        
+        <button onclick="checkQuiz()">Submit Quiz</button>
+        <div id="quiz-result" class="result-box" style="display: none;"></div>
+    </div>
+    
+    <div class="activity-box">
+        <h3>Interactive Element: Score Your Quiz</h3>
+        <p>Take the quiz (4 minutes!). Score it, then fix one miss: <em>"Rebalancing's yearly-ish, not daily—got it!"</em></p>
+        <textarea placeholder="Write your quiz reflections here..." rows="4"></textarea>
+    </div>
+    
+    <h3>Visual Aid</h3>
+    <div class="visual-aid">
+        <h4>Portfolio Building Checklist</h4>
+        <div style="max-width: 300px; margin: 0 auto; text-align: left; font-size: 18px;">
+            <div style="margin: 15px 0; display: flex; align-items: center;">
+                <span style="color: #4caf50; margin-right: 10px;"><i class="fas fa-check-circle"></i></span> 
+                <span>Diversified?</span>
+            </div>
+            <div style="margin: 15px 0; display: flex; align-items: center;">
+                <span style="color: #4caf50; margin-right: 10px;"><i class="fas fa-check-circle"></i></span> 
+                <span>Matches risk?</span>
+            </div>
+            <div style="margin: 15px 0; display: flex; align-items: center;">
+                <span style="color: #4caf50; margin-right: 10px;"><i class="fas fa-check-circle"></i></span> 
+                <span>Affordable?</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Conclusion -->
+<section>
+    <h2>Conclusion: Your Fortress Is Ready!</h2>
+    <p>
+        Your castle's foundation is set—diverse, aligned with your goals, and scalable from $50 to $50,000. With tools, strategies, and real examples, you're ready to build and grow. Next, Lesson 5 will add advanced tactics to make your fortress soar!
+    </p>
+    
+    <div class="activity-box">
+        <h3>Take Action</h3>
+        <p>Open a Robinhood or Fidelity account and buy $25 of an ETF like SCHB. Write what you picked and why: <em>"SCHB—cheap, broad exposure for my $25 start!"</em></p>
+        <textarea placeholder="Write your first investment plan here..." rows="3"></textarea>
+    </div>
+    
+    <h3>Next Up:</h3>
+    <p>
+        Lesson 5: <a href="section3lesson5.html">Investment Strategies: Your Ultimate Wealth Playbook</a>
+    </p>
+    
+    <h3>Resources:</h3>
+    <ul>
+        <li><a href="https://www.vanguard.com" target="_blank">Vanguard</a></li>
+        <li><a href="https://www.portfoliovisualizer.com" target="_blank">Portfolio Visualizer</a></li>
+        <li><a href="https://www.robinhood.com" target="_blank">Robinhood</a></li>
+    </ul>
+    
+    <p class="result-box">
+        Your financial fortress awaits—start building today!
+    </p>
+</section>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>FinanceCourse</h3>
+            <p>Learn to invest smarter with our comprehensive financial education platform.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="learn.html">Courses</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Resources</h3>
+            <ul>
+                <li><a href="#">Investing Glossary</a></li>
+                <li><a href="#">Calculators</a></li>
+                <li><a href="#">Market Updates</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <ul>
+                <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 FinanceCourse. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+        

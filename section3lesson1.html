@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 1: The Power of Investing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #5b3fd8;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #3f51b5, #5b3fd8);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #5b3fd8;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #3f51b5;
+            border-bottom: 2px solid #3f51b5;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3f51b5;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #3f51b5;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #303f9f;
+        }
+        /* Lesson-specific styles */
+        .example-box {
+            background-color: #f0f4ff;
+            border: 1px solid #d0d9ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #3f51b5;
+            color: white;
+        }
+        .formula-box {
+            background-color: #eef1fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .visual-aid {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .visual-aid img {
+            max-width: 100%;
+            height: auto;
+        }
+        .calculator-button {
+            display: inline-block;
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+            text-decoration: none;
+        }
+        .calculator-button:hover {
+            background-color: #303f9f;
+        }
+        .graph-placeholder {
+            height: 200px;
+            background-color: #f0f4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .chart-placeholder {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .chart-bar {
+            width: 40px;
+            background-color: #3f51b5;
+            margin: 0 5px;
+            position: relative;
+        }
+        .chart-bar:before {
+            content: attr(data-value);
+            position: absolute;
+            top: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+        .chart-bar:after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 12px;
+        }
+        .dream-card {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .investing-tip {
+            background-color: #e8eaf6;
+            border-left: 4px solid #3f51b5;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .math-formula {
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 660;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'A') score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q6"]:checked')?.value === 'A') score++;
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 6. ${score >= 5 ? 'Amazing! You\'re an investing rockstar!' : score >= 4 ? 'Good job! Keep learning!' : 'Keep studying the material!'}`;
+            document.getElementById('quiz-result').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Investing for Beginners: Lesson 1 – The Power of Investing</h1>
+        <p>Discover how investing can transform your financial future and help you achieve your wildest dreams.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Learning!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview: Your Ticket to Financial Freedom</h2>
+            <p>
+                Welcome to Investing for Beginners! Lesson 1 is your launchpad into the thrilling world of investing—a tool so powerful it can turn modest savings into a fortune, outsmart rising costs, and unlock your wildest dreams. Whether you're a student with $50 to spare, a parent planning for your kids' future, or someone craving financial independence, this lesson will show you why investing is your game-changer.
+            </p>
+            <p>Here's what's in store:</p>
+            <ul>
+                <li>The Big Picture: Grasp what investing is and why it's your money's best friend.</li>
+                <li>Key Forces Unveiled: Master compound interest and inflation with real numbers and stories.</li>
+                <li>Hands-On Fun: Dive into calculators, mini-games, and creative prompts to see investing in action.</li>
+                <li>Inspiration Galore: Meet everyday heroes who transformed their lives through investing.</li>
+                <li>Your Journey Starts: Connect investing to your personal goals with reflective twists.</li>
+            </ul>
+            <p>
+                By the end, you'll view investing as an accessible superpower—not just for Wall Street pros, but for you. Get ready to take charge of your financial destiny!
+            </p>
+        </section>
+
+        <!-- Introduction: Why Investing Is Your Superpower -->
+        <section id="section1">
+            <h2>Introduction: Why Investing Is Your Superpower</h2>
+            <p>
+                Picture this: You stash $1,000 in a shoebox today. Fast-forward 10 years, and it's still $1,000—but with inflation creeping at 3% annually, it'll only buy what $744 can today. That's $256 vanishing into thin air! Now, imagine investing that $1,000 in a diversified portfolio averaging 7% growth per year. In a decade, it's worth $1,967—nearly double, leaving inflation in the dust. That's not magic; it's investing!
+            </p>
+            
+            <p>
+                Investing isn't about being rich—it's about making your money hustle smarter. This lesson will reveal how it builds wealth, beats rising prices, and paves the way to goals like owning a cozy cabin, launching a passion project, or retiring on a sunny beach. Let's flip the script on your money story!
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Dream Weaver Challenge</h3>
+                <ol>
+                    <li>Grab a pen and dream up a financial goal—think big! (e.g., "Sail the Caribbean," "Open a bakery," "Pay off my car").</li>
+                    <li>Write: "Investing could help me [goal] by [how it grows my money]."</li>
+                </ol>
+                <p><em>Example: "Investing could help me sail the Caribbean by turning my $2,000 into $5,000 in eight years for a boat rental."</em></p>
+                <p><strong>Bonus:</strong> Sketch your goal (a boat, a shopfront) and pin it somewhere visible—your investing "why" starts here!</p>
+                <textarea placeholder="Write your Dream Weaver challenge response here..." rows="4"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid:</h3>
+                <p>
+                    Imagine your money as a seedling. Buried in the dirt (savings), it barely sprouts. Planted and watered (invested), it grows into a towering tree laden with fruit—your wealth!
+                </p>
+                <div class="chart-placeholder">
+                    <div style="display: flex; align-items: flex-end; height: 200px; width: 100%;">
+                        <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                            <div style="background-color: #c8e6c9; width: 40px; height: 30px;"></div>
+                            <div style="background-color: #795548; width: 20px; height: 40px;"></div>
+                            <p>Savings<br>($1,000 → $1,000)</p>
+                        </div>
+                        <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+                            <div style="background-color: #81c784; width: 100px; height: 100px;"></div>
+                            <div style="background-color: #795548; width: 20px; height: 40px;"></div>
+                            <p>Investing<br>($1,000 → $1,967)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: What Is Investing? Unpacking the Basics -->
+        <section>
+            <h2>What Is Investing? Unpacking the Basics</h2>
+            <p>
+                Investing can sound like a cryptic code, but it's as simple as planting seeds for profit. Let's break it down with crystal-clear explanations, diverse examples, and a playful activity.
+            </p>
+            
+            <h3>Definition</h3>
+            <p>
+                Investing means putting your money into assets—like stocks, bonds, mutual funds, or real estate—expecting them to grow or pay you back over time. Profit comes in three flavors:
+            </p>
+            <ul>
+                <li><strong>Income:</strong> Cash flow like dividends from stocks (e.g., $2 per share) or rent from a property.</li>
+                <li><strong>Growth:</strong> Rising value, like a stock jumping from $20 to $30.</li>
+                <li><strong>Combo Deal:</strong> Assets like real estate that offer rent and appreciation.</li>
+            </ul>
+            <p>It's like hiring your money to work a side gig while you sleep!</p>
+            
+            <h3>Why It Matters</h3>
+            <p>
+                Investing isn't just about extra cash—it's your shield against inflation, your ladder to wealth, and your ticket to big dreams. It turns idle dollars into a workforce building your future, whether that's a dream wedding, a college fund, or a stress-free retirement.
+            </p>
+            
+            <h3>Saving vs. Investing: The Showdown</h3>
+            <ul>
+                <li><strong>Saving:</strong> Stashing money in safe havens like savings accounts (0.5-2% returns) or CDs. It's low-risk, perfect for emergencies or buying a bike next summer, but it lags behind inflation.</li>
+                <li><strong>Investing:</strong> Betting on growth assets like stocks (7-10% average returns) or index funds. It's riskier but rewards you with wealth over time—ideal for goals five years or more away.</li>
+            </ul>
+            
+            <h3>Examples to Spark Your Imagination</h3>
+            <div class="example-box">
+                <ul>
+                    <li><strong>Stocks:</strong> Buy 10 shares of a coffee chain at $50 each ($500 total). If they hit $70, your stash grows to $700, plus maybe $10 in dividends.</li>
+                    <li><strong>Bonds:</strong> Lend $1,000 to a city via a bond paying 3% yearly ($30), returned after 10 years.</li>
+                    <li><strong>Real Estate:</strong> Invest $20,000 in a fixer-upper, rent it for $300 monthly, and sell it for $30,000 in five years.</li>
+                    <li><strong>Mutual Funds:</strong> Pool $1,000 with others to buy a mix of stocks and bonds, averaging 6% growth yearly.</li>
+                </ul>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Investment Treasure Hunt</h3>
+                <ol>
+                    <li>List three goals: one short-term (e.g., "New phone"), one medium-term ("Vacation"), one long-term ("House down payment").</li>
+                    <li>Explore <a href="https://www.investopedia.com/terms/i/investment.asp" target="_blank">Investopedia's Investment Types</a> and pick one investment for each goal.</li>
+                </ol>
+                <p><em>Example: "Bonds for a phone (safe, quick); stocks for a vacation (growth in 3 years); real estate for a house (long-term gains)."</em></p>
+                <ol start="3">
+                    <li>Visit <a href="https://www.bankrate.com/calculators/investing/investment-goal-calculator.aspx" target="_blank">Bankrate's Investment Calculator</a>. Enter $200 at 5% for one goal's timeline (e.g., 5 years = $255).</li>
+                </ol>
+                <p><strong>Fun Twist:</strong> Pretend you're a pirate burying treasure—write a note: "My $200 stock chest grows to $255 in 5 years—argh, me riches!"</p>
+                <textarea placeholder="Write your Investment Treasure Hunt results here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Investment</th>
+                    <th>How It Pays</th>
+                    <th>Risk Level</th>
+                    <th>Dream Match</th>
+                </tr>
+                <tr>
+                    <td>Stocks</td>
+                    <td>Growth + Dividends</td>
+                    <td>Medium-High</td>
+                    <td>Retirement, big projects</td>
+                </tr>
+                <tr>
+                    <td>Bonds</td>
+                    <td>Steady Interest</td>
+                    <td>Low</td>
+                    <td>Car, short-term goals</td>
+                </tr>
+                <tr>
+                    <td>Real Estate</td>
+                    <td>Rent + Appreciation</td>
+                    <td>Medium</td>
+                    <td>House, passive income</td>
+                </tr>
+                <tr>
+                    <td>Mutual Funds</td>
+                    <td>Diversified Growth</td>
+                    <td>Medium</td>
+                    <td>Education, balanced goals</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 2: Compound Interest – Your Money's Multiplier -->
+        <section>
+            <h2>Compound Interest – Your Money's Multiplier</h2>
+            <p>
+                Compound interest is the rocket fuel of investing—small sums explode into massive wealth over time. Let's dig into its mechanics, crunch numbers, and play with it!
+            </p>
+            
+            <h3>Definition</h3>
+            <p>
+                Compound interest means earning interest on your initial money (principal) plus all the interest it's racked up. It's exponential growth—like a snowball rolling downhill, getting bigger with every turn.
+            </p>
+            
+            <h3>How It Rolls</h3>
+            <div class="example-box">
+                <p><strong>Year 1:</strong> Invest $1,000 at 6%. Earn $60 → $1,060.</p>
+                <p><strong>Year 2:</strong> 6% on $1,060 = $63.60 → $1,123.60.</p>
+                <p><strong>Year 3:</strong> 6% on $1,123.60 = $67.42 → $1,191.02.</p>
+            </div>
+            <p>Each year, your earnings grow because the base does—compounding in action!</p>
+            
+            <h3>Formula Fun</h3>
+            <div class="formula-box">
+                Future Value = Principal × (1 + rate)<sup>time</sup>
+            </div>
+            <p><strong>Example:</strong> $300 at 8% for 10 years:</p>
+            <div class="math-formula">
+                $300 × (1.08)<sup>10</sup> = $300 × 2.159 = $647.70
+            </div>
+            <p>That's more than double, all from interest on interest!</p>
+            
+            <h3>Real-Life Wow</h3>
+            <p>
+                Meet Alex, 22, who invests $150 monthly at 7%. By 62 (40 years), he's got $363,871—despite only putting in $72,000. Now, meet Priya, who starts at 32. After 30 years, she has $171,987. That 10-year gap? It's $191,884—enough for a house!
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Snowball Builder Game</h3>
+                <ol>
+                    <li>Head to <a href="https://www.nerdwallet.com/banking/calculator/compound-interest-calculator" target="_blank">NerdWallet's Compound Interest Calculator</a>.</li>
+                    <li>Input $100 monthly at 6% for 25 years. Record the total.</li>
+                </ol>
+                <p><em>Example: "$71,524—holy snowballs!"</em></p>
+                <ol start="3">
+                    <li>Shrink the time to 15 years. Note the gap: "25 years: $71,524; 15 years: $26,973. I lose $44,551 by waiting!"</li>
+                </ol>
+                <p><strong>Fun Twist:</strong> Imagine your money as a snowball. Draw its size at 15 vs. 25 years (small vs. giant) and name it (e.g., "Frosty the Wealth-Ball").</p>
+                <textarea placeholder="Write your Snowball Builder results here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <p>Line graph: $100 monthly at 6%:</p>
+            <div class="graph-placeholder">
+                <div style="width: 100%; height: 100%; position: relative;">
+                    <!-- Simplified line graph visualization -->
+                    <div style="position: absolute; left: 10%; bottom: 10%; width: 80%; height: 80%; border-left: 2px solid #333; border-bottom: 2px solid #333;">
+                        <!-- Line representing growth -->
+                        <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <path d="M0,100 Q30,70 50,40 T100,0" stroke="#3f51b5" stroke-width="3" fill="none" />
+                        </svg>
+                        
+                        <!-- Data points -->
+                        <div style="position: absolute; left: 20%; bottom: 70%; font-size: 12px;">
+                            <span style="background: #fff; padding: 2px 5px; border-radius: 3px;">5 years: $6,977</span>
+                        </div>
+                        <div style="position: absolute; left: 50%; bottom: 40%; font-size: 12px;">
+                            <span style="background: #fff; padding: 2px 5px; border-radius: 3px;">15 years: $26,973</span>
+                        </div>
+                        <div style="position: absolute; left: 80%; bottom: 10%; font-size: 12px;">
+                            <span style="background: #fff; padding: 2px 5px; border-radius: 3px;">25 years: $71,524</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>Watch that curve steepen—compounding's power unleashed!</p>
+        </section>
+
+        <!-- Section 3: Inflation – The Sneaky Money Shrinker -->
+        <section>
+            <h2>Inflation – The Sneaky Money Shrinker</h2>
+            <p>
+                Inflation is the quiet villain nibbling at your wallet. Let's expose its tricks, see its damage, and fight back with investing.
+            </p>
+            
+            <h3>Definition</h3>
+            <p>
+                Inflation is when prices for stuff—like groceries, gas, or rent—climb over time. Your dollar buys less, shrinking its real value (purchasing power). At 3% inflation, a $10 pizza today could cost $13.44 in 10 years.
+            </p>
+            
+            <h3>By the Numbers</h3>
+            <ul>
+                <li><strong>1 Year:</strong> $100 at 3% inflation → $97 in today's buying power.</li>
+                <li><strong>10 Years:</strong> $1,000 → $744 ($1,000 ÷ (1.03)<sup>10</sup>).</li>
+                <li><strong>30 Years:</strong> $1,000 → $412—ouch, over half gone!</li>
+            </ul>
+            
+            <h3>History Lesson</h3>
+            <p>
+                In the 1970s, U.S. inflation hit 13%—a $1 soda became $1.13 in a year! Even today's 2-3% average chips away. In 1990, $20 bought a movie night; now, it's barely a ticket.
+            </p>
+            
+            <h3>Investing to the Rescue</h3>
+            <p>
+                Savings at 1% lose to 3% inflation—you're down 2% yearly in real terms. Stocks (7-10%) or real estate (4-6%) can outrun it, growing your money and its power.
+            </p>
+            
+            <h3>Everyday Example</h3>
+            <p>
+                Your $5 latte today? At 3% inflation, it's $8.95 in 20 years. Without growth, your coffee budget shrinks—or you're stuck with instant brew!
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Inflation Time Machine</h3>
+                <ol>
+                    <li>Check your country's inflation rate at <a href="https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG" target="_blank">World Bank Data</a> (e.g., 2.8%).</li>
+                    <li>Calculate: Value = $500 ÷ (1 + rate)<sup>15</sup></li>
+                </ol>
+                <p><em>Example: 2.8% → $500 ÷ 1.028<sup>15</sup> = $337. That's $163 lost!</em></p>
+                <ol start="3">
+                    <li>Pick an item you buy (e.g., $50 sneakers). At 3%, what's it cost in 10 years?</li>
+                </ol>
+                <p><em>$50 × 1.03<sup>10</sup> = $67.20—yikes!</em></p>
+                <p><strong>Fun Twist:</strong> Write a "future receipt" for that item in 2034—how's it feel to pay more?</p>
+                <textarea placeholder="Write your Inflation Time Machine calculations here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <p>Bar chart: $1,000 over time at 3% inflation:</p>
+            <div class="chart-placeholder">
+                <div class="chart-bar" style="height: 180px;" data-value="$1,000" data-label="0 years"></div>
+                <div class="chart-bar" style="height: 135px;" data-value="$744" data-label="10 years"></div>
+                <div class="chart-bar" style="height: 100px;" data-value="$554" data-label="20 years"></div>
+                <div class="chart-bar" style="height: 75px;" data-value="$412" data-label="30 years"></div>
+            </div>
+        </section>
+
+        <!-- Section 4: Saving vs. Investing – The Ultimate Face-Off -->
+        <section>
+            <h2>Saving vs. Investing – The Ultimate Face-Off</h2>
+            <p>
+                Saving and investing are like peanut butter and jelly—different, but better together. Let's compare them with depth, visuals, and a personal twist.
+            </p>
+            
+            <h3>Saving 101</h3>
+            <p>
+                Saving is parking cash in safe spots: savings accounts (0.5-1%), CDs (1-2%), or under your mattress (0%). It's low-risk, liquid, and great for:
+            </p>
+            <ul>
+                <li>Emergencies (e.g., $1,000 for car repairs).</li>
+                <li>Near-term buys (e.g., a $300 gaming console).</li>
+            </ul>
+            
+            <h3>Investing 101</h3>
+            <p>
+                Investing buys assets like stocks, bonds, or ETFs (exchange-traded funds) aiming for 5-10% returns. It's riskier, less liquid, but shines for:
+            </p>
+            <ul>
+                <li>Long-term wins (e.g., $100,000 for retirement).</li>
+                <li>Crushing inflation with growth.</li>
+            </ul>
+            
+            <h3>Head-to-Head</h3>
+            <ul>
+                <li><strong>$5,000 Saved:</strong> At 1% for 15 years → $5,805.</li>
+                <li><strong>$5,000 Invested:</strong> At 7% for 15 years → $13,795—over twice as much!</li>
+            </ul>
+            <p>Savings crawl; investments sprint (with some bumps).</p>
+            
+            <h3>Real-Life Playbook</h3>
+            <ul>
+                <li><strong>Short-Term:</strong> Need $2,000 for a trip in 18 months? Save it—stability trumps growth.</li>
+                <li><strong>Long-Term:</strong> Want $40,000 for a kid's college in 20 years? Invest—time smooths the ride.</li>
+                <li><strong>Teamwork:</strong> Save $3,000 for emergencies, invest $200 monthly for the future.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Money Match-Up</h3>
+                <ol>
+                    <li>Draw two columns: "Saving" and "Investing."</li>
+                    <li>List a goal under each (e.g., "Emergency fund" vs. "Dream home").</li>
+                    <li>Calculate:
+                        <ul>
+                            <li>Saving: $1,000 at 1.5% for 5 years = $1,077</li>
+                            <li>Investing: $1,000 at 7% for 5 years = $1,402</li>
+                        </ul>
+                    </li>
+                </ol>
+                <p><strong>Fun Twist:</strong> Stage a "debate"—write one line each for Saving and Investing arguing their case (e.g., Saving: "I'm safe!" Investing: "I'm a grower!"). Who wins for your goals?</p>
+                <textarea placeholder="Write your Money Match-Up results here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Method</th>
+                    <th>Rate</th>
+                    <th>$5,000 in 15 Years</th>
+                    <th>Pros</th>
+                    <th>Cons</th>
+                </tr>
+                <tr>
+                    <td>Saving</td>
+                    <td>1%</td>
+                    <td>$5,805</td>
+                    <td>Safe, accessible</td>
+                    <td>Loses to inflation</td>
+                </tr>
+                <tr>
+                    <td>Investing</td>
+                    <td>7%</td>
+                    <td>$13,795</td>
+                    <td>High growth</td>
+                    <td>Risk of dips</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 5: The Rule of 72 – Your Doubling Decoder -->
+        <section>
+            <h2>The Rule of 72 – Your Doubling Decoder</h2>
+            <p>
+                The Rule of 72 is a nifty shortcut to predict when your money doubles. Let's master it with examples, math checks, and a game.
+            </p>
+            
+            <h3>Definition</h3>
+            <div class="formula-box">
+                Years to Double = 72 ÷ Return Rate
+            </div>
+            <p>No calculator needed—just divide 72 by your annual percentage rate.</p>
+            
+            <h3>Examples in Action</h3>
+            <ul>
+                <li><strong>5%:</strong> 72 ÷ 5 = 14.4 years.</li>
+                <li><strong>8%:</strong> 72 ÷ 8 = 9 years.</li>
+                <li><strong>10%:</strong> 72 ÷ 10 = 7.2 years.</li>
+            </ul>
+            <p>At 7%, $1,000 becomes $2,000 in about 10.3 years—then $4,000 in another 10.3!</p>
+            
+            <h3>Real-World Use</h3>
+            <p>
+                Your $2,000 stock portfolio averages 9%. It doubles to $4,000 in 8 years (72 ÷ 9), then $8,000 in 16—exponential vibes!
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Double Dare Challenge</h3>
+                <p>Test these rates:</p>
+                <ul>
+                    <li>4%: 72 ÷ 4 = 18 years</li>
+                    <li>6%: 72 ÷ 6 = 12 years</li>
+                    <li>12%: 72 ÷ 12 = 6 years</li>
+                </ul>
+                <p>Verify one: At 6%, $500 → $500 × 1.06<sup>12</sup> = $1,006 in 12 years—spot on!</p>
+                <p><strong>Game Time:</strong> Pick a sum (e.g., $300) and a rate (e.g., 8%). How long to double? Imagine spending that doubled cash—what's your splurge?</p>
+                <p><em>"$300 at 8% doubles to $600 in 9 years—I'd snag a fancy guitar!"</em></p>
+                <textarea placeholder="Write your Double Dare Challenge results here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Rate</th>
+                    <th>Years to Double</th>
+                    <th>$1,000 Becomes</th>
+                </tr>
+                <tr>
+                    <td>4%</td>
+                    <td>18</td>
+                    <td>$2,000</td>
+                </tr>
+                <tr>
+                    <td>6%</td>
+                    <td>12</td>
+                    <td>$2,000</td>
+                </tr>
+                <tr>
+                    <td>8%</td>
+                    <td>9</td>
+                    <td>$2,000</td>
+                </tr>
+                <tr>
+                    <td>12%</td>
+                    <td>6</td>
+                    <td>$2,000</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 6: Start Early – Time Is Your Wealth Wizard -->
+        <section>
+            <h2>Start Early – Time Is Your Wealth Wizard</h2>
+            <p>
+                Time turbocharges investing—starting now beats starting later, hands down. Let's prove it with numbers, stories, and a visual boost.
+            </p>
+            
+            <h3>The Time Advantage</h3>
+            <p>
+                Compounding loves time. Early investments grow longer, piling up gains like a snowball in an avalanche.
+            </p>
+            
+            <h3>Numbers Don't Lie</h3>
+            <ul>
+                <li><strong>Age 20:</strong> $100 monthly at 7% for 45 years → $286,374.</li>
+                <li><strong>Age 30:</strong> Same plan, 35 years → $131,954.</li>
+                <li><strong>Age 40:</strong> 25 years → $58,838.</li>
+            </ul>
+            <p>Starting at 20 vs. 30 doubles your haul; vs. 40, it's nearly 5x!</p>
+            
+            <h3>Real-Life Tale</h3>
+            <p>
+                Jade, 25, invests $50 monthly at 6%. By 65, she's got $83,346. Liam waits till 35—same plan, $40,111. Jade's 10-year edge nets her $43,235 extra—think dream trips or a car!
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Time Traveler's Quest</h3>
+                <ol>
+                    <li>Use <a href="https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator" target="_blank">Investor.gov's Calculator</a>.</li>
+                    <li>Enter $75 monthly at 7% from your age to 65. Total?</li>
+                </ol>
+                <p><em>"At 28, I'd have $178,000 by 65—sweet!"</em></p>
+                <ol start="3">
+                    <li>Delay 10 years. Gap? "$83,000 less—ouch!"</li>
+                </ol>
+                <p><strong>Fun Twist:</strong> Write a "future you" postcard: "Dear 65-year-old me, thanks for starting at [age]—enjoy that [reward]!"</p>
+                <textarea placeholder="Write your Time Traveler's Quest results here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <p>Pie chart: $100 monthly at 7%:</p>
+            <div style="display: flex; justify-content: center; margin: 20px 0;">
+                <div style="width: 200px; height: 200px; border-radius: 50%; background: conic-gradient(#3f51b5 0% 60%, #7986cb 60% 85%, #c5cae9 85% 100%); position: relative;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                        <p style="margin: 0;">$100/month<br>@ 7%</p>
+                    </div>
+                </div>
+                <div style="margin-left: 20px;">
+                    <p><span style="color: #3f51b5; font-weight: bold;">■</span> Age 20-65: $286,374 (huge slice)</p>
+                    <p><span style="color: #7986cb; font-weight: bold;">■</span> Age 30-65: $131,954</p>
+                    <p><span style="color: #c5cae9; font-weight: bold;">■</span> Age 40-65: $58,838 (tiny sliver)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Reflection – What's Your Investing "Why"? -->
+        <section>
+            <h2>Reflection – What's Your Investing "Why"?</h2>
+            <p>
+                Investing isn't just math—it's your story. Let's find your spark with a deep, creative exercise.
+            </p>
+            
+            <h3>Your Motivation</h3>
+            <p>
+                Your "why" is your anchor—freedom, security, a legacy, or pure adventure. It's what keeps you investing when markets wobble.
+            </p>
+            
+            <h3>The Stakes</h3>
+            <p>
+                Skip investing, and inflation nibbles your savings away—dreams slip further out. Embrace it, and you're crafting a future where money serves you.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Vision Quest</h3>
+                <p>Write a paragraph: "Investing will help me [goal] because [reason]."</p>
+                <p><em>"Investing will help me retire at 55 because it'll grow my $200 monthly into $300,000, letting me travel and relax."</em></p>
+                <p>Craft a Vision Board:</p>
+                <ul>
+                    <li>Cut out pics (a beach, a business) or list 3 goals.</li>
+                    <li>Link each to an investment (e.g., "Stocks for travel").</li>
+                </ul>
+                <p><strong>Fun Twist:</strong> Record a 30-second "pep talk" to yourself: "Yo, [name], investing's your rocket to [goal]—blast off!"</p>
+                <textarea placeholder="Write your Vision Quest paragraph here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>My Goal</th>
+                    <th>Investing's Role</th>
+                    <th>Timeline</th>
+                </tr>
+                <tr>
+                    <td>World Tour</td>
+                    <td>Grows $1,000 to $4,000</td>
+                    <td>10 years</td>
+                </tr>
+                <tr>
+                    <td>Kid's College</td>
+                    <td>Turns $50/month into $30,000</td>
+                    <td>18 years</td>
+                </tr>
+                <tr>
+                    <td>Early Retirement</td>
+                    <td>Builds $500K nest egg</td>
+                    <td>30 years</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 8: Quiz – Prove Your Investing Prowess -->
+        <section>
+            <h2>Quiz – Prove Your Investing Prowess</h2>
+            <p>
+                Test your chops with this expanded, fun quiz!
+            </p>
+            
+            <div class="quiz">
+                <div class="quiz-item">
+                    <p><strong>Question 1:</strong> Investing aims to:</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q1" value="A" id="q1a">
+                        <label for="q1a">Spend fast</label><br>
+                        <input type="radio" name="q1" value="B" id="q1b">
+                        <label for="q1b">Grow wealth via assets</label><br>
+                        <input type="radio" name="q1" value="C" id="q1c">
+                        <label for="q1c">Hide money</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 2:</strong> $500 at 5% for 3 years (compounded) is:</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q2" value="A" id="q2a">
+                        <label for="q2a">$575</label><br>
+                        <input type="radio" name="q2" value="B" id="q2b">
+                        <label for="q2b">$578.81</label><br>
+                        <input type="radio" name="q2" value="C" id="q2c">
+                        <label for="q2c">$550</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 3:</strong> Inflation:</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q3" value="A" id="q3a">
+                        <label for="q3a">Boosts purchasing power</label><br>
+                        <input type="radio" name="q3" value="B" id="q3b">
+                        <label for="q3b">Shrinks it</label><br>
+                        <input type="radio" name="q3" value="C" id="q3c">
+                        <label for="q3c">Is a stock type</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 4:</strong> Rule of 72 at 9%:</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q4" value="A" id="q4a">
+                        <label for="q4a">8 years</label><br>
+                        <input type="radio" name="q4" value="B" id="q4b">
+                        <label for="q4b">10 years</label><br>
+                        <input type="radio" name="q4" value="C" id="q4c">
+                        <label for="q4c">12 years</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 5:</strong> Starting early can:</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q5" value="A" id="q5a">
+                        <label for="q5a">Cut returns</label><br>
+                        <input type="radio" name="q5" value="B" id="q5b">
+                        <label for="q5b">Triple your money vs. later</label><br>
+                        <input type="radio" name="q5" value="C" id="q5c">
+                        <label for="q5c">Make no difference</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>Question 6:</strong> $1,000 at 3% inflation in 10 years buys:</p>
+                    <div class="quiz-options">
+                        <input type="radio" name="q6" value="A" id="q6a">
+                        <label for="q6a">$744 worth</label><br>
+                        <input type="radio" name="q6" value="B" id="q6b">
+                        <label for="q6b">$1,000 worth</label><br>
+                        <input type="radio" name="q6" value="C" id="q6c">
+                        <label for="q6c">$1,300 worth</label>
+                    </div>
+                </div>
+                
+                <button onclick="checkQuiz()">Submit Quiz</button>
+                <div id="quiz-result" class="result-box" style="display: none;"></div>
+                
+                <div class="activity-box" style="margin-top: 20px;">
+                    <p>Take the quiz, score yourself, and for each miss, write a quirky reminder (e.g., "Inflation's a shrink-ray—zap!").</p>
+                    <textarea placeholder="Write your quirky reminders here..." rows="4"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2>Conclusion: You're an Investing Rockstar!</h2>
+            <p>
+                Investing is your superpower to crush inflation, stack wealth, and chase dreams. Time and compounding are your sidekicks—start small, start today, and watch your money soar. Next up: How to invest like a pro!
+            </p>
+            
+            <h3>Action Step:</h3>
+            <p>
+                Hit <a href="https://www.bankrate.com/calculators/savings/saving-goals-calculator.aspx" target="_blank">Bankrate's Calculator</a>, plug in $30 monthly at 6% for 15 years ($8,737!). Free up $30 this month—swap one coffee run—and jot your plan.
+            </p>
+            
+            <h3>Resources:</h3>
+            <ul>
+                <li><a href="https://www.investopedia.com/articles/basics/06/invest1000.asp" target="_blank">Investopedia: Basics</a></li>
+                <li><a href="https://www.nerdwallet.com/article/investing/compound-interest-calculator" target="_blank">NerdWallet: Compound Interest</a></li>
+                <li><a href="https://www.investor.gov/financial-tools-calculators/calculators" target="_blank">Investor.gov Calculators</a></li>
+            </ul>
+            
+            <p>Your financial adventure begins now—go rock it!</p>
+            
+            <div class="activity-box">
+                <a href="section3lesson2.html" class="cta-button">Next Lesson: Investment Options and Strategies</a>
+                <a href="index.html" class="cta-button">Return to Course Overview</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="learn.html">Learn</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: rthompson25@bayschoolsf.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 FinanceCourse. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

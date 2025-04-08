@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 3: Risk and Return</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #5b3fd8;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #3f51b5, #5b3fd8);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #5b3fd8;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #3f51b5;
+            border-bottom: 2px solid #3f51b5;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3f51b5;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #3f51b5;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #303f9f;
+        }
+        /* Lesson-specific styles */
+        .example-box {
+            background-color: #f0f4ff;
+            border: 1px solid #d0d9ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #3f51b5;
+            color: white;
+        }
+        .visual-aid {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .visual-aid img {
+            max-width: 100%;
+            height: auto;
+        }
+        .calculator-button {
+            display: inline-block;
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+            text-decoration: none;
+        }
+        .calculator-button:hover {
+            background-color: #303f9f;
+        }
+        .graph-placeholder {
+            height: 200px;
+            background-color: #f0f4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .case-study {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid #3f51b5;
+        }
+        .case-study h3 {
+            color: #3f51b5;
+            margin-top: 0;
+        }
+        .risk-meter {
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .risk-level {
+            height: 100%;
+            border-radius: 10px;
+        }
+        .risk-low {
+            width: 30%;
+            background-color: #4caf50;
+        }
+        .risk-medium {
+            width: 60%;
+            background-color: #ff9800;
+        }
+        .risk-high {
+            width: 90%;
+            background-color: #f44336;
+        }
+        .risk-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #3f51b5;
+        }
+        .risk-card {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 5px solid #3f51b5;
+        }
+        .risk-card h4 {
+            color: #3f51b5;
+            margin-top: 0;
+        }
+        .risk-profile {
+            display: flex;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .profile-card {
+            flex: 1;
+            min-width: 200px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px;
+            text-align: center;
+        }
+        .profile-conservative {
+            border-top: 5px solid #4caf50;
+        }
+        .profile-moderate {
+            border-top: 5px solid #ff9800;
+        }
+        .profile-aggressive {
+            border-top: 5px solid #f44336;
+        }
+        .risk-chart {
+            display: flex;
+            height: 200px;
+            align-items: flex-end;
+            margin: 30px 0;
+            justify-content: space-around;
+        }
+        .chart-bar {
+            width: 40px;
+            position: relative;
+            text-align: center;
+        }
+        .chart-bar-inner {
+            width: 100%;
+            background-color: #3f51b5;
+            border-radius: 3px 3px 0 0;
+            position: relative;
+        }
+        .chart-bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            font-size: 12px;
+        }
+        .chart-bar-value {
+            position: absolute;
+            top: -25px;
+            left: 0;
+            right: 0;
+            font-size: 12px;
+        }
+        .risk-scale {
+            display: flex;
+            height: 40px;
+            margin: 30px 0;
+            align-items: center;
+            background-color: #f0f4ff;
+            border-radius: 20px;
+            position: relative;
+        }
+        .risk-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #3f51b5;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: left 0.3s;
+        }
+        .risk-scale-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 10px;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+        .tightrope-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+            position: relative;
+        }
+        .tightrope-line {
+            width: 100%;
+            height: 2px;
+            background-color: #333;
+            margin: 20px 0;
+        }
+        .tightrope-walker {
+            width: 20px;
+            height: 20px;
+            background-color: #3f51b5;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+        }
+        .risk-return-graph {
+            height: 250px;
+            position: relative;
+            margin: 40px 0;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .graph-axis-y {
+            position: absolute;
+            left: 30px;
+            top: 10px;
+            bottom: 30px;
+            width: 2px;
+            background-color: #333;
+        }
+        .graph-axis-x {
+            position: absolute;
+            left: 30px;
+            right: 10px;
+            bottom: 30px;
+            height: 2px;
+            background-color: #333;
+        }
+        .graph-point {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .graph-label {
+            position: absolute;
+            font-size: 12px;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 660;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'A') score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'B') score++;
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 5. ${score >= 4 ? 'Amazing! You\'re a risk management master!' : score >= 3 ? 'Good job! Review the material to sharpen your risk knowledge.' : 'Keep studying about risk and return!'}`;
+            document.getElementById('quiz-result').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Investing for Beginners: Lesson 3 – Risk and Return: The Heart of Investing</h1>
+        <p>Learn to master the balance between risk and reward to build a portfolio that matches your goals and comfort level.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Learning!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview: Mastering the Risk-Return Dance</h2>
+            <p>
+                Welcome back to Investing for Beginners! After exploring investment options like stocks, bonds, and real estate in Lesson 2, we're now at the core of investing: the risk-return tradeoff. This principle dictates that higher potential rewards come with higher risks—and understanding it is your ticket to building wealth wisely.
+            </p>
+            <p>In this expanded lesson, we'll cover:</p>
+            <ul>
+                <li>In-Depth Risk Analysis: Detailed breakdowns of market, company-specific, interest rate, inflation, and liquidity risks, with multiple real-world examples and historical context.</li>
+                <li>Personalized Risk Assessment: Enhanced quizzes, layered scenarios, and reflective exercises to pinpoint your risk tolerance with precision.</li>
+                <li>Advanced Risk Management: Step-by-step strategies like diversification and hedging, with simulations and detailed case studies.</li>
+                <li>Investor Stories with Depth: Expanded tales of triumph and caution, dissecting decisions and outcomes.</li>
+                <li>Your Detailed Risk Blueprint: A robust framework to craft a portfolio that aligns with your goals, life stage, and comfort level.</li>
+            </ul>
+            <p>
+                By the end, you'll not only understand risk but also wield it like a pro, turning uncertainty into a calculated path to growth. Let's dive in!
+            </p>
+        </section>
+
+        <!-- Introduction: Risk – The Price of Growth -->
+        <section id="section1">
+            <h2>Introduction: Risk – The Price of Growth</h2>
+            <p>
+                Investing is like tightrope walking across a canyon: lean too far toward safety, and your money creeps along, barely outpacing inflation; veer too far toward risk, and a sudden gust—like a market crash—could send you tumbling. Want a shot at 10% annual returns? You'll need to brave the stock market's rollercoaster. Prefer a calm 3% with minimal surprises? Bonds or savings might be your haven. This lesson is about finding your equilibrium—grasping what risk entails, gauging how much you can stomach, and using it to fuel your financial dreams.
+            </p>
+            
+            <h3>Why It Matters:</h3>
+            <p>
+                Risk isn't a villain to avoid; it's the engine of growth. Without it, your money stagnates—say, $10,000 in a savings account at 1% grows to just $11,046 in 10 years, while 3% inflation shrinks its real value to about $8,200. With risk, that same $10,000 in stocks averaging 8% could balloon to $21,589—though not without some nail-biting dips. Mastering risk lets you grow wealth while keeping your sanity intact.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Reflection Prompt: Fear vs. FOMO</h3>
+                <p>
+                    Take a moment: What rattles you more—watching $5,000 of your hard-earned cash vanish in a market plunge, or missing a stock that skyrockets 300% because you played it safe? Write a sentence or two:
+                </p>
+                <p><em>Example: "I'd lose sleep over a crash, but I'd kick myself for missing a unicorn stock—guess I'm torn!" This gut check hints at your risk appetite.</em></p>
+                <textarea placeholder="Write your Fear vs. FOMO reflection here..." rows="3"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: The Tightrope Walker</h3>
+                <div class="tightrope-visual">
+                    <div style="position: absolute; left: 10%; top: -30px; text-align: center;">
+                        <i class="fas fa-shield-alt"></i><br>Safety
+                    </div>
+                    <div style="position: absolute; right: 10%; top: -30px; text-align: center;">
+                        <i class="fas fa-chart-line"></i><br>Growth
+                    </div>
+                    <div class="tightrope-line"></div>
+                    <div class="tightrope-walker" style="left: 50%;"></div>
+                    <div style="margin-top: 30px; text-align: center;">
+                        <p><strong>Risk Tolerance</strong></p>
+                    </div>
+                </div>
+                <p>Picture a tightrope walker mid-canyon, balancing between cliffs labeled "Safety" (savings, bonds) and "Growth" (stocks, crypto). Their pole, labeled "Risk Tolerance," bends slightly—too much either way, and they wobble. Your job? Steady yourself for the crossing.</p>
+            </div>
+        </section>
+
+        <!-- Section 1: The Risk-Return Tradeoff -->
+        <section>
+            <h2>The Risk-Return Tradeoff</h2>
+            <p>
+                The risk-return tradeoff is investing's golden rule: higher potential gains mean embracing higher uncertainty. Let's unpack this with detailed data, vivid examples, and an expanded interactive twist.
+            </p>
+            
+            <h3>Definition</h3>
+            <p>
+                Simply put, the risk-return tradeoff states that low-risk investments yield modest returns, while high-risk ones offer the chance for bigger rewards—or bigger losses. It's a spectrum: a savings account might inch along at 1%, a bond might hum at 3-5%, and a stock could leap past 10%—or nosedive. No shortcuts exist—higher returns demand resilience against volatility.
+            </p>
+            
+            <h3>Numbers in Play</h3>
+            <ul>
+                <li><strong>Stocks:</strong> The S&P 500, a benchmark of 500 major U.S. companies, has averaged 7-10% annually since 1926 (adjusted for inflation). But it's a wild ride: in 2008, it crashed 37% amid the financial crisis; in 2020, it dropped 34% in a month before rebounding 67% by year-end.</li>
+                <li><strong>Bonds:</strong> U.S. Treasury bonds have delivered 3-5% historically, with rare losses—yet in 2022, a 1.5% rate hike slashed 10-year Treasury prices by 10-15%.</li>
+                <li><strong>Savings Accounts:</strong> Today's high-yield accounts offer 2-3%, but pre-2022 rates hovered at 0.1-0.5%. With inflation averaging 2-3% (and spiking to 9% in 2022), your "safe" money often loses real value.</li>
+            </ul>
+            <p>The data screams: bigger rewards require bigger bets—and a thicker skin.</p>
+            
+            <h3>Detailed Example</h3>
+            <p>Start with $10,000 in 2018:</p>
+            <ul>
+                <li><strong>Stock Index Fund (S&P 500):</strong> At 8% average growth, it hits $14,693 by 2023. But rewind to 2022—a 18% drop cuts it to $11,840 before recovering.</li>
+                <li><strong>Corporate Bond Fund:</strong> At 4%, it reaches $12,166 by 2023, dipping only 5% in 2022 to $11,400 during rate hikes.</li>
+                <li><strong>Savings Account:</strong> At 1%, it crawls to $10,510, untouched by market swings but eroded by 3% inflation to $8,600 in real terms.</li>
+            </ul>
+            <p>Stocks promise the moon but deliver turbulence; bonds offer stability with modest gains; savings provide peace but little progress.</p>
+            
+            <h3>Mindset Shift</h3>
+            <p>
+                Chasing high returns without risk is like expecting a sunny hike during a thunderstorm—unrealistic. Accepting the tradeoff sets you up for smart decisions, not wishful thinking.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Risk-Return Matchup Expanded</h3>
+                <ol>
+                    <li>Pick four investments: a savings account, a government bond, a blue-chip stock (e.g., Microsoft), and a speculative asset (e.g., Ethereum).</li>
+                    <li>Estimate their risk (low/medium/high) and return (1-3%, 3-6%, 6-12%, 12%+).</li>
+                </ol>
+                <p><em>Example: "Savings: low risk, 1-3%; Bond: low-medium, 3-6%; Microsoft: medium, 6-12%; Ethereum: high, 12%+ or bust."</em></p>
+                <p>Simulate a 5-year outcome with $1,000 each:</p>
+                <ul>
+                    <li>Savings at 2%: $1,104.</li>
+                    <li>Bond at 4%: $1,216.</li>
+                    <li>Microsoft at 8%: $1,469 (with a 20% dip to $800 in year 3).</li>
+                    <li>Ethereum at 15%: $2,011 (or $500 after a 50% crash).</li>
+                </ul>
+                <p><strong>Fun Twist:</strong> Assign each a weather forecast—"Savings = sunny, Microsoft = partly cloudy, Ethereum = thunderstorm."</p>
+                <textarea placeholder="Write your Risk-Return Matchup results here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="risk-return-graph">
+                <div class="graph-axis-y"></div>
+                <div class="graph-axis-x"></div>
+                <div class="graph-label" style="left: 10px; top: 10px;">Return %</div>
+                <div class="graph-label" style="right: 10px; bottom: 10px;">Risk</div>
+                
+                <!-- Savings Point -->
+                <div class="graph-point" style="left: 15%; bottom: 25%; background-color: #4caf50;"></div>
+                <div class="graph-label" style="left: 15%; bottom: 15%;">Savings<br>1-3%</div>
+                
+                <!-- Bonds Point -->
+                <div class="graph-point" style="left: 35%; bottom: 40%; background-color: #2196f3;"></div>
+                <div class="graph-label" style="left: 35%; bottom: 30%;">Bonds<br>3-5%</div>
+                
+                <!-- Stocks Point -->
+                <div class="graph-point" style="left: 65%; bottom: 60%; background-color: #ff9800;"></div>
+                <div class="graph-label" style="left: 65%; bottom: 50%;">Stocks<br>7-10%</div>
+                
+                <!-- Speculative Point -->
+                <div class="graph-point" style="left: 85%; bottom: 80%; background-color: #f44336;"></div>
+                <div class="graph-label" style="left: 85%; bottom: 70%;">Speculative<br>12%+</div>
+                
+                <!-- Line connecting points -->
+                <svg width="100%" height="100%" style="position: absolute; top: 0; left: 0;">
+                    <path d="M 15% 75% L 35% 60% L 65% 40% L 85% 20%" stroke="#3f51b5" stroke-width="2" fill="none" />
+                </svg>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/r/riskreturntradeoff.asp" target="_blank">Investopedia: Risk-Return Tradeoff</a> – Detailed charts and theory to anchor this concept.</p>
+        </section>
+
+        <!-- Section 2: Types of Investment Risks -->
+        <section>
+            <h2>Types of Investment Risks</h2>
+            <p>
+                Risk isn't a monolith—it's a family of threats, each with unique triggers and consequences. Let's dissect five major types with expanded examples, historical tie-ins, and an enriched activity.
+            </p>
+            
+            <div class="risk-card">
+                <h3><i class="fas fa-globe risk-icon"></i> 1. Market Risk (Systematic Risk)</h3>
+                <p><strong>What:</strong> The whole market falls due to macroeconomic shocks—recessions, wars, pandemics.</p>
+                <p><strong>Example:</strong> The 2008 financial crisis saw the S&P 500 lose 50% from peak to trough as housing collapsed. In 2020, COVID fears triggered a 34% drop in 23 days.</p>
+                <p><strong>Nuance:</strong> Even "safe" stocks like Walmart fell 20% in 2008—market risk spares no one.</p>
+            </div>
+            
+            <div class="risk-card">
+                <h3><i class="fas fa-building risk-icon"></i> 2. Company-Specific Risk (Unsystematic Risk)</h3>
+                <p><strong>What:</strong> A single firm stumbles—scandals, bad management, product flops.</p>
+                <p><strong>Example:</strong> Volkswagen's 2015 "Dieselgate" emissions scandal tanked its stock 40% in days, while the broader market rose. In 2023, a Tesla production snag cut its shares 20%.</p>
+                <p><strong>Nuance:</strong> Diversification dodges this—owning 20 stocks means one flop won't sink you.</p>
+            </div>
+            
+            <div class="risk-card">
+                <h3><i class="fas fa-chart-line risk-icon"></i> 3. Interest Rate Risk</h3>
+                <p><strong>What:</strong> Rising rates lower bond prices (since new bonds yield more).</p>
+                <p><strong>Example:</strong> In 1994, a Fed rate hike from 3% to 6% crushed bond funds by 10-20%. In 2022, rates jumping from 0.5% to 4% hit long-term bonds hardest—20-year Treasuries fell 25%.</p>
+                <p><strong>Nuance:</strong> Stocks can suffer too—rate hikes in 2022 slowed tech growth stocks like Amazon.</p>
+            </div>
+            
+            <div class="risk-card">
+                <h3><i class="fas fa-dollar-sign risk-icon"></i> 4. Inflation Risk</h3>
+                <p><strong>What:</strong> Returns lag rising prices, eroding purchasing power.</p>
+                <p><strong>Example:</strong> In the 1970s, 10% inflation dwarfed 5% bond yields, slashing real returns to -5%. In 2022, a 2% savings rate vs. 9% inflation meant a 7% loss in value.</p>
+                <p><strong>Nuance:</strong> Stocks often beat inflation long-term, but short-term dips hurt.</p>
+            </div>
+            
+            <div class="risk-card">
+                <h3><i class="fas fa-exchange-alt risk-icon"></i> 5. Liquidity Risk</h3>
+                <p><strong>What:</strong> You can't sell fast without a discount—or at all.</p>
+                <p><strong>Example:</strong> During 2008, some real estate funds froze redemptions as property sales stalled. In 2021, a rare collectible stock had no buyers, forcing a 30% haircut.</p>
+                <p><strong>Nuance:</strong> Cash is king here—illiquid assets tie up funds when you need them.</p>
+            </div>
+            
+            <h3>Expanded Real-Life Examples</h3>
+            <ul>
+                <li><strong>2008:</strong> Market risk (stocks) + liquidity risk (real estate) devastated portfolios.</li>
+                <li><strong>2022:</strong> Interest rate risk hit bonds, inflation risk eroded cash, and crypto's market risk saw Bitcoin plummet 60%.</li>
+                <li><strong>Enron 2001:</strong> Company-specific risk erased $74 billion in value amid fraud—diversified investors barely flinched.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Risk Headline Matchup Enhanced</h3>
+                <p>Match these detailed headlines to risks:</p>
+                <ol>
+                    <li>"Federal Reserve Hikes Rates 0.75%, Bonds Tumble" → Interest Rate Risk</li>
+                    <li>"Startup's CEO Resigns Amid Fraud Probe, Stock Falls 50%" → Company-Specific Risk</li>
+                    <li>"Recession Fears Trigger Worst Market Day Since 2020" → Market Risk</li>
+                    <li>"Apartment Sales Freeze as Buyers Hold Off" → Liquidity Risk</li>
+                    <li>"Inflation Soars to 8%, Outpacing 3% CD Rates" → Inflation Risk</li>
+                </ol>
+                <p>Write your matches, then explain one:</p>
+                <p><em>"'Recession Fears' = Market Risk—broad panic hits all stocks, not just one."</em></p>
+                <p><strong>Bonus:</strong> Find a 2023 news story online—identify its risk type and impact.</p>
+                <p><em>Example: "Boeing delays = Company-Specific Risk, stock dips 5%."</em></p>
+                <textarea placeholder="Write your Risk Headline Matchup results here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Risk Type</th>
+                    <th>Historical Example</th>
+                    <th>2020s Example</th>
+                    <th>Impact</th>
+                </tr>
+                <tr>
+                    <td>Market</td>
+                    <td>2008 Crisis (-50%)</td>
+                    <td>2020 COVID (-34%)</td>
+                    <td>All assets drop</td>
+                </tr>
+                <tr>
+                    <td>Company-Specific</td>
+                    <td>Enron 2001 (-100%)</td>
+                    <td>Tesla 2023 (-20%)</td>
+                    <td>One asset tanks</td>
+                </tr>
+                <tr>
+                    <td>Interest Rate</td>
+                    <td>1994 Hike (-15%)</td>
+                    <td>2022 Hike (-25%)</td>
+                    <td>Bonds lose value</td>
+                </tr>
+                <tr>
+                    <td>Inflation</td>
+                    <td>1970s (-5% real)</td>
+                    <td>2022 (-7% real)</td>
+                    <td>Power shrinks</td>
+                </tr>
+                <tr>
+                    <td>Liquidity</td>
+                    <td>2008 RE Freeze</td>
+                    <td>2021 Stock Stall</td>
+                    <td>Can't cash out</td>
+                </tr>
+            </table>
+            
+            <div class="activity-box">
+                <h3>Risk Radar Activity Enhanced:</h3>
+                <p>Sketch a 5-spoke radar (one per risk). Rate an asset 1-5 per spoke:</p>
+                <ul>
+                    <li>Tesla: Market (4), Company-Specific (5), Interest Rate (2), Inflation (2), Liquidity (3).</li>
+                    <li>Treasury Bond: Market (2), Interest Rate (5), Inflation (3), others low.</li>
+                </ul>
+                <p>Plot yours—see where risks cluster!</p>
+                <textarea placeholder="Describe your Risk Radar results here..." rows="4"></textarea>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/r/risk.asp" target="_blank">Investopedia: Types of Risk</a> – A thorough risk catalog with examples.</p>
+        </section>
+
+        <!-- Section 3: Assessing Your Risk Tolerance -->
+        <section>
+            <h2>Assessing Your Risk Tolerance</h2>
+            <p>
+                Your risk tolerance is your investing DNA—shaped by life stage, finances, goals, and temperament. Let's refine it with a deeper quiz, layered scenarios, and a nuanced reflection.
+            </p>
+            
+            <h3>Key Factors Expanded</h3>
+            <ul>
+                <li><strong>Age:</strong> A 25-year-old can weather a 30% crash—40 years of growth ahead. At 65, a 10% dip near retirement stings more.</li>
+                <li><strong>Finances:</strong> $50K saved and a $80K salary? You can swing bigger than someone with $2K and debt. Net worth matters—calculate yours (assets minus liabilities).</li>
+                <li><strong>Goals:</strong> $10K for a wedding in 2 years needs safety; $100K for retirement in 25 years can ride volatility. Time horizon is king.</li>
+                <li><strong>Personality:</strong> Do you panic at red numbers or shrug and buy more? Your emotional wiring sets your limits.</li>
+                <li><strong>Knowledge:</strong> Novices might shy from risk; seasoned learners embrace it with research.</li>
+            </ul>
+            
+            <h3>Risk Profiles Detailed</h3>
+            <div class="risk-profile">
+                <div class="profile-card profile-conservative">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Conservative</h4>
+                    <p>Targets 3-5% returns, prioritizes capital preservation. A 5% dip feels like a crisis.</p>
+                </div>
+                <div class="profile-card profile-moderate">
+                    <i class="fas fa-balance-scale"></i>
+                    <h4>Moderate</h4>
+                    <p>Aims for 5-8%, accepts 15-20% drops if recovery's likely. Growth with guardrails.</p>
+                </div>
+                <div class="profile-card profile-aggressive">
+                    <i class="fas fa-rocket"></i>
+                    <h4>Aggressive</h4>
+                    <p>Chases 8-12%+, unfazed by 30-50% swings. Volatility is opportunity.</p>
+                </div>
+            </div>
+            
+            <h3>Real-Life Example with Depth</h3>
+            <p>
+                A 35-year-old teacher with $30K saved, a $60K salary, and a 20-year retirement goal might be moderate. A $5K stock dip (15%) is tolerable with her stable income and long horizon—she'd hold or even buy more.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Risk Tolerance Quiz Enhanced</h3>
+                <ol>
+                    <li>Take <a href="https://personal.vanguard.com/us/FundsInvQuestionnaire" target="_blank">Vanguard's Investor Questionnaire</a>—10 questions, 5 minutes.</li>
+                    <li>Get your score (e.g., "Moderate, 60% stocks/40% bonds").</li>
+                    <li>Dig deeper: Answer these add-ons (1-5 scale, 1 = disagree, 5 = agree):
+                        <ul>
+                            <li>"I'd sell if my portfolio dropped 20%."</li>
+                            <li>"I'd invest in a hot stock on a friend's tip."</li>
+                            <li>"I'd wait out a 2-year market slump."</li>
+                        </ul>
+                    </li>
+                </ol>
+                <p>Sum your scores (3-15): 3-7 = Conservative, 8-11 = Moderate, 12-15 = Aggressive.</p>
+                <p>Reflect: "Quiz says moderate, but I'd sell at 20%—maybe I'm conservative at heart."</p>
+                <p><strong>Fun Twist:</strong> Your risk as a movie genre? "Conservative = drama, Aggressive = action."</p>
+                <textarea placeholder="Write your Risk Tolerance Quiz results here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="risk-scale">
+                <div class="risk-marker" style="left: 20%;"></div>
+                <div class="risk-scale-labels">
+                    <span>Conservative (0-3)</span>
+                    <span>Moderate (4-7)</span>
+                    <span>Aggressive (8-10)</span>
+                </div>
+            </div>
+            <p style="text-align: center;">Mark your temperature with a note: "6—warm, balanced vibes."</p>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/r/risktolerance.asp" target="_blank">Investopedia: Risk Tolerance</a> – Tools to fine-tune your comfort zone.</p>
+        </section>
+
+        <!-- Section 4: Matching Investments to Your Risk Tolerance -->
+        <section>
+            <h2>Matching Investments to Your Risk Tolerance</h2>
+            <p>
+                Let's align your tolerance with investments, adding depth with asset breakdowns, allocation examples, and a richer activity.
+            </p>
+            
+            <h3>Conservative Investor</h3>
+            <p><strong>Investments:</strong></p>
+            <ul>
+                <li>Treasury Bonds: 2-3%, near-zero default risk.</li>
+                <li>High-Yield Savings: 2-3%, FDIC-insured.</li>
+                <li>Dividend Aristocrats: Stocks like Coca-Cola (3-5% total return, 2% yield).</li>
+            </ul>
+            <p><strong>Why:</strong> Predictable income, minimal losses—sleep is sacred.</p>
+            <p><strong>Allocation:</strong> 70% bonds, 20% dividend stocks, 10% cash.</p>
+            
+            <h3>Moderate Investor</h3>
+            <p><strong>Investments:</strong></p>
+            <ul>
+                <li>S&P 500 ETF (VOO): 7-10%, broad market exposure.</li>
+                <li>Total Bond ETF (BND): 3-5%, diversified bonds.</li>
+                <li>REITs: 5-7%, real estate income with some risk.</li>
+            </ul>
+            <p><strong>Why:</strong> Growth with a safety net—20% dips are okay if temporary.</p>
+            <p><strong>Allocation:</strong> 60% stocks, 30% bonds, 10% REITs/cash.</p>
+            
+            <h3>Aggressive Investor</h3>
+            <p><strong>Investments:</strong></p>
+            <ul>
+                <li>Growth Stocks: Tech like Nvidia (10-15%, volatile).</li>
+                <li>Small-Cap ETF (VB): 8-12%, higher risk/reward.</li>
+                <li>Crypto (Bitcoin): 15%+ or bust, extreme swings.</li>
+            </ul>
+            <p><strong>Why:</strong> Big wins outweigh big losses—30% drops are buying ops.</p>
+            <p><strong>Allocation:</strong> 80% stocks, 10% crypto, 10% cash.</p>
+            
+            <h3>Real-Life Example with Numbers</h3>
+            <p>A moderate 45-year-old with $20K:</p>
+            <ul>
+                <li>$12K in VOO (60%) → $15,600 in 5 years at 8%, but $9,600 after a 20% dip.</li>
+                <li>$6K in BND (30%) → $7,200 at 4%, stable.</li>
+                <li>$2K cash (10%) → $2,080 at 2%.</li>
+            </ul>
+            <p>Total: $24,880 average, cushioned against crashes.</p>
+            
+            <h3>Adjusting Over Time with Detail</h3>
+            <ul>
+                <li><strong>20s:</strong> 80% stocks, 20% bonds—$10K could hit $67K in 30 years at 8%.</li>
+                <li><strong>40s:</strong> 60/40 split—balances kids' college and retirement.</li>
+                <li><strong>60s:</strong> 40% stocks, 60% bonds—$50K grows to $62K in 10 years at 4%, safe.</li>
+                <li><strong>Events:</strong> Job loss? Add cash. Windfall? Boost stocks.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Investment Matchmaker Enhanced</h3>
+                <ol>
+                    <li>From your tolerance, select three investments and percentages:
+                        <br><em>"Moderate: 50% VOO, 30% BND, 20% cash."</em>
+                    </li>
+                    <li>Project 5-year growth and a crash:
+                        <br><em>"$5K → $6,500 at 6%, dips to $4,800 at -20%."</em>
+                    </li>
+                </ol>
+                <p>Explain: "VOO grows, BND steadies, cash protects—my moderate mix."</p>
+                <p><strong>Fun Twist:</strong> Your portfolio as a vacation? "Moderate = beach trip—fun with a comfy hotel."</p>
+                <textarea placeholder="Write your Investment Matchmaker plan here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Investment Pyramid</h4>
+                <div style="width: 0; height: 0; border-left: 150px solid transparent; border-right: 150px solid transparent; border-bottom: 300px solid #f0f4ff; position: relative; margin: 0 auto;">
+                    <div style="position: absolute; top: 200px; left: -100px; width: 200px; text-align: center;">
+                        <span style="color: #f44336; font-weight: bold;">High Risk (7-15%+)</span>
+                        <br>Growth Stocks, Crypto
+                    </div>
+                    <div style="position: absolute; top: 120px; left: -120px; width: 240px; text-align: center;">
+                        <span style="color: #ff9800; font-weight: bold;">Medium Risk (3-7%)</span>
+                        <br>Index Funds, Corporate Bonds, REITs
+                    </div>
+                    <div style="position: absolute; top: 40px; left: -140px; width: 280px; text-align: center;">
+                        <span style="color: #4caf50; font-weight: bold;">Low Risk (0-3%)</span>
+                        <br>Cash, Treasury Bonds, CDs
+                    </div>
+                </div>
+                <p>Color-code your zone—green for safety, red for risk!</p>
+            </div>
+        </section>
+
+        <!-- Section 5: Real-Life Risk Scenarios -->
+        <section>
+            <h2>Real-Life Risk Scenarios</h2>
+            <p>
+                Risk comes alive in stories. Here are three detailed cases with deeper analysis and a richer activity.
+            </p>
+            
+            <div class="case-study">
+                <h3>Case Study 1: Jake, 25 – The Patient Winner</h3>
+                <p><strong>Move:</strong> $10K into VOO in 2019. 2020 crash cuts it to $7,000 (-30%).</p>
+                <p><strong>Outcome:</strong> Holds through volatility—by 2023, it's $15,000 (50% gain).</p>
+                <p><strong>Analysis:</strong> Young age and no urgent needs let time heal. His 8% average beat inflation.</p>
+                <p><strong>Lesson:</strong> Long horizons turn dips into wins—don't panic-sell.</p>
+            </div>
+            
+            <div class="case-study">
+                <h3>Case Study 2: Linda, 60 – The Pre-Retiree</h3>
+                <p><strong>Move:</strong> $100K in 70% stocks, 30% bonds. 2022's 15% stock drop shrinks it to $89,500.</p>
+                <p><strong>Outcome:</strong> Shifts to 30% stocks, 70% bonds—recovers to $92K, stabilizes at 4% growth.</p>
+                <p><strong>Analysis:</strong> Near-retirement, she couldn't wait out a slump—safety trumped growth.</p>
+                <p><strong>Lesson:</strong> Match risk to time—short horizons need buffers.</p>
+            </div>
+            
+            <div class="case-study">
+                <h3>Case Study 3: Sam, 35 – The Single-Stock Gambler</h3>
+                <p><strong>Move:</strong> $5K into one biotech stock in 2021. A failed drug trial in 2022 drops it to $1,000 (-80%).</p>
+                <p><strong>Outcome:</strong> Sells at a loss, rebuilds with a $4K diversified ETF—up to $4,800 by 2023.</p>
+                <p><strong>Analysis:</strong> Company-specific risk crushed him—spreading bets would've saved $3K.</p>
+                <p><strong>Lesson:</strong> Diversify or die—one stock is a gamble, not a plan.</p>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Your Reaction to a Dip Enhanced</h3>
+                <p>Your $10K portfolio drops 25% to $7,500 in a 2023 crash.</p>
+                <p>Options:</p>
+                <ul>
+                    <li>a) Sell at $7,500, lock in loss.</li>
+                    <li>b) Hold, wait 2 years—back to $9,500 at 8%.</li>
+                    <li>c) Buy $2K more at $7,500—total $12K recovers to $15,600.</li>
+                </ul>
+                <p>Pick and justify: "I'd buy—I'm 30, moderate, and see cheap stocks as a deal."</p>
+                <p><strong>Stress Test:</strong> If it fell another 25% to $5,625, would you stick? "Yes—long game."</p>
+                <textarea placeholder="Write your reaction to the market dip here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="risk-chart">
+                <div class="chart-bar" style="margin-right: 40px;">
+                    <div class="chart-bar-value">$15,000</div>
+                    <div class="chart-bar-inner" style="height: 180px;"></div>
+                    <div class="chart-bar-inner" style="height: 70px; background-color: #f44336;"></div>
+                    <div class="chart-bar-label">Jake<br>(V-shape)</div>
+                </div>
+                <div class="chart-bar" style="margin-right: 40px;">
+                    <div class="chart-bar-value">$92,000</div>
+                    <div class="chart-bar-inner" style="height: 140px;"></div>
+                    <div class="chart-bar-inner" style="height: 20px; background-color: #f44336;"></div>
+                    <div class="chart-bar-label">Linda<br>(L-shape)</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-bar-value">$4,800</div>
+                    <div class="chart-bar-inner" style="height: 48px;"></div>
+                    <div class="chart-bar-inner" style="height: 40px; background-color: #f44336;"></div>
+                    <div class="chart-bar-label">Sam<br>(J-shape)</div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px;">Recovery patterns after market dips vary by investor response.</p>
+            
+            <p><strong>Resource:</strong> <a href="https://www.morningstar.com/articles/1015803/a-guide-to-understanding-risk-in-investing" target="_blank">Morningstar Risk Guide</a> – Stories and strategies galore.</p>
+        </section>
+
+        <!-- Section 6: Managing and Mitigating Risk -->
+        <section>
+            <h2>Managing and Mitigating Risk</h2>
+            <p>
+                Tame risk with detailed tactics, enriched examples, and a beefy simulation.
+            </p>
+            
+            <h3>1. Diversification</h3>
+            <p><strong>How:</strong> Mix asset classes—stocks, bonds, real estate, cash.</p>
+            <p><strong>Example:</strong> $10K split: $4K VOO, $3K BND, $2K REITs, $1K cash. A 20% stock drop (-$800) is offset by bonds (+$90), REITs (+$100). Loss: $610 vs. $2,000 all-in stocks.</p>
+            <p><strong>Depth:</strong> Add sectors (tech, healthcare) and regions (U.S., emerging markets).</p>
+            
+            <h3>2. Time Horizon</h3>
+            <ul>
+                <li><strong>Long-Term (20+ Years):</strong> 80% stocks—$10K to $80K at 10%.</li>
+                <li><strong>Medium (5-15 Years):</strong> 60/40—$10K to $20K at 6%.</li>
+                <li><strong>Short (&lt;5 Years):</strong> 80% bonds/cash—$10K to $12K at 3%.</li>
+            </ul>
+            <p><strong>Example:</strong> A 40-year-old's 15-year plan rides out a 2025 dip with 60% stocks.</p>
+            
+            <h3>3. Research</h3>
+            <p><strong>How:</strong> Check P/E ratios, debt levels, 5-year returns.</p>
+            <p><strong>Example:</strong> VOO's 15% 5-year return beats a hyped stock with no earnings—data over buzz.</p>
+            <p><strong>Tool:</strong> Use Yahoo Finance for stats, SEC filings for depth.</p>
+            
+            <h3>4. Emergency Buffer</h3>
+            <p><strong>How:</strong> 6 months' expenses ($15K) in savings—never touch investments in a pinch.</p>
+            <p><strong>Example:</strong> Job loss in 2023? $15K cash avoids selling VOO at a 20% loss.</p>
+            
+            <h3>5. Hedging (Bonus)</h3>
+            <p><strong>How:</strong> Use options or gold to offset losses.</p>
+            <p><strong>Example:</strong> A $500 put option on VOO gains $1,000 if stocks fall 20%, netting $500.</p>
+            
+            <h3>Real-Life Example</h3>
+            <p>$10K portfolio: 50% VOO ($5K), 30% BND ($3K), 10% gold ($1K), 10% cash ($1K). 2022 crash: VOO -20% (-$1K), BND -5% (-$150), gold +5% (+$50). Total loss: $1,100 vs. $2,000 all-stocks.</p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Risk-Busting Challenge Enhanced</h3>
+                <p>Build a $10K portfolio with four strategies:</p>
+                <ul>
+                    <li>"50% VOO, 30% BND, 10% REITs, 10% cash."</li>
+                    <li>"15-year horizon—60/40 mix."</li>
+                    <li>"Research VOO's 10% 5-year return."</li>
+                    <li>"$3K cash buffer."</li>
+                </ul>
+                <p>Simulate a 15% crash: "VOO -$750, BND -$90, REITs -$150 = -$990, cash saves me."</p>
+                <p><strong>Fun Twist:</strong> Your portfolio as a fortress? "Diversification = walls, cash = moat."</p>
+                <textarea placeholder="Write your Risk-Busting Challenge portfolio here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Risk Seesaw</h4>
+                <div style="display: flex; align-items: center; position: relative; height: 150px;">
+                    <!-- Left side (high risk) -->
+                    <div style="flex: 1; text-align: center; padding: 10px;">
+                        <i class="fas fa-chart-line" style="font-size: 24px; color: #f44336;"></i>
+                        <p><strong>High Risk</strong><br>Stocks, Crypto</p>
+                    </div>
+                    
+                    <!-- Seesaw pivot -->
+                    <div style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 0; width: 20px; height: 50px; background-color: #333; border-radius: 5px;"></div>
+                    
+                    <!-- Seesaw board -->
+                    <div style="position: absolute; left: 20%; right: 20%; height: 10px; background-color: #795548; top: 50%; transform: translateY(-50%) rotate(-10deg); transform-origin: center;"></div>
+                    
+                    <!-- Balance point -->
+                    <div style="position: absolute; left: 50%; transform: translateX(-50%); top: 30px; text-align: center;">
+                        <i class="fas fa-balance-scale" style="font-size: 24px; color: #3f51b5;"></i>
+                        <p><strong>Diversification</strong></p>
+                    </div>
+                    
+                    <!-- Right side (low risk) -->
+                    <div style="flex: 1; text-align: center; padding: 10px;">
+                        <i class="fas fa-shield-alt" style="font-size: 24px; color: #4caf50;"></i>
+                        <p><strong>Low Risk</strong><br>Bonds, Cash</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!-- Section 7: Reflection – Your Risk Comfort Zone -->
+<section>
+    <h2>Reflection – Your Risk Comfort Zone</h2>
+    <p>
+        Let's synthesize with a deeper reflection and detailed roadmap.
+    </p>
+    
+    <h3>Your Sweet Spot</h3>
+    <p>
+        Are you conservative (3-5%, safety), moderate (5-8%, balanced), or aggressive (8-12%, bold)? Factor in quiz results, scenarios, and gut.
+    </p>
+    
+    <h3>Why It Matters with Numbers</h3>
+    <ul>
+        <li><strong>Too Safe:</strong> $10K at 2% = $16,400 in 25 years; real value $10K at 3% inflation.</li>
+        <li><strong>Too Risky:</strong> $10K all-stocks drops to $7K in a crash—recovery takes grit.</li>
+        <li><strong>Balanced:</strong> 60/40 grows to $40K, dips to $32K—manageable.</li>
+    </ul>
+    
+    <h3>Life Stage Nuances</h3>
+    <ul>
+        <li><strong>20s:</strong> 90% stocks—$10K to $174K in 40 years at 10%.</li>
+        <li><strong>40s:</strong> 60/40—$20K to $50K in 20 years at 6%.</li>
+        <li><strong>60s:</strong> 30/70—$50K to $62K in 10 years at 4%.</li>
+    </ul>
+    
+    <div class="activity-box">
+        <h3>Interactive Element: Risk Profile Paragraph Enhanced</h3>
+        <p>Write: "My tolerance is [level] because [life factors]. My plan: [investments + why]."</p>
+        <p><em>Example: "I'm moderate—I'm 38, saving for kids' college in 15 years, and can handle 20% dips. Plan: 60% VOO for growth, 40% BND for stability—slow and steady with a kick."</em></p>
+        <p><strong>Twist:</strong> Your risk motto? "Ride the waves, but pack a lifeboat."</p>
+        <textarea placeholder="Write your Risk Profile Paragraph here..." rows="6"></textarea>
+    </div>
+    
+    <h3>Visual Aid</h3>
+    <div class="visual-aid">
+        <h4>Risk Ladder</h4>
+        <div style="width: 50px; height: 300px; background-color: #f0f4ff; position: relative; margin: 0 auto; border-left: 2px solid #333; border-right: 2px solid #333;">
+            <div style="position: absolute; top: 10px; left: 60px; text-align: left;">
+                <span style="font-weight: bold;">10: "All stocks"</span>
+            </div>
+            <div style="position: absolute; top: 150px; left: 60px; text-align: left;">
+                <span style="font-weight: bold;">5: "50/50 mix"</span>
+            </div>
+            <div style="position: absolute; bottom: 10px; left: 60px; text-align: left;">
+                <span style="font-weight: bold;">1: "Cash only"</span>
+            </div>
+            
+            <!-- Risk marker -->
+            <div style="position: absolute; top: 100px; left: -10px; width: 70px; height: 30px; background-color: #3f51b5; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                7
+            </div>
+        </div>
+        <p style="margin-top: 20px; text-align: center;">Pin your rung with a note: "7—growth with a parachute."</p>
+    </div>
+</section>
+
+<!-- Section 8: Quiz – Risk Mastery -->
+<section>
+    <h2>Quiz – Risk Mastery</h2>
+    <p>
+        A beefier quiz to test your chops!
+    </p>
+    
+    <div class="quiz">
+        <div class="quiz-item">
+            <p><strong>1. Higher returns typically mean:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q1" id="q1a" value="A"> <label for="q1a">Lower risk</label></div>
+                <div><input type="radio" name="q1" id="q1b" value="B"> <label for="q1b">Higher risk</label></div>
+                <div><input type="radio" name="q1" id="q1c" value="C"> <label for="q1c">No risk</label></div>
+            </div>
+        </div>
+        
+        <div class="quiz-item">
+            <p><strong>2. Market risk hits:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q2" id="q2a" value="A"> <label for="q2a">One stock</label></div>
+                <div><input type="radio" name="q2" id="q2b" value="B"> <label for="q2b">All assets</label></div>
+                <div><input type="radio" name="q2" id="q2c" value="C"> <label for="q2c">Bonds only</label></div>
+            </div>
+        </div>
+        
+        <div class="quiz-item">
+            <p><strong>3. Interest rate hikes hurt:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q3" id="q3a" value="A"> <label for="q3a">Stock prices</label></div>
+                <div><input type="radio" name="q3" id="q3b" value="B"> <label for="q3b">Bond prices</label></div>
+                <div><input type="radio" name="q3" id="q3c" value="C"> <label for="q3c">Cash value</label></div>
+            </div>
+        </div>
+        
+        <div class="quiz-item">
+            <p><strong>4. Diversification:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q4" id="q4a" value="A"> <label for="q4a">Cuts company-specific risk</label></div>
+                <div><input type="radio" name="q4" id="q4b" value="B"> <label for="q4b">Eliminates all risk</label></div>
+                <div><input type="radio" name="q4" id="q4c" value="C"> <label for="q4c">Boosts inflation risk</label></div>
+            </div>
+        </div>
+        
+        <div class="quiz-item">
+            <p><strong>5. A 3% return vs. 5% inflation means:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q5" id="q5a" value="A"> <label for="q5a">2% real gain</label></div>
+                <div><input type="radio" name="q5" id="q5b" value="B"> <label for="q5b">2% real loss</label></div>
+                <div><input type="radio" name="q5" id="q5c" value="C"> <label for="q5c">No change</label></div>
+            </div>
+        </div>
+        
+        <button onclick="checkQuiz()">Submit Quiz</button>
+        <div id="quiz-result" class="result-box" style="display: none;"></div>
+    </div>
+    
+    <p><strong>Answers:</strong> 1. b, 2. b, 3. b, 4. a, 5. b</p>
+    
+    <div class="activity-box">
+        <h3>Interactive: Score Your Quiz</h3>
+        <p>For each miss, write a fix: "Q3: Bond prices fall with rates, not stocks—duh!"</p>
+        <textarea placeholder="Write your quiz reflections here..." rows="4"></textarea>
+    </div>
+    
+    <h3>Visual Aid</h3>
+    <div class="visual-aid">
+        <h4>Risk Wheel</h4>
+        <div style="position: relative; width: 300px; height: 300px; margin: 0 auto; border-radius: 50%; overflow: hidden;">
+            <!-- Market Risk Slice -->
+            <div style="position: absolute; width: 50%; height: 50%; top: 0; left: 0; background-color: #f44336; transform-origin: bottom right; transform: rotate(0deg);">
+                <div style="position: absolute; top: 30px; left: 30px; color: white; font-weight: bold;">Market Risk</div>
+            </div>
+            
+            <!-- Company Risk Slice -->
+            <div style="position: absolute; width: 50%; height: 50%; top: 0; right: 0; background-color: #ff9800; transform-origin: bottom left; transform: rotate(0deg);">
+                <div style="position: absolute; top: 30px; right: 30px; color: white; font-weight: bold;">Company Risk</div>
+            </div>
+            
+            <!-- Interest Rate Risk Slice -->
+            <div style="position: absolute; width: 50%; height: 50%; bottom: 0; left: 0; background-color: #4caf50; transform-origin: top right; transform: rotate(0deg);">
+                <div style="position: absolute; bottom: 30px; left: 30px; color: white; font-weight: bold;">Rate Risk</div>
+            </div>
+            
+            <!-- Inflation Risk Slice -->
+            <div style="position: absolute; width: 50%; height: 50%; bottom: 0; right: 0; background-color: #2196f3; transform-origin: top left; transform: rotate(0deg);">
+                <div style="position: absolute; bottom: 30px; right: 30px; color: white; font-weight: bold;">Inflation Risk</div>
+            </div>
+            
+            <!-- Center Circle -->
+            <div style="position: absolute; width: 100px; height: 100px; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+                <span style="font-weight: bold;">You</span>
+            </div>
+        </div>
+        <p style="margin-top: 20px;">Spin to "Interest Rate Risk" and see "Bond prices drop" light up.</p>
+    </div>
+</section>
+
+<!-- Conclusion -->
+<section>
+    <h2>Conclusion: You're a Risk-Taming Pro!</h2>
+    <p>
+        You've dissected risk, matched it to your life, and built a toolkit to manage it. Risk isn't a foe—it's your growth partner. Lesson 4 awaits to craft your portfolio—stay tuned!
+    </p>
+    
+    <div class="activity-box">
+        <h3>Take Action</h3>
+        <p>Try <a href="https://personal.vanguard.com/us/FundsInvQuestionnaire" target="_blank">Vanguard's Questionnaire</a>. Note: "Moderate score—starting with 60% VOO, 40% BND for balance."</p>
+    </div>
+    
+    <h3>Resources:</h3>
+    <ul>
+        <li><a href="https://personal.vanguard.com/us/FundsInvQuestionnaire" target="_blank">Vanguard Investor Questionnaire</a></li>
+        <li><a href="https://www.investopedia.com/terms/r/risk.asp" target="_blank">Investopedia: Risk</a></li>
+        <li><a href="https://www.morningstar.com" target="_blank">Morningstar</a></li>
+    </ul>
+    
+    <p class="result-box">
+        Your risk mastery is locked in—go invest with confidence!
+    </p>
+</section>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>FinanceCourse</h3>
+            <p>Learn to invest smarter with our comprehensive financial education platform.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="learn.html">Courses</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Resources</h3>
+            <ul>
+                <li><a href="#">Investing Glossary</a></li>
+                <li><a href="#">Calculators</a></li>
+                <li><a href="#">Market Updates</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <ul>
+                <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 FinanceCourse. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

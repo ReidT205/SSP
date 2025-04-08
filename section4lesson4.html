@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 4: Emergency Preparedness</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #5b3fd8;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #2196f3, #3f51b5);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #3f51b5;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #3f51b5;
+            border-bottom: 2px solid #3f51b5;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3f51b5;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #3f51b5;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #303f9f;
+        }
+        /* Lesson-specific styles */
+        .example-box {
+            background-color: #f0f4ff;
+            border: 1px solid #d0d9ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #3f51b5;
+            color: white;
+        }
+        .visual-aid {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .visual-aid img {
+            max-width: 100%;
+            height: auto;
+        }
+        .warning-sign {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+        }
+        .warning-icon {
+            font-size: 24px;
+            color: #ff9800;
+            margin-right: 15px;
+        }
+        .timeline {
+            position: relative;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: #3f51b5;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            position: relative;
+            padding: 20px 0;
+        }
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #3f51b5;
+            transform: translateX(-50%);
+        }
+        .risk-stats {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f44336;
+            display: block;
+            text-align: center;
+            margin: 15px 0;
+        }
+        .asset-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .asset-table th, .asset-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .asset-table th {
+            background-color: #f2f2f2;
+        }
+        .asset-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .story-box {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid #4caf50;
+        }
+        .story-box.negative {
+            border-left: 5px solid #f44336;
+        }
+        .story-box h4 {
+            color: #3f51b5;
+            margin-top: 0;
+        }
+        .flow-step {
+            background-color: #e8f5e9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            position: relative;
+        }
+        .flow-step:after {
+            content: "↓";
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            color: #388e3c;
+        }
+        .flow-step:last-child:after {
+            content: "✓";
+            bottom: -30px;
+            color: #388e3c;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            height: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #3f51b5;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            line-height: 20px;
+            font-size: 14px;
+            transition: width 0.5s;
+        }
+        .thermometer {
+            width: 40px;
+            height: 200px;
+            background-color: #fff;
+            border-radius: 20px;
+            border: 4px solid #ccc;
+            position: relative;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        .thermometer:before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #f44336;
+            height: 0%;
+            transition: height 0.5s;
+        }
+        .thermometer-scale {
+            position: absolute;
+            left: 50px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .thermometer-mark {
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .bar-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 250px;
+            margin: 20px auto;
+        }
+        .bar {
+            width: 50px;
+            background-color: #3f51b5;
+            position: relative;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            color: white;
+            font-weight: bold;
+        }
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .hustle-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        .hustle-icon {
+            font-size: 36px;
+            margin-right: 20px;
+            color: #3f51b5;
+        }
+        .hustle-info {
+            flex-grow: 1;
+        }
+        .hustle-earning {
+            background-color: #e8f5e9;
+            color: #388e3c;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        .hustle-effort {
+            background-color: #fff3e0;
+            color: #ff9800;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 5px;
+            margin-left: 10px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .btn {
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #303f9f;
+        }
+        .account-box {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #fff;
+        }
+        .account-box h4 {
+            margin-top: 0;
+            color: #3f51b5;
+        }
+        .stat {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .flowchart {
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .flowchart-node {
+            background-color: #e8f5e9;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+            text-align: center;
+        }
+        .flowchart-arrow {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            color: #388e3c;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 660;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function calculateFundTarget() {
+            const rent = parseFloat(document.getElementById('rent').value) || 0;
+            const food = parseFloat(document.getElementById('food').value) || 0;
+            const utilities = parseFloat(document.getElementById('utilities').value) || 0;
+            const transport = parseFloat(document.getElementById('transport').value) || 0;
+            const other = parseFloat(document.getElementById('other').value) || 0;
+            
+            const total = rent + food + utilities + transport + other;
+            const threeMonths = total * 3;
+            const sixMonths = total * 6;
+            const nineMonths = total * 9;
+            
+            document.getElementById('monthly-total').innerHTML = `$${total.toFixed(2)}`;
+            document.getElementById('three-month').innerHTML = `$${threeMonths.toFixed(2)}`;
+            document.getElementById('six-month').innerHTML = `$${sixMonths.toFixed(2)}`;
+            document.getElementById('nine-month').innerHTML = `$${nineMonths.toFixed(2)}`;
+            
+            // Update bar chart
+            document.getElementById('one-month-bar').style.height = `${total/50}px`;
+            document.getElementById('one-month-bar').innerHTML = `$${total.toFixed(0)}`;
+            document.getElementById('three-month-bar').style.height = `${threeMonths/50}px`;
+            document.getElementById('three-month-bar').innerHTML = `$${threeMonths.toFixed(0)}`;
+            document.getElementById('six-month-bar').style.height = `${sixMonths/50}px`;
+            document.getElementById('six-month-bar').innerHTML = `$${sixMonths.toFixed(0)}`;
+            document.getElementById('nine-month-bar').style.height = `${nineMonths/50}px`;
+            document.getElementById('nine-month-bar').innerHTML = `$${nineMonths.toFixed(0)}`;
+        }
+
+        function calculateSavingsTime() {
+            const monthlySavings = parseFloat(document.getElementById('monthly-savings').value) || 0;
+            const targetAmount = parseFloat(document.getElementById('target-amount').value) || 0;
+            
+            if (monthlySavings <= 0 || targetAmount <= 0) {
+                document.getElementById('savings-result').innerHTML = "Please enter valid numbers.";
+                return;
+            }
+            
+            const months = targetAmount / monthlySavings;
+            const years = Math.floor(months / 12);
+            const remainingMonths = Math.ceil(months % 12);
+            
+            let timeString = "";
+            if (years > 0) {
+                timeString += `${years} year${years > 1 ? 's' : ''} `;
+            }
+            if (remainingMonths > 0) {
+                timeString += `${remainingMonths} month${remainingMonths > 1 ? 's' : ''}`;
+            }
+            
+            document.getElementById('savings-result').innerHTML = `It will take approximately ${timeString} to reach your goal.`;
+        }
+
+        function calculateInterest() {
+            const principal = parseFloat(document.getElementById('principal').value) || 0;
+            const rate = parseFloat(document.getElementById('interest-rate').value) || 0;
+            
+            const yearlyInterest = principal * (rate / 100);
+            
+            document.getElementById('interest-result').innerHTML = `$${principal.toFixed(2)} earning ${rate}% will generate approximately $${yearlyInterest.toFixed(2)} per year in interest.`;
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'C') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q6"]:checked')?.value === 'A') score++;
+            if (document.querySelector('input[name="q7"]:checked')?.value === 'B') score++;
+            
+            let feedback = '';
+            if (score === 7) {
+                feedback = "Perfect score! You're a master of emergency preparedness!";
+            } else if (score >= 5) {
+                feedback = "Great job! You have a solid understanding of emergency funds and side hustles.";
+            } else {
+                feedback = "Keep learning! Review the sections where you missed questions to strengthen your knowledge.";
+            }
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 7. ${feedback}`;
+            document.getElementById('quiz-result').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Financial Security & Risk Management: Lesson 4 – Emergency Preparedness: Building Your Financial Panic Room</h1>
+        <p>Create a robust emergency fund and develop diverse income streams to weather any financial storm with confidence.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Learning!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview: Your Blueprint to a Crisis-Proof Life</h2>
+            <p>
+                Welcome back to Financial Security & Risk Management! After mastering risk identification, insurance, and diversification in Lessons 1-3, Lesson 4 arms you with the ultimate shield: emergency preparedness. This isn't just about stashing cash—it's about crafting a financial panic room with a robust emergency fund and diverse income streams to weather any storm. Here's your roadmap to unshakable resilience:
+            </p>
+            <ul>
+                <li><strong>Core Concepts Unveiled:</strong> Why a 3-6 month emergency fund is your lifeline, how to calculate it down to the penny, and why side hustles are your financial superpower.</li>
+                <li><strong>Hands-On Playbook:</strong> Step-by-step guidance to size, save, and store your fund, plus launch income-boosting hustles tailored to your life.</li>
+                <li><strong>Real-World Narratives:</strong> Riveting tales of triumph and failure that bring the stakes to life.</li>
+                <li><strong>Interactive Toolkit:</strong> Activities, calculators, audits, reflection prompts, scenario challenges, and a quiz to cement your skills.</li>
+                <li><strong>Advanced Strategies:</strong> New sections on automating savings, leveraging windfalls, diversifying income beyond hustles, crisis-proofing your career, and stress-testing your plan.</li>
+                <li><strong>Troubleshooting Guide:</strong> Solutions to every hurdle, ensuring your strategy stays rock-solid.</li>
+                <li><strong>Visual Arsenal:</strong> Charts, tables, timelines, and infographics to make every concept pop.</li>
+            </ul>
+            <p>
+                By the end, you'll wield a personalized emergency plan—a financial panic room that transforms chaos into control, no matter the crisis. Whether you're safeguarding $50 or $50,000, this lesson equips you to face the unexpected with swagger. Let's dive in and fortify your financial future!
+            </p>
+        </section>
+
+        <!-- Introduction -->
+        <section id="section1">
+            <h2>Introduction: Your Financial Panic Button</h2>
+            <p>
+                Imagine this: It's pouring rain, and your car's engine sputters out—$1,500 to fix. Days later, your employer slashes hours, dropping your $3,200 monthly income to $1,800. Without a safety net, you're in a tailspin—racking up 19% interest credit card debt ($285 extra/year), pawning your guitar for half its worth, or begging friends for a loan. With an emergency fund and side hustles, you pay the mechanic, cover rent, and pivot calmly, knowing you've got 3-6 months to regroup.
+            </p>
+            <p>
+                That's emergency preparedness: your financial panic button. Press it, and panic becomes power. This lesson is your blueprint to build that button, brick by brick.
+            </p>
+            
+            <div class="result-box">
+                <h3>Eye-Opening Stat:</h3>
+                <p>
+                    56% of Americans can't cover a $1,000 emergency with cash (Bankrate, 2023). Don't join them—lead the prepared minority.
+                </p>
+            </div>
+            
+            <h3>Real-Life Hook:</h3>
+            <p>
+                In 2021, Leo, 32, faced a $3,000 HVAC replacement with no fund—borrowed at 20% interest, paid $600 extra over two years. His coworker, Aisha, had $8,000 saved; when her car died ($2,200), she paid cash and slept easy. Leo's still climbing out; Aisha's thriving.
+            </p>
+            
+            <h3>Why It's Personal:</h3>
+            <p>
+                Crises don't care about your income—medical bills, layoffs, or natural disasters strike all. This lesson turns unpredictability into your edge.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Your Emergency Wake-Up Call</h3>
+                <p>
+                    Recall a cash crunch—maybe a $450 phone repair, $1,200 medical co-pay, or a week without pay. Write:
+                </p>
+                <ol>
+                    <li>What happened?</li>
+                    <li>How did it feel (stress, shame, desperation)?</li>
+                    <li>How could a fund or side gig have flipped the script?</li>
+                </ol>
+                <p><em>Example: "Lost my wallet, $600 in cash gone. Panicked for days. A $1,000 fund would've kept me calm."</em></p>
+                <p>This anchors the lesson in your world—let's build from your reality.</p>
+                <textarea placeholder="Write about your emergency experience here..." rows="4"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Your Financial Ship</h3>
+                <div style="max-width: 500px; margin: 20px auto;">
+                    <!-- Ship illustration on stormy sea -->
+                    <div style="position: relative; height: 300px;">
+                        <!-- Sea with waves -->
+                        <div style="position: absolute; bottom: 0; width: 100%; height: 100px; background: linear-gradient(to bottom, #1565C0, #1976D2); border-radius: 50% 50% 0 0; overflow: hidden;">
+                            <!-- Waves animation -->
+                            <div style="position: absolute; top: 20px; width: 100%; height: 20px;">
+                                <svg width="100%" height="20px" viewBox="0 0 100 20" preserveAspectRatio="none">
+                                    <path d="M0,10 Q25,20 50,10 T100,10 V30 H0 Z" fill="#42A5F5"></path>
+                                </svg>
+                            </div>
+                            <div style="position: absolute; top: 0; width: 100%; height: 20px;">
+                                <svg width="100%" height="20px" viewBox="0 0 100 20" preserveAspectRatio="none">
+                                    <path d="M0,10 Q25,0 50,10 T100,10 V30 H0 Z" fill="#64B5F6"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <!-- Ship -->
+                        <div style="position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); width: 200px; height: 60px; background-color: #8d6e63; border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center;">
+                            <div style="color: white; font-weight: bold;">Your Finances</div>
+                        </div>
+                        
+                        <!-- Emergency Fund Life Preserver -->
+                        <div style="position: absolute; bottom: 100px; right: 50px; width: 50px; height: 50px; border-radius: 50%; background-color: white; border: 8px solid #f44336; display: flex; justify-content: center; align-items: center; font-size: 12px; font-weight: bold;">Fund</div>
+                        
+                        <!-- Side Hustle Sail -->
+                        <div style="position: absolute; bottom: 140px; left: 50%; transform: translateX(-50%); width: 10px; height: 100px; background-color: #5d4037;">
+                            <div style="position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 60px solid transparent; border-bottom: 80px solid #4caf50; display: flex; justify-content: center;">
+                                <span style="position: relative; top: 40px; left: -30px; transform: rotate(-30deg); font-weight: bold; color: white;">Side Hustles</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Storm clouds -->
+                        <div style="position: absolute; top: 20px; left: 20px; font-size: 36px; color: #78909C;">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div style="position: absolute; top: 10px; right: 30px; font-size: 42px; color: #546E7A;">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div style="position: absolute; top: 60px; left: 120px; font-size: 30px; color: #607D8B;">
+                            <i class="fas fa-bolt" style="color: #FFC107;"></i>
+                        </div>
+                    </div>
+                    <p>Picture your finances as a ship. Emergencies are storms—your fund and hustles are the hull and sails, keeping you afloat and moving forward.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Emergency Fund Basics -->
+        <section>
+            <h2>Emergency Fund Basics – Your Cash Fortress</h2>
+            <p>
+                Let's lay the foundation: your emergency fund. It's not just savings—it's your crisis-proof cash fortress.
+            </p>
+            
+            <h3>What Is an Emergency Fund, Really?</h3>
+            <p>
+                It's liquid cash covering 3-6 months of essential expenses—think rent, groceries, utilities, insurance, minimum debt payments—for when life derails (e.g., job loss, surgery, family emergency). It's not for impulse buys or upgrades—it's your financial lifeline.
+            </p>
+            
+            <h3>Why It's Non-Negotiable</h3>
+            <p>
+                No fund? A $1,800 plumbing leak means high-interest loans (18% = $324 extra/year) or skipping bills. With it, you pay cash, avoid debt, and focus on fixing the problem, not your finances.
+            </p>
+            
+            <h3>How Much Do You Need?</h3>
+            <ol>
+                <li><strong>Step 1: Tally Essentials:</strong> List must-haves—e.g., rent ($1,300), food ($400), utilities ($180), transport ($120), debt ($200) = $2,200/month.</li>
+                <li><strong>Step 2: Set Your Range:</strong>
+                    <ul>
+                        <li>Stable Job, Solo: 3-4 months ($6,600-$8,800).</li>
+                        <li>Family, Variable Income: 5-6 months ($11,000-$13,200).</li>
+                        <li>High Risk (Gig Work, Health Issues): 6-9 months ($13,200-$19,800).</li>
+                    </ul>
+                </li>
+                <li><strong>Step 3: Start Small:</strong> $1,000 mini-fund for quick shocks (e.g., $700 laptop crash), then scale up.</li>
+            </ol>
+            
+            <h3>Real-Life Math</h3>
+            <ul>
+                <li><strong>Minimalist:</strong> $1,400/month × 3 = $4,200.</li>
+                <li><strong>Couple with Kids:</strong> $3,800/month × 6 = $22,800.</li>
+                <li><strong>Freelancer:</strong> $2,500/month × 8 = $20,000 (extra buffer for income gaps).</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Activity: Fund Sizing Calculator</h3>
+                <div class="input-group">
+                    <label for="rent">Monthly Rent/Mortgage ($):</label>
+                    <input type="number" id="rent" placeholder="e.g., 1300">
+                </div>
+                <div class="input-group">
+                    <label for="food">Monthly Food ($):</label>
+                    <input type="number" id="food" placeholder="e.g., 400">
+                </div>
+                <div class="input-group">
+                    <label for="utilities">Monthly Utilities ($):</label>
+                    <input type="number" id="utilities" placeholder="e.g., 180">
+                </div>
+                <div class="input-group">
+                    <label for="transport">Monthly Transportation ($):</label>
+                    <input type="number" id="transport" placeholder="e.g., 120">
+                </div>
+                <div class="input-group">
+                    <label for="other">Other Essential Expenses ($):</label>
+                    <input type="number" id="other" placeholder="e.g., 200">
+                </div>
+                <button class="btn" onclick="calculateFundTarget()">Calculate</button>
+                
+                <div class="result-box" style="margin-top: 20px;">
+                    <p>Monthly Essential Expenses: <span id="monthly-total">$0.00</span></p>
+                    <p>3-Month Fund (Low Risk): <span id="three-month">$0.00</span></p>
+                    <p>6-Month Fund (Medium Risk): <span id="six-month">$0.00</span></p>
+                    <p>9-Month Fund (High Risk): <span id="nine-month">$0.00</span></p>
+                </div>
+                
+                <p>Based on your risk level, pick a target and write it down:</p>
+                <textarea placeholder="My fund target is $____ (__ months of expenses) because..." rows="3"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Emergency Fund Size</h3>
+                <div class="bar-container">
+                    <div>
+                        <div id="one-month-bar" class="bar" style="height: 40px;">$2,000</div>
+                        <div class="bar-label">1 Month</div>
+                    </div>
+                    <div>
+                        <div id="three-month-bar" class="bar" style="height: 120px;">$6,000</div>
+                        <div class="bar-label">3 Months</div>
+                    </div>
+                    <div>
+                        <div id="six-month-bar" class="bar" style="height: 240px;">$12,000</div>
+                        <div class="bar-label">6 Months</div>
+                    </div>
+                    <div>
+                        <div id="nine-month-bar" class="bar" style="height: 360px;">$18,000</div>
+                        <div class="bar-label">9 Months</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-box">
+                <strong>Extra Stat:</strong> 40% of Americans could handle a $400 emergency with cash (Federal Reserve, 2023). You'll crush that benchmark.
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.nerdwallet.com/article/banking/emergency-fund-why-it-matters" target="_blank">NerdWallet: Emergency Fund Guide</a> – Calculators, risk quizzes, and tips.</p>
+        </section>
+
+        <!-- Section 2: Building Your Fund -->
+        <section>
+            <h2>Building Your Fund – Brick by Brick</h2>
+            <p>
+                A $10,000 fund sounds intimidating—let's break it into manageable chunks with proven tactics.
+            </p>
+            
+            <h3>Steps to Success</h3>
+            <ul>
+                <li><strong>Baby Step:</strong> Save $1,000 first—handles small crises (e.g., $850 tire replacement).</li>
+                <li><strong>Automate Savings:</strong> $100-$300/month to a dedicated account—12 months = $1,200-$3,600.</li>
+                <li><strong>Leverage Windfalls:</strong> Tax refunds ($700), bonuses ($400), cash gifts ($150)—funnel 50-100% to the fund.</li>
+                <li><strong>Budget Hacks:</strong> Cut one $35 takeout/week ($140/month), sell unused gear ($200), pick up overtime ($120).</li>
+                <li><strong>Milestone Boosts:</strong> Hit $1,000? Up savings to $200/month. $5,000? Add a hustle (Section 4).</li>
+            </ul>
+            
+            <h3>Example Timeline</h3>
+            <ul>
+                <li><strong>Year 1:</strong> $150/month ($1,800) + $500 refund = $2,300.</li>
+                <li><strong>Year 2:</strong> $200/month ($2,400) + $300 bonus = $2,700 → Total $5,000.</li>
+                <li><strong>Year 3:</strong> $250/month ($3,000) + $400 gift = $3,400 → Total $8,400.</li>
+            </ul>
+            
+            <h3>Real-Life Win</h3>
+            <p>
+                Kiran, 29, slashed $50/month on streaming, sold $250 in old tech, and auto-saved $120/month. Hit $1,000 in 5 months, $6,000 in 2.5 years—then covered a $2,800 roof leak without blinking.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Savings Blueprint</h3>
+                <div class="input-group">
+                    <label for="monthly-savings">Monthly Amount You Can Save ($):</label>
+                    <input type="number" id="monthly-savings" placeholder="e.g., 150">
+                </div>
+                <div class="input-group">
+                    <label for="target-amount">Your Fund Target ($):</label>
+                    <input type="number" id="target-amount" placeholder="e.g., 6000">
+                </div>
+                <button class="btn" onclick="calculateSavingsTime()">Calculate Time to Goal</button>
+                <div class="result-box" style="margin-top: 20px;">
+                    <p id="savings-result">Enter your numbers to see how long it will take.</p>
+                </div>
+                <p>List three ways to boost your monthly savings:</p>
+                <textarea placeholder="1. Cut back on... ($__/month), 2. Sell..., 3. Extra income..." rows="4"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Fund Building Timeline</h3>
+                <div class="timeline">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Month 0: $0</h4>
+                            <p>Starting point</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Month 6: $1,410</h4>
+                            <p>$235/month × 6</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Month 12: $2,820</h4>
+                            <p>$235/month × 12</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Month 24: $5,640</h4>
+                            <p>$235/month × 24</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Month 34: $8,000</h4>
+                            <p>Target reached!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-box">
+                <strong>Pro Tip:</strong> Pair with a side hustle (Section 4)—$200 extra/month cuts 34 months to 19!
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.thebalance.com/how-to-save-for-an-emergency-fund-2386129" target="_blank">The Balance: Save for an Emergency Fund</a> – Hacks, worksheets, and motivation.</p>
+        </section>
+
+        <!-- Section 3: Where to Stash It -->
+        <section>
+            <h2>Where to Stash It – Safe, Accessible, Growing</h2>
+            <p>
+                Your fund needs a home that's liquid, secure, and earns a little. Let's explore the best options.
+            </p>
+            
+            <h3>Top Spots</h3>
+            <ul>
+                <li><strong>High-Yield Savings:</strong> Online banks like Ally (2.5%)—$10,000 earns $250/year.</li>
+                <li><strong>Money Market Accounts:</strong> Similar rates, check access—e.g., Vanguard (2.4%).</li>
+                <li><strong>Short-Term CDs:</strong> 6-month at 2.8%, locked—emergency-only stash.</li>
+                <li><strong>No-Penalty CDs:</strong> 2.2%, withdraw anytime—flexible safety.</li>
+                <li><strong>Cash (Small Amount):</strong> $500-$1,000 at home for instant crises (e.g., power outage).</li>
+            </ul>
+            
+            <h3>Why These Work</h3>
+            <ul>
+                <li><strong>Liquid:</strong> Access in 1-3 days (or instantly for cash).</li>
+                <li><strong>Safe:</strong> FDIC-insured to $250,000 (banks) or SIPC-protected (brokerages).</li>
+                <li><strong>Earns:</strong> 2-3% vs. 0.1% at traditional banks—$10,000 at 2.5% = $250 vs. $10.</li>
+            </ul>
+            
+            <h3>Avoid These</h3>
+            <ul>
+                <li><strong>Stocks/ETFs:</strong> A 30% crash (e.g., 2020) turns $5,000 into $3,500 when you need it most.</li>
+                <li><strong>Checking:</strong> 0.05% interest—$10,000 earns $5/year.</li>
+                <li><strong>Under the Mattress:</strong> No growth, theft risk.</li>
+            </ul>
+            
+            <h3>Example</h3>
+            <p>
+                Marcus 2.6% on $8,000 = $208/year.<br>
+                Big bank 0.1% = $8/year.<br>
+                Difference: $200—free groceries for a month!
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Account Scout</h3>
+                <p>Check current rates for high-yield savings accounts and calculate your potential interest:</p>
+                <div class="input-group">
+                    <label for="principal">Fund Amount ($):</label>
+                    <input type="number" id="principal" placeholder="e.g., 5000">
+                </div>
+                <div class="input-group">
+                    <label for="interest-rate">Interest Rate (%):</label>
+                    <input type="number" id="interest-rate" placeholder="e.g., 2.5" step="0.1">
+                </div>
+                <button class="btn" onclick="calculateInterest()">Calculate Interest</button>
+                <div class="result-box" style="margin-top: 20px;">
+                    <p id="interest-result">Enter your numbers to see potential earnings.</p>
+                </div>
+                <p>Which account will you choose and why?</p>
+                <textarea placeholder="e.g., 'Ally—high rate, no fees, easy app'" rows="3"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Account Comparison</h3>
+                <table class="asset-table">
+                    <tr>
+                        <th>Account</th>
+                        <th>Rate</th>
+                        <th>$10,000 Earns</th>
+                        <th>Access</th>
+                        <th>Risk</th>
+                    </tr>
+                    <tr>
+                        <td>High-Yield Savings</td>
+                        <td>2.5%</td>
+                        <td>$250/year</td>
+                        <td>1-3 days</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td>Money Market</td>
+                        <td>2.4%</td>
+                        <td>$240/year</td>
+                        <td>1-3 days</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td>Short-Term CD</td>
+                        <td>2.8%</td>
+                        <td>$280/year</td>
+                        <td>6 months</td>
+                        <td>Low</td>
+                    </tr>
+                    <tr>
+                        <td>Cash</td>
+                        <td>0%</td>
+                        <td>$0</td>
+                        <td>Instant</td>
+                        <td>Theft</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="result-box">
+                <strong>Extra Insight:</strong> Rates shift—review yearly. 2023's 2.5% beats 2021's 0.5% by $200 on $10,000.
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/articles/personal-finance/062515/where-put-your-emergency-fund.asp" target="_blank">Investopedia: Emergency Fund Locations</a> – Detailed breakdowns.</p>
+        </section>
+
+        <!-- Section 4: Side Hustles -->
+        <section>
+            <h2>Side Hustles – Your Income Backup</h2>
+            <p>
+                Funds defend; side hustles attack—extra cash to build your fund faster or replace lost income.
+            </p>
+            
+            <h3>Why Hustle?</h3>
+            <ul>
+                <li><strong>Speed Up Savings:</strong> $400/month = $4,800/year—$10,000 fund in 2 years.</li>
+                <li><strong>Income Safety:</strong> Layoff? $600/month covers essentials.</li>
+                <li><strong>Future Proofing:</strong> Skills from hustles (e.g., coding) can become careers.</li>
+            </ul>
+            
+            <h3>Ideas with Real Earnings</h3>
+            
+            <div class="hustle-card">
+                <div class="hustle-icon"><i class="fas fa-car"></i></div>
+                <div class="hustle-info">
+                    <h4>Gig Economy</h4>
+                    <p><strong>Uber:</strong> $18-30/hour—10 hours/week = $720-$1,200/month.<br>
+                    <strong>DoorDash:</strong> $15-25/hour—8 hours/week = $480-$800/month.</p>
+                    <div class="hustle-earning">$480-$1,200/month</div>
+                    <div class="hustle-effort">8-10 hours/week</div>
+                </div>
+            </div>
+            
+            <div class="hustle-card">
+                <div class="hustle-icon"><i class="fas fa-laptop"></i></div>
+                <div class="hustle-info">
+                    <h4>Freelancing</h4>
+                    <p><strong>Writing:</strong> Upwork, $20-60/hour—5 hours/week = $400-$1,200/month.<br>
+                    <strong>Graphic Design:</strong> $25-50/hour—6 hours/week = $600-$1,200/month.</p>
+                    <div class="hustle-earning">$400-$1,200/month</div>
+                    <div class="hustle-effort">5-6 hours/week</div>
+                </div>
+            </div>
+            
+            <div class="hustle-card">
+                <div class="hustle-icon"><i class="fas fa-store"></i></div>
+                <div class="hustle-info">
+                    <h4>Selling</h4>
+                    <p><strong>eBay:</strong> Old tech, $50-300—2 sales/month = $100-$600.<br>
+                    <strong>Etsy:</strong> Crafts, $15-75/item—5 sales/month = $75-$375.</p>
+                    <div class="hustle-earning">$75-$600/month</div>
+                    <div class="hustle-effort">5-10 hours/month</div>
+                </div>
+            </div>
+            
+            <div class="hustle-card">
+                <div class="hustle-icon"><i class="fas fa-dog"></i></div>
+                <div class="hustle-info">
+                    <h4>Local Gigs</h4>
+                    <p><strong>Tutoring:</strong> $20-40/hour—6 hours/week = $480-$960/month.<br>
+                    <strong>Pet-Sitting:</strong> $15-25/day—10 days/month = $150-$250.</p>
+                    <div class="hustle-earning">$150-$960/month</div>
+                    <div class="hustle-effort">10-24 hours/month</div>
+                </div>
+            </div>
+            
+            <h3>Example</h3>
+            <p>
+                Pet-sitting $20/day, 15 days/month = $300/month. Fund $6,000 in 20 months—add savings, and it's 12!
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Hustle Architect</h3>
+                <p>Design your ideal side hustle plan:</p>
+                <ol>
+                    <li>Pick two hustles that fit your skills and schedule.</li>
+                    <li>Estimate realistic hours and earnings.</li>
+                    <li>Calculate your total monthly boost.</li>
+                    <li>List what you need to get started.</li>
+                </ol>
+                <textarea placeholder="Hustle 1: ___ (__ hours/week, $___/month)
+Hustle 2: ___ (__ hours/week, $___/month)
+Total: $___/month
+First step: ___" rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Side Hustle Comparison</h3>
+                <table class="asset-table">
+                    <tr>
+                        <th>Hustle</th>
+                        <th>Rate</th>
+                        <th>Weekly Effort</th>
+                        <th>Monthly Earnings</th>
+                    </tr>
+                    <tr>
+                        <td>Pet-Sitting</td>
+                        <td>$20/day</td>
+                        <td>12 days</td>
+                        <td>$720</td>
+                    </tr>
+                    <tr>
+                        <td>Freelance Writing</td>
+                        <td>$40/hour</td>
+                        <td>5 hours</td>
+                        <td>$800</td>
+                    </tr>
+                    <tr>
+                        <td>eBay Sales</td>
+                        <td>$100/sale</td>
+                        <td>3 sales</td>
+                        <td>$300</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="result-box">
+                <strong>Pro Tip:</strong> Stack hustles—dog-walking + Etsy = $500+/month with 10 hours/week.
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.sidehustlenation.com" target="_blank">Side Hustle Nation</a> – 50+ ideas with earnings data.</p>
+        </section>
+
+        <!-- Section 5: Real Stories -->
+        <section>
+            <h2>Real Stories – Preparedness in Action</h2>
+            <p>
+                Stories make it real. Let's dive into victories and pitfalls.
+            </p>
+            
+            <div class="story-box">
+                <h4>Story 1: Aisha's Layoff Lifeline</h4>
+                <p>
+                    Aisha, 34, had $9,000 saved when her company downsized. Covered 4 months' rent ($2,800), bills ($800), and groceries ($1,200)—landed a better job stress-free.
+                </p>
+            </div>
+            
+            <div class="story-box negative">
+                <h4>Story 2: Leo's Debt Trap</h4>
+                <p>
+                    Leo, 27, no fund—$2,000 car repair meant a 21% interest loan ($420 extra paid). Two years later, he's still digging out.
+                </p>
+            </div>
+            
+            <div class="story-box">
+                <h4>Story 3: Priya's Hustle Heroics</h4>
+                <p>
+                    Priya, 31, freelanced editing ($450/month). Built $7,000 fund in 15 months—covered a $3,500 surgery and launched her own business.
+                </p>
+            </div>
+            
+            <div class="story-box">
+                <h4>Story 4: Tara's Pandemic Pivot</h4>
+                <p>
+                    In 2020, Tara's $4,000 fund paid rent when furloughed. Sewing masks ($350/month) rebuilt it in 11 months—now she's at $6,000.
+                </p>
+            </div>
+            
+            <div class="story-box negative">
+                <h4>Story 5: Jamal's Near Miss</h4>
+                <p>
+                    Jamal, 40, saved $2,000 but raided it for a TV. When his furnace died ($2,800), he borrowed at 18%—still paying interest.
+                </p>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Rewrite Your Story</h3>
+                <p>Choose a story from above and create your own emergency plan based on lessons learned:</p>
+                <ol>
+                    <li>Which story resonates most with you?</li>
+                    <li>What 3 specific steps would you take to mirror their success or avoid their pitfall?</li>
+                    <li>How can you apply this to your current financial situation?</li>
+                </ol>
+                <textarea placeholder="Story: _____
+Step 1: _____
+Step 2: _____
+Step 3: _____
+My plan: _____" rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Emergency Preparedness Outcomes</h3>
+                <div style="display: flex; flex-direction: column; gap: 20px; max-width: 500px; margin: 0 auto;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 120px; font-weight: bold;">With Fund:</div>
+                        <div style="flex-grow: 1; background-color: #e8f5e9; padding: 10px; border-radius: 5px;">
+                            Pay cash → No debt → Peace of mind → <strong>Success</strong>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 120px; font-weight: bold;">Without Fund:</div>
+                        <div style="flex-grow: 1; background-color: #ffebee; padding: 10px; border-radius: 5px;">
+                            Borrow → High interest → Ongoing stress → <strong>Struggle</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.thepennyhoarder.com/save-money/emergency-fund-stories" target="_blank">The Penny Hoarder: Emergency Stories</a> – Raw, relatable tales.</p>
+        </section>
+
+        <!-- Section 6: Automating and Tracking -->
+        <section>
+            <h2>Automating and Tracking – Set It and Forget It</h2>
+            <p>
+                Tech makes saving effortless and progress visible. Let's harness it.
+            </p>
+            
+            <h3>Tools</h3>
+            <ul>
+                <li><strong>Auto-Transfers:</strong> $75 biweekly to savings—$1,950/year, no willpower needed.</li>
+                <li><strong>Round-Up Apps:</strong> Acorns rounds $3.85 to $4, saves $0.15—$60/year passively.</li>
+                <li><strong>Budget Apps:</strong> Mint (free) or YNAB ($14.99/month)—set goals, track live.</li>
+                <li><strong>Spreadsheets:</strong> Google Sheets—Month 1: $200, Month 2: $450, with graphs.</li>
+                <li><strong>Bank Alerts:</strong> "Balance below $5,000? Save more!"</li>
+            </ul>
+            
+            <h3>Example</h3>
+            <p>
+                $200/month to Ally at 2.5%—Year 1: $2,400 + $60 interest = $2,460. Year 2: $4,920 + $123 = $5,043.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Automation Engineer</h3>
+                <p>Design your automation system:</p>
+                <ol>
+                    <li>Pick one app or method to automate your savings.</li>
+                    <li>Set a specific amount and schedule (e.g., $30 every Friday).</li>
+                    <li>Create a way to track progress (app, spreadsheet, calendar).</li>
+                </ol>
+                <textarea placeholder="Automation tool: _____
+Amount and schedule: _____
+Tracking method: _____
+Goal date: _____" rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Automated Savings Growth</h3>
+                <div style="max-width: 500px; margin: 20px auto;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;">$6,000 Goal</div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                        <div>
+                            <div>Month 1</div>
+                            <div>$200</div>
+                        </div>
+                        <div>
+                            <div>Month 6</div>
+                            <div>$1,200</div>
+                        </div>
+                        <div>
+                            <div>Month 12</div>
+                            <div>$2,400</div>
+                        </div>
+                        <div>
+                            <div>Month 30</div>
+                            <div>$6,000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-box">
+                <strong>Pro Tip:</strong> Split paycheck—10% to savings, invisible till you need it.
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.mint.com" target="_blank">Mint</a> – Free tracking, goal visuals.</p>
+        </section>
+
+        <!-- Section 7: Advanced Strategies -->
+        <section>
+            <h2>Advanced Strategies – Fortify Your Fortress</h2>
+            <p>
+                Elevate your game with these next-level moves.
+            </p>
+            
+            <h3>Strategy 1: Windfall Maximization</h3>
+            <p>
+                <strong>Rule:</strong> 70% of windfalls to fund until full, 30% for joy.<br>
+                <strong>Example:</strong> $1,200 tax refund → $840 to fund, $360 for fun.
+            </p>
+            
+            <h3>Strategy 2: Income Diversification</h3>
+            <p>
+                <strong>Passive Streams:</strong> Dividend stocks ($5,000 in VIG, 2.5% yield = $125/year) or rental income ($200/month).<br>
+                <strong>Example:</strong> $3,000 in peer-to-peer lending at 4% = $120/year.
+            </p>
+            
+            <h3>Strategy 3: Career Crisis-Proofing</h3>
+            <p>
+                <strong>Upskill:</strong> Free coding via Codecademy—new job in 6 months.<br>
+                <strong>Network:</strong> LinkedIn groups—land gigs in downturns.
+            </p>
+            
+            <h3>Strategy 4: Stress-Test Your Plan</h3>
+            <p>
+                <strong>Scenario:</strong> Lose 50% income—can fund + hustles hold you? Adjust if not.<br>
+                <strong>Example:</strong> $2,000/month expenses, $1,000 fund, $300 hustle—3 months short. Boost hustle to $500.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Power Move Picker</h3>
+                <p>Select advanced strategies to implement:</p>
+                <ol>
+                    <li>Choose two strategies from above.</li>
+                    <li>Write specific implementation steps.</li>
+                    <li>Calculate potential impact on your finances.</li>
+                </ol>
+                <textarea placeholder="Strategy 1: _____
+Implementation: _____
+Impact: $_____ or _____ months of safety
+
+Strategy 2: _____
+Implementation: _____
+Impact: $_____ or _____ months of safety" rows="8"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Financial Fortification Flow</h3>
+                <div class="flowchart">
+                    <div class="flowchart-node">
+                        Windfall Received
+                        <div class="flowchart-arrow">↓</div>
+                    </div>
+                    <div class="flowchart-node">
+                        70% to Emergency Fund
+                        <div class="flowchart-arrow">↓</div>
+                    </div>
+                    <div class="flowchart-node">
+                        Fund Complete
+                        <div class="flowchart-arrow">↓</div>
+                    </div>
+                    <div class="flowchart-node">
+                        Build Passive Income Streams
+                        <div class="flowchart-arrow">↓</div>
+                    </div>
+                    <div class="flowchart-node">
+                        Financial Independence
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Troubleshooting -->
+        <section>
+            <h2>Troubleshooting – Bulletproof Your Plan</h2>
+            <p>
+                Hiccups happen—here's your fix-it kit.
+            </p>
+            
+            <h3>Pitfall 1: Fund Dipping</h3>
+            <p>
+                <strong>Issue:</strong> Using $500 for a sale, not emergencies.<br>
+                <strong>Fix:</strong> Define emergencies (e.g., "Job loss, repairs over $300")—lock fund otherwise.
+            </p>
+            
+            <h3>Pitfall 2: Hustle Fatigue</h3>
+            <p>
+                <strong>Issue:</strong> 20 hours/week burns you out.<br>
+                <strong>Fix:</strong> Cap at 8-10 hours—sustainability trumps speed.
+            </p>
+            
+            <h3>Pitfall 3: Inflation Erosion</h3>
+            <p>
+                <strong>Issue:</strong> $5,000 today buys less in 5 years.<br>
+                <strong>Fix:</strong> Adjust target yearly—2% inflation on $5,000 = $5,100 next year.
+            </p>
+            
+            <h3>Pitfall 4: Forgetting Cash</h3>
+            <p>
+                <strong>Issue:</strong> $200 cash spends untracked.<br>
+                <strong>Fix:</strong> Log instantly or use envelopes—$50/week max.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Crisis Fixer</h3>
+                <p>Scenario: You spent $400 from your emergency fund on a non-emergency purchase.</p>
+                <ol>
+                    <li>What immediate steps would you take to fix this situation?</li>
+                    <li>How would you prevent this from happening again?</li>
+                    <li>What safeguards could you put in place?</li>
+                </ol>
+                <textarea placeholder="Step 1: _____
+Step 2: _____
+Step 3: _____
+Prevention plan: _____" rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Emergency Fund Protection Checklist</h3>
+                <div style="max-width: 500px; margin: 20px auto;">
+                    <div style="display: flex; align-items: center; margin: 10px 0; background-color: #f9f9f9; padding: 10px; border-radius: 5px;">
+                        <input type="checkbox" id="check1" style="margin-right: 10px; transform: scale(1.5);">
+                        <label for="check1">Emergency criteria clearly defined</label>
+                    </div>
+                    <div style="display: flex; align-items: center; margin: 10px 0; background-color: #f9f9f9; padding: 10px; border-radius: 5px;">
+                        <input type="checkbox" id="check2" style="margin-right: 10px; transform: scale(1.5);">
+                        <label for="check2">Fund in separate, hard-to-access account</label>
+                    </div>
+                    <div style="display: flex; align-items: center; margin: 10px 0; background-color: #f9f9f9; padding: 10px; border-radius: 5px;">
+                        <input type="checkbox" id="check3" style="margin-right: 10px; transform: scale(1.5);">
+                        <label for="check3">72-hour "cooling period" for large withdrawals</label>
+                    </div>
+                    <div style="display: flex; align-items: center; margin: 10px 0; background-color: #f9f9f9; padding: 10px; border-radius: 5px;">
+                        <input type="checkbox" id="check4" style="margin-right: 10px; transform: scale(1.5);">
+                        <label for="check4">Partner accountability system</label>
+                    </div>
+                    <div style="display: flex; align-items: center; margin: 10px 0; background-color: #f9f9f9; padding: 10px; border-radius: 5px;">
+                        <input type="checkbox" id="check5" style="margin-right: 10px; transform: scale(1.5);">
+                        <label for="check5">Regular inflation adjustments</label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Interactive Audit -->
+        <section>
+            <h2>Interactive Audit – Full Preparedness Challenge</h2>
+            <p>
+                Test your skills with a real-world scenario.
+            </p>
+            
+            <div class="account-box">
+                <h3>Meet Priya's Profile</h3>
+                <ul>
+                    <li><strong>Fund:</strong> $1,500 (target $7,500).</li>
+                    <li><strong>Hustle:</strong> None.</li>
+                    <li><strong>Expenses:</strong> $2,500/month.</li>
+                    <li><strong>Savings Rate:</strong> $120/month.</li>
+                    <li><strong>Risk:</strong> Freelancer, single.</li>
+                </ul>
+            </div>
+            
+            <h3>Tasks</h3>
+            <ol>
+                <li>Spot gaps (e.g., "Fund low, no hustle, slow savings").</li>
+                <li>Propose fixes (e.g., "Save $200/month, freelance $300/month").</li>
+                <li>Calculate time to target (e.g., "$500/month → $6,000 in 12 months").</li>
+                <li>Stress-test: Job dries up—how long does she last? Fix it.</li>
+            </ol>
+            
+            <div class="result-box">
+                <strong>Answers:</strong> Gaps—$6,000 short, no income backup. Fix—boost savings + hustle. Time—12 months. Stress—3 months ($7,500 ÷ $2,500); add $2,500 for 4 months.
+            </div>
+            
+            <div class="activity-box">
+                <h3>Your Audit</h3>
+                <p>Now analyze your own situation using the same framework:</p>
+                <textarea placeholder="Current fund: $_____
+Fund target: $_____
+Monthly expenses: $_____
+Savings rate: $_____
+Hustles: $_____
+
+Gaps identified: _____
+Proposed fixes: _____
+Time to target: _____ months
+Stress test result: _____ months of protection" rows="10"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Priya's Gap Analysis</h3>
+                <table class="asset-table">
+                    <tr>
+                        <th>Current</th>
+                        <th>Gap</th>
+                        <th>Fix</th>
+                    </tr>
+                    <tr>
+                        <td>$1,500</td>
+                        <td>$6,000 short</td>
+                        <td>Save $200/month</td>
+                    </tr>
+                    <tr>
+                        <td>No Hustle</td>
+                        <td>No backup</td>
+                        <td>Freelance $300/month</td>
+                    </tr>
+                    <tr>
+                        <td>3 months</td>
+                        <td>1 month short</td>
+                        <td>Add $2,500</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 10: Reflection -->
+        <section>
+            <h2>Reflection – Your Emergency Master Plan</h2>
+            <p>
+                Craft a plan that's yours—specific, actionable, and motivating.
+            </p>
+            
+            <h3>Prompts</h3>
+            <ul>
+                <li>What's your fund goal?</li>
+                <li>Which hustle fits you?</li>
+                <li>What's your timeline?</li>
+                <li>How will you celebrate hitting it?</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Activity: Plan Forging</h3>
+                <p>Write your comprehensive emergency preparedness plan:</p>
+                <textarea placeholder="My goal's $_____, I'll save $____/month, hustle _____ for $____/month, done by _____ (date), celebrate with _____." rows="6"></textarea>
+                <p>Bonus: Set a reminder on your phone right now to check your progress in 30 days!</p>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Fund Progress Thermometer</h3>
+                <div style="display: flex; align-items: center; justify-content: center; margin: 20px 0;">
+                    <div class="thermometer">
+                        <div style="position: absolute; bottom: 0; width: 100%; height: 5%; background-color: #f44336;"></div>
+                    </div>
+                    <div class="thermometer-scale">
+                        <div class="thermometer-mark">$9,000</div>
+                        <div class="thermometer-mark">$6,000</div>
+                        <div class="thermometer-mark">$3,000</div>
+                        <div class="thermometer-mark">$0</div>
+                    </div>
+                </div>
+                <p>Print this and fill it in as your fund grows!</p>
+            </div>
+        </section>
+
+        <!-- Section 11: Quiz -->
+        <section>
+            <h2>Quiz – Test Your Prep Mastery</h2>
+            <p>
+                Prove you're a pro!
+            </p>
+            
+            <div class="quiz">
+                <div class="quiz-item">
+                    <p><strong>1. Emergency funds should cover:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q1" id="q1a" value="A"> <label for="q1a">1 month of expenses</label></div>
+                        <div><input type="radio" name="q1" id="q1b" value="B"> <label for="q1b">3-6 months of expenses</label></div>
+                        <div><input type="radio" name="q1" id="q1c" value="C"> <label for="q1c">Wants and luxuries</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>2. The best place to store your emergency fund is:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q2" id="q2a" value="A"> <label for="q2a">Stocks</label></div>
+                        <div><input type="radio" name="q2" id="q2b" value="B"> <label for="q2b">High-yield savings account</label></div>
+                        <div><input type="radio" name="q2" id="q2c" value="C"> <label for="q2c">Regular checking account</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>3. Side hustles can:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q3" id="q3a" value="A"> <label for="q3a">Help build your fund</label></div>
+                        <div><input type="radio" name="q3" id="q3b" value="B"> <label for="q3b">Replace lost income</label></div>
+                        <div><input type="radio" name="q3" id="q3c" value="C"> <label for="q3c">Both A and B</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>4. Automation helps by:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q4" id="q4a" value="A"> <label for="q4a">Adding fees</label></div>
+                        <div><input type="radio" name="q4" id="q4b" value="B"> <label for="q4b">Ensuring consistency</label></div>
+                        <div><input type="radio" name="q4" id="q4c" value="C"> <label for="q4c">Tracking hustles</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>5. When you receive a windfall, you should:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q5" id="q5a" value="A"> <label for="q5a">Spend 100% on fun</label></div>
+                        <div><input type="radio" name="q5" id="q5b" value="B"> <label for="q5b">Put 50-70% toward your fund</label></div>
+                        <div><input type="radio" name="q5" id="q5c" value="C"> <label for="q5c">Ignore it</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>6. The best emergency fund is stored in:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q6" id="q6a" value="A"> <label for="q6a">FDIC-insured accounts</label></div>
+                        <div><input type="radio" name="q6" id="q6b" value="B"> <label for="q6b">Cryptocurrency</label></div>
+                        <div><input type="radio" name="q6" id="q6c" value="C"> <label for="q6c">Under your mattress</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>7. To fight inflation's effect on your fund, you should:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q7" id="q7a" value="A"> <label for="q7a">Freeze your fund</label></div>
+                        <div><input type="radio" name="q7" id="q7b" value="B"> <label for="q7b">Adjust your target yearly</label></div>
+                        <div><input type="radio" name="q7" id="q7c" value="C"> <label for="q7c">Switch to a different bank</label></div>
+                    </div>
+                </div>
+                
+                <button onclick="checkQuiz()">Submit Quiz</button>
+                <div id="quiz-result" class="result-box" style="display: none;"></div>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Quiz Reflection</h3>
+                <p>
+                    After taking the quiz, reflect on any questions you missed and how you'll address those knowledge gaps:
+                </p>
+                <textarea placeholder="Questions I missed: _____
+What I learned: _____
+How I'll apply this: _____" rows="4"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Emergency Preparedness Cheat Sheet</h3>
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-around; max-width: 500px; margin: 0 auto;">
+                    <div style="width: 150px; text-align: center; margin: 10px; padding: 15px; background-color: #e3f2fd; border-radius: 5px;">
+                        <strong>Fund:</strong><br>3-6+ months
+                    </div>
+                    <div style="width: 150px; text-align: center; margin: 10px; padding: 15px; background-color: #e8f5e9; border-radius: 5px;">
+                        <strong>Hustles:</strong><br>Cash + Backup
+                    </div>
+                    <div style="width: 150px; text-align: center; margin: 10px; padding: 15px; background-color: #fff8e1; border-radius: 5px;">
+                        <strong>Storage:</strong><br>High-yield savings
+                    </div>
+                    <div style="width: 150px; text-align: center; margin: 10px; padding: 15px; background-color: #f3e5f5; border-radius: 5px;">
+                        <strong>Automate:</strong><br>Consistency is key
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2>Conclusion: Your Panic Room Is Locked and Loaded!</h2>
+            <p>
+                You're a crisis-ready titan! With a growing fund, hustles firing, and a plan etched in stone, you're set to conquer any storm. Next, we'll tackle fraud protection in Lesson 5.
+            </p>
+            
+            <h3>Action Steps:</h3>
+            <ol>
+                <li>Open Ally or Marcus, deposit $25, set $25/month auto-transfer.</li>
+                <li>Write it: "Marcus, $25, aiming $7,000."</li>
+                <li>Tell someone: "I'm prepping my panic room—ask me in 30 days!"</li>
+            </ol>
+            
+            <h3>Next Up:</h3>
+            <p>
+                <a href="section4lesson5.html">Lesson 5 – Protecting Against Fraud: Your Ultimate Anti-Scam Armor</a>
+            </p>
+            
+            <div class="result-box">
+                <h3>Resources:</h3>
+                <ul>
+                    <li><a href="https://www.bankrate.com" target="_blank">Bankrate</a> – Rate hunting</li>
+                    <li><a href="https://www.sidehustlenation.com" target="_blank">Side Hustle Nation</a> – Hustle goldmine</li>
+                    <li><a href="https://www.mint.com" target="_blank">Mint</a> – Tracking made simple</li>
+                    <li><a href="https://www.ramseysolutions.com" target="_blank">Ramsey Solutions</a> – Dave Ramsey's crash course</li>
+                </ul>
+            </div>
+            
+            <p>
+                Press that panic button—your financial fortress is ready!
+            </p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>FinanceCourse</h3>
+                <p>Learn to secure your financial future with our comprehensive education platform.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="learn.html">Courses</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 FinanceCourse. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

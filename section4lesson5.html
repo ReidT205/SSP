@@ -1,0 +1,2108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 5: Protecting Against Fraud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #5b3fd8;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #2196f3, #3f51b5);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #3f51b5;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #3f51b5;
+            border-bottom: 2px solid #3f51b5;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3f51b5;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #3f51b5;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #303f9f;
+        }
+        /* Lesson-specific styles */
+        .example-box {
+            background-color: #f0f4ff;
+            border: 1px solid #d0d9ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #3f51b5;
+            color: white;
+        }
+        .visual-aid {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .visual-aid img {
+            max-width: 100%;
+            height: auto;
+        }
+        .warning-sign {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+        }
+        .warning-icon {
+            font-size: 24px;
+            color: #ff9800;
+            margin-right: 15px;
+        }
+        .timeline {
+            position: relative;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: #3f51b5;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            position: relative;
+            padding: 20px 0;
+        }
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #3f51b5;
+            transform: translateX(-50%);
+        }
+        /* Scam protection specific styles */
+        .scam-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #f44336;
+        }
+        .scam-card h3 {
+            color: #f44336;
+            margin-top: 0;
+        }
+        .flag-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #fff3e0;
+            border-radius: 5px;
+        }
+        .flag-icon {
+            font-size: 24px;
+            color: #ff9800;
+            margin-right: 15px;
+        }
+        .flag-description {
+            flex: 1;
+        }
+        .flag-action {
+            font-weight: bold;
+            color: #388e3c;
+        }
+        .story-box {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .story-box.negative {
+            border-left: 5px solid #f44336;
+        }
+        .story-box.positive {
+            border-left: 5px solid #4caf50;
+        }
+        .story-box h4 {
+            color: #3f51b5;
+            margin-top: 0;
+        }
+        .shield-wrapper {
+            position: relative;
+            width: 200px;
+            height: 240px;
+            margin: 20px auto;
+        }
+        .shield-base {
+            position: absolute;
+            width: 180px;
+            height: 200px;
+            background-color: #3f51b5;
+            clip-path: polygon(50% 0%, 100% 0, 100% 75%, 50% 100%, 0 75%, 0 0);
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+        }
+        .shield-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .step-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 5px;
+            border-left: 4px solid #388e3c;
+        }
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #388e3c;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .step-heading {
+            display: inline-block;
+            font-weight: bold;
+            color: #388e3c;
+            font-size: 18px;
+        }
+        .step-content {
+            margin-top: 10px;
+        }
+        .flow-arrow {
+            text-align: center;
+            font-size: 24px;
+            color: #3f51b5;
+            margin: 10px 0;
+        }
+        .fraud-stat {
+            font-size: 36px;
+            font-weight: bold;
+            color: #f44336;
+            display: block;
+            text-align: center;
+        }
+        .stat-note {
+            text-align: center;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        .tool-card {
+            display: flex;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin: 15px 0;
+            align-items: center;
+        }
+        .tool-icon {
+            font-size: 36px;
+            color: #3f51b5;
+            margin-right: 15px;
+            min-width: 50px;
+            text-align: center;
+        }
+        .tool-info {
+            flex-grow: 1;
+        }
+        .tool-name {
+            font-weight: bold;
+            margin: 0 0 5px 0;
+        }
+        .tool-price {
+            display: inline-block;
+            background-color: #e0f2f1;
+            color: #00897b;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .castle {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        .castle-wall {
+            position: absolute;
+            bottom: 0;
+            width: 260px;
+            height: 120px;
+            background-color: #8d6e63;
+            left: 20px;
+            border-radius: 10px 10px 0 0;
+            z-index: 2;
+        }
+        .castle-tower-left, .castle-tower-right {
+            position: absolute;
+            bottom: 80px;
+            width: 60px;
+            height: 150px;
+            background-color: #6d4c41;
+            border-radius: 10px 10px 0 0;
+            z-index: 1;
+        }
+        .castle-tower-left {
+            left: 0;
+        }
+        .castle-tower-right {
+            right: 0;
+        }
+        .castle-gate {
+            position: absolute;
+            bottom: 0;
+            left: 110px;
+            width: 80px;
+            height: 60px;
+            background-color: #5d4037;
+            border-radius: 40px 40px 0 0;
+            z-index: 3;
+        }
+        .castle-flag {
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            width: 0;
+            height: 0;
+            border-left: 20px solid #f44336;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+        .castle-flagpole {
+            position: absolute;
+            top: -20px;
+            left: 29px;
+            width: 2px;
+            height: 60px;
+            background-color: #212121;
+        }
+        .castle-enemy {
+            position: absolute;
+            bottom: -30px;
+            right: 40px;
+            font-size: 30px;
+            z-index: 5;
+            animation: moveEnemy 5s infinite;
+        }
+        .castle-shield {
+            position: absolute;
+            bottom: 20px;
+            left: 125px;
+            font-size: 24px;
+            z-index: 4;
+            color: #ffc107;
+        }
+        @keyframes moveEnemy {
+            0% { transform: translateX(20px); }
+            50% { transform: translateX(-20px); }
+            100% { transform: translateX(20px); }
+        }
+        .flowchart {
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .flowchart-node {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            position: relative;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flowchart-arrow {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            color: #2196f3;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .checklist-checkbox {
+            margin-right: 15px;
+            transform: scale(1.5);
+        }
+        .checklist-text {
+            flex: 1;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 660;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+        
+        function passwordStrength() {
+            const password = document.getElementById('password-input').value;
+            let score = 0;
+            let feedback = "";
+            
+            // Length check
+            if (password.length >= 12) {
+                score += 25;
+                feedback += "✓ Length is good (12+ characters)<br>";
+            } else if (password.length >= 8) {
+                score += 15;
+                feedback += "✓ Length is okay (8+ characters)<br>";
+            } else {
+                feedback += "✗ Too short (aim for 12+ characters)<br>";
+            }
+            
+            // Contains uppercase
+            if (/[A-Z]/.test(password)) {
+                score += 25;
+                feedback += "✓ Contains uppercase letters<br>";
+            } else {
+                feedback += "✗ Missing uppercase letters<br>";
+            }
+            
+            // Contains numbers
+            if (/[0-9]/.test(password)) {
+                score += 25;
+                feedback += "✓ Contains numbers<br>";
+            } else {
+                feedback += "✗ Missing numbers<br>";
+            }
+            
+            // Contains special characters
+            if (/[^A-Za-z0-9]/.test(password)) {
+                score += 25;
+                feedback += "✓ Contains special characters<br>";
+            } else {
+                feedback += "✗ Missing special characters<br>";
+            }
+            
+            // Update display
+            document.getElementById('password-strength-bar').style.width = score + "%";
+            
+            let color = "#f44336"; // Red
+            if (score > 75) {
+                color = "#4caf50"; // Green
+            } else if (score > 50) {
+                color = "#ff9800"; // Orange
+            } else if (score > 25) {
+                color = "#ffeb3b"; // Yellow
+            }
+            
+            document.getElementById('password-strength-bar').style.backgroundColor = color;
+            document.getElementById('password-feedback').innerHTML = feedback;
+        }
+        
+        function identifyScam() {
+            const scamText = document.getElementById('scam-text').value.toLowerCase();
+            let flags = [];
+            
+            if (scamText.includes("urgent") || scamText.includes("immediate") || 
+                scamText.includes("now") || scamText.includes("today")) {
+                flags.push("Urgency tactics");
+            }
+            
+            if (scamText.includes("gift card") || scamText.includes("wire") || 
+                scamText.includes("bitcoin") || scamText.includes("crypto")) {
+                flags.push("Suspicious payment methods");
+            }
+            
+            if (scamText.includes("your account") || scamText.includes("verify") || 
+                scamText.includes("security") || scamText.includes("update")) {
+                flags.push("Account verification claims");
+            }
+            
+            if (scamText.includes("won") || scamText.includes("prize") || 
+                scamText.includes("lottery")) {
+                flags.push("Too good to be true offers");
+            }
+            
+            if (scamText.includes("irs") || scamText.includes("tax") || 
+                scamText.includes("police") || scamText.includes("arrest")) {
+                flags.push("Authority impersonation");
+            }
+            
+            let result = "";
+            if (flags.length > 0) {
+                result = "<strong>Potential scam detected!</strong><br>Red flags identified:<br>";
+                flags.forEach(flag => {
+                    result += `- ${flag}<br>`;
+                });
+                result += "<br><strong>Recommendation:</strong> Do not respond. Verify through official channels.";
+            } else {
+                result = "No obvious scam indicators detected, but always stay vigilant.";
+            }
+            
+            document.getElementById('scam-analysis').innerHTML = result;
+        }
+        
+        function generateRandomPassword() {
+            const length = 14;
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=";
+            let password = "";
+            
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charset.length);
+                password += charset[randomIndex];
+            }
+            
+            document.getElementById('random-password').innerHTML = password;
+        }
+        
+        function checkQuiz() {
+            let score = 0;
+            let feedback = "";
+            
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') {
+                score++;
+                feedback += "Question 1: Correct!<br>";
+            } else {
+                feedback += "Question 1: Incorrect. Phishing thrives on urgency.<br>";
+            }
+            
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'B') {
+                score++;
+                feedback += "Question 2: Correct!<br>";
+            } else {
+                feedback += "Question 2: Incorrect. 2FA adds a second verification step.<br>";
+            }
+            
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'B') {
+                score++;
+                feedback += "Question 3: Correct!<br>";
+            } else {
+                feedback += "Question 3: Incorrect. Always verify independently first.<br>";
+            }
+            
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'B') {
+                score++;
+                feedback += "Question 4: Correct!<br>";
+            } else {
+                feedback += "Question 4: Incorrect. Monitoring alerts you to potential fraud.<br>";
+            }
+            
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'B') {
+                score++;
+                feedback += "Question 5: Correct!<br>";
+            } else {
+                feedback += "Question 5: Incorrect. Complex passwords with mixed characters are strongest.<br>";
+            }
+            
+            if (document.querySelector('input[name="q6"]:checked')?.value === 'B') {
+                score++;
+                feedback += "Question 6: Correct!<br>";
+            } else {
+                feedback += "Question 6: Incorrect. Gift card requests are almost always scams.<br>";
+            }
+            
+            if (document.querySelector('input[name="q7"]:checked')?.value === 'B') {
+                score++;
+                feedback += "Question 7: Correct!<br>";
+            } else {
+                feedback += "Question 7: Incorrect. Freezing credit blocks new account openings.<br>";
+            }
+            
+            if (document.querySelector('input[name="q8"]:checked')?.value === 'B') {
+                score++;
+                feedback += "Question 8: Correct!<br>";
+            } else {
+                feedback += "Question 8: Incorrect. Close pop-ups and run your own scans.<br>";
+            }
+            
+            let result = `You scored ${score} out of 8. `;
+            
+            if (score === 8) {
+                result += "Perfect! You're a fraud-fighting master!";
+            } else if (score >= 6) {
+                result += "Great job! You have solid fraud protection knowledge.";
+            } else if (score >= 4) {
+                result += "Good effort! Review the sections to strengthen your knowledge.";
+            } else {
+                result += "Keep studying! Understanding these concepts will help protect you.";
+            }
+            
+            document.getElementById('quiz-result').innerHTML = result;
+            document.getElementById('quiz-feedback').innerHTML = feedback;
+            document.getElementById('quiz-result-section').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Financial Security & Risk Management: Lesson 5 – Protecting Against Fraud: Your Ultimate Anti-Scam Armor</h1>
+        <p>Master the art of fraud detection, build impenetrable defenses, and develop a rapid response plan to outsmart even the most sophisticated scammers.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Learning!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview: Your Blueprint to Fraud-Proof Your Finances</h2>
+            <p>
+                Welcome back to Financial Security & Risk Management! After conquering risk identification, insurance, diversification, and emergency preparedness in Lessons 1-4, Lesson 5 elevates you to a scam-busting ninja. Scammers are cunning, but you'll outsmart them by mastering their tricks, fortifying your defenses, and knowing how to strike back if they strike first. Here's your roadmap to making your money untouchable:
+            </p>
+            <ul>
+                <li><strong>Core Concepts Unveiled:</strong> Every scam in the scammer's playbook—phishing, impersonation, investment fraud, and beyond—with red flags, stats, and countermeasures.</li>
+                <li><strong>Ironclad Strategies:</strong> Step-by-step tactics to secure your info, from bulletproof passwords to cutting-edge tech like 2FA and VPNs.</li>
+                <li><strong>Rapid Response Plan:</strong> Precise actions to take if fraud hits, with agencies and tools on speed dial to minimize damage.</li>
+                <li><strong>Real-World Lessons:</strong> Gripping stories of victims and victors, plus expanded case studies to sharpen your instincts.</li>
+                <li><strong>Interactive Arsenal:</strong> Activities, audits, scenario challenges, reflection prompts, quizzes, and a capstone project to lock in your skills.</li>
+                <li><strong>Advanced Defenses:</strong> New sections on scam psychology, behavioral profiling, tech enhancements, and proactive monitoring.</li>
+                <li><strong>Troubleshooting Toolkit:</strong> Solutions to every fraud obstacle, ensuring your armor stays unbreakable.</li>
+                <li><strong>Visual Powerhouse:</strong> Charts, tables, checklists, flowcharts, and infographics to make complex ideas crystal clear.</li>
+            </ul>
+            <p>
+                By the end, you'll wield a personalized, fraud-proof plan—your ultimate anti-scam armor—that protects your finances from petty thieves to sophisticated con artists. Whether you're safeguarding $50 or $50,000, this lesson arms you with the knowledge, tools, and confidence to win. Let's dive in and build your financial fortress!
+            </p>
+        </section>
+
+        <!-- Introduction -->
+        <section id="section1">
+            <h2>Introduction: Your Anti-Scam Armor – Why It's Your Financial Superpower</h2>
+            <p>
+                Imagine this: A text from your "bank" screams, "Your account's compromised—send $500 in gift cards to secure it!" Or an email tricks you into clicking a link, and $2,000 vanishes from your savings overnight. Scammers are slick, relentless, and everywhere—but you can be sharper, tougher, and unbeatable. This lesson is your shield and sword: learn their moves, block their attacks, and strike back if they breach your walls.
+            </p>
+            
+            <div class="result-box">
+                <h3>Eye-Opening Stat:</h3>
+                <span class="fraud-stat">$8.8 billion</span>
+                <p class="stat-note">
+                    In 2022, fraud cost Americans $8.8 billion, with imposter scams alone raking in $2.6 billion (FTC, 2023). Knowledge isn't just power—it's protection.
+                </p>
+            </div>
+            
+            <h3>Real-Life Stakes:</h3>
+            <p>
+                Meet Mia, 28, who got a call from "Amazon" about a $700 charge. Panicked, she shared her card details to "cancel" it—$1,200 was gone in hours. Her friend Sam got the same call, hung up, verified with Amazon directly, and lost nothing. Mia's lesson cost her dearly; Sam's cost him a phone call.
+            </p>
+            
+            <h3>Why It's Personal:</h3>
+            <p>
+                Scams don't care if you're young, old, rich, or broke—they target everyone. This lesson turns you into a fraud-fighting warrior, ready to protect your hard-earned cash.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Your Fraud Wake-Up Call</h3>
+                <p>
+                    Take a moment to reflect:
+                </p>
+                <ol>
+                    <li>Recall a time you (or someone you know) encountered a scam—maybe a "Pay the IRS now!" call or a "Your PayPal's locked" email.</li>
+                    <li>Write down: What tipped you off (or fooled you)? How did you react—panic, doubt, action?</li>
+                    <li>How could you have handled it better with today's knowledge?</li>
+                </ol>
+                <p><em>Example: "Got a 'bank' text asking for my PIN. It felt weird—banks don't text for that. Ignored it, called my bank—safe. Next time, I'll report it too."</em></p>
+                <p>This roots the lesson in your reality—let's build your armor from there.</p>
+                <textarea placeholder="Write about your scam experience here..." rows="4"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Your Financial Castle</h3>
+                <div class="castle">
+                    <div class="castle-wall"></div>
+                    <div class="castle-tower-left">
+                        <div class="castle-flagpole"></div>
+                        <div class="castle-flag"></div>
+                    </div>
+                    <div class="castle-tower-right"></div>
+                    <div class="castle-gate"></div>
+                    <div class="castle-shield"><i class="fas fa-shield-alt"></i></div>
+                    <div class="castle-enemy"><i class="fas fa-user-ninja"></i></div>
+                </div>
+                <p>Picture your finances as a medieval castle. Scammers are bandits at the gate—your armor (knowledge, habits, tools) keeps them out, while your sword (response skills) repels any who sneak through.</p>
+            </div>
+        </section>
+
+        <!-- Section 1: Common Financial Scams -->
+        <section>
+            <h2>Common Financial Scams – Know Your Enemy Inside Out</h2>
+            <p>
+                To defeat scammers, you must think like them. Let's dissect their playbook with detailed examples, fresh stats, and counter-strategies to keep you one step ahead.
+            </p>
+            
+            <h3>Scam Types Decoded</h3>
+            
+            <div class="scam-card">
+                <h3>Phishing</h3>
+                <p>Emails or texts posing as legit companies ("Update your Netflix password now!") to steal logins or data.</p>
+                <p><strong>Example:</strong> "Your Apple ID expired—click here." You click, enter credentials—account hacked.</p>
+            </div>
+            
+            <div class="scam-card">
+                <h3>Impersonation</h3>
+                <p>Calls from "authority" figures—"IRS" demands $1,000 or "police" threaten jail time.</p>
+                <p><strong>Example:</strong> "Pay $1,500 tax debt via wire or face arrest." IRS always mails first—never calls out of the blue!</p>
+            </div>
+            
+            <div class="scam-card">
+                <h3>Investment Scams</h3>
+                <p>Promises of unreal returns—"Triple your $5,000 in 3 months!"—often Ponzi schemes or crypto cons.</p>
+                <p><strong>Example:</strong> "Invest $10,000 in this crypto gem—guaranteed $30,000!"—a rug pull wipes it out.</p>
+            </div>
+            
+            <div class="scam-card">
+                <h3>Romance Scams</h3>
+                <p>Online "love" builds trust, then begs cash—"I need $2,000 for a plane ticket to visit you."</p>
+                <p><strong>Example:</strong> "I'm stuck abroad—wire $1,800 for my flight." You send it—they vanish.</p>
+            </div>
+            
+            <div class="scam-card">
+                <h3>Tech Support Scams</h3>
+                <p>"Microsoft" calls—"Your PC has a virus, pay $200 to fix it."</p>
+                <p><strong>Example:</strong> Pop-up says "Call this number—$150 via PayPal to remove malware." Pure theft.</p>
+            </div>
+            
+            <div class="scam-card">
+                <h3>Grandparent Scams</h3>
+                <p>"Grandma, it's me—I'm in jail, send $2,500 for bail!"—exploits family ties.</p>
+                <p><strong>Example:</strong> Voice sounds familiar, sobs for help—$1,500 gone before you call your real grandkid.</p>
+            </div>
+            
+            <div class="scam-card">
+                <h3>Job Offer Scams</h3>
+                <p>"Earn $5,000/week from home!"—after you pay a "training fee" or share bank details.</p>
+                <p><strong>Example:</strong> "Deposit this $1,000 check and send $800 back"—check bounces, you're out $800.</p>
+            </div>
+            
+            <h3>Stats That Hit Hard</h3>
+            <ul>
+                <li><strong>2022 Losses:</strong> $8.8 billion total, with imposter scams at $2.6 billion and investment fraud surging (FTC, 2023).</li>
+                <li><strong>Median Loss:</strong> $1,000 per victim—often unrecoverable due to untraceable payments.</li>
+                <li><strong>Age Breakdown:</strong> 18-59 lost more total dollars, but seniors over 60 lost higher amounts per scam (FTC).</li>
+                <li><strong>Trending Scam:</strong> Crypto fraud exploded, costing $1.4 billion in 2022 alone.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                A text reads: "Bank fraud alert—reply with your PIN to verify." You do—$3,000 drained in minutes. Real banks never ask for PINs via text!
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Scam Spotter Challenge</h3>
+                <ol>
+                    <li>Name a scam you've encountered or heard about (e.g., "Fake Amazon email").</li>
+                    <li>List two clues it's bogus (e.g., "Weird link like 'amaz0n.co,' urgent tone").</li>
+                    <li>Write your counter-move (e.g., "Delete it, block the sender, check my real account").</li>
+                    <li>Bonus: Visit FTC Scam Alerts and note one new scam trending now (e.g., "AI voice cloning calls").</li>
+                </ol>
+                <p><em>Example: "Scam: 'UPS delivery issue' text. Clues: Unknown number, typo 'delivry.' Move: Ignore, check UPS site directly."</em></p>
+                <textarea placeholder="Document your scam encounter and response plan here..." rows="5"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Scam Playbook</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Scam Type</th>
+                        <th>Tactic</th>
+                        <th>Counter-Move</th>
+                    </tr>
+                    <tr>
+                        <td>Phishing</td>
+                        <td>Fake links or login prompts</td>
+                        <td>Verify URL, don't click</td>
+                    </tr>
+                    <tr>
+                        <td>Impersonation</td>
+                        <td>Fearful authority demands</td>
+                        <td>Hang up, call official line</td>
+                    </tr>
+                    <tr>
+                        <td>Investment</td>
+                        <td>"Guaranteed" high returns</td>
+                        <td>Research, avoid hype</td>
+                    </tr>
+                    <tr>
+                        <td>Romance</td>
+                        <td>Emotional pleas for cash</td>
+                        <td>Never send money</td>
+                    </tr>
+                    <tr>
+                        <td>Tech Support</td>
+                        <td>Fake virus alerts</td>
+                        <td>Close pop-up, scan free</td>
+                    </tr>
+                    <tr>
+                        <td>Grandparent</td>
+                        <td>Family emergency sob story</td>
+                        <td>Confirm with family</td>
+                    </tr>
+                    <tr>
+                        <td>Job Offer</td>
+                        <td>Upfront fees or fake checks</td>
+                        <td>Refuse payment, verify job</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="result-box">
+                <h3>Extra Scam Spotlight:</h3>
+                <p>"Prize Scams"—"You've won $10,000! Pay $200 to claim it." Legit wins don't cost you.</p>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.consumer.ftc.gov/features/scam-alerts" target="_blank">FTC Scam Alerts</a> – Real-time updates on emerging scams.</p>
+        </section>
+
+        <!-- Section 2: Red Flags -->
+        <section>
+            <h2>Red Flags – Your Scam Radar on High Alert</h2>
+            <p>
+                Scammers follow patterns—learn these red flags, and you'll spot their cons before they strike.
+            </p>
+            
+            <h3>Universal Warning Signs</h3>
+            
+            <div class="flag-item">
+                <div class="flag-icon"><i class="fas fa-flag"></i></div>
+                <div class="flag-description">
+                    <strong>Urgency:</strong> "Act now or your account's gone!"—fear shuts down rational thinking.
+                </div>
+                <div class="flag-action">Pause, Verify</div>
+            </div>
+            
+            <div class="flag-item">
+                <div class="flag-icon"><i class="fas fa-flag"></i></div>
+                <div class="flag-description">
+                    <strong>Too Good to Be True:</strong> "Win a free Tesla!" or "$10,000 profit, zero risk!"—greed clouds judgment.
+                </div>
+                <div class="flag-action">Research, Doubt</div>
+            </div>
+            
+            <div class="flag-item">
+                <div class="flag-icon"><i class="fas fa-flag"></i></div>
+                <div class="flag-description">
+                    <strong>Unusual Payments:</strong> "Pay with gift cards," "Wire $500," or "Send Bitcoin"—untraceable methods scream scam.
+                </div>
+                <div class="flag-action">Refuse Outright</div>
+            </div>
+            
+            <div class="flag-item">
+                <div class="flag-icon"><i class="fas fa-flag"></i></div>
+                <div class="flag-description">
+                    <strong>Cold Contact:</strong> Unsolicited calls, texts, or emails—legit entities don't fish for your info.
+                </div>
+                <div class="flag-action">Ignore, Verify Separately</div>
+            </div>
+            
+            <div class="flag-item">
+                <div class="flag-icon"><i class="fas fa-flag"></i></div>
+                <div class="flag-description">
+                    <strong>Typos/Errors:</strong> "Your acount is comprimised"—professional companies proofread.
+                </div>
+                <div class="flag-action">Delete Immediately</div>
+            </div>
+            
+            <div class="flag-item">
+                <div class="flag-icon"><i class="fas fa-flag"></i></div>
+                <div class="flag-description">
+                    <strong>Emotional Manipulation:</strong> "I'm desperate—help me!"—guilt, love, or pity as bait.
+                </div>
+                <div class="flag-action">Step Back, Verify</div>
+            </div>
+            
+            <div class="flag-item">
+                <div class="flag-icon"><i class="fas fa-flag"></i></div>
+                <div class="flag-description">
+                    <strong>Inconsistent Details:</strong> Caller ID says "Bank" but number's random—details don't align.
+                </div>
+                <div class="flag-action">Hang Up, Call Official Number</div>
+            </div>
+            
+            <h3>Why They Work</h3>
+            <p>
+                Scammers exploit human wiring—panic overrides logic, hope blinds caution, trust opens wallets. Spotting these flags flips the script.
+            </p>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                "Microsoft" calls: "Virus detected, pay $200 to fix." You notice urgency and a weird accent mismatch—hang up, run a free scan, all clear.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Red Flag Radar</h3>
+                <ol>
+                    <li>List three red flags from above (e.g., "Urgency, gift cards, typos").</li>
+                    <li>Write your response to each (e.g., "Urgency—pause, verify; Gift cards—refuse; Typos—delete").</li>
+                    <li>Recall a scam attempt—did you spot flags then? What would you do now?</li>
+                    <li>Bonus: Craft a "scam test" question—e.g., "Do they know my name, or is it generic?"</li>
+                </ol>
+                <p><em>Example: "Flags: Cold call, urgency, wire request. Responses: Hang up, wait, say no. Past scam: 'IRS' call—didn't verify then, would now."</em></p>
+                <textarea placeholder="Document your red flags and responses here..." rows="5"></textarea>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Scam Text Analyzer</h3>
+                <p>Paste a suspicious message below to identify potential red flags:</p>
+                <textarea id="scam-text" placeholder="Paste suspicious text here..." rows="4"></textarea>
+                <button class="cta-button" style="background-color: #3f51b5; color: white;" onclick="identifyScam()">Analyze Message</button>
+                <div id="scam-analysis" class="result-box" style="margin-top: 15px;"></div>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Red Flag Cheat Sheet</h3>
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <div style="display: flex; align-items: center; background-color: #ffebee; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <div style="font-size: 24px; color: #f44336; margin-right: 15px;">🚩</div>
+                        <div style="flex-grow: 1;"><strong>Urgency</strong> → Pause, breathe, verify</div>
+                    </div>
+                    <div style="display: flex; align-items: center; background-color: #fff8e1; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <div style="font-size: 24px; color: #ff9800; margin-right: 15px;">🚩</div>
+                        <div style="flex-grow: 1;"><strong>Too Good</strong> → Doubt it, research</div>
+                    </div>
+                    <div style="display: flex; align-items: center; background-color: #e8f5e9; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <div style="font-size: 24px; color: #4caf50; margin-right: 15px;">🚩</div>
+                        <div style="flex-grow: 1;"><strong>Gift Cards</strong> → Refuse outright</div>
+                    </div>
+                    <div style="display: flex; align-items: center; background-color: #e3f2fd; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <div style="font-size: 24px; color: #2196f3; margin-right: 15px;">🚩</div>
+                        <div style="flex-grow: 1;"><strong>Typos</strong> → Trash it fast</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-box">
+                <strong>Pro Tip:</strong> If your gut says "off," trust it—then double-check with facts.
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.aarp.org/money/scams-fraud/" target="_blank">AARP Fraud Watch</a> – Red flags paired with victim stories.</p>
+        </section>
+
+        <!-- Section 3: Securing Your Info -->
+        <section>
+            <h2>Securing Your Info – Fortify Your Digital and Physical Walls</h2>
+            <p>
+                Prevention is your strongest weapon. Let's lock down your defenses with detailed, actionable steps.
+            </p>
+            
+            <h3>Essential Defenses</h3>
+            
+            <div class="step-box">
+                <div class="step-number">1</div>
+                <div class="step-heading">Passwords</div>
+                <div class="step-content">
+                    Unique, complex—e.g., "Tr0p!calR@in2023!" not "password123." Aim for 12+ characters, mixing letters, numbers, symbols.
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">2</div>
+                <div class="step-heading">2FA (Two-Factor Authentication)</div>
+                <div class="step-content">
+                    Password + a second step (e.g., text code "583920" or app like Google Authenticator).
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">3</div>
+                <div class="step-heading">Shred Sensitive Docs</div>
+                <div class="step-content">
+                    Bank statements, bills, pre-approved credit offers—$10 shredder stops $10,000 thefts.
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">4</div>
+                <div class="step-heading">Secure Wi-Fi</div>
+                <div class="step-content">
+                    Avoid public Wi-Fi for banking—hackers intercept data. Use a VPN (e.g., NordVPN, $3/month).
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">5</div>
+                <div class="step-heading">Freeze Credit</div>
+                <div class="step-content">
+                    Free at Experian, Equifax, TransUnion—blocks new accounts in your name.
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">6</div>
+                <div class="step-heading">Update Software</div>
+                <div class="step-content">
+                    Phones, computers—patches fix vulnerabilities (e.g., iOS 17.1 stopped a 2023 exploit).
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">7</div>
+                <div class="step-heading">Lock Devices</div>
+                <div class="step-content">
+                    PIN or biometric on phones—stops snoopers if lost.
+                </div>
+            </div>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                You enable 2FA on PayPal. A scammer snags your password via phishing—no phone, no access. Your $500 stays safe.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Password Strength Tester</h3>
+                <p>Test your password strength (don't use your real password!):</p>
+                <input type="text" id="password-input" placeholder="Enter a test password" 
+                       style="width: 100%; padding: 8px; margin: 10px 0;" onkeyup="passwordStrength()">
+                <div style="background-color: #e0e0e0; height: 20px; border-radius: 10px; overflow: hidden; margin: 10px 0;">
+                    <div id="password-strength-bar" style="width: 0%; height: 100%; background-color: #f44336;"></div>
+                </div>
+                <div id="password-feedback"></div>
+                <button class="cta-button" style="background-color: #3f51b5; color: white; margin-top: 10px;" 
+                        onclick="generateRandomPassword()">Generate Strong Password</button>
+                <div style="font-family: monospace; padding: 10px; background-color: #f5f5f5; margin-top: 10px; word-break: break-all;"
+                     id="random-password"></div>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Security Fortress Audit</h3>
+                <ol>
+                    <li>Visit <a href="https://haveibeenpwned.com/" target="_blank">Have I Been Pwned</a>—has your email been breached? Note how many times.</li>
+                    <li>List two fixes (e.g., "New password 'Blizzard$99!,' enable 2FA on Gmail").</li>
+                    <li>Shred one old document (e.g., a bill)—snap a before/after pic!</li>
+                    <li>Bonus: Set up 2FA on one account (e.g., bank)—takes 5 minutes. Report how it feels.</li>
+                </ol>
+                <p><em>Example: "Email breached twice. Fixes: 'F!reW0lf#2023,' 2FA on bank. Shredded a statement—feels proactive!"</em></p>
+                <textarea placeholder="Document your security audit findings here..." rows="5"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Fortress Lockdown</h3>
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" id="check1">
+                        <label for="check1" class="checklist-text">Unique passwords (12+ characters)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" id="check2">
+                        <label for="check2" class="checklist-text">2FA on email, bank, socials</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" id="check3">
+                        <label for="check3" class="checklist-text">Shred old docs weekly</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" id="check4">
+                        <label for="check4" class="checklist-text">VPN for public Wi-Fi</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" id="check5">
+                        <label for="check5" class="checklist-text">Credit frozen at all 3 bureaus</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" id="check6">
+                        <label for="check6" class="checklist-text">Software updated monthly</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-box">
+                <strong>Extra Tool:</strong> Password managers (e.g., LastPass, $3/month)—generate, store, and autofill complex passwords securely.
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://us.norton.com/internetsecurity" target="_blank">Norton Online Security</a> – Guides for locking down your digital life.</p>
+        </section>
+
+        <!-- Section 4: If Targeted -->
+        <section>
+            <h2>If Targeted – Your Rapid Response Battle Plan</h2>
+            <p>
+                Even the best get hit—here's your step-by-step playbook to fight back fast and recover like a pro.
+            </p>
+            
+            <h3>Action Plan</h3>
+            
+            <div class="step-box">
+                <div class="step-number">1</div>
+                <div class="step-heading">Verify Independently</div>
+                <div class="step-content">
+                    Use official numbers—e.g., Chase (1-800-935-9935), not the caller's line.
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">2</div>
+                <div class="step-heading">Report Immediately</div>
+                <div class="step-content">
+                    <strong>FTC:</strong> <a href="https://reportfraud.ftc.gov" target="_blank">ReportFraud.ftc.gov</a>—10 minutes, tracks scams.<br>
+                    <strong>IC3:</strong> <a href="https://www.ic3.gov" target="_blank">ic3.gov</a>—for cybercrimes like phishing.<br>
+                    <strong>Local Police:</strong> File a report for paper trails (especially if money's lost).
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">3</div>
+                <div class="step-heading">Freeze Credit</div>
+                <div class="step-content">
+                    <a href="https://www.experian.com/freeze/center.html" target="_blank">Experian</a>, 
+                    <a href="https://www.equifax.com/personal/credit-report-services/credit-freeze/" target="_blank">Equifax</a>, 
+                    <a href="https://www.transunion.com/credit-freeze" target="_blank">TransUnion</a>—free, online, 5 minutes each.
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">4</div>
+                <div class="step-heading">Change Passwords</div>
+                <div class="step-content">
+                    Update all accounts—start with breached ones, use unique codes.
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">5</div>
+                <div class="step-heading">Monitor Accounts</div>
+                <div class="step-content">
+                    Check bank/credit statements daily for odd charges—dispute within 30 days.
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">6</div>
+                <div class="step-heading">Notify Banks</div>
+                <div class="step-content">
+                    Alert them to fraud—may refund losses if reported fast (e.g., within 48 hours).
+                </div>
+            </div>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                "IRS" calls demanding $1,000—hang up, call 1-800-829-1040 (real IRS), confirm it's fake, report to FTC. No loss, no stress.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Response Rehearsal Drill</h3>
+                <p>Scenario: "Bank" calls about a $500 fraud charge.</p>
+                <ol>
+                    <li>Write your script (e.g., "I'll call my bank directly—goodbye").</li>
+                    <li>List your next steps (e.g., "Call real bank, freeze credit, report to FTC").</li>
+                    <li>Bonus: Role-play with a friend—switch roles, critique each other's calm and clarity.</li>
+                </ol>
+                <p><em>Example: "Script: 'I'll verify myself—bye.' Steps: Call bank, freeze at Equifax, FTC report."</em></p>
+                <textarea placeholder="Write your response script and steps here..." rows="5"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Fraud Response</h3>
+                <div class="flowchart">
+                    <div class="flowchart-node">
+                        Scam Contact
+                        <div class="flowchart-arrow">↓</div>
+                    </div>
+                    <div class="flowchart-node">
+                        Hang Up / Don't Click
+                        <div class="flowchart-arrow">↓</div>
+                    </div>
+                    <div class="flowchart-node">
+                        Call Official Number
+                        <div class="flowchart-arrow">↓</div>
+                    </div>
+                    <div class="flowchart-node">
+                        Report to FTC/IC3
+                        <div class="flowchart-arrow">↓</div>
+                    </div>
+                    <div class="flowchart-node">
+                        Freeze Credit
+                        <div class="flowchart-arrow">↓</div>
+                    </div>
+                    <div class="flowchart-node">
+                        Monitor Accounts Daily
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-box">
+                <strong>Pro Tip:</strong> Save legit numbers in your phone—e.g., "Bank - Real" (1-800-935-9935)—for instant access.
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.identitytheft.gov" target="_blank">IdentityTheft.gov</a> – Free recovery roadmap with templates.</p>
+        </section>
+
+        <!-- Section 5: Real Stories -->
+        <section>
+            <h2>Real Stories – Faces of Fraud and Triumph</h2>
+            <p>
+                Stories bring scams to life. Let's dive into expanded case studies—victims who lost, victors who won—and extract lessons.
+            </p>
+            
+            <div class="story-box negative">
+                <h4>Story 1: Kim's Wire Woe</h4>
+                <p>
+                    Kim, 55, got a call: "IRS tax debt—wire $3,000 now or face jail." Wired it—IRS doesn't use wire transfers. Lost it all.
+                </p>
+                <p><strong>Lesson:</strong> Verify with official channels first.</p>
+            </div>
+            
+            <div class="story-box positive">
+                <h4>Story 2: Ali's Phishing Victory</h4>
+                <p>
+                    Ali, 29, received "Bank login expired—click to renew." URL was "b4nk.co"—fake. Reported it, saved $1,200.
+                </p>
+                <p><strong>Lesson:</strong> Check URLs, report fakes.</p>
+            </div>
+            
+            <div class="story-box negative">
+                <h4>Story 3: Ben's Crypto Collapse</h4>
+                <p>
+                    Ben, 42, invested $10,000 in "CryptoGold" after a slick ad. A rug pull left him with $1,000.
+                </p>
+                <p><strong>Lesson:</strong> Research investments, avoid unsolicited offers.</p>
+            </div>
+            
+            <div class="story-box negative">
+                <h4>Story 4: Sue's Grandparent Grief</h4>
+                <p>
+                    Sue, 68, sent $2,500 to "grandson in jail." Called her real grandson later—too late.
+                </p>
+                <p><strong>Lesson:</strong> Confirm emergencies with family.</p>
+            </div>
+            
+            <div class="story-box positive">
+                <h4>Story 5: Tara's Freeze Win</h4>
+                <p>
+                    Tara, 35, got a breach alert from her email provider. Froze credit in 10 minutes—blocked $5,000 in fake loans.
+                </p>
+                <p><strong>Lesson:</strong> Act fast, freeze preemptively.</p>
+            </div>
+            
+            <div class="story-box negative">
+                <h4>Extra Story: Jake's Job Trap</h4>
+                <p>
+                    Jake, 23, landed a "remote job"—sent $500 for "training." No job, no refund.
+                </p>
+                <p><strong>Lesson:</strong> Legit jobs don't charge you.</p>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Story Smarts Simulator</h3>
+                <ol>
+                    <li>Pick one story—write your dodge (e.g., "For Kim, I'd call IRS at 1-800-829-1040, no wiring").</li>
+                    <li>Apply to you: "If 'bank' calls, I'd…" (e.g., "hang up, call my bank's real number").</li>
+                    <li>Bonus: Share a story (yours or theirs) with a friend—ask their dodge.</li>
+                </ol>
+                <p><em>Example: "Sue: I'd call my grandson first. Me: If 'IRS' calls, I verify with their real line."</em></p>
+                <textarea placeholder="Write your story response strategy here..." rows="5"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Lessons from the Field</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Story</th>
+                        <th>Mistake</th>
+                        <th>Victory Move</th>
+                    </tr>
+                    <tr>
+                        <td>Kim</td>
+                        <td>Wired without check</td>
+                        <td>Call IRS directly</td>
+                    </tr>
+                    <tr>
+                        <td>Ali</td>
+                        <td>N/A</td>
+                        <td>Spotted fake URL</td>
+                    </tr>
+                    <tr>
+                        <td>Ben</td>
+                        <td>Fell for hype</td>
+                        <td>Research investments</td>
+                    </tr>
+                    <tr>
+                        <td>Sue</td>
+                        <td>Didn't confirm</td>
+                        <td>Verify with family</td>
+                    </tr>
+                    <tr>
+                        <td>Tara</td>
+                        <td>N/A</td>
+                        <td>Freeze credit ASAP</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.bbb.org/scamtracker" target="_blank">BBB Scam Tracker</a> – Live scam map with user-submitted stories.</p>
+        </section>
+
+        <!-- Section 6: Fraud Tools -->
+        <section>
+            <h2>Fraud Tools – Your High-Tech Arsenal</h2>
+            <p>
+                Arm yourself with tools and services that amplify your defenses and alert you to threats.
+            </p>
+            
+            <h3>Must-Have Gear</h3>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="tool-info">
+                    <h4 class="tool-name">Credit Monitoring</h4>
+                    <p>Credit Karma (free)—alerts for new accounts, score drops.</p>
+                    <span class="tool-price">Free</span>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="tool-info">
+                    <h4 class="tool-name">Fraud Alerts</h4>
+                    <p>Free at Equifax (1 year)—requires ID verification for new credit.</p>
+                    <span class="tool-price">Free</span>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="tool-info">
+                    <h4 class="tool-name">ID Theft Insurance</h4>
+                    <p>Allstate ($10/month)—covers legal fees, lost wages up to $1,000.</p>
+                    <span class="tool-price">$10/month</span>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-user-secret"></i></div>
+                <div class="tool-info">
+                    <h4 class="tool-name">Dark Web Monitoring</h4>
+                    <p>Norton ($10/month)—scans for your data on shady sites.</p>
+                    <span class="tool-price">$10/month</span>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-envelope-open"></i></div>
+                <div class="tool-info">
+                    <h4 class="tool-name">Secure Email</h4>
+                    <p>ProtonMail ($5/month)—encrypted, blocks phishing trackers.</p>
+                    <span class="tool-price">$5/month</span>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-bug"></i></div>
+                <div class="tool-info">
+                    <h4 class="tool-name">Anti-Virus</h4>
+                    <p>Malwarebytes ($40/year)—catches malware from scam links.</p>
+                    <span class="tool-price">$40/year</span>
+                </div>
+            </div>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                Credit Karma flags a $5,000 loan you didn't apply for—freeze credit, dispute it, stop it cold.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Tool Deployment</h3>
+                <ol>
+                    <li>Sign up for Credit Karma (5 minutes)—write one benefit (e.g., "Alerts if my SSN's used").</li>
+                    <li>Place a fraud alert at Equifax—free, quick. Note the date it expires.</li>
+                    <li>Check your credit report at <a href="https://www.annualcreditreport.com" target="_blank">AnnualCreditReport.com</a>—spot one oddity (e.g., old address).</li>
+                    <li>Bonus: Test Malwarebytes free scan—any threats?</li>
+                </ol>
+                <p><em>Example: "Credit Karma: Tracks new accounts. Fraud alert set—expires 11/2024. Report: Old job listed—fixed."</em></p>
+                <textarea placeholder="Document your security tool deployment here..." rows="5"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Arsenal Breakdown</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Tool</th>
+                        <th>Cost</th>
+                        <th>Benefit</th>
+                    </tr>
+                    <tr>
+                        <td>Credit Karma</td>
+                        <td>Free</td>
+                        <td>Alerts, score tracking</td>
+                    </tr>
+                    <tr>
+                        <td>Fraud Alert</td>
+                        <td>Free</td>
+                        <td>Blocks new credit</td>
+                    </tr>
+                    <tr>
+                        <td>ID Theft Insurance</td>
+                        <td>$10/month</td>
+                        <td>Covers recovery costs</td>
+                    </tr>
+                    <tr>
+                        <td>Dark Web Monitoring</td>
+                        <td>$10/month</td>
+                        <td>Data breach warnings</td>
+                    </tr>
+                    <tr>
+                        <td>Secure Email</td>
+                        <td>$5/month</td>
+                        <td>Phishing resistance</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="result-box">
+                <strong>Pro Tip:</strong> Layer tools—e.g., Credit Karma + fraud alert—for overlapping protection.
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.consumer.ftc.gov/articles/what-know-about-credit-freezes-and-fraud-alerts" target="_blank">FTC Fraud Alerts</a> – Easy setup guide.</p>
+        </section>
+
+        <!-- Section 7: Advanced Strategies -->
+        <section>
+            <h2>Advanced Strategies – Elevate Your Fraud Game</h2>
+            <p>
+                Go beyond basics with these next-level tactics to outsmart even the sneakiest scammers.
+            </p>
+            
+            <h3>Strategy 1: Behavioral Profiling</h3>
+            <ul>
+                <li><strong>Trust Your Instincts:</strong> If it feels off—pushy tone, odd timing—pause and probe.</li>
+                <li><strong>Scammer Tells:</strong> Hesitation when questioned, scripted urgency—say "I'll call back" to disrupt them.</li>
+            </ul>
+            
+            <h3>Strategy 2: Tech Fortifications</h3>
+            <ul>
+                <li><strong>Email Filters:</strong> Gmail's "Report Phishing" trains AI to block fakes—use it religiously.</li>
+                <li><strong>VPN Always:</strong> Encrypts all traffic—$3/month (e.g., ProtonVPN) for ironclad Wi-Fi safety.</li>
+                <li><strong>Burner Emails:</strong> Use a secondary email (e.g., "shopper123@proton.me") for sign-ups—keeps your main one clean.</li>
+            </ul>
+            
+            <h3>Strategy 3: Scam Psychology</h3>
+            <ul>
+                <li><strong>Your Triggers:</strong> Lonely? Greedy? Stressed? Scammers target emotions—know yours to resist.</li>
+                <li><strong>Example:</strong> Post-breakup, romance scams hit harder—stay extra vigilant then.</li>
+            </ul>
+            
+            <h3>Strategy 4: Proactive Monitoring</h3>
+            <ul>
+                <li><strong>Daily Scans:</strong> Check bank app for odd $1-$5 charges—test runs for bigger hits.</li>
+                <li><strong>Monthly Deep Dive:</strong> Review all statements—dispute unknowns within 60 days for best recovery odds.</li>
+                <li><strong>Annual Audit:</strong> Full credit report, dark web check—catch dormant threats.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Activity: Strategy Architect</h3>
+                <ol>
+                    <li>Pick two strategies (e.g., "Instincts, daily scans").</li>
+                    <li>Write how you'll use them (e.g., "Instincts—question pushy calls; Scans—check bank app at 7 PM").</li>
+                    <li>Identify your trigger (e.g., "I rush when stressed")—plan a counter (e.g., "Slow down, verify").</li>
+                    <li>Bonus: Set a "fraud check" reminder—e.g., "Daily at 7 PM."</li>
+                </ol>
+                <p><em>Example: "Strategies: VPN, monthly dive. Use: NordVPN on Wi-Fi, review statements first Sunday. Trigger: Greed—counter: Research offers."</em></p>
+                <textarea placeholder="Document your advanced strategy plan here..." rows="5"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Advanced Defense</h3>
+                <div class="flowchart">
+                    <div class="flowchart-node">
+                        Suspicious Contact
+                        <div class="flowchart-arrow">↓</div>
+                    </div>
+                    <div class="flowchart-node">
+                        Instinct Off?
+                        <div class="flowchart-arrow">↓</div>
+                    </div>
+                    <div class="flowchart-node">
+                        Question It
+                        <div class="flowchart-arrow">↓</div>
+                    </div>
+                    <div class="flowchart-node">
+                        Verify Source
+                        <div class="flowchart-arrow">↓</div>
+                    </div>
+                    <div class="flowchart-node">
+                        Report
+                        <div class="flowchart-arrow">↓</div>
+                    </div>
+                    <div class="flowchart-node">
+                        Monitor Accounts
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Troubleshooting -->
+        <section>
+            <h2>Troubleshooting – Iron Out Your Fraud Defenses</h2>
+            <p>
+                Mistakes happen—here's your fix-it kit for every fraud hurdle.
+            </p>
+            
+            <div class="step-box">
+                <div class="step-number">1</div>
+                <div class="step-heading">Pitfall: Falling for Urgency</div>
+                <div class="step-content">
+                    <strong>Issue:</strong> "Pay now!" overrides logic—e.g., you send $200 to "fix" a virus.<br>
+                    <strong>Fix:</strong> Rule: Never act on first contact—verify independently every time.
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">2</div>
+                <div class="step-heading">Pitfall: Password Fatigue</div>
+                <div class="step-content">
+                    <strong>Issue:</strong> Reusing "password123" across sites—breach magnet.<br>
+                    <strong>Fix:</strong> Use a manager—generate "X9$kLm2@Pz!" per account.
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">3</div>
+                <div class="step-heading">Pitfall: Ignoring Micro-Charges</div>
+                <div class="step-content">
+                    <strong>Issue:</strong> $2 mystery fee—scammers test before $500 hits.<br>
+                    <strong>Fix:</strong> Dispute all unknowns, however small—call bank ASAP.
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">4</div>
+                <div class="step-heading">Pitfall: Oversharing Online</div>
+                <div class="step-content">
+                    <strong>Issue:</strong> Posting "Fido's 5th birthday!"—security question goldmine.<br>
+                    <strong>Fix:</strong> Lock profiles, use fake answers (e.g., "Pet name: Batman").
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">5</div>
+                <div class="step-heading">Pitfall: Delayed Reaction</div>
+                <div class="step-content">
+                    <strong>Issue:</strong> Waited a week to report $1,000 theft—harder to recover.<br>
+                    <strong>Fix:</strong> Act within 24 hours—speed boosts refund odds.
+                </div>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Pitfall Patcher</h3>
+                <p>Scenario: You clicked a phishing link, entered your login.</p>
+                <ol>
+                    <li>Write a 4-step recovery (e.g., "1. Change password. 2. Enable 2FA. 3. Monitor accounts. 4. Report to IC3").</li>
+                    <li>Fix a past mistake—e.g., "I shared my PIN—now I'll freeze credit."</li>
+                </ol>
+                <p><em>Example: "Clicked link: 1. New password 'R3k!2023.' 2. 2FA on. 3. Check bank daily. 4. FTC report. Past: Reused passwords—switched to LastPass."</em></p>
+                <textarea placeholder="Document your phishing response and past fix here..." rows="5"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Pitfall Proofing</h3>
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" id="pitfall1">
+                        <label for="pitfall1" class="checklist-text">Verify before acting</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" id="pitfall2">
+                        <label for="pitfall2" class="checklist-text">Unique passwords via manager</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" id="pitfall3">
+                        <label for="pitfall3" class="checklist-text">Dispute all odd charges</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" id="pitfall4">
+                        <label for="pitfall4" class="checklist-text">Private social media</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" id="pitfall5">
+                        <label for="pitfall5" class="checklist-text">Report fraud within 24 hours</label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Interactive Capstone -->
+        <section>
+            <h2>Interactive Capstone – Full Fraud Defense Simulation</h2>
+            <p>
+                Test your skills with a detailed, real-world scenario.
+            </p>
+            
+            <div class="story-box">
+                <h3>Meet Riley's Profile</h3>
+                <ul>
+                    <li><strong>Password:</strong> "Riley2023" on bank, email, Amazon.</li>
+                    <li><strong>2FA:</strong> Off everywhere.</li>
+                    <li><strong>Monitoring:</strong> None—checks statements monthly.</li>
+                    <li><strong>Recent Scam:</strong> "IRS" call demanding $800—hung up but didn't report.</li>
+                    <li><strong>Habits:</strong> Uses café Wi-Fi for banking, posts pet names online.</li>
+                </ul>
+            </div>
+            
+            <h3>Tasks</h3>
+            <ol>
+                <li>Spot all gaps (e.g., "Weak password, no 2FA, no monitoring").</li>
+                <li>Propose fixes (e.g., "Password 'F7$kL9@Pz!,' 2FA on all, Credit Karma").</li>
+                <li>Write a script for the next scam call (e.g., "I'll call IRS myself—bye").</li>
+                <li>List credit freeze steps (e.g., "Visit Experian site, enter info, confirm").</li>
+                <li>Bonus: Suggest one advanced strategy (e.g., "VPN for Wi-Fi").</li>
+            </ol>
+            
+            <div class="result-box">
+                <strong>Answers:</strong> Gaps—password reuse, no 2FA, no monitoring, risky Wi-Fi. Fixes—unique passwords, 2FA, daily checks, VPN. Script—"I'll verify independently." Freeze—online at 3 bureaus, free.
+            </div>
+            
+            <div class="activity-box">
+                <h3>Your Simulation</h3>
+                <ol>
+                    <li>Profile yourself: List your passwords, 2FA status, monitoring habits, and a recent scam encounter.</li>
+                    <li>Identify gaps.</li>
+                    <li>Write a 4-step fix plan.</li>
+                    <li>Practice your script aloud.</li>
+                </ol>
+                <p><em>Example: "Me: 'Pass123' reused, no 2FA, monthly checks. Gap: Weak security. Fix: New passwords, 2FA, daily scans, freeze credit. Script: 'I'll call back—bye.'"</em></p>
+                <textarea placeholder="Document your personal security profile and plan here..." rows="8"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Riley's Overhaul</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Current</th>
+                        <th>Gap</th>
+                        <th>Fix</th>
+                    </tr>
+                    <tr>
+                        <td>"Riley2023"</td>
+                        <td>Weak, reused</td>
+                        <td>"F7$kL9@Pz!" unique</td>
+                    </tr>
+                    <tr>
+                        <td>No 2FA</td>
+                        <td>Vulnerable</td>
+                        <td>Enable on all</td>
+                    </tr>
+                    <tr>
+                        <td>No monitoring</td>
+                        <td>Blind to threats</td>
+                        <td>Credit Karma daily</td>
+                    </tr>
+                    <tr>
+                        <td>Café Wi-Fi</td>
+                        <td>Hackable</td>
+                        <td>Use NordVPN</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 10: Reflection -->
+        <section>
+            <h2>Reflection – Forge Your Fraud Shield</h2>
+            <p>
+                Make it yours with a tailored, actionable plan.
+            </p>
+            
+            <h3>Reflection Prompts</h3>
+            <ol>
+                <li>What's your weakest fraud link now? (e.g., "No 2FA")</li>
+                <li>What's your first fix—and when? (e.g., "2FA by Friday")</li>
+                <li>How will you stay vigilant long-term? (e.g., "Weekly account checks")</li>
+            </ol>
+            
+            <div class="activity-box">
+                <h3>Activity: Shield Forging</h3>
+                <p>Write: "I'll secure [X] by [Y], check [Z] regularly because [W]."</p>
+                <p><em>Example: "I'll secure email with 2FA by Friday, check Credit Karma weekly because breaches happen fast."</em></p>
+                <p>Bonus: Set a calendar reminder—e.g., "Sunday 8 PM—fraud scan." Share your plan with a friend for accountability.</p>
+                <textarea placeholder="Document your personal fraud shield plan here..." rows="5"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Your Flag List</h3>
+                <p>Circle your top red flags (e.g., "Urgency"), write defenses (e.g., "Pause, call official line").</p>
+                <div style="max-width: 500px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                    <div style="width: 150px; height: 150px; background-color: #ffebee; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 15px; box-shadow: 0 3px 5px rgba(0,0,0,0.2);">
+                        <div>
+                            <strong>Urgency</strong><br>
+                            <small>Write defense here</small>
+                        </div>
+                    </div>
+                    <div style="width: 150px; height: 150px; background-color: #fff8e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 15px; box-shadow: 0 3px 5px rgba(0,0,0,0.2);">
+                        <div>
+                            <strong>Too Good to Be True</strong><br>
+                            <small>Write defense here</small>
+                        </div>
+                    </div>
+                    <div style="width: 150px; height: 150px; background-color: #e8f5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 15px; box-shadow: 0 3px 5px rgba(0,0,0,0.2);">
+                        <div>
+                            <strong>Gift Cards</strong><br>
+                            <small>Write defense here</small>
+                        </div>
+                    </div>
+                    <div style="width: 150px; height: 150px; background-color: #e3f2fd; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 15px; box-shadow: 0 3px 5px rgba(0,0,0,0.2);">
+                        <div>
+                            <strong>Cold Contact</strong><br>
+                            <small>Write defense here</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 11: Quiz -->
+        <section>
+            <h2>Quiz – Prove Your Fraud-Fighting Mastery</h2>
+            <p>
+                Test your ninja skills!
+            </p>
+            
+            <div class="quiz">
+                <div class="quiz-item">
+                    <p><strong>1. Phishing thrives on:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q1" id="q1a" value="A"> <label for="q1a">Discounts</label></div>
+                        <div><input type="radio" name="q1" id="q1b" value="B"> <label for="q1b">Urgency</label></div>
+                        <div><input type="radio" name="q1" id="q1c" value="C"> <label for="q1c">Long chats</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>2. 2FA protects by:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q2" id="q2a" value="A"> <label for="q2a">Hiding passwords</label></div>
+                        <div><input type="radio" name="q2" id="q2b" value="B"> <label for="q2b">Adding a second step</label></div>
+                        <div><input type="radio" name="q2" id="q2c" value="C"> <label for="q2c">Freezing accounts</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>3. If targeted, first step is:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q3" id="q3a" value="A"> <label for="q3a">Pay</label></div>
+                        <div><input type="radio" name="q3" id="q3b" value="B"> <label for="q3b">Verify independently</label></div>
+                        <div><input type="radio" name="q3" id="q3c" value="C"> <label for="q3c">Wait a week</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>4. Credit monitoring:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q4" id="q4a" value="A"> <label for="q4a">Stops fraud</label></div>
+                        <div><input type="radio" name="q4" id="q4b" value="B"> <label for="q4b">Alerts you</label></div>
+                        <div><input type="radio" name="q4" id="q4c" value="C"> <label for="q4c">Raises scores</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>5. Strongest password:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q5" id="q5a" value="A"> <label for="q5a">"12345"</label></div>
+                        <div><input type="radio" name="q5" id="q5b" value="B"> <label for="q5b">"Tr0p!cal2023!"</label></div>
+                        <div><input type="radio" name="q5" id="q5c" value="C"> <label for="q5c">Your birthday</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>6. "Pay with gift cards" means:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q6" id="q6a" value="A"> <label for="q6a">Legit urgency</label></div>
+                        <div><input type="radio" name="q6" id="q6b" value="B"> <label for="q6b">Scam 100%</label></div>
+                        <div><input type="radio" name="q6" id="q6c" value="C"> <label for="q6c">Bank error</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>7. Freeze credit to:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q7" id="q7a" value="A"> <label for="q7a">Boost savings</label></div>
+                        <div><input type="radio" name="q7" id="q7b" value="B"> <label for="q7b">Block new accounts</label></div>
+                        <div><input type="radio" name="q7" id="q7c" value="C"> <label for="q7c">Pay debts</label></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>8. Best response to "Virus alert—pay $200":</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q8" id="q8a" value="A"> <label for="q8a">Send cash</label></div>
+                        <div><input type="radio" name="q8" id="q8b" value="B"> <label for="q8b">Close pop-up, scan free</label></div>
+                        <div><input type="radio" name="q8" id="q8c" value="C"> <label for="q8c">Call back</label></div>
+                    </div>
+                </div>
+                
+                <button onclick="checkQuiz()">Submit Quiz</button>
+                <div id="quiz-result" class="result-box" style="margin-top: 15px;"></div>
+                <div id="quiz-feedback" style="margin-top: 10px;"></div>
+                <div id="quiz-result-section" style="display: none; margin-top: 15px;"></div>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Quiz Reflection</h3>
+                <p>Take the quiz (5-10 minutes). For each miss, note a takeaway (e.g., "Gift cards = scam—never pay that way"). 8/8? You're a fraud slayer! Share your score with a friend.</p>
+                <textarea placeholder="Write your quiz reflections and learnings here..." rows="5"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Anti-Scam Cheat Sheet</h3>
+                <div style="max-width: 500px; margin: 0 auto; display: flex; flex-wrap: wrap;">
+                    <div style="flex: 1 0 50%; padding: 10px; text-align: center; background-color: #ffebee;">
+                        <strong>Urgency → Pause</strong>
+                    </div>
+                    <div style="flex: 1 0 50%; padding: 10px; text-align: center; background-color: #fff8e1;">
+                        <strong>Gift Cards → Refuse</strong>
+                    </div>
+                    <div style="flex: 1 0 50%; padding: 10px; text-align: center; background-color: #e8f5e9;">
+                        <strong>Verify → Official Channels Only</strong>
+                    </div>
+                    <div style="flex: 1 0 50%; padding: 10px; text-align: center; background-color: #e3f2fd;">
+                        <strong>Protect → 2FA Everything</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2>Conclusion: Your Anti-Scam Armor Is Unbreakable!</h2>
+            <p>
+                You're a fraud-fighting titan—armed with a plan, tools, and skills to keep scammers at bay. Your money's fortress is secure!
+            </p>
+            
+            <h3>Immediate Action Steps:</h3>
+            <ol>
+                <li>Add 2FA to your email (e.g., Gmail settings, 2 minutes).</li>
+                <li>Write when and why (e.g., "November 3—blocks hackers cold").</li>
+                <li>Tell a friend: "I'm scam-proofing—check in next week!"</li>
+            </ol>
+            
+            <h3>Long-Term Commitment:</h3>
+            <ul>
+                <li>Check accounts weekly—set a "Fraud Friday" habit.</li>
+                <li>Refresh passwords quarterly—use a manager for ease.</li>
+                <li>Stay updated via <a href="https://www.consumer.ftc.gov/features/scam-alerts" target="_blank">FTC Scam Alerts</a>.</li>
+            </ul>
+            
+            <div class="result-box">
+                <h3>Resources:</h3>
+                <ul>
+                    <li><a href="https://reportfraud.ftc.gov" target="_blank">FTC</a> – Report and learn</li>
+                    <li><a href="https://www.aarp.org/money/scams-fraud/" target="_blank">AARP Fraud Watch</a> – Stories and tips</li>
+                    <li><a href="https://www.creditkarma.com" target="_blank">Credit Karma</a> – Free monitoring</li>
+                    <li><a href="https://www.consumerreports.org/money/fraud-identity-theft/" target="_blank">Consumer Reports Fraud</a> – Tech defenses</li>
+                    <li><a href="https://www.identitytheft.gov" target="_blank">IdentityTheft.gov</a> – Recovery tools</li>
+                </ul>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Your Anti-Scam Shield</h3>
+                <div class="shield-wrapper">
+                    <div class="shield-base">
+                        <div class="shield-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div style="font-weight: bold; font-size: 20px;">FRAUD-PROOF</div>
+                        <div>Your Money is Safe</div>
+                    </div>
+                </div>
+            </div>
+            
+            <p>
+                Wear your armor with pride—scammers don't stand a chance against you!
+            </p>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="section5lesson1.html" class="cta-button">Next Section: Introduction to Investing</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>FinanceCourse</h3>
+                <p>Learn to secure your financial future with our comprehensive education platform.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="learn.html">Courses</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 FinanceCourse. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

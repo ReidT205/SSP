@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 1: Identifying Financial Risks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #5b3fd8;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #2196f3, #3f51b5);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #3f51b5;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #3f51b5;
+            border-bottom: 2px solid #3f51b5;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3f51b5;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #3f51b5;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #303f9f;
+        }
+        /* Lesson-specific styles */
+        .example-box {
+            background-color: #f0f4ff;
+            border: 1px solid #d0d9ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #3f51b5;
+            color: white;
+        }
+        .visual-aid {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .visual-aid img {
+            max-width: 100%;
+            height: auto;
+        }
+        .risk-matrix {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            position: relative;
+            background: linear-gradient(to right, #4caf50, #ffeb3b, #f44336);
+            border: 1px solid #ddd;
+        }
+        .risk-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 2px solid #333;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 10px;
+        }
+        .risk-axis {
+            position: absolute;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .risk-label-x {
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .risk-label-y {
+            top: 50%;
+            left: -35px;
+            transform: translateY(-50%) rotate(-90deg);
+        }
+        .circle-diagram {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .circle-section {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+        .circle-inner {
+            position: absolute;
+            width: 70%;
+            height: 70%;
+            top: 15%;
+            left: 15%;
+            border-radius: 50%;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .circle-outer {
+            width: 100%;
+            height: 100%;
+        }
+        .circle-mid {
+            position: absolute;
+            width: 85%;
+            height: 85%;
+            top: 7.5%;
+            left: 7.5%;
+            border-radius: 50%;
+            background-color: #eeeeee;
+            border: 1px solid #ddd;
+        }
+        .risk-scale {
+            width: 80%;
+            height: 30px;
+            margin: 20px auto;
+            background: linear-gradient(to right, #4caf50, #ffeb3b, #f44336);
+            border-radius: 15px;
+            position: relative;
+        }
+        .risk-marker {
+            position: absolute;
+            top: -10px;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 50px;
+            background-color: #333;
+            border-radius: 4px;
+        }
+        .warning-sign {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+        }
+        .warning-icon {
+            font-size: 24px;
+            color: #ff9800;
+            margin-right: 15px;
+        }
+        .timeline {
+            position: relative;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: #3f51b5;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            position: relative;
+            padding: 20px 0;
+        }
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #3f51b5;
+            transform: translateX(-50%);
+        }
+        .risk-stats {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f44336;
+            display: block;
+            text-align: center;
+            margin: 15px 0;
+        }
+        .asset-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .asset-table th, .asset-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .asset-table th {
+            background-color: #f2f2f2;
+        }
+        .asset-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .story-box {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid #f44336;
+        }
+        .story-box h4 {
+            color: #f44336;
+            margin-top: 0;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 660;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'B') score++;
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 5. ${score >= 4 ? 'Excellent! You\'re a risk detection pro!' : score >= 3 ? 'Good job! Keep strengthening your risk awareness.' : 'Keep learning about financial risks to better protect yourself!'}`;
+            document.getElementById('quiz-result').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Financial Security & Risk Management: Lesson 1 – Identifying Financial Risks: Your Ultimate Defense Playbook</h1>
+        <p>Master the art of spotting financial threats before they derail your goals, and transform risk awareness into your financial superpower.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Learning!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview: Spotting Financial Landmines Before They Explode</h2>
+            <p>
+                Welcome to the Financial Security & Risk Management section! In Lesson 1, you're stepping into the driver's seat of your financial future by mastering the art of identifying financial risks—those sneaky threats like market crashes, job loss, or unexpected medical bills that can ambush your savings and shred your plans. This isn't just a lesson; it's a crash course in building a financial fortress. Here's your roadmap:
+            </p>
+            <ul>
+                <li><strong>Core Concepts:</strong> A crystal-clear breakdown of what financial risks are, how they creep up, and why most people miss them until it's game over.</li>
+                <li><strong>Practical Skills:</strong> Hands-on techniques to pinpoint risks in your own life, backed by vivid stories and real-world examples.</li>
+                <li><strong>Assessment Mastery:</strong> A step-by-step process to evaluate and prioritize risks, turning chaos into a clear action plan.</li>
+                <li><strong>Pro Tools:</strong> Risk matrices, warning sign checklists, and pattern analysis to make you a risk-spotting ninja.</li>
+                <li><strong>Pitfall Protection:</strong> A troubleshooting toolkit to dodge common mistakes and recover fast.</li>
+                <li><strong>Interactive Fun:</strong> Activities, reflections, and a quiz to lock in your skills and make learning stick.</li>
+            </ul>
+            <p>
+                By the end, you'll have a personalized risk profile, a sharper eye for danger, and a rock-solid strategy to shield your money from life's curveballs. Let's turn risk awareness into your financial superpower!
+            </p>
+        </section>
+
+        <!-- Introduction: Your Investing Playbook Unleashed -->
+        <section id="section1">
+            <h2>Introduction: Why Risk Awareness Is Your Financial Superpower</h2>
+            <p>
+                Imagine you're saving $5,000 for a dream trip to Italy—pasta, gelato, the Colosseum in all its glory. Then, out of nowhere, your car's transmission fails ($2,500 repair), or a throbbing toothache demands a $1,200 root canal. These are financial risks—unpredictable events that can torch your plans and drain your bank account faster than you can say "emergency fund." But here's the game-changer: spotting these risks early lets you build defenses like savings, insurance, or a side hustle. This lesson isn't about living in fear—it's about seizing control. You'll learn to detect the cracks before they become canyons.
+            </p>
+            
+            <div class="result-box">
+                <h3>Eye-Opening Stat:</h3>
+                <p>
+                    A 2022 Federal Reserve survey found that 40% of Americans can't cover a $400 emergency expense without borrowing or selling something. That's nearly half the country one flat tire away from financial stress. You? You're about to rise above that statistic.
+                </p>
+            </div>
+            
+            <h3>Real-Life Hook:</h3>
+            <p>
+                Meet Sarah, a 28-year-old teacher. She ignored her car's odd rattling, thinking, "It'll last." It didn't—$1,800 repair bill. With no savings, she maxed out her credit card at 19% interest, paying it off for two years while missing vacations and sleep. Early risk awareness could've saved her cash and sanity.
+            </p>
+            
+            <h3>Why It Matters:</h3>
+            <p>
+                Risk awareness isn't just smart—it's your ticket to financial peace. It's the difference between reacting to disasters and preventing them.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Your Risk Wake-Up Call</h3>
+                <p>
+                    Dig into your past. Recall a time an unexpected expense—like a $300 phone repair or a $600 last-minute flight—threw your budget into chaos. Write:
+                </p>
+                <ol>
+                    <li>What happened?</li>
+                    <li>How did it feel?</li>
+                    <li>One way spotting it earlier could've helped.</li>
+                </ol>
+                <p><em>Example: "My dog needed a $400 vet visit. Felt panicked—used my rent money. Could've saved $50/month for pet emergencies."</em></p>
+                <p>This connects the lesson to your life, right here, right now.</p>
+                <textarea placeholder="Write your risk wake-up call here..." rows="4"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Your Financial Castle</h3>
+                <div style="max-width: 500px; margin: 20px auto; position: relative; text-align: center;">
+                    <div style="width: 200px; height: 200px; margin: 0 auto; background-color: #e3f2fd; border: 3px solid #3f51b5; border-radius: 5px; display: flex; align-items: center; justify-content: center; position: relative;">
+                        <div style="font-weight: bold; font-size: 18px; color: #3f51b5;">Your Castle</div>
+                        
+                        <!-- Risk arrows coming in from different directions -->
+                        <div style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%);">
+                            <div style="font-size: 14px; background-color: #ffcdd2; padding: 5px; border-radius: 3px; margin-bottom: 5px;">Job Loss</div>
+                            <div style="width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 20px solid #f44336; margin: 0 auto;"></div>
+                        </div>
+                        
+                        <div style="position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);">
+                            <div style="width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 20px solid #f44336; margin: 0 auto;"></div>
+                            <div style="font-size: 14px; background-color: #ffcdd2; padding: 5px; border-radius: 3px; margin-top: 5px;">Health Crisis</div>
+                        </div>
+                        
+                        <div style="position: absolute; left: -85px; top: 50%; transform: translateY(-50%);">
+                            <div style="font-size: 14px; background-color: #ffcdd2; padding: 5px; border-radius: 3px; margin-right: 5px; display: inline-block;">Market Crash</div>
+                            <div style="width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 20px solid #f44336; display: inline-block;"></div>
+                        </div>
+                        
+                        <div style="position: absolute; right: -85px; top: 50%; transform: translateY(-50%);">
+                            <div style="width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 20px solid #f44336; display: inline-block;"></div>
+                            <div style="font-size: 14px; background-color: #ffcdd2; padding: 5px; border-radius: 3px; margin-left: 5px; display: inline-block;">Car Repair</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Watchtower -->
+                    <div style="position: absolute; top: -50px; right: 50px; width: 60px; height: 90px;">
+                        <div style="width: 40px; height: 60px; background-color: #9fa8da; border: 2px solid #3f51b5; margin: 0 auto;"></div>
+                        <div style="width: 60px; height: 30px; background-color: #c5cae9; border: 2px solid #3f51b5; border-radius: 5px 5px 0 0; margin-top: -2px;"></div>
+                        <div style="font-size: 12px; margin-top: 5px; font-weight: bold;">Risk Radar</div>
+                    </div>
+                </div>
+                <p>Picture your finances as a castle. Risks are invaders—job loss, health crises, market dips—sneaking through the gates. Your risk radar is the watchtower spotting them miles away.</p>
+            </div>
+        </section>
+
+        <!-- Section 1: Understanding Financial Risks -->
+        <section>
+            <h2>Understanding Financial Risks – The Big Picture</h2>
+            <p>
+                Financial risks are any events or conditions that could shrink your income, zap your savings, or destabilize your financial health. They're the potholes on your road to wealth—some you cause, some you don't. Let's break it down.
+            </p>
+            
+            <h3>What Are Financial Risks?</h3>
+            <p>
+                Think of risks as potential money leaks—personal hiccups like a layoff or external shocks like a recession. They're unpredictable but not unstoppable. Knowing them is your first line of defense.
+            </p>
+            
+            <h3>Why They're a Big Deal</h3>
+            <p>
+                Left unchecked, risks can spiral: debt piles up, goals like a house or retirement slip away, or you're forced into grim trade-offs—like skipping meds to pay rent. Knowledge isn't just power; it's your armor against chaos.
+            </p>
+            
+            <h3>Risk Categories</h3>
+            <ul>
+                <li><strong>Personal Risks:</strong> Job loss, health emergencies, car breakdowns—stuff that hits your wallet directly.</li>
+                <li><strong>Economic Risks:</strong> Market volatility, inflation, recessions—forces that ripple through your finances.</li>
+                <li><strong>Systemic Risks:</strong> Pandemics, natural disasters, cyberattacks—big-picture threats beyond your control.</li>
+            </ul>
+            
+            <h3>Detailed Examples with Context</h3>
+            <ul>
+                <li><strong>Job Loss:</strong> In 2020, the pandemic spiked U.S. unemployment to 14.8%, sidelining 23 million workers. A waiter earning $30,000/year could lose it all overnight—no paycheck, no buffer.</li>
+                <li><strong>Health Emergency:</strong> A broken leg costs $7,500 with insurance or $25,000 without (Healthcare Cost Institute, 2021). Even a $500 ER trip stings without savings.</li>
+                <li><strong>Market Volatility:</strong> The 2008 crash slashed the S&P 500 by 57%. A $10,000 investment shrank to $4,300 in 18 months—retirement dreams deferred.</li>
+                <li><strong>Inflation:</strong> In 2022, U.S. inflation hit 9.1%. A $1,000 grocery budget bought $91 less food—your money's power eroding silently.</li>
+                <li><strong>Systemic Shock:</strong> The 2011 Thailand floods disrupted global supply chains. A small business owner lost $15,000 in uninsured inventory—external risks don't mess around.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Activity: Risk Reality Check</h3>
+                <ol>
+                    <li>List two financial risks you've faced or fear (e.g., "My laptop's old—$1,000 replacement," or "Job's unstable—lose $2,000/month").</li>
+                    <li>For each, write one impact (e.g., "Drains my savings") and one prep step (e.g., "Save $50/month").</li>
+                    <li>Bonus: Rate likelihood (1-5) and impact (1-5), multiply for a risk score (e.g., 3x4=12).</li>
+                </ol>
+                <p><em>Example: "Laptop failure: Likelihood 4, Impact 3 → Score 12. Impact: No work-from-home. Prep: Save $100/month."</em></p>
+                <textarea placeholder="Write your risk reality check here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Risk Categories</h3>
+                <div class="circle-diagram">
+                    <!-- Systemic (Outer) -->
+                    <div class="circle-outer" style="background-color: #ffebee;">
+                        <div style="position: absolute; top: 10px; width: 100%; text-align: center; font-weight: bold;">
+                            Systemic Risks
+                        </div>
+                        <div style="position: absolute; top: 30px; width: 100%; text-align: center; font-size: 12px;">
+                            Pandemics, Disasters
+                        </div>
+                    </div>
+                    
+                    <!-- Economic (Middle) -->
+                    <div class="circle-mid" style="background-color: #e3f2fd;">
+                        <div style="position: absolute; top: 35%; width: 100%; text-align: center; font-weight: bold;">
+                            Economic Risks
+                        </div>
+                        <div style="position: absolute; top: calc(35% + 20px); width: 100%; text-align: center; font-size: 12px;">
+                            Recession, Inflation
+                        </div>
+                    </div>
+                    
+                    <!-- Personal (Inner) -->
+                    <div class="circle-inner" style="background-color: #e8f5e9;">
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold;">Personal Risks</div>
+                            <div style="font-size: 12px;">Job Loss, Health</div>
+                        </div>
+                    </div>
+                </div>
+                <p>Diagram: Three overlapping circles—Personal (inner), Economic (middle), Systemic (outer). Each lists examples, showing how risks connect (e.g., a recession triggers job loss).</p>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/f/financialrisk.asp" target="_blank">Investopedia: Financial Risk</a> – Beginner-friendly with visuals and case studies.</p>
+        </section>
+
+        <!-- Section 2: Personal Financial Risks -->
+        <section>
+            <h2>Personal Financial Risks – Your Life, Your Risks</h2>
+            <p>
+                Personal risks strike closest to home—job woes, health scares, or surprise repairs. Let's zoom in and armor up.
+            </p>
+            
+            <h3>Types of Personal Risks</h3>
+            <ul>
+                <li><strong>Job Loss or Income Drop:</strong> Layoffs (e.g., tech firms axed 160,000 jobs in 2022), pay cuts (e.g., 10% less at a faltering startup), or gig work fading (e.g., fewer Uber rides in winter).</li>
+                <li><strong>Health Issues:</strong> A flu costs $200 in meds and lost wages; cancer can hit $100,000+ even with co-pays (American Cancer Society, 2022).</li>
+                <li><strong>Major Repairs:</strong> A leaky roof might run $8,000, a car engine $3,500, or a fridge $700—Murphy's Law loves bad timing.</li>
+                <li><strong>Family Emergencies:</strong> Your brother's car dies, needing $1,500 to keep his job. You're the safety net.</li>
+                <li><strong>Divorce or Legal Issues:</strong> A split could cost $15,000 in legal fees and lost assets—unexpected and brutal.</li>
+            </ul>
+            
+            <h3>Impact on You</h3>
+            <p>
+                These can drain savings, rack up 20% interest debt, or delay dreams—like pushing a wedding from 2024 to 2027. A $1,000 hit with no buffer means stress, borrowing, or both.
+            </p>
+            
+            <h3>Real-Life Scenario</h3>
+            <p>
+                Priya, a 32-year-old nurse, saw her hospital cut shifts in 2021, dropping her income $1,200/month. With no savings, she borrowed $3,000 from family, repaying it over a year. Warning sign? Budget talks she shrugged off.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Personal Risk Radar</h3>
+                <ol>
+                    <li>List your top three personal risks (e.g., "Retail job's seasonal—lose $1,500/month").</li>
+                    <li>Rate likelihood (1-5) and impact (1-5), calculate scores (e.g., "Job loss: 3x5=15").</li>
+                    <li>For the highest score, write two prep steps (e.g., "Save $200/month, learn coding").</li>
+                </ol>
+                <p><em>Example: "Health issue: Likelihood 2, Impact 4 → Score 8. Prep: Get checkup, save $50/month."</em></p>
+                <textarea placeholder="Write your personal risk radar here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Personal Risk Cost Table</h3>
+                <table class="asset-table">
+                    <tr>
+                        <th>Risk</th>
+                        <th>Potential Cost</th>
+                        <th>Impact</th>
+                    </tr>
+                    <tr>
+                        <td>Job Loss</td>
+                        <td>$2,000/month</td>
+                        <td>No income, debt</td>
+                    </tr>
+                    <tr>
+                        <td>Health Issue</td>
+                        <td>$500-$100,000</td>
+                        <td>Bills, missed work</td>
+                    </tr>
+                    <tr>
+                        <td>Car Repair</td>
+                        <td>$500-$3,500</td>
+                        <td>Unexpected hit</td>
+                    </tr>
+                    <tr>
+                        <td>Family Emergency</td>
+                        <td>$1,000+</td>
+                        <td>Emotional and financial strain</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="result-box">
+                <strong>Pro Tip:</strong> Google "[your job] layoffs 2023" for industry vibes—forewarned is forearmed.
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.nerdwallet.com/article/finance/financial-emergency-plan" target="_blank">NerdWallet: Managing Financial Emergencies</a> – Worksheets and advice.</p>
+        </section>
+
+        <!-- Section 3: External Financial Risks -->
+        <section>
+            <h2>External Financial Risks – Beyond Your Control</h2>
+            <p>
+                External risks are the big waves crashing from outside—market dips, inflation, or global chaos. Let's map them out.
+            </p>
+            
+            <h3>Types of External Risks</h3>
+            <ul>
+                <li><strong>Market Volatility:</strong> A 2022 bear market dropped stocks 25%. A $5,000 401(k) lost $1,250 fast.</li>
+                <li><strong>Inflation:</strong> At 3% yearly, $10,000 today buys $7,409 in 10 years—your cash shrinks without moving.</li>
+                <li><strong>Recessions:</strong> The 2020 downturn cut GDP 4.3%, sparking layoffs. A $50,000 portfolio might've fallen to $40,000.</li>
+                <li><strong>Interest Rate Hikes:</strong> In 2022, Fed rates hit 4.5%, bumping a $300,000 mortgage payment $300/month.</li>
+                <li><strong>Geopolitical Shocks:</strong> Russia's 2022 Ukraine invasion spiked oil to $120/barrel—gas hit $5/gallon, squeezing budgets.</li>
+            </ul>
+            
+            <h3>Impact</h3>
+            <p>
+                These erode investments, shrink purchasing power, and raise borrowing costs—sometimes all at once, like a financial triple whammy.
+            </p>
+            
+            <h3>Historical Deep Dive</h3>
+            <ul>
+                <li><strong>2008 Financial Crisis:</strong> Lehman Brothers' fall tanked home values 30% in cities like Las Vegas; 8.7 million jobs vanished. A $200,000 house became $140,000 overnight.</li>
+                <li><strong>1997 Asian Financial Crisis:</strong> Currencies plunged 50%. A U.S. expat's $20,000 in Thai baht halved to $10,000—global risks sting far and wide.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Activity: Economic Event Explorer</h3>
+                <ol>
+                    <li>Research a recent event (e.g., 2022 inflation surge).</li>
+                    <li>Write its impact on you (e.g., "Rent up $100/month, groceries 10% pricier").</li>
+                    <li>Bonus: Check the Dow Jones on Yahoo Finance for March 2020—down 37% in weeks. If you had $15,000 invested (to $9,450), how'd you feel? One prep step? (e.g., "Diversify stocks.")</li>
+                </ol>
+                <textarea placeholder="Write your economic event exploration here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Economic Risk Timeline</h3>
+                <div class="timeline" style="height: 300px; margin-top: 40px;">
+                    <div class="timeline-line"></div>
+                    
+                    <!-- 2008 Financial Crisis -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content" style="margin-left: 0;">
+                            <h4 style="margin-top: 0;">2008: Financial Crisis</h4>
+                            <p style="margin-bottom: 0;">Stocks crash 57%, home values plunge 30%</p>
+                            <div style="text-align: right; margin-top: 5px; font-style: italic; font-size: 12px;">Impact: Lost jobs, foreclosures</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2020 Pandemic -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content" style="margin-left: auto;">
+                            <h4 style="margin-top: 0;">2020: Pandemic</h4>
+                            <p style="margin-bottom: 0;">Markets drop 37%, unemployment hits 14.8%</p>
+                            <div style="text-align: right; margin-top: 5px; font-style: italic; font-size: 12px;">Impact: Layoffs, business closures</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2022 Inflation -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content" style="margin-left: 0;">
+                            <h4 style="margin-top: 0;">2022: Inflation Surge</h4>
+                            <p style="margin-bottom: 0;">CPI hits 9.1%, Fed rates rise to 4.5%</p>
+                            <div style="text-align: right; margin-top: 5px; font-style: italic; font-size: 12px;">Impact: Higher costs, mortgage hikes</div>
+                        </div>
+                    </div>
+                </div>
+                <p>Timeline: Major economic crises and their impacts on personal finances. Arrows show how systemic events cascade to individual problems.</p>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/v/volatility.asp" target="_blank">Investopedia: Market Volatility</a> – Charts and crash breakdowns.</p>
+        </section>
+
+        <!-- Section 4: Assessing Your Financial Risks -->
+        <section>
+            <h2>Assessing Your Financial Risks – Your Risk Radar</h2>
+            <p>
+                Assessing risks turns guesses into strategy. Let's build your radar with questions and a killer tool.
+            </p>
+            
+            <h3>How to Assess</h3>
+            <p>Probe your life:</p>
+            <ul>
+                <li><strong>Income:</strong> Job secure? Competitors hiring or firing? (e.g., "Retail's automating—risky.")</li>
+                <li><strong>Health:</strong> Ignoring symptoms? Family history? (e.g., "Mom's arthritis—my knees ache.")</li>
+                <li><strong>Spending:</strong> Rent 50% of income? Loans eating $400/month?</li>
+                <li><strong>Investments:</strong> All in crypto? A 50% dip could gut it.</li>
+                <li><strong>Lifestyle:</strong> No insurance? One storm could cost $10,000.</li>
+            </ul>
+            
+            <h3>Risk Matrix Tool</h3>
+            <p>
+                Rate risks by likelihood (1-5) and impact (1-5). Multiply for a score—15+ is urgent.
+            </p>
+            <p>
+                <strong>Example:</strong> Priya's job cuts: Likelihood 4 (rumors flying) x Impact 5 (no savings) = 20. Car repair: 2x3=6—less pressing.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Build Your Matrix</h3>
+                <ol>
+                    <li>List three risks (e.g., "Job loss, medical bill, market dip").</li>
+                    <li>Score them (e.g., "Job loss: 3x5=15").</li>
+                    <li>Plot on a 5x5 matrix—circle the top score and explain its urgency (e.g., "Job loss—industry's shaky, I'd be broke.").</li>
+                </ol>
+                <p><em>Sample: "Health issue: 2x4=8. Not urgent yet—need a checkup."</em></p>
+                <textarea placeholder="Write your matrix analysis here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Risk Assessment Matrix</h3>
+                <div style="position: relative; width: 300px; height: 300px; margin: 0 auto; border: 1px solid #ddd; background-color: #fff;">
+                    <!-- Matrix background - gradient from green to red -->
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #4caf50, #ffeb3b, #f44336);"></div>
+                    
+                    <!-- Grid lines -->
+                    <div style="position: absolute; top: 0; left: 20%; width: 1px; height: 100%; background-color: rgba(0,0,0,0.2);"></div>
+                    <div style="position: absolute; top: 0; left: 40%; width: 1px; height: 100%; background-color: rgba(0,0,0,0.2);"></div>
+                    <div style="position: absolute; top: 0; left: 60%; width: 1px; height: 100%; background-color: rgba(0,0,0,0.2);"></div>
+                    <div style="position: absolute; top: 0; left: 80%; width: 1px; height: 100%; background-color: rgba(0,0,0,0.2);"></div>
+                    
+                    <div style="position: absolute; left: 0; top: 20%; width: 100%; height: 1px; background-color: rgba(0,0,0,0.2);"></div>
+                    <div style="position: absolute; left: 0; top: 40%; width: 100%; height: 1px; background-color: rgba(0,0,0,0.2);"></div>
+                    <div style="position: absolute; left: 0; top: 60%; width: 100%; height: 1px; background-color: rgba(0,0,0,0.2);"></div>
+                    <div style="position: absolute; left: 0; top: 80%; width: 100%; height: 1px; background-color: rgba(0,0,0,0.2);"></div>
+                    
+                    <!-- Axis labels -->
+                    <div class="risk-axis risk-label-x">Likelihood (1-5)</div>
+                    <div class="risk-axis risk-label-y">Impact (1-5)</div>
+                    
+                    <!-- Example risk markers -->
+                    <div class="risk-point" style="left: 80%; top: 90%;">JL</div>
+                    <div class="risk-point" style="left: 40%; top: 60%;">CR</div>
+                    
+                    <!-- Labels for corners -->
+                    <div style="position: absolute; top: 10px; right: 10px; font-size: 10px; font-weight: bold; color: #fff;">HIGH RISK</div>
+                    <div style="position: absolute; bottom: 10px; left: 10px; font-size: 10px; font-weight: bold; color: #fff;">LOW RISK</div>
+                </div>
+                <p style="margin-top: 20px;">5x5 risk matrix: Left axis = Impact (1-5), Bottom axis = Likelihood (1-5). Dots show "Job Loss (JL)" at 4x5=20, "Car Repair (CR)" at 2x3=6. Focus on high-score threats in the red zone!</p>
+            </div>
+            
+            <div class="result-box">
+                <strong>Pro Tip:</strong> Revisit your matrix monthly—risks shift (e.g., new job = lower score).
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.mindtools.com/pages/article/newTMC_07.htm" target="_blank">MindTools: Risk Assessment</a> – Free matrix template.</p>
+        </section>
+
+        <!-- Section 5: Spotting Warning Signs -->
+        <section>
+            <h2>Spotting Warning Signs – Your Early Alert System</h2>
+            <p>
+                Warning signs are your financial smoke alarms—catch them, and you've got time to act. Let's tune your ears.
+            </p>
+            
+            <h3>Why It's Key</h3>
+            <p>
+                Early detection beats damage control. It's hearing thunder and grabbing an umbrella before the downpour.
+            </p>
+            
+            <h3>Detailed Warning Signs</h3>
+            <ul>
+                <li><strong>Job Loss:</strong> Hours cut, coworkers axed, firm's stock drops 10% monthly, or merger rumors swirl.</li>
+                <li><strong>Health Issues:</strong> Cough lingers, dentist skipped (cavities loom), blood pressure climbs, or fatigue drags on.</li>
+                <li><strong>Market Volatility:</strong> "Bubble" headlines, stocks soar without earnings, or bond yields jump fast.</li>
+                <li><strong>Inflation:</strong> Gas leaps $3 to $4/gallon, grocery bags shrink, rent hikes hit your inbox.</li>
+                <li><strong>Systemic Risks:</strong> News of cyberattacks (e.g., 2021 Colonial Pipeline hack) or climate warnings (e.g., hurricane season looms).</li>
+            </ul>
+            
+            <h3>Action Steps</h3>
+            <ul>
+                <li><strong>Job:</strong> Hours drop? Save extra, job-hunt quietly.</li>
+                <li><strong>Health:</strong> Symptoms? Book a doctor, budget for co-pays.</li>
+                <li><strong>Market:</strong> Bubble talk? Pull some cash, diversify.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Activity: Warning Sign Checklist</h3>
+                <ol>
+                    <li>For your top risk from Section 4, list two warning signs (e.g., "Job loss—fewer shifts, tense meetings").</li>
+                    <li>Write one action per sign (e.g., "Fewer shifts—save $100, Tense meetings—update resume").</li>
+                    <li>Bonus: Set a Google Alert for "[your industry] news" or "inflation trends"—stay woke.</li>
+                </ol>
+                <textarea placeholder="Write your warning sign checklist here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Financial Warning Signs Checklist</h3>
+                
+                <div class="warning-sign">
+                    <div class="warning-icon"><i class="fas fa-briefcase"></i></div>
+                    <div>
+                        <strong>Job Warning Signs:</strong>
+                        <ul style="margin-top: 5px; margin-bottom: 0;">
+                            <li>Company layoff rumors</li>
+                            <li>Declining industry growth</li>
+                            <li>Reduced work hours</li>
+                            <li>Company stock price falling</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="warning-sign">
+                    <div class="warning-icon"><i class="fas fa-heartbeat"></i></div>
+                    <div>
+                        <strong>Health Warning Signs:</strong>
+                        <ul style="margin-top: 5px; margin-bottom: 0;">
+                            <li>Persistent symptoms</li>
+                            <li>Skipped check-ups</li>
+                            <li>Family health history</li>
+                            <li>Insurance gaps</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="warning-sign">
+                    <div class="warning-icon"><i class="fas fa-chart-line"></i></div>
+                    <div>
+                        <strong>Market Warning Signs:</strong>
+                        <ul style="margin-top: 5px; margin-bottom: 0;">
+                            <li>Extreme market valuations</li>
+                            <li>Interest rate shifts</li>
+                            <li>"Bubble" headlines</li>
+                            <li>Yield curve inversions</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="warning-sign">
+                    <div class="warning-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div>
+                        <strong>Inflation Warning Signs:</strong>
+                        <ul style="margin-top: 5px; margin-bottom: 0;">
+                            <li>Rising fuel prices</li>
+                            <li>Increasing food costs</li>
+                            <li>Housing market price jumps</li>
+                            <li>Wage pressures</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.thebalance.com/top-10-financial-mistakes-1289536" target="_blank">The Balance: Financial Red Flags</a> – Spot trouble fast.</p>
+        </section>
+
+        <!-- Section 6: Real-Life Examples -->
+        <section>
+            <h2>Real-Life Examples of Financial Risks – Lessons from the Trenches</h2>
+            <p>
+                Stories make risks real. Let's learn from wins and wipeouts.
+            </p>
+            
+            <div class="story-box">
+                <h4>Story 1: Jamal's Blind Spot</h4>
+                <p>
+                    Jamal, 29, a barista, saw his café's traffic fade in 2020. He ignored it—laid off with $200 saved. Rent lagged; $1,800 in debt piled up.
+                </p>
+                <p><strong>Takeaway:</strong> Trends don't lie—act early.</p>
+            </div>
+            
+            <div class="story-box">
+                <h4>Story 2: Elena's Health Bet</h4>
+                <p>
+                    Elena, 52, skipped $50 mammograms. Breast cancer struck—$30,000 in bills, 401(k) drained.
+                </p>
+                <p><strong>Takeaway:</strong> Prevention beats regret.</p>
+            </div>
+            
+            <div class="story-box">
+                <h4>Story 3: Raj's Crypto Bust</h4>
+                <p>
+                    Raj, 38, bet $12,000 on crypto in 2021. A 70% crash left $3,600—he sold, losing $8,400.
+                </p>
+                <p><strong>Takeaway:</strong> Diversify or dive.</p>
+            </div>
+            
+            <div class="story-box">
+                <h4>Story 4: Ana's Wildfire Woe</h4>
+                <p>
+                    In 2019, a wildfire torched Ana's uninsured rental—$10,000 in gear gone.
+                </p>
+                <p><strong>Takeaway:</strong> External risks don't knock.</p>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Rewrite the Story</h3>
+                <ol>
+                    <li>Pick a story. Write a 3-step plan to dodge their fate (e.g., "Jamal: 1. Track café sales, 2. Save $50/week, 3. Learn delivery skills").</li>
+                    <li>Apply to you: "For my job risk: 1. Monitor company news, 2. Save $100/month, 3. Network."</li>
+                    <li>Bonus: Share with a friend—feedback sharpens plans.</li>
+                </ol>
+                <textarea placeholder="Write your story rewrite here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Risk Stories Comparison</h3>
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 20px;">
+                    <div style="flex: 0 0 48%; background-color: #ffebee; border-radius: 5px; padding: 15px; margin-bottom: 15px;">
+                        <h4 style="color: #d32f2f; margin-top: 0;">Jamal's Missed Signs</h4>
+                        <ul style="padding-left: 20px;">
+                            <li>Ignored decreasing café traffic</li>
+                            <li>No emergency savings</li>
+                            <li>No backup plan</li>
+                        </ul>
+                        <div style="text-align: center; margin-top: 10px; color: #d32f2f;">
+                            <i class="fas fa-arrow-down" style="font-size: 20px;"></i>
+                        </div>
+                        <div style="text-align: center; background-color: #ffcdd2; padding: 10px; border-radius: 5px;">
+                            $1,800 debt + missed rent
+                        </div>
+                    </div>
+                    
+                    <div style="flex: 0 0 48%; background-color: #e8f5e9; border-radius: 5px; padding: 15px; margin-bottom: 15px;">
+                        <h4 style="color: #388e3c; margin-top: 0;">Smart Alternative</h4>
+                        <ul style="padding-left: 20px;">
+                            <li>Track industry trends</li>
+                            <li>Build 3-month emergency fund</li>
+                            <li>Develop transferable skills</li>
+                        </ul>
+                        <div style="text-align: center; margin-top: 10px; color: #388e3c;">
+                            <i class="fas fa-arrow-down" style="font-size: 20px;"></i>
+                        </div>
+                        <div style="text-align: center; background-color: #c8e6c9; padding: 10px; border-radius: 5px;">
+                            Quick job transition + no debt
+                        </div>
+                    </div>
+                </div>
+                <p>Infographic: "Jamal's Missed Signs" (traffic drop → layoff) vs. "Elena's Gamble" (no checkup → bills)—red flags in neon.</p>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.nerdwallet.com/article/finance/pandemic-financial-lessons" target="_blank">NerdWallet: Pandemic Lessons</a> – Stories with fixes.</p>
+        </section>
+
+        <!-- Section 7: Analyzing Your Risk Patterns -->
+        <section>
+            <h2>Analyzing Your Risk Patterns</h2>
+            <p>
+                Spotting risks is step one—understanding their patterns is next-level. After listing yours, let's dig deeper.
+            </p>
+            
+            <h3>How to Analyze</h3>
+            <ul>
+                <li><strong>Frequency:</strong> How often do risks pop up? (e.g., Car repairs yearly?)</li>
+                <li><strong>Triggers:</strong> What sparks them? (e.g., Winter = gig slowdown.)</li>
+                <li><strong>Overlap:</strong> Do risks combine? (e.g., Job loss + market dip = double hit.)</li>
+                <li><strong>Blind Spots:</strong> What's ignored? (e.g., No health checkups.)</li>
+            </ul>
+            
+            <h3>Example</h3>
+            <p>
+                Sam's risks: Job loss (15), car repair (10), medical bill (12). Pattern? Seasonal retail job dips every January, car's old, and he skips doctor visits—trouble brews annually.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Pattern Hunt</h3>
+                <ol>
+                    <li>Review your Section 4 risks.</li>
+                    <li>Answer: When do they hit? What sets them off? Any overlap?</li>
+                    <li>Write one pattern and a fix (e.g., "Car issues yearly—save $300 by December.").</li>
+                </ol>
+                <textarea placeholder="Write your risk pattern analysis here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Annual Risk Pattern Timeline</h3>
+                <div style="width: 100%; height: 200px; background-color: #f5f5f5; border-radius: 5px; position: relative; margin-top: 20px;">
+                    <!-- Timeline bar -->
+                    <div style="position: absolute; top: 100px; left: 0; width: 100%; height: 2px; background-color: #3f51b5;"></div>
+                    
+                    <!-- Month labels -->
+                    <div style="position: absolute; top: 110px; left: 4%; font-size: 12px;">Jan</div>
+                    <div style="position: absolute; top: 110px; left: 12.5%; font-size: 12px;">Feb</div>
+                    <div style="position: absolute; top: 110px; left: 21%; font-size: 12px;">Mar</div>
+                    <div style="position: absolute; top: 110px; left: 29.5%; font-size: 12px;">Apr</div>
+                    <div style="position: absolute; top: 110px; left: 37.5%; font-size: 12px;">May</div>
+                    <div style="position: absolute; top: 110px; left: 46%; font-size: 12px;">Jun</div>
+                    <div style="position: absolute; top: 110px; left: 54%; font-size: 12px;">Jul</div>
+                    <div style="position: absolute; top: 110px; left: 62.5%; font-size: 12px;">Aug</div>
+                    <div style="position: absolute; top: 110px; left: 70.5%; font-size: 12px;">Sep</div>
+                    <div style="position: absolute; top: 110px; left: 79%; font-size: 12px;">Oct</div>
+                    <div style="position: absolute; top: 110px; left: 87.5%; font-size: 12px;">Nov</div>
+                    <div style="position: absolute; top: 110px; left: 95.5%; font-size: 12px;">Dec</div>
+                    
+                    <!-- Risk events -->
+                    <div style="position: absolute; top: 80px; left: 4%; transform: translateX(-50%); width: 70px;">
+                        <div style="background-color: #ffcdd2; padding: 5px; border-radius: 3px; font-size: 12px; text-align: center;">Job Risk</div>
+                        <div style="width: 2px; height: 10px; background-color: #f44336; margin: 0 auto;"></div>
+                    </div>
+                    
+                    <div style="position: absolute; top: 50px; left: 37.5%; transform: translateX(-50%); width: 70px;">
+                        <div style="background-color: #bbdefb; padding: 5px; border-radius: 3px; font-size: 12px; text-align: center;">Car Repair</div>
+                        <div style="width: 2px; height: 40px; background-color: #2196f3; margin: 0 auto;"></div>
+                    </div>
+                    
+                    <div style="position: absolute; top: 30px; left: 79%; transform: translateX(-50%); width: 70px;">
+                        <div style="background-color: #c8e6c9; padding: 5px; border-radius: 3px; font-size: 12px; text-align: center;">Medical</div>
+                        <div style="width: 2px; height: 60px; background-color: #4caf50; margin: 0 auto;"></div>
+                    </div>
+                    
+                    <div style="position: absolute; top: 65px; left: 95.5%; transform: translateX(-50%); width: 70px;">
+                        <div style="background-color: #ffecb3; padding: 5px; border-radius: 3px; font-size: 12px; text-align: center;">Holidays</div>
+                        <div style="width: 2px; height: 25px; background-color: #ffc107; margin: 0 auto;"></div>
+                    </div>
+                </div>
+                <p>Timeline: Plot your risks over a year—see clusters (e.g., "Winter: Job + Car").</p>
+            </div>
+        </section>
+
+        <!-- Section 8: Common Pitfalls (and Fixes) -->
+        <section>
+            <h2>Common Pitfalls (and Fixes)</h2>
+            <p>
+                Mistakes happen—here's how to sidestep or bounce back.
+            </p>
+            
+            <h3>Pitfall 1: Ignoring Small Risks</h3>
+            <p>
+                A $200 vet bill seems minor—until it's $2,000 surgery.
+            </p>
+            <p>
+                <strong>Fix:</strong> List everything, score it—small can grow.
+            </p>
+            
+            <h3>Pitfall 2: Overreacting</h3>
+            <p>
+                Job rumor = panic-selling stocks.
+            </p>
+            <p>
+                <strong>Fix:</strong> Assess calmly—use the matrix, not fear.
+            </p>
+            
+            <h3>Pitfall 3: Missing External Signs</h3>
+            <p>
+                Inflation spikes, but you don't adjust.
+            </p>
+            <p>
+                <strong>Fix:</strong> Scan news monthly—Google "economic trends 2023."
+            </p>
+            
+            <div class="activity-box">
+                <h3>Activity: Fix the Flub</h3>
+                <p>
+                    Sam's risk list missed a $500 AC repair (Likelihood 3, Impact 4 = 12). Add it, re-prioritize, suggest a fix (e.g., "Save $50/month").
+                </p>
+                <h4>Toolkit:</h4>
+                <ul>
+                    <li>Forgot a risk? Add it—re-score.</li>
+                    <li>Overwhelmed? Focus on top 3 scores.</li>
+                    <li>Clueless? Ask a friend to spot your blind spots.</li>
+                </ul>
+                <textarea placeholder="Write your fix for the flub here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Common Risk Pitfalls & Solutions</h3>
+                <table class="asset-table">
+                    <tr>
+                        <th>Pitfall</th>
+                        <th>Example</th>
+                        <th>Fix It</th>
+                    </tr>
+                    <tr>
+                        <td>Ignoring Small Risks</td>
+                        <td>Skipping $100 car maintenance until $1,500 breakdown</td>
+                        <td>Track and score all risks, no matter how small</td>
+                    </tr>
+                    <tr>
+                        <td>Overreacting</td>
+                        <td>Selling investments in panic during market dips</td>
+                        <td>Follow your risk matrix, not emotions</td>
+                    </tr>
+                    <tr>
+                        <td>Missing External Signs</td>
+                        <td>Not preparing for rising interest rates</td>
+                        <td>Set monthly financial news review reminders</td>
+                    </tr>
+                    <tr>
+                        <td>Analysis Paralysis</td>
+                        <td>Endless research, no action</td>
+                        <td>Pick one risk, take one action this week</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 9: Interactive Activity -->
+        <section>
+            <h2>Interactive Activity – Map a Risky Week</h2>
+            <p>
+                Flex your skills with a scenario.
+            </p>
+            
+            <h3>Jamal's Week</h3>
+            <ul>
+                <li><strong>Monday:</strong> Café slow, hears layoff rumors ($0 cost yet).</li>
+                <li><strong>Tuesday:</strong> Car tire flat ($150).</li>
+                <li><strong>Wednesday:</strong> Toothache—dentist ($200).</li>
+                <li><strong>Thursday:</strong> Stock portfolio dips 10% ($500 loss).</li>
+                <li><strong>Friday:</strong> Rent due, short $300 (potential debt).</li>
+            </ul>
+            
+            <h3>Tasks</h3>
+            <ol>
+                <li>Categorize: Personal, Economic, Systemic?</li>
+                <li>Score each (Likelihood x Impact).</li>
+                <li>Prioritize—top risk? Two prep steps?</li>
+            </ol>
+            
+            <div class="result-box">
+                <p><strong>Answers:</strong> Layoff (Personal, 4x5=20), Tire (Personal, 3x3=9), Dentist (Personal, 2x4=8), Stocks (Economic, 3x4=12), Rent (Personal, 4x5=20). Top: Layoff/Rent tie—Save $100/week, job-hunt.</p>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Your Turn: Map Your Risky Week</h3>
+                <p>
+                    Map your last week—5+ risks. Categorize, score, prioritize, plan.
+                </p>
+                <textarea placeholder="List your week's risks here..." rows="8"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Jamal's Risk Week Map</h3>
+                <div style="width: 100%; height: 300px; background-color: #f5f5f5; border-radius: 5px; position: relative; margin-top: 20px;">
+                    <!-- Days of week -->
+                    <div style="position: absolute; top: 10px; left: 0; width: 100%; display: flex; justify-content: space-around;">
+                        <div style="background-color: #e3f2fd; padding: 5px; width: 18%; text-align: center; border-radius: 3px; font-weight: bold;">Monday</div>
+                        <div style="background-color: #e3f2fd; padding: 5px; width: 18%; text-align: center; border-radius: 3px; font-weight: bold;">Tuesday</div>
+                        <div style="background-color: #e3f2fd; padding: 5px; width: 18%; text-align: center; border-radius: 3px; font-weight: bold;">Wednesday</div>
+                        <div style="background-color: #e3f2fd; padding: 5px; width: 18%; text-align: center; border-radius: 3px; font-weight: bold;">Thursday</div>
+                        <div style="background-color: #e3f2fd; padding: 5px; width: 18%; text-align: center; border-radius: 3px; font-weight: bold;">Friday</div>
+                    </div>
+                    
+                    <!-- Risk events -->
+                    <div style="position: absolute; top: 50px; left: 0; width: 100%; display: flex; justify-content: space-around;">
+                        <div style="width: 18%;">
+                            <div style="background-color: #ffcdd2; padding: 10px; border-radius: 5px; text-align: center; margin-top: 10px; height: 100px;">
+                                <strong>Layoff Rumors</strong>
+                                <hr style="margin: 5px 0;">
+                                <p style="margin: 5px 0; font-size: 12px;">Personal</p>
+                                <p style="margin: 5px 0; font-size: 12px;">Score: 20 (4x5)</p>
+                                <p style="margin: 5px 0; font-size: 12px;">$0 now</p>
+                            </div>
+                        </div>
+                        
+                        <div style="width: 18%;">
+                            <div style="background-color: #f8bbd0; padding: 10px; border-radius: 5px; text-align: center; margin-top: 40px; height: 70px;">
+                                <strong>Flat Tire</strong>
+                                <hr style="margin: 5px 0;">
+                                <p style="margin: 5px 0; font-size: 12px;">Personal</p>
+                                <p style="margin: 5px 0; font-size: 12px;">Score: 9 (3x3)</p>
+                            </div>
+                        </div>
+                        
+                        <div style="width: 18%;">
+                            <div style="background-color: #e1bee7; padding: 10px; border-radius: 5px; text-align: center; margin-top: 60px; height: 50px;">
+                                <strong>Dentist</strong>
+                                <hr style="margin: 5px 0;">
+                                <p style="margin: 5px 0; font-size: 12px;">Personal</p>
+                                <p style="margin: 5px 0; font-size: 12px;">Score: 8 (2x4)</p>
+                            </div>
+                        </div>
+                        
+                        <div style="width: 18%;">
+                            <div style="background-color: #c5cae9; padding: 10px; border-radius: 5px; text-align: center; margin-top: 30px; height: 80px;">
+                                <strong>Stock Dip</strong>
+                                <hr style="margin: 5px 0;">
+                                <p style="margin: 5px 0; font-size: 12px;">Economic</p>
+                                <p style="margin: 5px 0; font-size: 12px;">Score: 12 (3x4)</p>
+                                <p style="margin: 5px 0; font-size: 12px;">$500 paper loss</p>
+                            </div>
+                        </div>
+                        
+                        <div style="width: 18%;">
+                            <div style="background-color: #ffcdd2; padding: 10px; border-radius: 5px; text-align: center; margin-top: 10px; height: 100px;">
+                                <strong>Rent Shortage</strong>
+                                <hr style="margin: 5px 0;">
+                                <p style="margin: 5px 0; font-size: 12px;">Personal</p>
+                                <p style="margin: 5px 0; font-size: 12px;">Score: 20 (4x5)</p>
+                                <p style="margin: 5px 0; font-size: 12px;">$300 short</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="position: absolute; bottom: 20px; left: 0; width: 100%; text-align: center; font-weight: bold; color: #3f51b5;">
+                        Priority: Layoff/Rent (tie) → Save $100/week + Job Hunt
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10: Reflection -->
+        <section>
+            <h2>Reflection – Crafting Your Risk Action Plan</h2>
+            <p>
+                Turn insight into action.
+            </p>
+            
+            <h3>Prompts</h3>
+            <ol>
+                <li>Top risk today?</li>
+                <li>Likelihood (1-5)? Impact (1-5)?</li>
+                <li>Two steps to tackle it?</li>
+                <li>How to track progress?</li>
+            </ol>
+            
+            <div class="activity-box">
+                <h3>Activity: Mini-Plan</h3>
+                <p>
+                    Write: "My biggest risk is [X]. I'll [Y] by [Z date], checking [how]."
+                </p>
+                <p><em>Example: "Risk: Job loss. I'll save $150/month by cutting dining, starting Saturday, and check my savings app weekly."</em></p>
+                <p><strong>Bonus:</strong> Tell a friend—"I'm saving $100/month, nudge me!"</p>
+                <textarea placeholder="Write your mini-plan here..." rows="6"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: Risk Action Plan Template</h3>
+                <table class="asset-table">
+                    <tr>
+                        <th>Risk</th>
+                        <th>Action</th>
+                        <th>Progress</th>
+                    </tr>
+                    <tr>
+                        <td>Car breakdown</td>
+                        <td>Save $75/month</td>
+                        <td>$150 by January</td>
+                    </tr>
+                    <tr>
+                        <td>Health issue</td>
+                        <td>Get insurance quote</td>
+                        <td>Applied by November</td>
+                    </tr>
+                    <tr>
+                        <td>Job insecurity</td>
+                        <td>Update resume</td>
+                        <td>Complete by October</td>
+                    </tr>
+                    <tr>
+                        <td>Market volatility</td>
+                        <td>Diversify portfolio</td>
+                        <td>30% bonds by December</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 11: Quiz -->
+        <section>
+            <h2>Quiz – Prove Your Risk Mastery</h2>
+            <p>
+                Test your radar!
+            </p>
+            
+            <div class="quiz">
+                <div class="quiz-item">
+                    <p><strong>1. Financial risks include:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q1" id="q1a" value="A"> <label for="q1a">Only external events</label></div>
+                        <div><input type="radio" name="q1" id="q1b" value="B"> <label for="q1b">Personal and external factors</label></div>
+                        <div><input type="radio" name="q1" id="q1c" value="C"> <label for="q1c">Just bad luck</label></div>
+                    </div>
+                    <p class="quiz-explanation" style="font-style: italic; font-size: 14px; color: #666;">B – Both personal and external factors can impact your financial health.</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>2. A $5,000 medical bill's impact is:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q2" id="q2a" value="A"> <label for="q2a">Minor</label></div>
+                        <div><input type="radio" name="q2" id="q2b" value="B"> <label for="q2b">Severe if unprepared</label></div>
+                        <div><input type="radio" name="q2" id="q2c" value="C"> <label for="q2c">Always covered</label></div>
+                    </div>
+                    <p class="quiz-explanation" style="font-style: italic; font-size: 14px; color: #666;">B – Without an emergency fund, a $5,000 bill can cause significant financial stress.</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>3. Warning signs help by:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q3" id="q3a" value="A"> <label for="q3a">Predicting exact events</label></div>
+                        <div><input type="radio" name="q3" id="q3b" value="B"> <label for="q3b">Giving prep time</label></div>
+                        <div><input type="radio" name="q3" id="q3c" value="C"> <label for="q3c">Making you paranoid</label></div>
+                    </div>
+                    <p class="quiz-explanation" style="font-style: italic; font-size: 14px; color: #666;">B – Early warning signs give you valuable time to prepare and mitigate risks.</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>4. Risk matrix prioritizes:</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q4" id="q4a" value="A"> <label for="q4a">Low-likelihood risks</label></div>
+                        <div><input type="radio" name="q4" id="q4b" value="B"> <label for="q4b">High-impact, high-likelihood risks</label></div>
+                        <div><input type="radio" name="q4" id="q4c" value="C"> <label for="q4c">Everything equally</label></div>
+                    </div>
+                    <p class="quiz-explanation" style="font-style: italic; font-size: 14px; color: #666;">B – Focus your attention on risks that are both likely to happen and would have a major impact.</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <p><strong>5. Personal risk example?</strong></p>
+                    <div class="quiz-options">
+                        <div><input type="radio" name="q5" id="q5a" value="A"> <label for="q5a">Recession</label></div>
+                        <div><input type="radio" name="q5" id="q5b" value="B"> <label for="q5b">Job loss</label></div>
+                        <div><input type="radio" name="q5" id="q5c" value="C"> <label for="q5c">Inflation</label></div>
+                    </div>
+                    <p class="quiz-explanation" style="font-style: italic; font-size: 14px; color: #666;">B – Job loss directly affects your personal income and financial situation.</p>
+                </div>
+                
+                <button onclick="checkQuiz()">Submit Quiz</button>
+                <div id="quiz-result" class="result-box" style="display: none;"></div>
+            </div>
+            
+            <div class="activity-box">
+                <h3>Activity: Quiz Reflection</h3>
+                <p>
+                    Take the quiz (5 minutes). For each miss, write a takeaway (e.g., "Risks aren't just luck—they're manageable"). 5/5? High-five yourself!
+                </p>
+                <textarea placeholder="Write your quiz reflections here..." rows="4"></textarea>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2>Conclusion: Your Risk Radar Is Locked and Loaded!</h2>
+            <p>
+                You've leveled up from risk rookie to financial defender! With categories, tools, patterns, and plans, you're ready to spot and stop threats before they strike. Start now—list one risk, score it, and take one step this week (e.g., save $20). Next, Lesson 2 adds insurance to your toolkit.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Action Steps:</h3>
+                <ol>
+                    <li>Pinpoint your top risk—write it, date it.</li>
+                    <li>Do one thing—e.g., Google "emergency fund calculator."</li>
+                    <li>Tell someone—"I'm prepping for [risk], check in next week!"</li>
+                </ol>
+                <textarea placeholder="Write your action steps here..." rows="4"></textarea>
+            </div>
+            
+            <h3>Next Up:</h3>
+            <p>
+                <a href="section4lesson2.html">Lesson 2 – Insurance Essentials: Fortifying Your Financial Fortress</a>
+            </p>
+            
+            <div class="result-box">
+                <h3>Resources:</h3>
+                <ul>
+                    <li><a href="https://www.investopedia.com/terms/r/risk.asp" target="_blank">Investopedia</a></li>
+                    <li><a href="https://www.nerdwallet.com/article/finance/financial-emergency-plan" target="_blank">NerdWallet</a></li>
+                    <li><a href="https://www.thebalance.com/top-10-financial-mistakes-1289536" target="_blank">The Balance</a></li>
+                    <li><a href="https://www.khanacademy.org/college-careers-more/personal-finance" target="_blank">Khan Academy</a></li>
+                </ul>
+            </div>
+            
+            <p>
+                Your financial fortress stands taller—keep fortifying!
+            </p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>FinanceCourse</h3>
+                <p>Learn to secure your financial future with our comprehensive education platform.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="learn.html">Courses</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Financial Glossary</a></li>
+                    <li><a href="#">Calculators</a></li>
+                    <li><a href="#">Market Updates</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 FinanceCourse. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 5: Investment Strategies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #5b3fd8;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #3f51b5, #5b3fd8);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background-color: #fff;
+            color: #5b3fd8;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #eaeaea;
+        }
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #3f51b5;
+            border-bottom: 2px solid #3f51b5;
+            padding-bottom: 10px;
+        }
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .content-section ul {
+            margin-left: 20px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: #ccc;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Form and Activity Styles */
+        .activity-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3f51b5;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .result-box {
+            background-color: #e9f5ff;
+            border-left: 4px solid #3f51b5;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quiz-item {
+            margin-bottom: 15px;
+        }
+        .quiz-options {
+            margin-left: 20px;
+        }
+        .quiz button {
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .quiz button:hover {
+            background-color: #303f9f;
+        }
+        /* Lesson-specific styles */
+        .example-box {
+            background-color: #f0f4ff;
+            border: 1px solid #d0d9ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #3f51b5;
+            color: white;
+        }
+        .visual-aid {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .visual-aid img {
+            max-width: 100%;
+            height: auto;
+        }
+        .calculator-button {
+            display: inline-block;
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+            text-decoration: none;
+        }
+        .calculator-button:hover {
+            background-color: #303f9f;
+        }
+        .graph-placeholder {
+            height: 200px;
+            background-color: #f0f4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .case-study {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid #3f51b5;
+        }
+        .case-study h3 {
+            color: #3f51b5;
+            margin-top: 0;
+        }
+        .strategy-compare {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .strategy-item {
+            flex: 1;
+            min-width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+        .strategy-item h4 {
+            color: #3f51b5;
+            margin-top: 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .asset-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .asset-table th, .asset-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .asset-table th {
+            background-color: #f2f2f2;
+        }
+        .asset-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .stats-highlight {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3f51b5;
+            display: block;
+            margin: 15px 0;
+        }
+        .portfolio-comparison {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .portfolio-type {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .long-term {
+            background-color: #e8f5e9;
+            border: 1px solid #a5d6a7;
+        }
+        .short-term {
+            background-color: #f3e5f5;
+            border: 1px solid #ce93d8;
+        }
+        .football-field {
+            height: 150px;
+            background: linear-gradient(to right, #4caf50, #ffeb3b, #f44336);
+            border-radius: 5px;
+            position: relative;
+            margin: 30px 0;
+        }
+        .player-marker {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 3px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .tortoise {
+            left: 20%;
+            bottom: 10px;
+        }
+        .hare {
+            right: 20%;
+            bottom: 10px;
+        }
+        .timeline-marker {
+            position: absolute;
+            bottom: -15px;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .timeline-start {
+            left: 0;
+        }
+        .timeline-end {
+            right: 0;
+            transform: translateX(50%);
+        }
+        .pie-chart {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 20px auto;
+            position: relative;
+        }
+        .core-satellite-chart {
+            background: conic-gradient(
+                #3f51b5 0% 80%,
+                #f44336 80% 100%
+            );
+        }
+        .pie-legend {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+        }
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            border-radius: 3px;
+        }
+        .bar-chart {
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .bar {
+            width: 60px;
+            background-color: #3f51b5;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            color: white;
+            padding-bottom: 10px;
+        }
+        .bar-label {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        function scrollToSection(e) {
+            e.preventDefault();
+            const target = document.querySelector('#section1');
+            const offset = target.getBoundingClientRect().top + window.pageYOffset - 660;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            if (document.querySelector('input[name="q1"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q4"]:checked')?.value === 'B') score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === 'B') score++;
+            
+            document.getElementById('quiz-result').innerHTML = `You scored ${score} out of 5. ${score >= 4 ? 'Excellent! You\'ve mastered investing strategies!' : score >= 3 ? 'Good job! Review the material to optimize your strategy.' : 'Keep studying those investment strategies!'}`;
+            document.getElementById('quiz-result').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">FinanceCourse</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Investing for Beginners: Lesson 5 – Investment Strategies: Your Ultimate Wealth Playbook</h1>
+        <p>Master the strategies that turn average investors into wealth-builders, customized to your goals and personality.</p>
+        <a href="#section1" class="cta-button" onclick="scrollToSection(event)">Start Learning!</a>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content-section" id="lessons">
+        <!-- Overview -->
+        <section>
+            <h2>Overview: Building Your Financial Game Plan</h2>
+            <p>
+                Welcome back to Investing for Beginners! In Lesson 4, you assembled your portfolio—a tailored mix of investments reflecting your goals. Now, Lesson 5 elevates you from builder to strategist. This isn't just about picking stocks—it's about mastering the how and why behind growing your wealth. We're diving deep into long-term vs. short-term investing, active vs. passive approaches, dollar-cost averaging, professional guidance, blended strategies, and the discipline to make it all stick. Here's your roadmap:
+            </p>
+            <ul>
+                <li>Comprehensive Strategy Deep Dives: Pros, cons, numbers, and real-world triumphs for every approach.</li>
+                <li>Interactive Tools: Quizzes, simulations, reflection prompts, and hands-on activities to lock in your learning.</li>
+                <li>Dollar-Cost Averaging: A beginner-friendly tactic to invest smarter, not harder.</li>
+                <li>Expert Guidance: When and how to leverage pros without losing control—or your budget.</li>
+                <li>Strategy Fusion: Combine approaches for a portfolio that's stable yet bold.</li>
+                <li>Discipline Mastery: Habits and mindsets to weather market storms and stay on track.</li>
+                <li>Pattern Analysis: Spot trends in your choices to refine your playbook.</li>
+                <li>Pitfall Protection: Avoid rookie mistakes with a troubleshooting toolkit.</li>
+            </ul>
+            <p>
+                By the end, you'll wield a custom strategy that turns your portfolio into a wealth-building powerhouse—whether you're dreaming of a cozy retirement or a bold financial leap. Let's craft your winning playbook!
+            </p>
+        </section>
+
+        <!-- Introduction: Your Investing Playbook Unleashed -->
+        <section id="section1">
+            <h2>Introduction: Your Investing Playbook Unleashed</h2>
+            <p>
+                Investing strategies are your financial game plans. Some stack slow, steady wins—like a chess grandmaster plotting decades ahead—while others chase quick, flashy gains—like a poker player reading the table. Are you the patient tortoise or the daring hare? This lesson equips you to choose, blending practicality with ambition to match your pace, goals, and vibe. From hands-off wealth-building to active market plays, your winning moves start here.
+            </p>
+            
+            <h3>Why It's Critical:</h3>
+            <p>
+                A strategy isn't just a preference—it's your edge. Nail it, and your money multiplies with purpose. Fumble it, and you're stuck with stress or stagnation. Think of this as your playbook: every section adds a play, every activity sharpens your skills.
+            </p>
+            
+            <h3>Real-Life Hook:</h3>
+            <p>
+                Meet Alex, a 32-year-old teacher. She started with $500 and a passive strategy—10 years later, it's $1,200 without extra effort. Then there's Jay, a 25-year-old coder, who flipped a $1,000 stock pick into $1,500 in six months. Both won—differently. What's your win?
+            </p>
+            
+            <div class="activity-box">
+                <h3>Reflection Prompt: Tortoise or Hare?</h3>
+                <p>
+                    Are you a patient builder or a fast-action seeker? Write a quick sentence on how that might shape your investing style, plus one goal it could fuel.
+                </p>
+                <p><em>Example: "I'm a tortoise—I'd hold investments forever to save $50,000 for a house."</em></p>
+                <textarea placeholder="Write your reflection here..." rows="3"></textarea>
+            </div>
+            
+            <div class="visual-aid">
+                <h3>Visual Aid: The Investment Field</h3>
+                <div class="football-field">
+                    <div class="player-marker tortoise">T</div>
+                    <div class="player-marker hare">H</div>
+                    <div class="timeline-marker timeline-start">SHORT-TERM</div>
+                    <div class="timeline-marker timeline-end">LONG-TERM</div>
+                </div>
+                <p>Picture a football field. The tortoise trudges toward the "long-term" end zone, scoring with compounding. The hare dashes to the "short-term" goalpost, risking a fumble for speed. Where's your starting line?</p>
+            </div>
+        </section>
+
+        <!-- Section 1: Long-Term vs. Short-Term Investing -->
+        <section>
+            <h2>Long-Term vs. Short-Term Investing</h2>
+            <p>
+                Your timeline sets the stage—long-term for steady growth, short-term for rapid plays. Let's unpack both with depth, examples, and an interactive twist.
+            </p>
+            
+            <h3>Long-Term Investing: The Compounding Powerhouse</h3>
+            <p>
+                <strong>Definition:</strong> Holding investments for 5+ years—perfect for big dreams like retirement, a kid's college fund, or a dream cabin.
+            </p>
+            
+            <h3>How It Works</h3>
+            <ul>
+                <li><strong>Compounding Magic:</strong> $1,000 at 7% annual growth becomes $1,070 after year one, then $1,144.90 in year two—your gains earn gains. After 20 years? $3,869.68. After 30? $7,612.26. Time is your MVP.</li>
+                <li><strong>Tax Breaks:</strong> Long-term capital gains tax (0-20%) beats short-term rates (up to 37%). Sell a $10,000 stock after a year for $12,000? Pay $0-$400 tax vs. $740 short-term.</li>
+                <li><strong>Resilience:</strong> Markets dip (e.g., 2008 crash), but recover (S&P 500 tripled by 2018). Patience wins.</li>
+            </ul>
+            
+            <p>
+                <strong>Real-Life Example:</strong> Warren Buffett bought $10 million of Coca-Cola stock in 1988. By 2023, it's worth over $300 million—decades of dividends and growth.
+            </p>
+            
+            <h3>Short-Term Investing: The High-Stakes Hustle</h3>
+            <p>
+                <strong>Definition:</strong> Buying and selling within months or 1-3 years—think flipping a stock for a quick 15% gain or riding a trend.
+            </p>
+            
+            <h3>How It Works</h3>
+            <ul>
+                <li><strong>Quick Cash:</strong> Buy a biotech stock at $10, sell at $12 in six months—$200 profit on $1,000 (before fees and taxes).</li>
+                <li><strong>High Risk:</strong> A 10% drop wipes out $100 fast—volatility bites.</li>
+                <li><strong>Costly:</strong> Trading fees ($5-$10 per trade) and short-term taxes (up to 37%) shrink profits. That $200 gain? After $10 fees and $74 tax, it's $116 net.</li>
+            </ul>
+            
+            <p>
+                <strong>Real-Life Example:</strong> In 2021, traders jumped on GameStop at $20, sold at $80—a 300% win in weeks. But latecomers buying at $300 saw it crash to $40—timing is everything.
+            </p>
+            
+            <h3>Which Fits You?</h3>
+            <ul>
+                <li><strong>Long-Term:</strong> Most beginners thrive here—low effort, big rewards over time.</li>
+                <li><strong>Short-Term:</strong> Demands research, time, and grit—best for risk-takers with market savvy.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Strategy Showdown</h3>
+                <ol>
+                    <li>List two pros and two cons for each:
+                        <br><em>"Long-term: Pros—compounding, low stress; Cons—slow gains, tied-up cash. Short-term: Pros—fast profits, excitement; Cons—risky, tax hit."</em>
+                    </li>
+                    <li>Which pulls you more? Write why, tying it to a goal:
+                        <br><em>"Long-term—I want $100,000 for retirement without daily worry."</em>
+                    </li>
+                    <li>Simulate $1,000:
+                        <br>Long-term: 7% for 10 years = ? (Hint: $1,967)
+                        <br>Short-term: 15% in 1 year, minus $10 fee and 25% tax = ? (Hint: $105 net)
+                        <br><em>"Long-term grows to $1,967; short-term nets $105—patience pays!"</em>
+                    </li>
+                </ol>
+                <textarea placeholder="Write your strategy comparison here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Investment Approach Comparison</h4>
+                <table class="asset-table">
+                    <tr>
+                        <th>Approach</th>
+                        <th>Timeline</th>
+                        <th>Risk</th>
+                        <th>Effort</th>
+                        <th>Reward</th>
+                        <th>Best For</th>
+                    </tr>
+                    <tr>
+                        <td>Long-Term</td>
+                        <td>5-30+ years</td>
+                        <td>Medium</td>
+                        <td>Low</td>
+                        <td>High (Compounded)</td>
+                        <td>Patient Planners</td>
+                    </tr>
+                    <tr>
+                        <td>Short-Term</td>
+                        <td>&lt;3 years</td>
+                        <td>High</td>
+                        <td>High</td>
+                        <td>Variable (Quick)</td>
+                        <td>Bold Risk-Takers</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/l/longterminvestments.asp" target="_blank">Investopedia: Long-Term Investing</a> – Data-driven proof of patience's power.</p>
+        </section>
+
+        <!-- Section 2: Active vs. Passive Investing -->
+        <section>
+            <h2>Active vs. Passive Investing</h2>
+            <p>
+                How hands-on are you? Active investing hunts for market-beating wins; passive rides the wave with ease. Let's dive deeper.
+            </p>
+            
+            <h3>Active Investing: The Market-Beater's Quest</h3>
+            <p>
+                <strong>Definition:</strong> Picking stocks (e.g., Tesla over Ford) or timing trades to outpace indexes like the S&P 500.
+            </p>
+            
+            <h3>How It Works</h3>
+            <ul>
+                <li><strong>Upside:</strong> Nail a winner like Amazon in 2010 ($130) to 2020 ($3,200)—a 2,360% gain.</li>
+                <li><strong>Downside:</strong> Fees (1-2% yearly) and effort pile up. On $10,000, that's $100-$200 gone annually.</li>
+                <li><strong>Stats:</strong> Over 10 years, 85% of active funds lag the S&P 500—skill matters, but luck looms large.</li>
+            </ul>
+            
+            <p>
+                <strong>Real-Life Example:</strong> A hedge fund manager in 2022 bet on tech rebounds, gaining 15% ($1,500 on $10,000)—but after 2% fees ($200), it's $1,300 net.
+            </p>
+            
+            <h3>Passive Investing: The Market-Matcher's Edge</h3>
+            <p>
+                <strong>Definition:</strong> Buying index funds or ETFs (e.g., SPY or VOO) to mirror market returns—think 7-10% yearly over decades.
+            </p>
+            
+            <h3>How It Works</h3>
+            <ul>
+                <li><strong>Low Cost:</strong> VOO's fee is 0.03%—$3 on $10,000 yearly.</li>
+                <li><strong>Low Effort:</strong> No stock-picking—just buy and hold.</li>
+                <li><strong>Reliable:</strong> S&P 500 averaged 10% annually (1926-2023), beating most pros.</li>
+            </ul>
+            
+            <p>
+                <strong>Real-Life Example:</strong> In 2020, a $1,000 VOO investment grew 18% to $1,180, minus $0.30 fees—$1,179.70 net. Passive outdid many active bets that year.
+            </p>
+            
+            <h3>Numbers Face-Off</h3>
+            <ul>
+                <li><strong>Active:</strong> $1,000, 12% gain ($120), minus $20 fees = $100 net.</li>
+                <li><strong>Passive:</strong> $1,000, 10% gain ($100), minus $0.50 fees = $99.50 net. Passive's simplicity often closes the gap—or wins—over time.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Fund Face-Off</h3>
+                <ol>
+                    <li>Visit Morningstar. Compare Vanguard's VFIAX (active) and VOO (passive).</li>
+                    <li>Note 5-year returns and fees:
+                        <br><em>"VFIAX: 11%, 0.04% fee; VOO: 11.2%, 0.03% fee—VOO's cheaper and slightly ahead."</em>
+                    </li>
+                    <li>Which would you pick? Write why, plus a goal it fits:
+                        <br><em>"VOO—lower fees, less hassle, perfect for my $20,000 college fund."</em>
+                    </li>
+                </ol>
+                <p><strong>Bonus:</strong> If investing were a sport, active's boxing (skill + risk), passive's jogging (steady + safe). Which are you?
+                    <br><em>"Jogging—I'd rather pace myself to a win."</em>
+                </p>
+                <textarea placeholder="Write your fund comparison here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Active vs. Passive Returns</h4>
+                <div class="bar-chart">
+                    <!-- Active Returns -->
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div style="display: flex; height: 200px; align-items: flex-end;">
+                            <div class="bar" style="height: 60%; margin: 0 5px;">-5%</div>
+                            <div class="bar" style="height: 120%; margin: 0 5px;">15%</div>
+                            <div class="bar" style="height: 40%; margin: 0 5px;">-8%</div>
+                            <div class="bar" style="height: 150%; margin: 0 5px;">20%</div>
+                            <div class="bar" style="height: 80%; margin: 0 5px;">5%</div>
+                        </div>
+                        <div class="bar-label"><strong>Active</strong><br>(Volatile)</div>
+                    </div>
+                    
+                    <!-- Passive Returns -->
+                    <div style="display: flex; flex-direction: column; align-items: center; margin-left: 20px;">
+                        <div style="display: flex; height: 200px; align-items: flex-end;">
+                            <div class="bar" style="height: 90%; background-color: #4caf50; margin: 0 5px;">8%</div>
+                            <div class="bar" style="height: 100%; background-color: #4caf50; margin: 0 5px;">9%</div>
+                            <div class="bar" style="height: 110%; background-color: #4caf50; margin: 0 5px;">10%</div>
+                            <div class="bar" style="height: 95%; background-color: #4caf50; margin: 0 5px;">8.5%</div>
+                            <div class="bar" style="height: 105%; background-color: #4caf50; margin: 0 5px;">9.5%</div>
+                        </div>
+                        <div class="bar-label"><strong>Passive</strong><br>(Consistent)</div>
+                    </div>
+                </div>
+                <p>Bar chart: Active returns (wild swings—some high, many low) vs. Passive (consistent, near 10%). Passive's steady climb shines!</p>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/p/passiveinvesting.asp" target="_blank">Investopedia: Passive Investing</a> – Why simple often trumps complex.</p>
+        </section>
+
+        <!-- Section 3: Dollar-Cost Averaging -->
+        <section>
+            <h2>Dollar-Cost Averaging (DCA): Your Stress-Free Investing Hack</h2>
+            <p>
+                DCA turns market chaos into your ally—let's master it with examples and a simulation.
+            </p>
+            
+            <h3>What Is DCA?</h3>
+            <p>
+                Invest a fixed amount regularly—say, $100 monthly—buying more shares when prices drop, fewer when they rise. It's about consistency, not timing.
+            </p>
+            
+            <h3>How It Works</h3>
+            <ul>
+                <li><strong>Mechanics:</strong> $100 buys 2 shares of an ETF at $50, but 4 at $25. Over 12 months, prices average $33.33/share—not $50 if you'd dumped it all at once.</li>
+                <li><strong>Real-Life Math:</strong> $1,200 yearly ($100/month) in VOO since January 2020. March 2020 dip ($280/share) got you 0.36 shares; 2021 peak ($440) got 0.23. By 2023 ($400/share), your 3.6 shares = $1,440—beating a $1,200 lump sum at $400 ($1,200).</li>
+            </ul>
+            
+            <h3>Why It Wins</h3>
+            <ul>
+                <li><strong>No Guesswork:</strong> Markets are erratic—DCA sidesteps the "when" trap.</li>
+                <li><strong>Volatility Friend:</strong> Cheap shares in dips boost your average return.</li>
+                <li><strong>Habit Builder:</strong> Regular investing becomes second nature.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: DCA Simulation</h3>
+                <ol>
+                    <li>Check VOO's price history on Yahoo Finance. Pick 24 months (e.g., Jan 2022-Dec 2023).</li>
+                    <li>Simulate $50 monthly buys:
+                        <br><em>"Jan 2022: $50 / $400 = 0.125 shares; Mar 2022: $50 / $350 = 0.143 shares…"</em>
+                    </li>
+                    <li>Total shares and value at today's price (e.g., $450):
+                        <br><em>"24 × $50 = $1,200 invested. 3.4 shares × $450 = $1,530—$330 gain!"</em>
+                    </li>
+                    <li>Compare to $1,200 lump sum in Jan 2022 ($400/share = 3 shares = $1,350 now). Write who wins:
+                        <br><em>"DCA wins—$1,530 vs. $1,350. Steady beats timing!"</em>
+                    </li>
+                </ol>
+                <textarea placeholder="Write your DCA simulation here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>DCA in Action: VOO Price 2022-2023</h4>
+                <div style="height: 250px; background-color: #f8f9fa; border-radius: 5px; position: relative; margin-top: 20px; padding: 10px;">
+                    <!-- Simulated price chart line -->
+                    <div style="position: absolute; top: 50px; left: 40px; right: 40px; height: 150px;">
+                        <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <path d="M0,50 C10,40 15,60 25,50 C35,40 40,70 50,55 C60,40 70,20 80,30 C90,40 100,20 100,25" stroke="#3f51b5" stroke-width="2" fill="none" />
+                        </svg>
+                    </div>
+                    
+                    <!-- Monthly buy points -->
+                    <div style="position: absolute; top: 95px; left: 50px; width: 10px; height: 10px; background-color: #f44336; border-radius: 50%;"></div>
+                    <div style="position: absolute; top: 75px; left: 80px; width: 10px; height: 10px; background-color: #f44336; border-radius: 50%;"></div>
+                    <div style="position: absolute; top: 55px; left: 120px; width: 10px; height: 10px; background-color: #f44336; border-radius: 50%;"></div>
+                    <div style="position: absolute; top: 110px; left: 150px; width: 10px; height: 10px; background-color: #f44336; border-radius: 50%;"></div>
+                    <div style="position: absolute; top: 65px; left: 180px; width: 10px; height: 10px; background-color: #f44336; border-radius: 50%;"></div>
+                    <div style="position: absolute; top: 45px; left: 210px; width: 10px; height: 10px; background-color: #f44336; border-radius: 50%;"></div>
+                    
+                    <div style="position: absolute; bottom: 5px; left: 0; right: 0; text-align: center; font-size: 12px;">
+                        <span style="margin: 0 20px;">Jan 2022</span>
+                        <span style="margin: 0 20px;">Jul 2022</span>
+                        <span style="margin: 0 20px;">Jan 2023</span>
+                        <span style="margin: 0 20px;">Jul 2023</span>
+                    </div>
+                </div>
+                <p>Line graph: VOO's price (2022-2023) with $50 monthly buys marked. Watch DCA scoop up more shares in dips!</p>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/d/dollarcostaveraging.asp" target="_blank">Investopedia: Dollar-Cost Averaging</a> – Examples and math to prove DCA's edge.</p>
+        </section>
+
+        <!-- Section 4: Seeking Professional Help -->
+        <section>
+            <h2>Seeking Professional Help: When to Call the Experts</h2>
+            <p>
+                DIY is great—until it's not. Let's explore when pros add value, with options and a cost-benefit check.
+            </p>
+            
+            <h3>When to Seek Help</h3>
+            <ul>
+                <li><strong>Complex Finances:</strong> Inheritances, tax mazes, or juggling five goals.</li>
+                <li><strong>Time Crunch:</strong> Full-time job, kids—no room for research.</li>
+                <li><strong>Beginner Jitters:</strong> Overwhelmed by choices or market noise.</li>
+            </ul>
+            
+            <h3>Options Explored</h3>
+            <h4>Financial Advisors:</h4>
+            <ul>
+                <li><strong>Cost:</strong> 1% of assets—$100/year on $10,000.</li>
+                <li><strong>Value:</strong> Custom plans, tax strategies, big-picture advice.</li>
+                <li><strong>Example:</strong> A 50-year-old with $200,000 gets a retirement roadmap—worth $2,000/year? Maybe.</li>
+            </ul>
+            
+            <h4>Robo-Advisors:</h4>
+            <ul>
+                <li><strong>Cost:</strong> 0.25%—$25/year on $10,000 (e.g., Wealthfront, Betterment).</li>
+                <li><strong>Value:</strong> Auto-builds and rebalances your portfolio—70% stocks, 30% bonds, tweaked as markets shift.</li>
+                <li><strong>Example:</strong> $1,000 in Betterment grows at 8% ($80), minus $2.50 fee—$77.50 net.</li>
+            </ul>
+            
+            <h3>DIY vs. Help</h3>
+            <ul>
+                <li><strong>DIY:</strong> Free but time-heavy—research, monitor, adjust.</li>
+                <li><strong>Pros:</strong> Saves time, adds expertise—cost vs. convenience trade-off.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Pro vs. DIY Calculator</h3>
+                <ol>
+                    <li>Visit Wealthfront—note its $500 minimum and 0.25% fee.</li>
+                    <li>Calculate: $5,000 portfolio—Wealthfront's fee vs. advisor's:
+                        <br><em>"Robo: $12.50/year. Advisor: $50/year—robo's $37.50 cheaper!"</em>
+                    </li>
+                    <li>Write if it's for you, plus a goal it fits:
+                        <br><em>"Yes—$12.50/year for auto-management fits my $10,000 emergency fund plan."</em>
+                    </li>
+                </ol>
+                <p><strong>Bonus:</strong> If DIY takes 5 hours/month (worth $20/hour), that's $100 cost. Compare:
+                    <br><em>"DIY: $100. Robo: $12.50. Robo wins!"</em>
+                </p>
+                <textarea placeholder="Write your pro vs. DIY calculation here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Investment Management Options Comparison</h4>
+                <table class="asset-table">
+                    <tr>
+                        <th>Option</th>
+                        <th>Cost/Year</th>
+                        <th>Effort</th>
+                        <th>Best For</th>
+                    </tr>
+                    <tr>
+                        <td>DIY</td>
+                        <td>$0 (+ time)</td>
+                        <td>High</td>
+                        <td>Hands-on learners</td>
+                    </tr>
+                    <tr>
+                        <td>Advisor</td>
+                        <td>1% ($50+)</td>
+                        <td>Low</td>
+                        <td>Complex needs</td>
+                    </tr>
+                    <tr>
+                        <td>Robo-Advisor</td>
+                        <td>0.25% ($12.50)</td>
+                        <td>Low</td>
+                        <td>Busy beginners</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/f/financial-advisor.asp" target="_blank">Investopedia: Financial Advisor</a> – Pros, cons, and when to leap.</p>
+        </section>
+
+        <!-- Section 5: Combining Strategies -->
+        <section>
+            <h2>Combining Strategies: The Core-Satellite Play</h2>
+            <p>
+                Why settle for one approach? Blend stability and ambition with the Core-Satellite strategy.
+            </p>
+            
+            <h3>What Is Core-Satellite?</h3>
+            <ul>
+                <li><strong>Core (70-90%):</strong> Passive investments (e.g., ETFs) for steady growth and low fees.</li>
+                <li><strong>Satellite (10-30%):</strong> Active picks (e.g., stocks, sectors) for higher returns—and fun.</li>
+                <li><strong>Balance:</strong> Core anchors you; satellite swings for the fences.</li>
+            </ul>
+            
+            <h3>How It Works</h3>
+            <p>
+                <strong>Example:</strong> $10,000 split—$8,000 in VOO (7% growth = $560/year), $2,000 in Tesla + biotech (12% hoped = $240). Total: $800 potential, cushioned if satellite flops.
+            </p>
+            <p>
+                <strong>Flexibility:</strong> Cautious? Go 90/10. Bold? Try 70/30.
+            </p>
+            
+            <h3>Real-Life Example</h3>
+            <ul>
+                <li><strong>Core:</strong> $5,000 in SPY (2020-2023, 10% average = $1,650 gain).</li>
+                <li><strong>Satellite:</strong> $1,000 in renewable energy stocks (15% = $450). Total $6,000 becomes $8,100—satellite spices up a solid base.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Build Your Blend</h3>
+                <ol>
+                    <li>Split $10,000 your way:
+                        <br><em>"$8,000 VOO (core), $2,000 tech stocks (satellite)."</em>
+                    </li>
+                    <li>Estimate gains: Core at 7%, Satellite at 12%. Total after 1 year?
+                        <br><em>"$8,000 × 7% = $560. $2,000 × 12% = $240. Total: $800 gain."</em>
+                    </li>
+                    <li>Write why this fits you:
+                        <br><em>"Core for safety, tech for growth—matches my $50,000 retirement goal."</em>
+                    </li>
+                </ol>
+                <p><strong>Bonus:</strong> If satellite tanks 10% (-$200), what's your net?
+                    <br><em>"$560 - $200 = $360—still ahead!"</em>
+                </p>
+                <textarea placeholder="Write your core-satellite blend here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Core-Satellite Portfolio Structure</h4>
+                <div class="pie-chart core-satellite-chart"></div>
+                <div class="pie-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #3f51b5;"></div>
+                        <span>Core (80%) - ETFs</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #f44336;"></div>
+                        <span>Satellite (20%) - Stocks</span>
+                    </div>
+                </div>
+                <p>Pie chart: 80% "Core" (blue, ETF), 20% "Satellite" (red, stocks). Imagine sliders to tweak your mix!</p>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.investopedia.com/terms/c/core-satellite.asp" target="_blank">Investopedia: Core-Satellite Strategy</a> – A blueprint for blending.</p>
+        </section>
+
+        <!-- Section 6: Staying Disciplined -->
+        <section>
+            <h2>Staying Disciplined: Your Strategy's Glue</h2>
+            <p>
+                Discipline turns plans into profits. Let's build habits to keep you steady through market ups and downs.
+            </p>
+            
+            <h3>Keys to Discipline</h3>
+            <ul>
+                <li><strong>Automate:</strong> $75 monthly into VOO via your broker—no excuses.</li>
+                <li><strong>Check Sparingly:</strong> Quarterly reviews (e.g., Jan 1st, April 1st) beat daily obsession—markets fluctuate.</li>
+                <li><strong>Tune Out Noise:</strong> "Recession Coming!" screams headlines. Ignore it—your plan rules.</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <ul>
+                <li><strong>Auto-Invest:</strong> $100/month in SCHB (Schwab ETF). After 2 years at 8%, $2,400 becomes $2,780—$380 gained effortlessly.</li>
+                <li><strong>Quarterly Check:</strong> A 2022 review showed a 5% dip—held steady, up 15% by 2023.</li>
+            </ul>
+            
+            <h3>Pitfalls to Dodge</h3>
+            <ul>
+                <li><strong>Panic Selling:</strong> March 2020's 30% crash scared sellers—holders saw 70% gains by 2021.</li>
+                <li><strong>Fad Chasing:</strong> Meme stocks (e.g., AMC) soared 1,000% in 2021, then crashed 80%—discipline sidestepped the trap.</li>
+            </ul>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Discipline Blueprint</h3>
+                <ol>
+                    <li>Draft a 4-step plan:
+                        <br><em>"1. Auto-invest $75/month in VOO. 2. Review Jan/July 1st. 3. Skip news. 4. Journal wins quarterly."</em>
+                    </li>
+                    <li>Write how it keeps you on track:
+                        <br><em>"Automation locks in consistency, reviews keep me calm, no news avoids panic—aiming for $25,000 in 10 years."</em>
+                    </li>
+                </ol>
+                <p><strong>Bonus:</strong> If markets drop 20%, what's your move?
+                    <br><em>"Stick to the plan—buy more if I can!"</em>
+                </p>
+                <textarea placeholder="Write your discipline blueprint here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Investment Discipline Calendar</h4>
+                <div style="max-width: 600px; margin: 0 auto; border: 1px solid #ddd; border-radius: 5px; padding: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                        <div style="text-align: center; flex: 1;"><strong>January</strong></div>
+                        <div style="text-align: center; flex: 1;"><strong>February</strong></div>
+                        <div style="text-align: center; flex: 1;"><strong>March</strong></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                        <div style="text-align: center; flex: 1;">
+                            <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #4caf50; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: white;">1</div>
+                            <div style="margin-top: 5px; font-size: 12px;">Review</div>
+                        </div>
+                        <div style="text-align: center; flex: 1;">
+                            <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #2196f3; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: white;">15</div>
+                            <div style="margin-top: 5px; font-size: 12px;">Auto-Invest</div>
+                        </div>
+                        <div style="text-align: center; flex: 1;">
+                            <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #2196f3; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: white;">15</div>
+                            <div style="margin-top: 5px; font-size: 12px;">Auto-Invest</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="text-align: center; flex: 1;"><strong>April</strong></div>
+                        <div style="text-align: center; flex: 1;"><strong>May</strong></div>
+                        <div style="text-align: center; flex: 1;"><strong>June</strong></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="text-align: center; flex: 1;">
+                            <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #4caf50; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: white;">1</div>
+                            <div style="margin-top: 5px; font-size: 12px;">Review</div>
+                        </div>
+                        <div style="text-align: center; flex: 1;">
+                            <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #2196f3; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: white;">15</div>
+                            <div style="margin-top: 5px; font-size: 12px;">Auto-Invest</div>
+                        </div>
+                        <div style="text-align: center; flex: 1;">
+                            <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #2196f3; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: white;">15</div>
+                            <div style="margin-top: 5px; font-size: 12px;">Auto-Invest</div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 20px;">Calendar: Auto-invest dates (blue dots), review days (green stars)—visualize your rhythm.</p>
+            </div>
+            
+            <p><strong>Resource:</strong> <a href="https://www.betterment.com/resources/investor-psychology/" target="_blank">Betterment's Discipline Guide</a> – Mindset tips for stormy markets.</p>
+        </section>
+
+        <!-- Section 7: Analyzing Your Strategy Patterns -->
+        <section>
+            <h2>Analyzing Your Strategy Patterns</h2>
+            <p>
+                Strategies evolve—let's analyze your leanings to refine your playbook.
+            </p>
+            
+            <h3>How to Analyze</h3>
+            <ul>
+                <li><strong>Preferences:</strong> Tally your interactive picks—mostly long-term? Passive?</li>
+                <li><strong>Fit Check:</strong> Do they match your time (e.g., 10 hours/week) and goals (e.g., $100,000)?</li>
+                <li><strong>Risk Vibe:</strong> Comfortable with satellite losses or craving core safety?</li>
+            </ul>
+            
+            <h3>Real-Life Example</h3>
+            <p>
+                Maya: Chose 80% passive, 20% active. After a year, her $5,000 grew to $5,600—active lagged, so she shifted to 90/10 for peace of mind.
+            </p>
+            
+            <div class="activity-box">
+                <h3>Interactive Element: Pattern Spotter</h3>
+                <ol>
+                    <li>Review your answers so far—what's your top strategy?
+                        <br><em>"Passive long-term—picked it three times!"</em>
+                    </li>
+                    <li>List two goals it fits and one tweak:
+                        <br><em>"Goals: $50,000 retirement, $10,000 travel. Tweak: Add 10% satellite for fun."</em>
+                    </li>
+                    <li>Write your pattern insight:
+                        <br><em>"I lean safe but crave a little action—core-satellite might be my sweet spot."</em>
+                    </li>
+                </ol>
+                <textarea placeholder="Write your strategy pattern analysis here..." rows="6"></textarea>
+            </div>
+            
+            <h3>Visual Aid</h3>
+            <div class="visual-aid">
+                <h4>Your Strategy Preferences</h4>
+                <div class="bar-chart" style="height: 250px;">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="bar" style="height: 180px;">4</div>
+                        <div class="bar-label">Passive</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="bar" style="height: 100px;">2</div>
+                        <div class="bar-label">Active</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="bar" style="height: 150px;">3</div>
+                        <div class="bar-label">Long-Term</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="bar" style="height: 100px;">2</div>
+                        <div class="bar-label">Short-Term</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="bar" style="height: 120px;">3</div>
+                        <div class="bar-label">Core-Satellite</div>
+                    </div>
+                </div>
+                <p>Bar graph: Your picks (e.g., 4 Passive, 2 Active, 3 Long-Term)—see your style emerge!</p>
+            </div>
+        </section>
+
+<!-- Section 8: Avoiding Pitfalls -->
+<section>
+    <h2>Avoiding Pitfalls: Your Troubleshooting Toolkit</h2>
+    <p>
+        Rookie mistakes can derail you—here's how to sidestep or fix them.
+    </p>
+    
+    <h3>Common Pitfalls</h3>
+    <ul>
+        <li><strong>Over-Trading:</strong> Flipping stocks monthly? Fees eat $50-$100/year.
+            <br>Fix: Limit trades—aim for 1-2/year unless short-term's your game.</li>
+        <li><strong>Market Timing:</strong> Waiting for "the dip"? You'll miss gains—S&P 500's best days follow crashes.
+            <br>Fix: Use DCA or buy now—time in beats timing.</li>
+        <li><strong>Emotional Swings:</strong> Sell low, buy high? Fear and greed flip logic.
+            <br>Fix: Write your "why" (e.g., "Retirement by 60")—revisit it in chaos.</li>
+    </ul>
+    
+    <div class="activity-box">
+        <h3>Interactive Element: Fix the Flub</h3>
+        <p>Scenario: You invested $1,000 in a stock, it drops 15% ($850). You:</p>
+        <ul>
+            <li>a) Sell fast</li>
+            <li>b) Buy more</li>
+            <li>c) Hold</li>
+        </ul>
+        <p><em>"c) Hold—long-term recovers, panic locks in loss."</em></p>
+        <p>Write your fix and why: <em>"Hold—my $20,000 goal needs time, not knee-jerk moves."</em></p>
+        <textarea placeholder="Write your pitfall solution here..." rows="4"></textarea>
+    </div>
+    
+    <h3>Visual Aid</h3>
+    <div class="visual-aid">
+        <h4>Market Drop Decision Tree</h4>
+        <div style="max-width: 500px; margin: 0 auto; border: 1px solid #ddd; border-radius: 5px; padding: 15px;">
+            <div style="text-align: center; padding: 10px; background-color: #f2f2f2; border-radius: 5px; margin-bottom: 15px;">
+                Market Drops
+            </div>
+            <div style="display: flex; justify-content: center; position: relative; height: 30px;">
+                <div style="position: absolute; left: 50%; transform: translateX(-50%); border-left: 2px solid #333; height: 30px;"></div>
+            </div>
+            <div style="text-align: center; padding: 10px; background-color: #f2f2f2; border-radius: 5px; margin-bottom: 15px;">
+                Check Your Goal
+            </div>
+            <div style="display: flex; justify-content: space-around; position: relative; height: 30px;">
+                <div style="position: absolute; left: 25%; width: 50%; border-top: 2px solid #333;"></div>
+                <div style="position: absolute; left: 25%; border-left: 2px solid #333; height: 30px;"></div>
+                <div style="position: absolute; left: 75%; border-left: 2px solid #333; height: 30px;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-around;">
+                <div style="text-align: center; padding: 10px; background-color: #ffebee; border-radius: 5px; width: 40%;">
+                    Short-term?<br>Sell
+                </div>
+                <div style="text-align: center; padding: 10px; background-color: #e8f5e9; border-radius: 5px; width: 40%;">
+                    Long-term?<br>Hold or Buy
+                </div>
+            </div>
+        </div>
+        <p style="margin-top: 20px;">Flowchart: "Market drops → Check goal → Short-term? Sell. Long-term? Hold or buy."</p>
+    </div>
+</section>
+
+<!-- Section 9: Reflection - Your Strategy Fit -->
+<section>
+    <h2>Reflection – Your Strategy Fit</h2>
+    <p>
+        Let's tie your playbook to your life.
+    </p>
+    
+    <h3>Your Play</h3>
+    <p>
+        Long-term passive? Short-term active? Core-satellite? Match it to your time, goals, and personality.
+    </p>
+    
+    <h3>Stakes</h3>
+    <p>
+        Stick with it—$10,000 at 7% for 30 years = $76,123. Flip-flop, and you're stuck at $15,000.
+    </p>
+    
+    <div class="activity-box">
+        <h3>Interactive Element: Strategy Statement</h3>
+        <p>Write: "I'll use [strategy] to hit [goal] because [reason]."</p>
+        <p><em>Example: "I'll use passive long-term to grow $50,000 for retirement because I'm busy and love simplicity."</em></p>
+        <p>Add flair: <em>"I'll toast my wins with coffee on a beach I own!"</em></p>
+        <textarea placeholder="Write your strategy statement here..." rows="4"></textarea>
+    </div>
+    
+    <h3>Visual Aid</h3>
+    <div class="visual-aid">
+        <h4>Strategy Decision Tree</h4>
+        <div style="max-width: 600px; margin: 0 auto; border: 1px solid #ddd; border-radius: 5px; padding: 15px;">
+            <div style="text-align: center; padding: 10px; background-color: #f2f2f2; border-radius: 5px; margin-bottom: 15px;">
+                Time Horizon?
+            </div>
+            <div style="display: flex; justify-content: space-around; position: relative; height: 30px;">
+                <div style="position: absolute; left: 25%; width: 50%; border-top: 2px solid #333;"></div>
+                <div style="position: absolute; left: 25%; border-left: 2px solid #333; height: 30px;"></div>
+                <div style="position: absolute; left: 75%; border-left: 2px solid #333; height: 30px;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-around;">
+                <div style="text-align: center; padding: 10px; background-color: #ffebee; border-radius: 5px; width: 40%;">
+                    &lt;5 Years<br>↓<br>Short-term
+                </div>
+                <div style="text-align: center; padding: 10px; background-color: #e8f5e9; border-radius: 5px; width: 40%;">
+                    20+ Years<br>↓<br>Long-term
+                </div>
+            </div>
+            <div style="text-align: center; padding: 10px; margin-top: 20px; background-color: #f2f2f2; border-radius: 5px;">
+                Love Control?
+            </div>
+            <div style="display: flex; justify-content: space-around; position: relative; height: 30px;">
+                <div style="position: absolute; left: 25%; width: 50%; border-top: 2px solid #333;"></div>
+                <div style="position: absolute; left: 25%; border-left: 2px solid #333; height: 30px;"></div>
+                <div style="position: absolute; left: 75%; border-left: 2px solid #333; height: 30px;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-around;">
+                <div style="text-align: center; padding: 10px; background-color: #e3f2fd; border-radius: 5px; width: 40%;">
+                    Yes<br>↓<br>Active
+                </div>
+                <div style="text-align: center; padding: 10px; background-color: #e8f5e9; border-radius: 5px; width: 40%;">
+                    No<br>↓<br>Passive
+                </div>
+            </div>
+        </div>
+        <p style="margin-top: 20px;">Decision tree: "20+ years? → Long-term. Love control? → Active." Trace your path!</p>
+    </div>
+</section>
+
+<!-- Section 10: Quiz - Strategy Mastery -->
+<section>
+    <h2>Quiz – Strategy Mastery</h2>
+    <p>
+        Prove your playbook prowess!
+    </p>
+    
+    <div class="quiz">
+        <div class="quiz-item">
+            <p><strong>1. Long-term investing leverages:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q1" id="q1a" value="A"> <label for="q1a">Quick trades</label></div>
+                <div><input type="radio" name="q1" id="q1b" value="B"> <label for="q1b">Compounding</label></div>
+                <div><input type="radio" name="q1" id="q1c" value="C"> <label for="q1c">High fees</label></div>
+            </div>
+        </div>
+        
+        <div class="quiz-item">
+            <p><strong>2. Passive investing:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q2" id="q2a" value="A"> <label for="q2a">Picks stocks</label></div>
+                <div><input type="radio" name="q2" id="q2b" value="B"> <label for="q2b">Matches markets</label></div>
+                <div><input type="radio" name="q2" id="q2c" value="C"> <label for="q2c">Avoids ETFs</label></div>
+            </div>
+        </div>
+        
+        <div class="quiz-item">
+            <p><strong>3. DCA buys more shares when:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q3" id="q3a" value="A"> <label for="q3a">Prices rise</label></div>
+                <div><input type="radio" name="q3" id="q3b" value="B"> <label for="q3b">Prices dip</label></div>
+                <div><input type="radio" name="q3" id="q3c" value="C"> <label for="q3c">Markets crash only</label></div>
+            </div>
+        </div>
+        
+        <div class="quiz-item">
+            <p><strong>4. Robo-advisors charge:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q4" id="q4a" value="A"> <label for="q4a">1%</label></div>
+                <div><input type="radio" name="q4" id="q4b" value="B"> <label for="q4b">0.25%</label></div>
+                <div><input type="radio" name="q4" id="q4c" value="C"> <label for="q4c">Nothing</label></div>
+            </div>
+        </div>
+        
+        <div class="quiz-item">
+            <p><strong>5. Core-satellite's core is:</strong></p>
+            <div class="quiz-options">
+                <div><input type="radio" name="q5" id="q5a" value="A"> <label for="q5a">Active</label></div>
+                <div><input type="radio" name="q5" id="q5b" value="B"> <label for="q5b">Passive</label></div>
+                <div><input type="radio" name="q5" id="q5c" value="C"> <label for="q5c">Cash</label></div>
+            </div>
+        </div>
+        
+        <button onclick="checkQuiz()">Submit Quiz</button>
+        <div id="quiz-result" class="result-box" style="display: none;"></div>
+    </div>
+    
+    <div class="activity-box">
+        <h3>Interactive Element: Quiz Reflection</h3>
+        <p>Take the quiz (5 minutes!). Score it, fix one miss: <em>"DCA buys more in dips, not just crashes—nailed it now!"</em></p>
+        <textarea placeholder="Write your quiz reflections here..." rows="4"></textarea>
+    </div>
+    
+    <h3>Visual Aid</h3>
+    <div class="visual-aid">
+        <h4>Strategy Match Game</h4>
+        <table class="asset-table">
+            <tr>
+                <th>Strategy</th>
+                <th>Best Match</th>
+            </tr>
+            <tr>
+                <td>Passive</td>
+                <td>Low Fees</td>
+            </tr>
+            <tr>
+                <td>Active</td>
+                <td>High Effort</td>
+            </tr>
+            <tr>
+                <td>Long-Term</td>
+                <td>Compounding</td>
+            </tr>
+            <tr>
+                <td>Core-Satellite</td>
+                <td>Balanced Approach</td>
+            </tr>
+            <tr>
+                <td>DCA</td>
+                <td>Consistency</td>
+            </tr>
+        </table>
+        <p style="margin-top: 20px;">Matchup game: Drag "Passive" to "Low Fees," "Active" to "High Effort"—test your smarts!</p>
+    </div>
+</section>
+
+<!-- Conclusion -->
+<section>
+    <h2>Conclusion: Your Playbook Is Live!</h2>
+    <p>
+        You've built a powerhouse playbook—whether long-term passive, short-term active, or a savvy blend, you're ready to grow wealth with confidence. Start small, stay disciplined, and let your strategy work its magic. You're not just an investor—you're a strategist now!
+    </p>
+    
+    <div class="activity-box">
+        <h3>Take Action</h3>
+        <p>Set up a $25/month auto-investment in VOO via Fidelity or Schwab. Write your pick and why: <em>"VOO via Schwab—low fees, fits my long-term vibe."</em></p>
+        <textarea placeholder="Write your first action step here..." rows="3"></textarea>
+    </div>
+    
+    <h3>Resources:</h3>
+    <ul>
+        <li><a href="https://www.morningstar.com" target="_blank">Morningstar</a> – Fund comparisons.</li>
+        <li><a href="https://www.wealthfront.com" target="_blank">Wealthfront</a> – Robo-advice demo.</li>
+        <li><a href="https://finance.yahoo.com" target="_blank">Yahoo Finance</a> – Price histories.</li>
+    </ul>
+    
+    <p class="result-box">
+        Your wealth journey's begun—play smart and win big!
+    </p>
+    
+    <h3>Next Up:</h3>
+    <p>
+        Lesson 6: <a href="section3lesson6.html">Tax Strategies: Maximizing Your Returns</a>
+    </p>
+</section>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>FinanceCourse</h3>
+            <p>Learn to invest smarter with our comprehensive financial education platform.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="learn.html">Courses</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Resources</h3>
+            <ul>
+                <li><a href="#">Investing Glossary</a></li>
+                <li><a href="#">Calculators</a></li>
+                <li><a href="#">Market Updates</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <ul>
+                <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 FinanceCourse. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

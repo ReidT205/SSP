@@ -4,301 +4,770 @@
     <meta charset="UTF-8">
     <title>About Me - Finance Course</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* Global Styles */
+        /* ====== GLOBAL STYLES ====== */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #60a5fa;
+            --secondary: #0284c7;
+            --accent: #f97316;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gradient: linear-gradient(120deg, #2563eb, #0284c7);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            color: #333;
-            background-color: #f4f4f4;
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-color: var(--light);
         }
+        
         a {
             text-decoration: none;
             color: inherit;
+            transition: all 0.3s ease;
         }
-        /* Header */
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-primary:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: -1;
+            transition: all 0.5s ease;
+        }
+        
+        .btn-primary:hover:before {
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        
+        /* ====== HEADER ====== */
         header {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+            padding: 0.75rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
+        
+        header.scrolled {
+            box-shadow: var(--shadow-md);
+            padding: 0.5rem 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
         .navbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            max-width: 1200px;
-            padding: 20px;
-            margin: 0 auto;
+            padding: 0.5rem 0;
         }
+        
         .logo {
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
         }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 2rem;
+            align-items: center;
         }
+        
         .nav-links a {
-            font-size: 16px;
-            padding: 5px 0;
-            transition: color 0.3s;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--dark);
+            position: relative;
         }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+        
         .nav-links a:hover {
-            color: #007BFF;
+            color: var(--primary);
         }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
         .menu-toggle {
             display: none;
-            font-size: 24px;
+            font-size: 1.5rem;
             cursor: pointer;
+            color: var(--primary);
         }
-        /* Profile Section */
+        
+        /* ====== PROFILE SECTION ====== */
         .profile-section {
-            background: linear-gradient(45deg, #007BFF, #00C6FF);
-            color: #fff;
+            position: relative;
+            padding: 160px 0 80px;
+            background: var(--gradient);
+            color: white;
             text-align: center;
-            padding: 60px 20px;
+            overflow: hidden;
         }
+        
+        .profile-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' fill-opacity='0.05' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z'%3E%3C/path%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+        
+        .profile-content {
+            position: relative;
+            z-index: 2;
+        }
+        
         .profile-image {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            border: 4px solid #fff;
-            margin-bottom: 20px;
+            border: 5px solid white;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 25px;
+            object-fit: cover;
+            animation: fadeIn 1s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+        
         .profile-section h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease;
         }
+        
         .profile-section p {
-            font-size: 18px;
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 1.2s ease;
         }
-        /* Details Section */
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* ====== DETAILS SECTION ====== */
         .details-section {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            background-color: #fff;
-            padding: 40px 20px;
-            gap: 40px;
+            background-color: white;
+            padding: 60px 0;
+            position: relative;
+            z-index: 5;
+            margin-top: -30px;
+            border-radius: 30px 30px 0 0;
+            box-shadow: var(--shadow-lg);
         }
+        
+        .details-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
         .detail-item {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+            width: 300px;
             display: flex;
             align-items: center;
-            width: 350px; /* Increased width */
         }
-        .detail-item i {
-            font-size: 36px;
-            color: #007BFF;
+        
+        .detail-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .detail-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-right: 20px;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-md);
+            flex-shrink: 0;
         }
-        .detail-item h3 {
-            font-size: 20px;
+        
+        .detail-info {
+            flex: 1;
+            min-width: 0; /* Prevents flex items from growing beyond their parent */
+        }
+        
+        .detail-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
             margin-bottom: 5px;
         }
-        .detail-item p {
-            font-size: 16px;
-            color: #555;
-            white-space: nowrap; /* Prevent wrapping */
-            overflow: hidden;
-            text-overflow: ellipsis;
+        
+        .detail-info p {
+            font-size: 1rem;
+            color: var(--gray);
+            margin: 0;
+            word-break: break-word; /* Enables wrapping for long words like email addresses */
+            overflow-wrap: break-word;
         }
-        /* Content Sections */
+        
+        /* ====== CONTENT SECTIONS ====== */
         .content-section {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        .content-section h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #007BFF;
-            border-bottom: 2px solid #007BFF;
-            padding-bottom: 10px;
-        }
-        .content-section p {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #555;
-        }
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 40px 20px;
-        }
-        .footer-content {
-            max-width: 1200px;
+            padding: 60px 20px;
+            max-width: 900px;
             margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            position: relative;
+            background-color: transparent; /* Remove background from content sections */
         }
+        
+        .section-divider {
+            height: 80px;
+            background-color: transparent; /* Make dividers transparent */
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-container {
+            padding: 60px 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section-container:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Make all odd section containers have light background */
+        .content-section:nth-child(odd) .section-container {
+            background-color: var(--light);
+        }
+        
+        /* Make all even section containers have white background */
+        .content-section:nth-child(even) .section-container {
+            background-color: white;
+        }
+        
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+        
+        .content-section h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 50px;
+        }
+        
+        .content-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Remove background from content sections */
+        .content-section:nth-of-type(even),
+        .content-section:nth-of-type(odd) {
+            background-color: transparent;
+        }
+        
+        /* ====== FOOTER ====== */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
         .footer-section {
-            flex: 1 1 200px;
-            margin: 10px;
+            position: relative;
         }
+        
         .footer-section h3 {
-            margin-bottom: 15px;
-            font-size: 18px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
         }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-section p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
         .footer-section ul {
             list-style: none;
             padding: 0;
         }
+        
         .footer-section ul li {
-            margin-bottom: 10px;
+            margin-bottom: 1rem;
         }
+        
         .footer-section ul li a {
-            color: #fff;
-            transition: color 0.3s;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            word-break: break-word; /* Handle long URLs */
         }
+        
+        .footer-section ul li a i {
+            color: var(--primary);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        
         .footer-section ul li a:hover {
-            color: #ccc;
+            color: white;
+            transform: translateX(5px);
         }
+        
         .footer-bottom {
             text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #ccc;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
         }
-        /* Responsive Design */
+        
+        /* ====== RESPONSIVE DESIGN ====== */
+        @media (max-width: 991px) {
+            .profile-section h1 {
+                font-size: 2.4rem;
+            }
+            
+            .profile-section p {
+                font-size: 1.1rem;
+            }
+            
+            .detail-item {
+                width: 280px;
+            }
+            
+            .content-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow-md);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 999;
             }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
             .menu-toggle {
                 display: block;
             }
-            .nav-links.active {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-                position: absolute;
-                top: 60px;
-                right: 20px;
-                background-color: #fff;
-                padding: 20px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            
+            .profile-section {
+                padding: 130px 0 60px;
             }
+            
+            .profile-section h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-section p {
+                font-size: 1rem;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .content-section h2 {
+                font-size: 1.7rem;
+            }
+            
+            .content-section p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .profile-section h1 {
+                font-size: 1.8rem;
+            }
+            
+            .profile-image {
+                width: 130px;
+                height: 130px;
+            }
+            
             .detail-item {
                 width: 100%;
-                justify-content: center;
+                max-width: 300px;
             }
-            .footer-section ul {
-                flex-direction: column;
-                align-items: center;
+            
+            .content-section {
+                padding: 40px 15px;
+            }
+            
+            .section-container {
+                padding: 30px 15px;
+            }
+            
+            .content-section h2 {
+                font-size: 1.5rem;
             }
         }
     </style>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 </head>
 <body>
     <!-- Header -->
-    <!-- New Navbar -->
-    <header>
-        <nav class="navbar">
-            <div class="logo"><a href="index.html">FinanceCourse</a></div>
-            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
-            <div class="nav-links" id="nav-links">
-                <a href="index.html">Home</a>
-                <a href="learn.html">Learn</a>
-                <a href="about.html">About</a>
-            </div>
-        </nav>
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Finance<span>Course</span></a>
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="nav-links" id="nav-links">
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="learn.html"><i class="fas fa-graduation-cap"></i> Learn</a>
+                    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <!-- Profile Section -->
     <section class="profile-section">
-        <img src="rocket1.jpg" alt="Profile" class="profile-image">
-        <h1>Reid Thompson</h1>
-        <p>The Bay School of San Francisco | Future Innovator</p>
+        <div class="container profile-content">
+            <img src="rocket1.jpg" alt="Reid Thompson" class="profile-image" data-aos="zoom-in">
+            <h1 data-aos="fade-up">Reid Thompson</h1>
+            <p data-aos="fade-up" data-aos-delay="100">The Bay School of San Francisco | Future Innovator</p>
+        </div>
     </section>
 
     <!-- Details Section -->
     <section class="details-section">
-        <div class="detail-item">
-            <i class="fas fa-user"></i>
-            <div>
-                <h3>Personal Details</h3>
-                <p>18 years old</p>
-            </div>
-        </div>
-        <div class="detail-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <div>
-                <h3>Location</h3>
-                <p>San Francisco, California</p>
-            </div>
-        </div>
-        <div class="detail-item">
-            <i class="fas fa-envelope"></i>
-            <div>
-                <h3>Contact</h3>
-                <p>rthompson25@bayschoolsf.org</p>
+        <div class="container">
+            <div class="details-content">
+                <div class="detail-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="detail-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="detail-info">
+                        <h3>Personal Details</h3>
+                        <p>18 years old</p>
+                    </div>
+                </div>
+                <div class="detail-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="detail-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="detail-info">
+                        <h3>Location</h3>
+                        <p>San Francisco, California</p>
+                    </div>
+                </div>
+                <div class="detail-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="detail-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="detail-info">
+                        <h3>Contact</h3>
+                        <p>rthompson25@bayschoolsf.org</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Content Sections -->
+    <div class="section-divider"></div>
+    
     <section class="content-section">
-        <h2>About Me</h2>
-        <p>
-            Hello! I'm a passionate high school student interested in technology, finance, business, and science. My goal with this website is to teach my broader community the basic financial skills they need to succeed in life financially. I hope you enjoy the resources I've created and find them helpful in your financial journey.
-        </p>
+        <div class="container section-container" data-aos="fade-up">
+            <h2>About Me</h2>
+            <p>
+                Hello! I'm a passionate high school student interested in technology, finance, business, and science. My goal with this website is to teach my broader community the basic financial skills they need to succeed in life financially. I hope you enjoy the resources I've created and find them helpful in your financial journey.
+            </p>
+        </div>
     </section>
-
+    
+    <div class="section-divider"></div>
+    
     <section class="content-section">
-        <h2>Background and Motivation</h2>
-        <p>
-            With a passion for finance and teaching, I was inspired to create this platform to address the lack of accessible financial education. Understanding personal finance is crucial for everyone, and I'm committed to providing the tools and knowledge you need to take control of your financial future.
-        </p>
+        <div class="container section-container" data-aos="fade-up">
+            <h2>Background and Motivation</h2>
+            <p>
+                With a passion for finance and teaching, I was inspired to create this platform to address the lack of accessible financial education. Understanding personal finance is crucial for everyone, and I'm committed to providing the tools and knowledge you need to take control of your financial future.
+            </p>
+        </div>
     </section>
-
+    
+    <div class="section-divider"></div>
+    
     <section class="content-section">
-        <h2>What This Website Offers</h2>
-        <p>
-            On this website, you'll find beginner-friendly lessons, comprehensive resources, and practical guidance on various financial topics. My goal is to make learning about finance engaging and straightforward. I'm constantly working to expand the content and provide even more valuable resources in the future.
-        </p>
+        <div class="container section-container" data-aos="fade-up">
+            <h2>What This Website Offers</h2>
+            <p>
+                On this website, you'll find beginner-friendly lessons, comprehensive resources, and practical guidance on various financial topics. My goal is to make learning about finance engaging and straightforward. I'm constantly working to expand the content and provide even more valuable resources in the future.
+            </p>
+        </div>
     </section>
-
+    
+    <div class="section-divider"></div>
+    
     <section class="content-section">
-        <h2>Personal Note</h2>
-        <p>
-            Thank you for visiting my platform. I encourage you to continue your financial education journey and take advantage of the resources available here. If you have any questions or feedback, please don't hesitate to reach out via the contact form. Together, we can achieve financial literacy and empowerment.
-        </p>
+        <div class="container section-container" data-aos="fade-up">
+            <h2>Personal Note</h2>
+            <p>
+                Thank you for visiting my platform. I encourage you to continue your financial education journey and take advantage of the resources available here. If you have any questions or feedback, please don't hesitate to reach out via the contact form. Together, we can achieve financial literacy and empowerment.
+            </p>
+        </div>
     </section>
 
     <!-- Footer -->
-    <!-- New Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>About Us</h3>
-                <p>We are dedicated to providing the best financial education to help you achieve your goals.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About FinanceCourse</h3>
+                    <p>We're dedicated to providing accessible financial education that empowers everyone to build a secure and prosperous future.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="learn.html"><i class="fas fa-graduation-cap"></i> Learn</a></li>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Courses</h3>
+                    <ul>
+                        <li><a href="section1lesson1.html"><i class="fas fa-coins"></i> Money Mindset & Basics</a></li>
+                        <li><a href="section2lesson1.html"><i class="fas fa-piggy-bank"></i> Designing Your Budget</a></li>
+                        <li><a href="section3lesson1.html"><i class="fas fa-chart-line"></i> Power of Investing</a></li>
+                        <li><a href="section4lesson1.html"><i class="fas fa-shield-alt"></i> Financial Risk Management</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="mailto:rthompson25@bayschoolsf.org"><i class="fas fa-envelope"></i> rthompson25@bayschoolsf.org</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> San Francisco, CA</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="learn.html">Learn</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
+            
+            <div class="footer-bottom">
+                &copy; 2024 FinanceCourse. All rights reserved.
             </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>Email: rthompson25@bayschoolsf.org</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2024 FinanceCourse. All rights reserved.
         </div>
     </footer>
 
-    <!-- JavaScript for Menu Toggle -->
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- JavaScript -->
     <script>
-        function toggleMenu() {
+        // Initialize AOS Animation Library
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                offset: 100
+            });
+            
+            // Menu Toggle
+            const menuToggle = document.getElementById('menu-toggle');
             const navLinks = document.getElementById('nav-links');
-            navLinks.classList.toggle('active');
-        }
+            
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+                
+                if (menuToggle.classList.contains('active')) {
+                    menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Header Scroll Effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
     </script>
 </body>
 </html>
